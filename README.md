@@ -64,7 +64,7 @@ PDF Protect runs client-side, so performance depends on the browser, device, and
 ## Credits and Third-Party Licensing
 
 - **[libpdf-core](https://github.com/libpdf-js/core)** powers PDF encryption, authentication, and protection changes; bundled third-party licence notices are included directly in `js/vendor/libpdf-core.js`
-- **[SecLists](https://github.com/danielmiessler/SecLists)** by Daniel Miessler et al.: the `passwords/10k-most-common.txt` and `passwords/100k-most-used.txt` word lists are sourced from this project | [MIT License](https://github.com/danielmiessler/SecLists/blob/master/LICENSE)
+- **[SecLists](https://github.com/danielmiessler/SecLists)** by Daniel Miessler: the `passwords/10k-most-common.txt` and `passwords/100k-most-used.txt` word lists are sourced from this project | [MIT License](https://github.com/danielmiessler/SecLists/blob/master/LICENSE)
 - **Roboto Font** by Christian Robertson | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - **JetBrains Mono** by JetBrains | [SIL Open Font License 1.1](https://openfontlicense.org/)
 - **Material Icons** by Google | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
