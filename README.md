@@ -23,7 +23,17 @@ Live at [pdfprotect.me](https://pdfprotect.me)
 - **Shared-Password Fallback**: If the owner password is left blank, PDF Protect reuses the user password so the file does not end up with an undisclosed random owner password
 - **Permission Toggles**: Control printing, copying, modification, annotation, form filling, and document assembly
 - **Password Strength Feedback**: Entropy-based password strength indicator plus confirmation checks for user and owner passwords
+- **Common Password Warning**: When setting a new password, the app checks it against a bundled list of 10,000 commonly-known passwords and shows an inline advisory if a match is found — no data leaves the browser
 - **Owner-Password Removal Safeguard**: Prevents user-level sessions from removing protection when owner credentials are required
+
+### Password Recovery Scanning
+
+- **Dictionary Scan**: When a password-protected PDF is loaded, a common-password scan starts automatically in the browser — no data is sent anywhere
+- **Bundled Word Lists**: Two locally-stored password lists from the [SecLists](https://github.com/danielmiessler/SecLists) project are included: a 10,000-entry quick scan (default) and a 100,000-entry thorough scan
+- **List Toggle**: Switch between the 10k and 100k lists with a single click; the scan restarts immediately with the new list
+- **Auto-Fill**: If the password is found it is automatically filled into the unlock field — just click Unlock to continue
+- **Cancellable**: A cancel button stops the scan at any time, and manual entry is always available regardless of scan state
+- **Non-Blocking**: Scans yield to the browser every 150 passwords so the UI stays fully responsive during long scans
 
 ### Interface and Workflow
 
@@ -54,6 +64,7 @@ PDF Protect runs client-side, so performance depends on the browser, device, and
 ## Credits and Third-Party Licensing
 
 - **[libpdf-core](https://github.com/libpdf-js/core)** powers PDF encryption, authentication, and protection changes; bundled third-party licence notices are included directly in `vendor/libpdf-core.js`
+- **[SecLists](https://github.com/danielmiessler/SecLists)** by Daniel Miessler et al. — the `passwords/10k-most-common.txt` and `passwords/100k-most-used.txt` word lists are sourced from this project | [MIT License](https://github.com/danielmiessler/SecLists/blob/master/LICENSE)
 - **Roboto Font** by Christian Robertson | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - **JetBrains Mono** by JetBrains | [SIL Open Font License 1.1](https://openfontlicense.org/)
 - **Material Icons** by Google | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)

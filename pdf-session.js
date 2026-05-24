@@ -66,6 +66,7 @@ export class PDFSession {
   get isAuthenticated() { return this.#pdf.isAuthenticated }
   hasOwnerAccess() { return this.#pdf.hasOwnerAccess() }
   getSecurity() { return this.#pdf.getSecurity() }
+  getSecurityHandler() { return this.#pdf?.ctx?.info?.securityHandler ?? null }
 
   // Always reloads from original bytes so setProtection is called on a
   // fresh, unmodified instance — eliminates the double-protect mutation bug.

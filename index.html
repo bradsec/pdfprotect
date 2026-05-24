@@ -112,6 +112,56 @@
             Incorrect password — try again
           </div>
         </form>
+
+        <!-- ── Forgot password trigger ─────────────────── -->
+        <div class="forgot-password-section" id="forgot-password-section">
+          <button class="btn-link forgot-password-btn" id="forgot-password-btn" type="button">
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">help_outline</span>
+            Forgot password?
+          </button>
+          <div class="scan-choices" id="scan-choices" hidden>
+            <p class="scan-choices-hint">Try matching against a list of common passwords:</p>
+            <div class="scan-choices-row">
+              <button class="btn-secondary scan-choice-btn" id="scan-trigger-10k" type="button">
+                <span class="material-icons-outlined">search</span>
+                Try 10,000 passwords
+              </button>
+              <button class="btn-secondary scan-choice-btn" id="scan-trigger-100k" type="button">
+                <span class="material-icons-outlined">manage_search</span>
+                Try 100,000 passwords
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Password scan UI ──────────────────────────────── -->
+        <div class="scan-panel" id="scan-panel" hidden>
+          <div class="scan-header">
+            <div class="scan-list-toggle" role="group" aria-label="Password list size">
+              <button class="scan-list-btn active" id="scan-btn-10k" data-list="10k" type="button">10k</button>
+              <button class="scan-list-btn" id="scan-btn-100k" data-list="100k" type="button">100k</button>
+            </div>
+            <span class="scan-label" id="scan-label">Scanning…</span>
+            <button class="scan-cancel-btn" id="scan-cancel-btn" type="button" title="Cancel scan" aria-label="Cancel scan">
+              <span class="material-icons-outlined" style="font-size:16px">close</span>
+            </button>
+          </div>
+          <div class="scan-track" id="scan-track">
+            <div class="scan-fill" id="scan-fill"></div>
+          </div>
+          <div class="scan-footer">
+            <span class="scan-counter" id="scan-counter">0</span>
+          </div>
+        </div>
+        <div class="scan-found-banner" id="scan-found-banner" hidden>
+          <span class="material-icons-outlined" style="font-size:15px;vertical-align:-3px">key</span>
+          Password found: <code class="scan-found-pw" id="scan-found-pw"></code>
+        </div>
+        <div class="scan-not-found" id="scan-not-found" hidden>
+          <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">search_off</span>
+          Not found in common list — enter password manually
+        </div>
+
         <div style="text-align:center;margin-top:18px">
           <button class="btn-link" id="change-file-locked-btn">
             <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">arrow_back</span>
@@ -146,9 +196,59 @@
           </div>
           <div class="error-msg" id="owner-unlock-error" hidden>
             <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">error_outline</span>
-            Incorrect owner password — try again
+            <span id="owner-unlock-error-text">Incorrect owner password — try again</span>
           </div>
         </form>
+
+        <!-- ── Forgot owner password trigger ───────────── -->
+        <div class="forgot-password-section" id="owner-forgot-password-section">
+          <button class="btn-link forgot-password-btn" id="owner-forgot-password-btn" type="button">
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">help_outline</span>
+            Forgot owner password?
+          </button>
+          <div class="scan-choices" id="owner-scan-choices" hidden>
+            <p class="scan-choices-hint">Try matching against a list of common passwords:</p>
+            <div class="scan-choices-row">
+              <button class="btn-secondary scan-choice-btn" id="owner-scan-trigger-10k" type="button">
+                <span class="material-icons-outlined">search</span>
+                Try 10,000 passwords
+              </button>
+              <button class="btn-secondary scan-choice-btn" id="owner-scan-trigger-100k" type="button">
+                <span class="material-icons-outlined">manage_search</span>
+                Try 100,000 passwords
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Owner password scan UI ──────────────────────── -->
+        <div class="scan-panel" id="owner-scan-panel" hidden>
+          <div class="scan-header">
+            <div class="scan-list-toggle" role="group" aria-label="Password list size">
+              <button class="scan-list-btn active" id="owner-scan-btn-10k" data-list="10k" type="button">10k</button>
+              <button class="scan-list-btn" id="owner-scan-btn-100k" data-list="100k" type="button">100k</button>
+            </div>
+            <span class="scan-label" id="owner-scan-label">Scanning…</span>
+            <button class="scan-cancel-btn" id="owner-scan-cancel-btn" type="button" title="Cancel scan" aria-label="Cancel scan">
+              <span class="material-icons-outlined" style="font-size:16px">close</span>
+            </button>
+          </div>
+          <div class="scan-track" id="owner-scan-track">
+            <div class="scan-fill" id="owner-scan-fill"></div>
+          </div>
+          <div class="scan-footer">
+            <span class="scan-counter" id="owner-scan-counter">0</span>
+          </div>
+        </div>
+        <div class="scan-found-banner" id="owner-scan-found-banner" hidden>
+          <span class="material-icons-outlined" style="font-size:15px;vertical-align:-3px">key</span>
+          Password found: <code class="scan-found-pw" id="owner-scan-found-pw"></code>
+        </div>
+        <div class="scan-not-found" id="owner-scan-not-found" hidden>
+          <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">search_off</span>
+          Not found in common list — enter password manually
+        </div>
+
         <div style="text-align:center;margin-top:18px">
           <button class="btn-link" id="change-file-owner-locked-btn">
             <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">arrow_back</span>
@@ -190,6 +290,7 @@
                 </div>
                 <span class="strength-hint" id="strength-hint"></span>
               </div>
+              <span class="common-pw-warning" id="user-pw-warning" hidden></span>
             </div>
 
             <div class="field">
@@ -214,6 +315,7 @@
                 </div>
                 <span class="strength-hint" id="owner-strength-hint"></span>
               </div>
+              <span class="common-pw-warning" id="owner-pw-warning" hidden></span>
             </div>
 
             <div class="field" id="owner-confirm-field" hidden>

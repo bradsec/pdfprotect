@@ -540,6 +540,29 @@ main {
   color: var(--font-color);
 }
 
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--font-color);
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-secondary:hover {
+  background: var(--surface2-color);
+  border-color: var(--accent);
+}
+.btn-secondary .material-icons-outlined {
+  font-size: 15px;
+}
+
 .input,
 .select {
   width: 100%;
@@ -820,6 +843,13 @@ main {
   color: var(--danger);
 }
 
+.common-pw-warning {
+  font-size: 0.78rem;
+  margin-top: 0.35rem;
+  display: block;
+  color: var(--color-amber-1);
+}
+
 .toggle-group.permissions-toggles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -956,6 +986,176 @@ main {
 .flash-banner-success { background: var(--color-green-1); }
 .flash-banner-danger  { background: var(--color-red-1); }
 .flash-banner-info    { background: var(--color-blue-1); }
+
+/* ── Password scanner ─────────────────────────────────────────── */
+
+.scan-panel {
+  margin-top: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  background: var(--surface2-color);
+  border: 1px solid var(--border-color);
+}
+
+.scan-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.scan-list-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.scan-list-btn {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: transparent;
+  border: none;
+  color: var(--font-color-2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.6;
+}
+
+.scan-list-btn:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.scan-list-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.scan-label {
+  flex: 1;
+  font-size: 0.78rem;
+  color: var(--font-color-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scan-cancel-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--font-color-2);
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.scan-cancel-btn:hover { color: var(--danger); }
+
+.scan-track {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--border-color);
+  overflow: hidden;
+}
+
+.scan-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-blue-1), #36c);
+  transition: width 0.12s ease;
+}
+
+.scan-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.3rem;
+}
+
+.scan-counter {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--font-color-2);
+}
+
+/* Scanning animation on the label */
+@keyframes scan-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.scan-label.scanning {
+  animation: scan-pulse 1.4s ease-in-out infinite;
+}
+
+/* Found banner */
+.scan-found-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--success) 28%, transparent);
+  font-size: 0.82rem;
+  color: var(--success);
+  font-weight: 500;
+}
+
+.scan-found-pw {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+}
+
+/* Not-found note */
+.scan-not-found {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--font-color-2);
+}
+
+/* ── Forgot password section ─────────────────────────────── */
+.forgot-password-section {
+  margin-top: 0.9rem;
+  text-align: center;
+}
+
+.scan-choices {
+  margin-top: 0.6rem;
+}
+
+.scan-choices-hint {
+  font-size: 0.8rem;
+  color: var(--font-color-2);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.scan-choices-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .success-banner {
   display: flex;

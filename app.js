@@ -1,6 +1,11 @@
 import { PDFSession } from './pdf-session.js'
+import { PasswordScanner } from './js/password-scanner.js'
+import { loadCommonPasswords, isCommonPassword } from './js/common-password-checker.js'
 
 const MAX_FILE_BYTES = 50 * 1024 * 1024  // 50 MB
+
+// ── Protection type constants ────────────────────────────────
+const PROT = Object.freeze({ USER: 'user', OWNER: 'owner', BOTH: 'user+owner' })
 
 function formatFileSize(bytes) {
   if (bytes < 1024) return `${bytes} B`
@@ -49,14 +54,15 @@ let fileLoadSerial = 0
 // ── State ────────────────────────────────────────────────────
 const state = {
   current: 'idle',
-  session: null,        // PDFSession — set when 'ready'
-  pdfBytes: null,       // raw bytes — kept during 'locked'/'owner-locked' for unlock retry
+  session: null,           // PDFSession — set when 'ready'
+  pdfBytes: null,          // raw bytes — kept during 'locked'/'owner-locked' for unlock retry
   fileName: '',
   wasEncrypted: false,
-  protectionType: null, // 'user' | 'owner' | 'user+owner' — set on load, used in ready badge
-  userAuthenticated: false, // true when user pw was accepted but owner pw is still needed
+  protectionType: null,    // 'user' | 'owner' | 'user+owner' — set on load, used in ready badge
+  userAuthenticated: false,// true when user pw was accepted but owner pw is still needed
   securityInfo: null,
-  blobUrl: null,        // fallback download URL — revoked on reset
+  securityHandler: null,   // libpdf StandardSecurityHandler — used for password scanning
+  blobUrl: null,           // fallback download URL — revoked on reset
 }
 
 // ── DOM refs ─────────────────────────────────────────────────
@@ -89,6 +95,8 @@ const ownerPassword     = document.getElementById('owner-password')
 const ownerPasswordConfirm = document.getElementById('owner-password-confirm')
 const ownerConfirmField = document.getElementById('owner-confirm-field')
 const ownerMatchIndicator = document.getElementById('owner-match-indicator')
+const userPwWarning     = document.getElementById('user-pw-warning')
+const ownerPwWarning    = document.getElementById('owner-pw-warning')
 const ENCRYPTION_ALGO   = 'AES-256'
 const strengthBar       = document.getElementById('strength-bar')
 const strengthSegments  = document.querySelectorAll('#strength-segments .segment')
@@ -110,11 +118,175 @@ const removeForm        = document.getElementById('remove-form')
 const removeOwnerPw     = document.getElementById('remove-owner-password')
 const confirmRemoveBtn  = document.getElementById('confirm-remove-btn')
 const removeError       = document.getElementById('remove-error')
+// ── Scan UI refs ──────────────────────────────────────────────
+const scanPanel         = document.getElementById('scan-panel')
+const scanLabel         = document.getElementById('scan-label')
+const scanFill          = document.getElementById('scan-fill')
+const scanCounter       = document.getElementById('scan-counter')
+const scanCancelBtn     = document.getElementById('scan-cancel-btn')
+const scanFoundBanner   = document.getElementById('scan-found-banner')
+const scanFoundPw       = document.getElementById('scan-found-pw')
+const scanNotFound      = document.getElementById('scan-not-found')
+const scanBtn10k        = document.getElementById('scan-btn-10k')
+const scanBtn100k       = document.getElementById('scan-btn-100k')
+
+const ownerScanPanel       = document.getElementById('owner-scan-panel')
+const ownerScanLabel       = document.getElementById('owner-scan-label')
+const ownerScanFill        = document.getElementById('owner-scan-fill')
+const ownerScanCounter     = document.getElementById('owner-scan-counter')
+const ownerScanCancelBtn   = document.getElementById('owner-scan-cancel-btn')
+const ownerScanFoundBanner = document.getElementById('owner-scan-found-banner')
+const ownerScanFoundPw     = document.getElementById('owner-scan-found-pw')
+const ownerScanNotFound    = document.getElementById('owner-scan-not-found')
+const ownerScanBtn10k      = document.getElementById('owner-scan-btn-10k')
+const ownerScanBtn100k     = document.getElementById('owner-scan-btn-100k')
+
+const forgotPasswordSection       = document.getElementById('forgot-password-section')
+const forgotPasswordBtn           = document.getElementById('forgot-password-btn')
+const scanChoices                 = document.getElementById('scan-choices')
+const scanTrigger10k              = document.getElementById('scan-trigger-10k')
+const scanTrigger100k             = document.getElementById('scan-trigger-100k')
+const ownerForgotPasswordSection  = document.getElementById('owner-forgot-password-section')
+const ownerForgotPasswordBtn      = document.getElementById('owner-forgot-password-btn')
+const ownerScanChoices            = document.getElementById('owner-scan-choices')
+const ownerScanTrigger10k         = document.getElementById('owner-scan-trigger-10k')
+const ownerScanTrigger100k        = document.getElementById('owner-scan-trigger-100k')
+const ownerUnlockErrorText        = document.getElementById('owner-unlock-error-text')
+
 const resetBtn          = document.getElementById('reset-btn')
 const successBanner      = document.getElementById('success-banner')
 const successFilename    = document.getElementById('success-filename')
 const successRedownload  = document.getElementById('success-redownload')
 const themeToggle       = document.getElementById('theme-toggle')
+
+// ── Password scanner ──────────────────────────────────────────
+const scanner = new PasswordScanner()
+
+/** Which list is currently selected for each panel. */
+const scanListKey = { locked: '10k', 'owner-locked': '10k' }
+
+/** Reset scan UI for a given mode ('locked' | 'owner-locked'). */
+function resetScanUI(mode) {
+  const isOwner   = mode === 'owner-locked'
+  const panel     = isOwner ? ownerScanPanel             : scanPanel
+  const found     = isOwner ? ownerScanFoundBanner       : scanFoundBanner
+  const nf        = isOwner ? ownerScanNotFound          : scanNotFound
+  const fill      = isOwner ? ownerScanFill              : scanFill
+  const counter   = isOwner ? ownerScanCounter           : scanCounter
+  const label     = isOwner ? ownerScanLabel             : scanLabel
+  const fpBtn     = isOwner ? ownerForgotPasswordBtn     : forgotPasswordBtn
+  const choices   = isOwner ? ownerScanChoices           : scanChoices
+  panel.hidden         = true
+  found.hidden         = true
+  nf.hidden            = true
+  fill.style.width     = '0%'
+  counter.textContent  = '0'
+  label.textContent    = 'Scanning…'
+  label.classList.remove('scanning')
+  fpBtn.hidden         = false
+  choices.hidden       = true
+}
+
+function updateScanListButtons(mode, listKey) {
+  const isOwner = mode === 'owner-locked'
+  const btn10k  = isOwner ? ownerScanBtn10k  : scanBtn10k
+  const btn100k = isOwner ? ownerScanBtn100k : scanBtn100k
+  btn10k.classList.toggle('active', listKey === '10k')
+  btn100k.classList.toggle('active', listKey === '100k')
+}
+
+/**
+ * Start a dictionary scan for the given mode.
+ * Cancels any in-progress scan first.
+ */
+function startScan(mode) {
+  const isOwner    = mode === 'owner-locked'
+  const handler    = state.securityHandler
+  if (!handler) return
+
+  const listKey = scanListKey[mode]
+  const panel   = isOwner ? ownerScanPanel       : scanPanel
+  const label   = isOwner ? ownerScanLabel       : scanLabel
+  const fill    = isOwner ? ownerScanFill        : scanFill
+  const counter = isOwner ? ownerScanCounter     : scanCounter
+  const found   = isOwner ? ownerScanFoundBanner : scanFoundBanner
+  const foundPw = isOwner ? ownerScanFoundPw     : scanFoundPw
+  const nf      = isOwner ? ownerScanNotFound    : scanNotFound
+  const pwInput = isOwner ? ownerUnlockPassword  : unlockPassword
+  const total   = listKey === '100k' ? 99840 : 10000
+  const fpBtn     = isOwner ? ownerForgotPasswordBtn : forgotPasswordBtn
+  const choices   = isOwner ? ownerScanChoices       : scanChoices
+
+  // Reset UI
+  found.hidden = true
+  nf.hidden    = true
+  fill.style.width = '0%'
+  counter.textContent = `0 / ${total.toLocaleString()}`
+  label.textContent = 'Scanning…'
+  label.classList.add('scanning')
+  panel.hidden = false
+
+  scanner.scan({
+    securityHandler: handler,
+    ownerOnly: isOwner,
+    listKey,
+
+    onProgress(tried, tot) {
+      const pct = (tried / tot) * 100
+      fill.style.width = `${pct.toFixed(1)}%`
+      counter.textContent = `${tried.toLocaleString()} / ${tot.toLocaleString()}`
+    },
+
+    onFound(pw) {
+      label.textContent = 'Found!'
+      label.classList.remove('scanning')
+      fill.style.width = '100%'
+      panel.hidden = true
+      foundPw.textContent = pw
+      found.hidden = false
+      fpBtn.hidden = true; choices.hidden = true
+      // Auto-fill the password input
+      pwInput.value = pw
+      pwInput.dispatchEvent(new Event('input'))
+    },
+
+    onComplete() {
+      panel.hidden = true
+      label.classList.remove('scanning')
+      nf.hidden = false
+      fpBtn.hidden = false; choices.hidden = true
+    },
+
+    onError(err) {
+      console.warn('Password scan error:', err)
+      panel.hidden = true
+      label.classList.remove('scanning')
+      fpBtn.hidden = false; choices.hidden = true
+    },
+  })
+}
+
+/** Wire up list-toggle buttons for a given mode. */
+function bindScanListButtons(mode) {
+  const isOwner = mode === 'owner-locked'
+  const btn10k  = isOwner ? ownerScanBtn10k  : scanBtn10k
+  const btn100k = isOwner ? ownerScanBtn100k : scanBtn100k
+  const found   = isOwner ? ownerScanFoundBanner : scanFoundBanner
+  const nf      = isOwner ? ownerScanNotFound    : scanNotFound
+
+  function select(key) {
+    if (scanListKey[mode] === key && scanner.isRunning) return
+    scanListKey[mode] = key
+    updateScanListButtons(mode, key)
+    found.hidden = true
+    nf.hidden    = true
+    scanner.cancel()
+    startScan(mode)
+  }
+
+  btn10k.addEventListener('click',  () => select('10k'))
+  btn100k.addEventListener('click', () => select('100k'))
+}
 
 // ── State transitions ─────────────────────────────────────────
 function transition(newState) {
@@ -174,18 +346,22 @@ function renderEncryptionBadge() {
   }
   const pt = state.protectionType
   let pills = ''
-  if (pt === 'user' || pt === 'user+owner') {
+  if (pt === PROT.USER || pt === PROT.BOTH) {
     pills += '<span class="protection-pill user">Open Password</span>'
   }
-  if (pt === 'owner' || pt === 'user+owner') {
+  if (pt === PROT.OWNER || pt === PROT.BOTH) {
     pills += '<span class="protection-pill owner">Owner Password</span>'
+  }
+  if (!pills) {
+    pills = '<span class="protection-pill user">Password Protected</span>'
   }
   encryptionBadge.innerHTML =
     `<div class="badge-label unlocked">Unlocked</div>` +
-    (pills ? `<div class="protection-pills">${pills}</div>` : '')
+    `<div class="protection-pills">${pills}</div>`
 }
 
 function resetToIdle() {
+  scanner.cancel()
   fileLoadSerial++
   state.session = null
   state.pdfBytes = null
@@ -194,6 +370,12 @@ function resetToIdle() {
   state.protectionType = null
   state.userAuthenticated = false
   state.securityInfo = null
+  state.securityHandler = null
+  // Reset scan list selections back to default
+  scanListKey['locked'] = '10k'
+  scanListKey['owner-locked'] = '10k'
+  updateScanListButtons('locked', '10k')
+  updateScanListButtons('owner-locked', '10k')
   if (state.blobUrl) { URL.revokeObjectURL(state.blobUrl); state.blobUrl = null }
   fileInput.value = ''
   ownerUnlockPassword.value = ''
@@ -206,8 +388,30 @@ function resetToIdle() {
   ownerConfirmField.hidden = true
   matchIndicator.hidden = true
   ownerMatchIndicator.hidden = true
+  userPwWarning.hidden = true
+  ownerPwWarning.hidden = true
   transition('idle')
 }
+
+// ── Scan event wiring ─────────────────────────────────────────
+bindScanListButtons('locked')
+bindScanListButtons('owner-locked')
+
+scanCancelBtn.addEventListener('click', () => {
+  scanner.cancel()
+  scanPanel.hidden = true
+  scanLabel.classList.remove('scanning')
+  forgotPasswordBtn.hidden = false
+  scanChoices.hidden = true
+})
+
+ownerScanCancelBtn.addEventListener('click', () => {
+  scanner.cancel()
+  ownerScanPanel.hidden = true
+  ownerScanLabel.classList.remove('scanning')
+  ownerForgotPasswordBtn.hidden = false
+  ownerScanChoices.hidden = true
+})
 
 // ── Init ─────────────────────────────────────────────────────
 render()
@@ -336,38 +540,44 @@ dropZone.addEventListener('drop', e => {
 resetBtn.addEventListener('click', resetToIdle)
 changeFileLocked.addEventListener('click', resetToIdle)
 
+/**
+ * Prepare shared state fields when transitioning to locked/owner-locked.
+ * Called by both loadPDF and attemptUnlock to guarantee symmetry.
+ */
+function prepareLockedState(bytes, session, protType, userAuthed) {
+  state.pdfBytes          = bytes
+  state.session           = null
+  state.wasEncrypted      = true
+  state.protectionType    = protType
+  state.userAuthenticated = userAuthed
+  state.securityInfo      = session.getSecurity()
+  state.securityHandler   = session.getSecurityHandler()
+}
+
 async function loadPDF(bytes) {
   try {
     const session = await PDFSession.load(bytes)
 
     if (session.isEncrypted && !session.isAuthenticated) {
-      state.pdfBytes = bytes
-      state.session = null
-      state.wasEncrypted = true
-      state.protectionType = 'user'  // at minimum; owner unknown until unlocked
-      state.userAuthenticated = false
-      state.securityInfo = session.getSecurity()
+      prepareLockedState(bytes, session, PROT.USER, false)
+      resetScanUI('locked')
       transition('locked')
       return
     }
 
-    // Encrypted but authenticated only as user (empty user password) — owner
-    // password needed to add or change protection settings.
+    // Encrypted but authenticated only via empty user password — owner pw still needed.
     if (session.isEncrypted && session.isAuthenticated && !session.hasOwnerAccess()) {
-      state.pdfBytes = bytes
-      state.session = null
-      state.wasEncrypted = true
-      state.protectionType = 'owner'
-      state.userAuthenticated = false
-      state.securityInfo = session.getSecurity()
+      prepareLockedState(bytes, session, PROT.OWNER, false)
+      resetScanUI('owner-locked')
       transition('owner-locked')
       return
     }
 
-    state.session = session
-    state.pdfBytes = null
-    state.wasEncrypted = session.isEncrypted
-    if (session.isEncrypted) state.protectionType ??= 'user'
+    state.session        = session
+    state.pdfBytes       = null
+    state.securityHandler = null
+    state.wasEncrypted   = session.isEncrypted
+    if (session.isEncrypted) state.protectionType ??= PROT.USER
     transition('ready')
   } catch (err) {
     alert(`Failed to load PDF: ${err.message}`)
@@ -384,19 +594,14 @@ async function attemptUnlock(password) {
   try {
     const session = await PDFSession.loadWithCredentials(state.pdfBytes, password)
     if (!session.hasOwnerAccess()) {
-      // User password accepted but there's a separate owner password —
-      // route to owner-locked so user can optionally supply owner credentials.
-      state.wasEncrypted = true
-      state.protectionType = 'user+owner'
-      state.userAuthenticated = true
-      state.securityInfo = session.getSecurity()
-      // state.pdfBytes stays set — needed for owner unlock retry
+      // User password accepted but owner password also exists.
+      prepareLockedState(state.pdfBytes, session, PROT.BOTH, true)
+      resetScanUI('owner-locked')
       transition('owner-locked')
     } else {
       state.session = session
       state.pdfBytes = null
       state.wasEncrypted = true
-      // protectionType already 'user' from loadPDF; keep it
       transition('ready')
     }
   } catch {
@@ -416,7 +621,11 @@ unlockForm.addEventListener('submit', e => {
 })
 
 // ── Owner unlock ──────────────────────────────────────────
+let ownerUnlockInFlight = false
+
 async function attemptOwnerUnlock(password) {
+  if (ownerUnlockInFlight) return
+  ownerUnlockInFlight = true
   ownerUnlockBtn.disabled = true
   ownerUnlockBtn.textContent = 'Unlocking…'
   ownerUnlockError.hidden = true
@@ -424,6 +633,7 @@ async function attemptOwnerUnlock(password) {
   try {
     const session = await PDFSession.loadWithCredentials(state.pdfBytes, password)
     if (!session.hasOwnerAccess()) {
+      ownerUnlockErrorText.textContent = 'Incorrect owner password — try again'
       ownerUnlockError.hidden = false
       ownerUnlockPassword.focus()
       return
@@ -432,10 +642,15 @@ async function attemptOwnerUnlock(password) {
     state.pdfBytes = null
     state.wasEncrypted = true
     transition('ready')
-  } catch {
+  } catch (err) {
+    const isAuthErr = /password|decrypt|crypt/i.test(err?.message ?? '')
+    ownerUnlockErrorText.textContent = isAuthErr
+      ? 'Incorrect owner password — try again'
+      : 'Could not read file — it may be corrupted'
     ownerUnlockError.hidden = false
     ownerUnlockPassword.focus()
   } finally {
+    ownerUnlockInFlight = false
     ownerUnlockBtn.disabled = false
     ownerUnlockBtn.textContent = 'Unlock'
   }
@@ -449,6 +664,63 @@ ownerUnlockForm.addEventListener('submit', e => {
 })
 
 changeFileOwnerLocked.addEventListener('click', resetToIdle)
+
+// ── Forgot password wiring ────────────────────────────────────
+function triggerForgotPasswordScan(mode, listKey) {
+  const isOwner   = mode === 'owner-locked'
+  const choices   = isOwner ? ownerScanChoices           : scanChoices
+  const fpSection = isOwner ? ownerForgotPasswordSection : forgotPasswordSection
+  choices.hidden   = true
+  fpSection.hidden = true
+  scanListKey[mode] = listKey
+  updateScanListButtons(mode, listKey)
+  startScan(mode)
+}
+
+forgotPasswordBtn.addEventListener('click', () => {
+  forgotPasswordBtn.hidden = true
+  scanChoices.hidden = false
+})
+
+scanTrigger10k.addEventListener('click',  () => triggerForgotPasswordScan('locked', '10k'))
+scanTrigger100k.addEventListener('click', () => triggerForgotPasswordScan('locked', '100k'))
+
+ownerForgotPasswordBtn.addEventListener('click', () => {
+  ownerForgotPasswordBtn.hidden = true
+  ownerScanChoices.hidden = false
+})
+
+ownerScanTrigger10k.addEventListener('click',  () => triggerForgotPasswordScan('owner-locked', '10k'))
+ownerScanTrigger100k.addEventListener('click', () => triggerForgotPasswordScan('owner-locked', '100k'))
+
+// ── Common password warning ───────────────────────────────────
+let _commonPwLoading = false
+
+/**
+ * Trigger a lazy load of the common-password list (first call only),
+ * then show/hide the warning element based on whether the password matches.
+ * @param {string}      password
+ * @param {HTMLElement} warningEl
+ */
+function updateCommonPwWarning(password, warningEl) {
+  // Kick off background fetch on first use — subsequent calls hit the cache
+  if (!_commonPwLoading) {
+    _commonPwLoading = true
+    loadCommonPasswords().then(() => {
+      // Re-evaluate both fields once the list arrives in case the user
+      // already has text in them when the fetch completes
+      updateCommonPwWarning(userPassword.value,  userPwWarning)
+      updateCommonPwWarning(ownerPassword.value, ownerPwWarning)
+    })
+  }
+
+  if (!password || !isCommonPassword(password)) {
+    warningEl.hidden = true
+    return
+  }
+  warningEl.textContent = '⚠ Commonly known password — consider choosing something more unique'
+  warningEl.hidden = false
+}
 
 // ── Password strength ─────────────────────────────────────────
 function passwordStrength(password) {
@@ -490,6 +762,7 @@ function applyStrength(password, bar, segments, hint) {
 userPassword.addEventListener('input', () => {
   applyStrength(userPassword.value, strengthBar, strengthSegments, strengthHint)
   updateMatchIndicator(userPassword, userPasswordConfirm, matchIndicator)
+  updateCommonPwWarning(userPassword.value, userPwWarning)
 })
 
 // ── Owner password confirm visibility ────────────────────────
@@ -502,6 +775,7 @@ ownerPassword.addEventListener('input', () => {
     ownerMatchIndicator.hidden = true
   }
   updateMatchIndicator(ownerPassword, ownerPasswordConfirm, ownerMatchIndicator)
+  updateCommonPwWarning(ownerPassword.value, ownerPwWarning)
 })
 
 // ── Password match indicators ─────────────────────────────────
