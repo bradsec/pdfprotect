@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Protect | Add PDF Passwords and Permission Protection in Your Browser</title>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Protect PDF files in your browser with user passwords, owner passwords, and permission controls. Unlock and re-save PDFs locally with no uploads or server processing." />
+  <meta name="keywords" content="pdf protect, pdf password, encrypt pdf, pdf security, pdf permissions, unlock pdf, pdf password protect, browser pdf tool, client-side pdf" />
+  <meta name="author" content="BRADSEC" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1d1d1d" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pdfprotect.me/" />
+  <meta property="og:title" content="PDF Protect | Add PDF Passwords and Permission Protection in Your Browser" />
+  <meta property="og:description" content="Add or remove PDF password protection locally in your browser. Set open passwords, owner passwords, and viewer permission restrictions without uploading your files." />
+  <meta property="og:image" content="https://pdfprotect.me/images/android-chrome-512x512.png" />
+  <meta property="og:site_name" content="PDFProtect" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://pdfprotect.me/" />
+  <meta property="twitter:title" content="PDF Protect | Add PDF Passwords and Permission Protection in Your Browser" />
+  <meta property="twitter:description" content="Protect, unlock, and re-save PDF files locally in your browser with password and permission controls." />
+  <meta property="twitter:image" content="https://pdfprotect.me/images/android-chrome-512x512.png" />
+
+  <!-- Additional SEO Meta Tags -->
+  <meta name="application-name" content="PDFProtect" />
+  <meta name="apple-mobile-web-app-title" content="PDFProtect" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Content Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
-  <meta name="description" content="Protect PDF files in your browser with user passwords, owner passwords, and permission controls. Unlock and re-save PDFs locally with no uploads or server processing.">
-  <meta name="keywords" content="pdf protect, pdf password, encrypt pdf, pdf security, pdf permissions, unlock pdf, pdf password protect, browser pdf tool, client-side pdf">
-  <meta name="author" content="BRADSEC">
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <meta name="language" content="English">
-  <meta name="theme-color" content="#1d1d1d">
-  <meta name="application-name" content="PDFProtect">
-  <meta name="apple-mobile-web-app-title" content="PDFProtect">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="canonical" href="https://pdfprotect.me/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="PDF Protect | Add PDF Passwords and Permission Protection in Your Browser">
-  <meta property="og:description" content="Add or remove PDF password protection locally in your browser. Set open passwords, owner passwords, and viewer permission restrictions without uploading your files.">
-  <meta property="og:image" content="https://pdfprotect.me/images/android-chrome-512x512.png">
-  <meta property="og:site_name" content="PDF Protect">
-  <meta property="og:url" content="https://pdfprotect.me/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PDF Protect | Add PDF Passwords and Permission Protection in Your Browser">
-  <meta name="twitter:description" content="Protect, unlock, and re-save PDF files locally in your browser with password and permission controls.">
-  <meta name="twitter:image" content="https://pdfprotect.me/images/android-chrome-512x512.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://pdfprotect.me/" />
+
   <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Optimized Title -->
+  <title>PDF Protect | Add PDF Passwords and Permission Protection in Your Browser</title>
+  <link href="css/reset.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
   <div id="flash-banner" class="flash-banner-container"></div>
@@ -442,12 +459,12 @@
 
     <footer>
       <p class="footer-primary">
-        <span>Designed by Mark Bradley. Uses open-source libraries. Source code and licence details on <a href="https://github.com/bradsec/pdfprotect" target="_blank" rel="noopener noreferrer">GitHub</a>.</span>
+        <span>PDF Protect uses open-source libraries. Source code and licence details on <a href="https://github.com/bradsec/pdfprotect" target="_blank" rel="noopener noreferrer">GitHub</a>.</span>
       </p>
       <p class="footer-secondary">Need to merge multiple PDF files and/or images? Try <a href="https://pdfmerge.me" target="_blank" rel="noopener noreferrer">PDF Merge</a>.</p>
     </footer>
   </div>
 
-  <script type="module" src="app.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

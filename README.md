@@ -55,15 +55,15 @@ PDF Protect runs client-side, so performance depends on the browser, device, and
 ## Technical Notes
 
 - **Architecture**: Static single-page app with vanilla JavaScript ES modules: no build step, no framework, no server
-- **PDF Engine**: `vendor/libpdf-core.js` provides PDF loading, authentication, protection, and save operations
-- **State Handling**: `app.js` manages the UI state machine and form validation; `pdf-session.js` isolates PDF authentication and protection logic
+- **PDF Engine**: `js/vendor/libpdf-core.js` provides PDF loading, authentication, protection, and save operations
+- **State Handling**: `js/app.js` manages the UI state machine and form validation; `js/pdf-session.js` isolates PDF authentication and protection logic
 - **Font Handling**: UI fonts (Roboto, JetBrains Mono, Material Icons Outlined) are self-hosted in `fonts/`: no external CDN requests
 - **Security**: Content Security Policy enforces `default-src 'self'`: no external requests permitted
 - **Tests**: Focused Node-based regression tests covering file validation, theme selection, password confirmation, password strength, state transitions, permissions disclosure, and owner-password-based protection removal
 
 ## Credits and Third-Party Licensing
 
-- **[libpdf-core](https://github.com/libpdf-js/core)** powers PDF encryption, authentication, and protection changes; bundled third-party licence notices are included directly in `vendor/libpdf-core.js`
+- **[libpdf-core](https://github.com/libpdf-js/core)** powers PDF encryption, authentication, and protection changes; bundled third-party licence notices are included directly in `js/vendor/libpdf-core.js`
 - **[SecLists](https://github.com/danielmiessler/SecLists)** by Daniel Miessler et al.: the `passwords/10k-most-common.txt` and `passwords/100k-most-used.txt` word lists are sourced from this project | [MIT License](https://github.com/danielmiessler/SecLists/blob/master/LICENSE)
 - **Roboto Font** by Christian Robertson | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - **JetBrains Mono** by JetBrains | [SIL Open Font License 1.1](https://openfontlicense.org/)

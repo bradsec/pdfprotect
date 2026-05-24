@@ -1,7 +1,7 @@
 // Run: node tests/owner-only-protection.test.mjs
 
-import { PDF } from '../vendor/libpdf-core.js'
-import { PDFSession } from '../pdf-session.js'
+import { PDF } from '../js/vendor/libpdf-core.js'
+import { PDFSession } from '../js/pdf-session.js'
 
 function assert(description, condition) {
   if (!condition) throw new Error(`FAIL: ${description}`)

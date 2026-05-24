@@ -1,7 +1,7 @@
 /* Self-hosted web fonts */
 @font-face {
   font-family: 'Roboto';
-  src: url('fonts/roboto.woff2') format('woff2');
+  src: url('../fonts/roboto.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'JetBrains Mono';
-  src: url('fonts/jetbrains-mono.woff2') format('woff2');
+  src: url('../fonts/jetbrains-mono.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'Material Icons Outlined';
-  src: url('fonts/material-icons-outlined.woff2') format('woff2');
+  src: url('../fonts/material-icons-outlined.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: block;
@@ -1255,11 +1255,6 @@ footer a:hover {
 @media (max-width: 640px) {
   body {
     padding: 0.75rem;
-  }
-
-  .branding {
-    font-size: 1.55rem;
-    padding-inline: 0;
   }
 
   .hero {
