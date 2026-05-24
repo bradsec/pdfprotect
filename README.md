@@ -53,7 +53,7 @@ PDF Protect runs client-side, so performance depends on the browser, device, and
 
 ## Credits and Third-Party Licensing
 
-- `vendor/libpdf-core.js` powers PDF encryption, authentication, and protection changes; bundled third-party licence notices are included directly in that file
+- **[libpdf-core](https://github.com/libpdf-js/core)** powers PDF encryption, authentication, and protection changes; bundled third-party licence notices are included directly in `vendor/libpdf-core.js`
 - **Roboto Font** by Christian Robertson | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - **JetBrains Mono** by JetBrains | [SIL Open Font License 1.1](https://openfontlicense.org/)
 - **Material Icons** by Google | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
