@@ -86,10 +86,12 @@
   --accent: var(--color-blue-1);
   --accent-dim: rgba(1, 131, 255, 0.1);
   --accent-glow: rgba(1, 131, 255, 0.2);
+  --color-amber-1: #b45309;
   --danger: var(--color-red-1);
   --danger-dim: rgba(196, 68, 56, 0.08);
   --success: var(--color-green-1);
   --locked: var(--color-red-1);
+  --owner-locked: var(--color-amber-1);
 }
 
 [data-theme="dark"] {
@@ -345,6 +347,7 @@ main {
 
 .state-idle,
 .state-locked,
+.state-owner-locked,
 .state-ready {
   display: none;
   padding: 2rem;
@@ -355,6 +358,10 @@ main {
 }
 
 [data-state="locked"] .state-locked {
+  display: block;
+}
+
+[data-state="owner-locked"] .state-owner-locked {
   display: block;
 }
 
@@ -609,6 +616,11 @@ main {
   border: 1px solid var(--border-color);
 }
 
+.status-badge.owner-locked {
+  background: color-mix(in srgb, var(--color-amber-1) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-amber-1) 24%, transparent);
+}
+
 .status-badge > div {
   min-width: 0;
 }
@@ -621,6 +633,10 @@ main {
   opacity: 0.8;
   margin-top: 0.2rem;
   letter-spacing: 0.04em;
+}
+
+.status-badge.owner-locked .encryption-algo {
+  color: var(--owner-locked);
 }
 
 .badge-label {
@@ -636,8 +652,50 @@ main {
   color: var(--success);
 }
 
+.badge-label.owner-locked {
+  color: var(--owner-locked);
+}
+
 .badge-label.unprotected {
   color: var(--font-color-2);
+}
+
+.owner-locked-note {
+  font-size: 0.875rem;
+  color: var(--font-color-2);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.protection-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+.protection-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.protection-pill.user {
+  background: color-mix(in srgb, var(--color-blue-1) 12%, transparent);
+  color: var(--color-blue-1);
+  border: 1px solid color-mix(in srgb, var(--color-blue-1) 28%, transparent);
+}
+
+.protection-pill.owner {
+  background: color-mix(in srgb, var(--color-amber-1) 12%, transparent);
+  color: var(--owner-locked);
+  border: 1px solid color-mix(in srgb, var(--color-amber-1) 28%, transparent);
 }
 
 .divider {
@@ -1010,6 +1068,7 @@ footer a:hover {
 
   .state-idle,
   .state-locked,
+  .state-owner-locked,
   .state-ready {
     padding: 1.25rem;
   }

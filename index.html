@@ -89,9 +89,12 @@
         <div class="status-badge locked">
           <span class="material-icons-outlined badge-icon">lock</span>
           <div>
-            <div class="badge-label locked">Password Protected</div>
+            <div class="badge-label locked">Open Password Required</div>
             <div class="filename" id="locked-filename"></div>
             <div class="encryption-algo" id="locked-algo" hidden></div>
+            <div class="protection-pills" style="margin-top:0.35rem">
+              <span class="protection-pill user">Open Password</span>
+            </div>
           </div>
         </div>
         <form id="unlock-form">
@@ -111,6 +114,43 @@
         </form>
         <div style="text-align:center;margin-top:18px">
           <button class="btn-link" id="change-file-locked-btn">
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">arrow_back</span>
+            Choose a different file
+          </button>
+        </div>
+      </div>
+
+      <!-- ── State: OWNER-LOCKED ──────────────────────── -->
+      <div class="state-owner-locked">
+        <div class="status-badge owner-locked">
+          <span class="material-icons-outlined badge-icon">key</span>
+          <div>
+            <div class="badge-label owner-locked">Owner Password Protected</div>
+            <div class="filename" id="owner-locked-filename"></div>
+            <div class="encryption-algo" id="owner-locked-algo" hidden></div>
+            <div class="protection-pills" id="owner-locked-pills" style="margin-top:0.35rem">
+              <span class="protection-pill owner">Owner Password</span>
+            </div>
+          </div>
+        </div>
+        <p class="owner-locked-note" id="owner-locked-note">This PDF is readable but has an owner password that restricts modifications. Enter the owner password to add or change protection settings.</p>
+        <form id="owner-unlock-form">
+          <input type="text" id="owner-unlock-username" name="username" autocomplete="username" class="sr-only" tabindex="-1" aria-hidden="true">
+          <label class="field-label" for="owner-unlock-password">Enter owner password</label>
+          <div class="input-row" style="margin-bottom:6px">
+            <input type="password" id="owner-unlock-password" name="password" class="input" placeholder="Owner password" autocomplete="current-password">
+            <button class="btn-primary" id="owner-unlock-btn" type="submit">
+              <span class="material-icons-outlined">lock_open</span>
+              Unlock
+            </button>
+          </div>
+          <div class="error-msg" id="owner-unlock-error" hidden>
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">error_outline</span>
+            Incorrect owner password — try again
+          </div>
+        </form>
+        <div style="text-align:center;margin-top:18px">
+          <button class="btn-link" id="change-file-owner-locked-btn">
             <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">arrow_back</span>
             Choose a different file
           </button>

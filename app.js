@@ -49,12 +49,14 @@ let fileLoadSerial = 0
 // ── State ────────────────────────────────────────────────────
 const state = {
   current: 'idle',
-  session: null,      // PDFSession — set when 'ready'
-  pdfBytes: null,     // raw bytes — kept only during 'locked' state for unlock retry
+  session: null,        // PDFSession — set when 'ready'
+  pdfBytes: null,       // raw bytes — kept during 'locked'/'owner-locked' for unlock retry
   fileName: '',
   wasEncrypted: false,
+  protectionType: null, // 'user' | 'owner' | 'user+owner' — set on load, used in ready badge
+  userAuthenticated: false, // true when user pw was accepted but owner pw is still needed
   securityInfo: null,
-  blobUrl: null,      // fallback download URL — revoked on reset
+  blobUrl: null,        // fallback download URL — revoked on reset
 }
 
 // ── DOM refs ─────────────────────────────────────────────────
@@ -69,6 +71,15 @@ const unlockPassword    = document.getElementById('unlock-password')
 const unlockBtn         = document.getElementById('unlock-btn')
 const unlockError       = document.getElementById('unlock-error')
 const changeFileLocked  = document.getElementById('change-file-locked-btn')
+const ownerLockedFilename  = document.getElementById('owner-locked-filename')
+const ownerLockedAlgo      = document.getElementById('owner-locked-algo')
+const ownerLockedNote      = document.getElementById('owner-locked-note')
+const ownerLockedPills     = document.getElementById('owner-locked-pills')
+const ownerUnlockForm      = document.getElementById('owner-unlock-form')
+const ownerUnlockPassword  = document.getElementById('owner-unlock-password')
+const ownerUnlockBtn       = document.getElementById('owner-unlock-btn')
+const ownerUnlockError     = document.getElementById('owner-unlock-error')
+const changeFileOwnerLocked = document.getElementById('change-file-owner-locked-btn')
 const readyFilename     = document.getElementById('ready-filename')
 const encryptionBadge   = document.getElementById('encryption-badge')
 const userPassword      = document.getElementById('user-password')
@@ -126,6 +137,25 @@ function render() {
     }
   }
 
+  if (state.current === 'owner-locked') {
+    ownerLockedFilename.textContent = state.fileName
+    ownerUnlockError.hidden = true
+    ownerUnlockPassword.value = ''
+    if (state.securityInfo?.algorithm) {
+      ownerLockedAlgo.textContent = state.securityInfo.algorithm
+      ownerLockedAlgo.hidden = false
+    } else {
+      ownerLockedAlgo.hidden = true
+    }
+    ownerLockedNote.textContent = state.userAuthenticated
+      ? 'Open password accepted — you can view this PDF. Enter the owner password to add or change protection settings.'
+      : 'This PDF is readable but has an owner password that restricts modifications. Enter the owner password to add or change protection settings.'
+    // Show open+owner pills when both passwords are known; owner-only otherwise
+    ownerLockedPills.innerHTML = state.userAuthenticated
+      ? '<span class="protection-pill user">Open Password</span><span class="protection-pill owner">Owner Password</span>'
+      : '<span class="protection-pill owner">Owner Password</span>'
+  }
+
   if (state.current === 'ready') {
     readyFilename.textContent = state.fileName
     renderEncryptionBadge()
@@ -138,13 +168,21 @@ function render() {
 }
 
 function renderEncryptionBadge() {
-  if (state.wasEncrypted) {
-    encryptionBadge.innerHTML =
-      '<div class="badge-label unlocked">Unlocked</div>'
-  } else {
-    encryptionBadge.innerHTML =
-      '<div class="badge-label unprotected">Unprotected</div>'
+  if (!state.wasEncrypted) {
+    encryptionBadge.innerHTML = '<div class="badge-label unprotected">Unprotected</div>'
+    return
   }
+  const pt = state.protectionType
+  let pills = ''
+  if (pt === 'user' || pt === 'user+owner') {
+    pills += '<span class="protection-pill user">Open Password</span>'
+  }
+  if (pt === 'owner' || pt === 'user+owner') {
+    pills += '<span class="protection-pill owner">Owner Password</span>'
+  }
+  encryptionBadge.innerHTML =
+    `<div class="badge-label unlocked">Unlocked</div>` +
+    (pills ? `<div class="protection-pills">${pills}</div>` : '')
 }
 
 function resetToIdle() {
@@ -153,9 +191,12 @@ function resetToIdle() {
   state.pdfBytes = null
   state.fileName = ''
   state.wasEncrypted = false
+  state.protectionType = null
+  state.userAuthenticated = false
   state.securityInfo = null
   if (state.blobUrl) { URL.revokeObjectURL(state.blobUrl); state.blobUrl = null }
   fileInput.value = ''
+  ownerUnlockPassword.value = ''
   userPassword.value = ''
   userPasswordConfirm.value = ''
   ownerPassword.value = ''
@@ -303,14 +344,30 @@ async function loadPDF(bytes) {
       state.pdfBytes = bytes
       state.session = null
       state.wasEncrypted = true
+      state.protectionType = 'user'  // at minimum; owner unknown until unlocked
+      state.userAuthenticated = false
       state.securityInfo = session.getSecurity()
       transition('locked')
+      return
+    }
+
+    // Encrypted but authenticated only as user (empty user password) — owner
+    // password needed to add or change protection settings.
+    if (session.isEncrypted && session.isAuthenticated && !session.hasOwnerAccess()) {
+      state.pdfBytes = bytes
+      state.session = null
+      state.wasEncrypted = true
+      state.protectionType = 'owner'
+      state.userAuthenticated = false
+      state.securityInfo = session.getSecurity()
+      transition('owner-locked')
       return
     }
 
     state.session = session
     state.pdfBytes = null
     state.wasEncrypted = session.isEncrypted
+    if (session.isEncrypted) state.protectionType ??= 'user'
     transition('ready')
   } catch (err) {
     alert(`Failed to load PDF: ${err.message}`)
@@ -326,10 +383,22 @@ async function attemptUnlock(password) {
 
   try {
     const session = await PDFSession.loadWithCredentials(state.pdfBytes, password)
-    state.session = session
-    state.pdfBytes = null
-    state.wasEncrypted = true
-    transition('ready')
+    if (!session.hasOwnerAccess()) {
+      // User password accepted but there's a separate owner password —
+      // route to owner-locked so user can optionally supply owner credentials.
+      state.wasEncrypted = true
+      state.protectionType = 'user+owner'
+      state.userAuthenticated = true
+      state.securityInfo = session.getSecurity()
+      // state.pdfBytes stays set — needed for owner unlock retry
+      transition('owner-locked')
+    } else {
+      state.session = session
+      state.pdfBytes = null
+      state.wasEncrypted = true
+      // protectionType already 'user' from loadPDF; keep it
+      transition('ready')
+    }
   } catch {
     unlockError.hidden = false
     unlockPassword.focus()
@@ -345,6 +414,41 @@ unlockForm.addEventListener('submit', e => {
   if (!pw) { unlockPassword.focus(); return }
   attemptUnlock(pw)
 })
+
+// ── Owner unlock ──────────────────────────────────────────
+async function attemptOwnerUnlock(password) {
+  ownerUnlockBtn.disabled = true
+  ownerUnlockBtn.textContent = 'Unlocking…'
+  ownerUnlockError.hidden = true
+
+  try {
+    const session = await PDFSession.loadWithCredentials(state.pdfBytes, password)
+    if (!session.hasOwnerAccess()) {
+      ownerUnlockError.hidden = false
+      ownerUnlockPassword.focus()
+      return
+    }
+    state.session = session
+    state.pdfBytes = null
+    state.wasEncrypted = true
+    transition('ready')
+  } catch {
+    ownerUnlockError.hidden = false
+    ownerUnlockPassword.focus()
+  } finally {
+    ownerUnlockBtn.disabled = false
+    ownerUnlockBtn.textContent = 'Unlock'
+  }
+}
+
+ownerUnlockForm.addEventListener('submit', e => {
+  e.preventDefault()
+  const pw = ownerUnlockPassword.value.trim()
+  if (!pw) { ownerUnlockPassword.focus(); return }
+  attemptOwnerUnlock(pw)
+})
+
+changeFileOwnerLocked.addEventListener('click', resetToIdle)
 
 // ── Password strength ─────────────────────────────────────────
 function passwordStrength(password) {
