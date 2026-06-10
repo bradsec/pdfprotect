@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Protect PDF files in your browser with user passwords, owner passwords, and permission controls. Unlock and re-save PDFs locally with no uploads or server processing." />
+  <meta name="keywords" content="password protect pdf, protect pdf, pdf password, add password to pdf, encrypt pdf, lock pdf, unlock pdf, remove pdf password, pdf security, pdf permissions, pdf password protect, pdf encryption, browser pdf tool, client-side pdf, free pdf password" />
+  <meta name="author" content="BRADSEC" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="language" content="English" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1d1d1d" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pdfprotect.me/" />
+  <meta property="og:title" content="PDF Protect | Add PDF Passwords and Permission Protection in Your Browser" />
+  <meta property="og:description" content="Add or remove PDF password protection locally in your browser. Set open passwords, owner passwords, and viewer permission restrictions without uploading your files." />
+  <meta property="og:image" content="https://pdfprotect.me/images/ogimage.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="PDF Protect — password protect and unlock PDF files in your browser" />
+  <meta property="og:site_name" content="PDFProtect" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://pdfprotect.me/" />
+  <meta property="twitter:title" content="PDF Protect | Add PDF Passwords and Permission Protection in Your Browser" />
+  <meta property="twitter:description" content="Protect, unlock, and re-save PDF files locally in your browser with password and permission controls." />
+  <meta property="twitter:image" content="https://pdfprotect.me/images/ogimage.png" />
+
+  <!-- Additional SEO Meta Tags -->
+  <meta name="application-name" content="PDFProtect" />
+  <meta name="apple-mobile-web-app-title" content="PDFProtect" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://pdfprotect.me/" />
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Optimized Title -->
+  <title>PDF Protect | Add PDF Passwords and Permission Protection in Your Browser</title>
+
+  <!-- Structured data: free browser-based PDF password protection tool -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF Protect",
+    "alternateName": "PDFProtect",
+    "url": "https://pdfprotect.me/",
+    "description": "Free browser-based tool to password protect PDF files. Add user and owner passwords, set viewer permissions, and unlock or remove passwords locally with no uploads or server processing.",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any (modern web browser)",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "image": "https://pdfprotect.me/images/android-chrome-512x512.png",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Mark Bradley", "alternateName": "BRADSEC" },
+    "featureList": [
+      "Password protect PDF files with a user (open) password",
+      "Set an owner password and viewer permission restrictions",
+      "Unlock and remove passwords from protected PDFs",
+      "AES-256 encryption via the bundled PDF engine",
+      "Runs entirely in the browser with no file uploads"
+    ]
+  }
+  </script>
+
+  <link href="css/reset.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="flash-banner" class="flash-banner-container"></div>
+  <div class="wrapper">
+    <header>
+      <div class="header-top">
+        <a href="https://pdfprotect.me" class="branding" aria-label="PDFProtect.me" style="text-decoration: none; color: inherit;">
+          <img class="branding-icon" src="images/pdfprotect_icon.png" alt="" aria-hidden="true">
+          <span class="branding-wordmark">PDF<span>Protect</span><span class="branding-tld">.me</span></span>
+        </a>
+        <button id="theme-toggle" aria-label="Toggle theme" title="Toggle theme" type="button">
+          <span class="icon-light"><span class="material-icons-outlined">dark_mode</span></span>
+          <span class="icon-dark"><span class="material-icons-outlined">light_mode</span></span>
+        </button>
+      </div>
+      <div class="hero">
+        <div class="hero-eyebrow">Private browser-based PDF security</div>
+        <h1>Protect PDF files in your browser.</h1>
+        <p>Add open passwords, owner restrictions, and permissions-only protection directly in your browser. Unlock and re-save PDFs locally with no uploads or server processing.</p>
+      </div>
+      <ul class="hero-points" aria-label="Key PDF Protect benefits">
+        <li class="hero-point">No uploads</li>
+        <li class="hero-point">AES-256 protection</li>
+      </ul>
+    </header>
+
+    <main aria-label="PDF protection tool">
+      <div class="card" id="card" data-state="idle">
+
+      <!-- ── State: IDLE ───────────────────────────────── -->
+      <div class="state-idle">
+        <div class="drop-zone" id="drop-zone">
+          <span class="corner tl"></span>
+          <span class="corner tr"></span>
+          <span class="corner bl"></span>
+          <span class="corner br"></span>
+          <span class="material-icons-outlined drop-icon">upload_file</span>
+          <p class="drop-title">Drop a PDF here</p>
+          <p class="drop-sub">or click to browse files</p>
+          <button class="btn-primary" id="browse-btn">
+            <span class="material-icons-outlined">folder_open</span>
+            Choose File
+          </button>
+          <input type="file" id="file-input" accept=".pdf" hidden>
+        </div>
+      </div>
+
+      <!-- ── State: LOCKED ─────────────────────────────── -->
+      <div class="state-locked">
+        <div class="status-badge locked">
+          <span class="material-icons-outlined badge-icon">lock</span>
+          <div>
+            <div class="badge-label locked">Open Password Required</div>
+            <div class="filename" id="locked-filename"></div>
+            <div class="encryption-algo" id="locked-algo" hidden></div>
+            <div class="protection-pills" style="margin-top:0.35rem">
+              <span class="protection-pill user">Open Password</span>
+            </div>
+          </div>
+        </div>
+        <form id="unlock-form">
+          <input type="text" id="unlock-username" name="username" autocomplete="username" class="sr-only" tabindex="-1" aria-hidden="true">
+          <label class="field-label" for="unlock-password">Enter password to unlock</label>
+          <div class="input-row" style="margin-bottom:6px">
+            <input type="password" id="unlock-password" name="password" class="input" placeholder="Password" autocomplete="current-password">
+            <button class="btn-primary" id="unlock-btn" type="submit">
+              <span class="material-icons-outlined">lock_open</span>
+              Unlock
+            </button>
+          </div>
+          <div class="error-msg" id="unlock-error" hidden>
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">error_outline</span>
+            <span id="unlock-error-text">Incorrect password — try again</span>
+          </div>
+        </form>
+
+        <!-- ── Forgot password trigger ─────────────────── -->
+        <div class="forgot-password-section" id="forgot-password-section">
+          <button class="btn-link forgot-password-btn" id="forgot-password-btn" type="button">
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">help_outline</span>
+            Forgot password?
+          </button>
+          <div class="scan-choices" id="scan-choices" hidden>
+            <p class="scan-choices-hint">Try matching against a list of common passwords:</p>
+            <div class="scan-choices-row">
+              <button class="btn-secondary scan-choice-btn" id="scan-trigger-10k" type="button">
+                <span class="material-icons-outlined">search</span>
+                Try 10,000 passwords
+              </button>
+              <button class="btn-secondary scan-choice-btn" id="scan-trigger-100k" type="button">
+                <span class="material-icons-outlined">manage_search</span>
+                Try 100,000 passwords
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Password scan UI ──────────────────────────────── -->
+        <div class="scan-panel" id="scan-panel" hidden>
+          <div class="scan-header">
+            <div class="scan-list-toggle" role="group" aria-label="Password list size">
+              <button class="scan-list-btn active" id="scan-btn-10k" data-list="10k" type="button">10k</button>
+              <button class="scan-list-btn" id="scan-btn-100k" data-list="100k" type="button">100k</button>
+            </div>
+            <span class="scan-label" id="scan-label">Scanning…</span>
+            <button class="scan-cancel-btn" id="scan-cancel-btn" type="button" title="Cancel scan" aria-label="Cancel scan">
+              <span class="material-icons-outlined" style="font-size:16px">close</span>
+            </button>
+          </div>
+          <div class="scan-track" id="scan-track">
+            <div class="scan-fill" id="scan-fill"></div>
+          </div>
+          <div class="scan-footer">
+            <span class="scan-counter" id="scan-counter">0</span>
+          </div>
+        </div>
+        <div class="scan-found-banner" id="scan-found-banner" hidden>
+          <span class="material-icons-outlined" style="font-size:15px;vertical-align:-3px">key</span>
+          Password found: <code class="scan-found-pw" id="scan-found-pw"></code>
+        </div>
+        <div class="scan-not-found" id="scan-not-found" hidden>
+          <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">search_off</span>
+          Not found in common list — enter password manually
+        </div>
+
+        <div style="text-align:center;margin-top:18px">
+          <button class="btn-link" id="change-file-locked-btn">
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">arrow_back</span>
+            Choose a different file
+          </button>
+        </div>
+      </div>
+
+      <!-- ── State: OWNER-LOCKED ──────────────────────── -->
+      <div class="state-owner-locked">
+        <div class="status-badge owner-locked">
+          <span class="material-icons-outlined badge-icon">key</span>
+          <div>
+            <div class="badge-label owner-locked">Owner Password Protected</div>
+            <div class="filename" id="owner-locked-filename"></div>
+            <div class="encryption-algo" id="owner-locked-algo" hidden></div>
+            <div class="protection-pills" id="owner-locked-pills" style="margin-top:0.35rem">
+              <span class="protection-pill owner">Owner Password</span>
+            </div>
+          </div>
+        </div>
+        <p class="owner-locked-note" id="owner-locked-note">This PDF is readable but has an owner password that restricts modifications. Enter the owner password to add or change protection settings.</p>
+        <form id="owner-unlock-form">
+          <input type="text" id="owner-unlock-username" name="username" autocomplete="username" class="sr-only" tabindex="-1" aria-hidden="true">
+          <label class="field-label" for="owner-unlock-password">Enter owner password</label>
+          <div class="input-row" style="margin-bottom:6px">
+            <input type="password" id="owner-unlock-password" name="password" class="input" placeholder="Owner password" autocomplete="current-password">
+            <button class="btn-primary" id="owner-unlock-btn" type="submit">
+              <span class="material-icons-outlined">lock_open</span>
+              Unlock
+            </button>
+          </div>
+          <div class="error-msg" id="owner-unlock-error" hidden>
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">error_outline</span>
+            <span id="owner-unlock-error-text">Incorrect owner password — try again</span>
+          </div>
+        </form>
+
+        <!-- ── Forgot owner password trigger ───────────── -->
+        <div class="forgot-password-section" id="owner-forgot-password-section">
+          <button class="btn-link forgot-password-btn" id="owner-forgot-password-btn" type="button">
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">help_outline</span>
+            Forgot owner password?
+          </button>
+          <div class="scan-choices" id="owner-scan-choices" hidden>
+            <p class="scan-choices-hint">Try matching against a list of common passwords:</p>
+            <div class="scan-choices-row">
+              <button class="btn-secondary scan-choice-btn" id="owner-scan-trigger-10k" type="button">
+                <span class="material-icons-outlined">search</span>
+                Try 10,000 passwords
+              </button>
+              <button class="btn-secondary scan-choice-btn" id="owner-scan-trigger-100k" type="button">
+                <span class="material-icons-outlined">manage_search</span>
+                Try 100,000 passwords
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Owner password scan UI ──────────────────────── -->
+        <div class="scan-panel" id="owner-scan-panel" hidden>
+          <div class="scan-header">
+            <div class="scan-list-toggle" role="group" aria-label="Password list size">
+              <button class="scan-list-btn active" id="owner-scan-btn-10k" data-list="10k" type="button">10k</button>
+              <button class="scan-list-btn" id="owner-scan-btn-100k" data-list="100k" type="button">100k</button>
+            </div>
+            <span class="scan-label" id="owner-scan-label">Scanning…</span>
+            <button class="scan-cancel-btn" id="owner-scan-cancel-btn" type="button" title="Cancel scan" aria-label="Cancel scan">
+              <span class="material-icons-outlined" style="font-size:16px">close</span>
+            </button>
+          </div>
+          <div class="scan-track" id="owner-scan-track">
+            <div class="scan-fill" id="owner-scan-fill"></div>
+          </div>
+          <div class="scan-footer">
+            <span class="scan-counter" id="owner-scan-counter">0</span>
+          </div>
+        </div>
+        <div class="scan-found-banner" id="owner-scan-found-banner" hidden>
+          <span class="material-icons-outlined" style="font-size:15px;vertical-align:-3px">key</span>
+          Password found: <code class="scan-found-pw" id="owner-scan-found-pw"></code>
+        </div>
+        <div class="scan-not-found" id="owner-scan-not-found" hidden>
+          <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">search_off</span>
+          Not found in common list — enter password manually
+        </div>
+
+        <div style="text-align:center;margin-top:18px">
+          <button class="btn-link" id="change-file-owner-locked-btn">
+            <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">arrow_back</span>
+            Choose a different file
+          </button>
+        </div>
+      </div>
+
+      <!-- ── State: READY ──────────────────────────────── -->
+      <div class="state-ready">
+        <div class="file-header">
+          <div class="file-info">
+            <span class="material-icons-outlined file-icon">description</span>
+            <span id="ready-filename" class="filename"></span>
+          </div>
+          <div id="encryption-badge"></div>
+        </div>
+
+        <hr class="divider">
+
+        <form id="protection-form">
+          <input type="text" id="protection-username" name="username" autocomplete="username" class="sr-only" tabindex="-1" aria-hidden="true">
+          <section class="section">
+            <h3 class="section-title">Set Passwords</h3>
+            <p class="section-note">
+              Set a user password to require opening credentials, or leave it blank and use only an owner password for permissions-only protection.
+            </p>
+
+            <div class="field">
+              <label class="field-label" for="user-password">User password <span class="optional">(optional)</span></label>
+              <input type="password" id="user-password" name="user-password" class="input"
+                     placeholder="Leave blank for permissions-only protection" autocomplete="new-password">
+              <div class="strength-bar" id="strength-bar" hidden>
+                <div class="strength-segments" id="strength-segments">
+                  <div class="segment" data-idx="0"></div>
+                  <div class="segment" data-idx="1"></div>
+                  <div class="segment" data-idx="2"></div>
+                  <div class="segment" data-idx="3"></div>
+                </div>
+                <span class="strength-hint" id="strength-hint"></span>
+              </div>
+              <span class="common-pw-warning" id="user-pw-warning" hidden></span>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="user-password-confirm">Confirm user password</label>
+              <input type="password" id="user-password-confirm" name="user-password-confirm" class="input"
+                     placeholder="Re-enter password" autocomplete="new-password">
+              <span class="match-indicator" id="match-indicator" hidden></span>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="owner-password">
+                Owner password <span class="optional">(optional — leave blank to reuse the user password)</span>
+              </label>
+              <input type="password" id="owner-password" name="owner-password" class="input"
+                     placeholder="Leave blank to reuse the user password" autocomplete="new-password">
+              <div class="strength-bar" id="owner-strength-bar" hidden>
+                <div class="strength-segments" id="owner-strength-segments">
+                  <div class="segment" data-idx="0"></div>
+                  <div class="segment" data-idx="1"></div>
+                  <div class="segment" data-idx="2"></div>
+                  <div class="segment" data-idx="3"></div>
+                </div>
+                <span class="strength-hint" id="owner-strength-hint"></span>
+              </div>
+              <span class="common-pw-warning" id="owner-pw-warning" hidden></span>
+            </div>
+
+            <div class="field" id="owner-confirm-field" hidden>
+              <label class="field-label" for="owner-password-confirm">Confirm owner password</label>
+              <input type="password" id="owner-password-confirm" name="owner-password-confirm" class="input"
+                     placeholder="Re-enter owner password" autocomplete="new-password">
+              <span class="match-indicator" id="owner-match-indicator" hidden></span>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Encryption algorithm</span>
+              <p class="algo-note">AES-256 — industry-standard encryption used for all protected PDFs.</p>
+            </div>
+          </section>
+
+          <section class="section">
+            <h3 class="section-title">Permissions</h3>
+            <p class="section-note permissions-note">
+              Permissions depend on viewer support and are best-effort restrictions. Some PDF viewers may still allow text selection, copying, or other actions.
+            </p>
+            <div class="toggle-group permissions-toggles" role="group" aria-label="PDF permissions">
+              <div class="toggle-item">
+                <label for="perm-print">
+                  <div class="switch">
+                    <input type="checkbox" id="perm-print" checked>
+                    <span class="slider round"></span>
+                  </div>
+                  Print
+                </label>
+              </div>
+              <div class="toggle-item">
+                <label for="perm-copy">
+                  <div class="switch">
+                    <input type="checkbox" id="perm-copy" checked>
+                    <span class="slider round"></span>
+                  </div>
+                  Copy text
+                </label>
+              </div>
+              <div class="toggle-item">
+                <label for="perm-modify">
+                  <div class="switch">
+                    <input type="checkbox" id="perm-modify" checked>
+                    <span class="slider round"></span>
+                  </div>
+                  Modify
+                </label>
+              </div>
+              <div class="toggle-item">
+                <label for="perm-annotate">
+                  <div class="switch">
+                    <input type="checkbox" id="perm-annotate" checked>
+                    <span class="slider round"></span>
+                  </div>
+                  Annotate
+                </label>
+              </div>
+              <div class="toggle-item">
+                <label for="perm-fill">
+                  <div class="switch">
+                    <input type="checkbox" id="perm-fill" checked>
+                    <span class="slider round"></span>
+                  </div>
+                  Fill forms
+                </label>
+              </div>
+              <div class="toggle-item">
+                <label for="perm-assemble">
+                  <div class="switch">
+                    <input type="checkbox" id="perm-assemble" checked>
+                    <span class="slider round"></span>
+                  </div>
+                  Assemble
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <div class="actions">
+            <button class="btn-primary btn-block" id="protect-btn" type="submit">
+              <span class="material-icons-outlined">shield</span>
+              Apply &amp; Download Protected PDF
+            </button>
+            <button class="btn-danger btn-block button-like-danger" id="remove-btn" hidden type="button">
+              <span class="material-icons-outlined">no_encryption</span>
+              Remove Protection &amp; Download
+            </button>
+          </div>
+        </form>
+
+        <div class="actions">
+          <div class="owner-pw-row" id="owner-pw-row" hidden>
+            <form id="remove-form">
+              <input type="text" id="remove-username" name="username" autocomplete="username" class="sr-only" tabindex="-1" aria-hidden="true">
+              <label class="field-label" for="remove-owner-password">Owner password required to remove protection</label>
+              <div class="input-row">
+                <input type="password" id="remove-owner-password" name="owner-password" class="input"
+                       placeholder="Owner password" autocomplete="current-password">
+                <button class="btn-danger button-like-danger" id="confirm-remove-btn" type="submit">Remove</button>
+              </div>
+              <div class="error-msg" id="remove-error" hidden>
+                <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">error_outline</span>
+                Incorrect owner password
+              </div>
+            </form>
+          </div>
+          <div style="text-align:center">
+            <button class="btn-link" id="reset-btn">
+              <span class="material-icons-outlined" style="font-size:13px;vertical-align:-2px">arrow_back</span>
+              Load a different file
+            </button>
+          </div>
+        </div>
+
+        <div class="success-banner" id="success-banner" hidden>
+          <span class="material-icons-outlined" style="font-size:17px">check_circle</span>
+          <span id="success-filename"></span>
+          <a id="success-redownload" class="success-redownload" hidden></a>
+        </div>
+      </div>
+
+      </div>
+    </main>
+
+    <footer>
+      <p class="footer-primary">
+        <span class="material-icons-outlined" style="font-size:15px;vertical-align:-3px">lock</span>
+        <span>All processing happens in your browser. Your files and passwords are never uploaded to any server.</span>
+      </p>
+      <p class="footer-secondary">Need to merge multiple PDF files and/or images? Try <a href="https://pdfmerge.me" target="_blank" rel="noopener noreferrer">PDF Merge</a>.</p>
+      <p class="footer-secondary">PDF Protect uses open-source libraries. Source code and licence details on <a href="https://github.com/bradsec/pdfprotect" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+    </footer>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

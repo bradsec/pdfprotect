@@ -1,0 +1,21 @@
+{
+  "name": "PDF Protect",
+  "short_name": "PDFProtect",
+  "description": "Add or remove PDF password protection locally in your browser.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#16181c",
+  "theme_color": "#1d1d1d",
+  "icons": [
+    {
+      "src": "images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
