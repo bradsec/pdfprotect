@@ -19,6 +19,8 @@ assert('page includes Open Graph title metadata',
   html.includes('property="og:title"'))
 assert('page includes Open Graph url metadata',
   html.includes('property="og:url" content="https://pdfprotect.me/"'))
+assert('page includes Twitter url metadata',
+  html.includes('name="twitter:url" content="https://pdfprotect.me/"'))
 assert('page includes a primary h1 heading',
   html.includes('<h1'))
 assert('footer links to pdfmerge.me',
