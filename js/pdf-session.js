@@ -3,7 +3,9 @@ import { PDF } from './vendor/libpdf-core.js'
 const textEncoder = new TextEncoder()
 
 function restoreMetadata(pdf, meta) {
-  const clean = Object.fromEntries(Object.entries(meta).filter(([, v]) => v != null))
+  const clean = Object.fromEntries(
+    Object.entries(meta).filter(([, v]) => v !== null && v !== undefined)
+  )
   if (Object.keys(clean).length > 0) pdf.setMetadata(clean)
 }
 

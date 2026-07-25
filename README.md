@@ -48,6 +48,13 @@ Live at [pdfprotect.me](https://pdfprotect.me)
 - **Good**: Firefox, Safari, and Microsoft Edge (latest versions)
 - **Requirement**: A modern browser with ES module, File API, and Web Crypto support
 
+## Development
+
+Install the pinned development tools with `npm ci`, then run:
+
+- `npm run lint` to lint first-party JavaScript and tests
+- `npm test` to run the regression test suite
+
 ## Known Limitations
 
 PDF Protect runs client-side, so performance depends on the browser, device, and PDF size. Files are capped at 50 MB. Very large or complex PDFs may take longer to load, unlock, or save. New protected output is currently limited to AES-256 by the bundled PDF engine. PDF permissions are best-effort viewer restrictions; some viewers may still allow actions such as text selection or copying. Certificate-based encryption is not supported.
