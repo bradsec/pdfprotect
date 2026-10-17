@@ -22,7 +22,7 @@ Live at [pdfprotect.me](https://pdfprotect.me)
 - **Permissions-Only Protection**: Leave the user password blank and use only an owner password to apply viewer-managed restrictions without an open-password prompt
 - **Shared-Password Fallback**: If the owner password is left blank, PDF Protect reuses the user password so the file does not end up with an undisclosed random owner password
 - **Permission Toggles**: Control printing, copying, modification, annotation, form filling, and document assembly
-- **Password Strength Feedback**: Entropy-based password strength indicator plus confirmation checks for user and owner passwords
+- **Password Strength Feedback**: Entropy-based password strength indicator plus confirmation checks for user and owner passwords. Passwords on the common-password list always rate Weak
 - **Common Password Warning**: When setting a new password, the app checks it against a bundled list of 10,000 commonly-known passwords and shows an inline advisory if a match is found - no data leaves the browser
 - **Owner-Password Removal Safeguard**: Prevents user-level sessions from removing protection when owner credentials are required
 
@@ -38,7 +38,7 @@ Live at [pdfprotect.me](https://pdfprotect.me)
 ### Interface and Workflow
 
 - **Single-Page Workflow**: Load, unlock, protect, and re-save documents from one browser-based interface
-- **Drag-and-Drop File Loading**: Drop a PDF directly onto the page or browse manually
+- **Drag-and-Drop File Loading**: Drop a PDF anywhere on the page, at any step, or browse manually
 - **Locked-State Detection**: Detects whether a PDF is encrypted and switches into the unlock flow automatically
 - **Dark and Light Mode**: Persisted theme preference across sessions
 
@@ -66,7 +66,7 @@ PDF Protect runs client-side, so performance depends on the browser, device, and
 - **State Handling**: `js/app.js` manages the UI state machine and form validation; `js/pdf-session.js` isolates PDF authentication and protection logic
 - **Font Handling**: UI fonts (Roboto, JetBrains Mono, Material Icons Outlined) are self-hosted in `fonts/`: no external CDN requests
 - **Privacy**: All PDF processing happens locally in your browser; your files and passwords are never uploaded. The only external request the site makes is to Cloudflare Web Analytics (`cloudflareinsights.com`), a cookieless, privacy-preserving page-view counter that collects no personal data and no file content
-- **Security**: Content Security Policy restricts `default-src` to `'self'`; the only permitted external origin is Cloudflare Web Analytics (`script-src`/`connect-src`). No third-party scripts, fonts, or trackers are loaded
+- **Security**: Content Security Policy restricts `default-src` to `'self'`; the only permitted external origin is Cloudflare Web Analytics (`script-src`/`connect-src`). No third-party scripts, fonts, or trackers are loaded. The Cloudflare Pages `_headers` file also sends the CSP as a header with `frame-ancestors 'none'`, plus `X-Content-Type-Options`, `Referrer-Policy`, and `Permissions-Policy`
 - **Tests**: Focused Node-based regression tests covering file validation, theme selection, password confirmation, password strength, state transitions, permissions disclosure, and owner-password-based protection removal
 
 ## Credits and Third-Party Licensing

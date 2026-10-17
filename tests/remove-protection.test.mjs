@@ -47,6 +47,12 @@ async function main() {
   assert('owner-password removal yields an unencrypted PDF',
     await canLoadWithoutPassword(unprotectedBytes))
 
+  // Remove form submitted with the owner field blank: the session already
+  // holds owner access, so removal must not fall back to user-only auth.
+  const blankFieldBytes = await session.removeProtection(null)
+  assert('removal without re-entering the shared password yields an unencrypted PDF',
+    await canLoadWithoutPassword(blankFieldBytes))
+
   console.log('\nAll tests passed.')
 }
 

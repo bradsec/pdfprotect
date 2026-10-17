@@ -19,22 +19,28 @@ const LISTS = {
 }
 
 export class PasswordScanner {
-  /** @type {Record<string,string[]>} cached word lists keyed by list name */
+  /** @type {Record<string,Promise<string[]>>} word list loads keyed by list name */
   #cache = {}
   #gen = 0     // incremented on every new scan; old scans bail when they see a mismatch
   #running = false
 
-  /** Pre-fetch and cache a word list. */
-  async loadList(listKey) {
+  /**
+   * Pre-fetch and cache a word list. Concurrent callers share one download;
+   * a failed download is evicted so the next call retries.
+   */
+  loadList(listKey) {
     if (this.#cache[listKey]) return this.#cache[listKey]
     const url = LISTS[listKey]
-    if (!url) throw new Error(`Unknown list key: ${listKey}`)
-    const resp = await fetch(url)
-    if (!resp.ok) throw new Error(`Failed to load password list (${resp.status})`)
-    const text = await resp.text()
-    const words = text.split('\n').map(l => l.trim()).filter(Boolean)
-    this.#cache[listKey] = words
-    return words
+    if (!url) return Promise.reject(new Error(`Unknown list key: ${listKey}`))
+    const load = (async () => {
+      const resp = await fetch(url)
+      if (!resp.ok) throw new Error(`Failed to load password list (${resp.status})`)
+      const text = await resp.text()
+      return text.split('\n').map(l => l.trim()).filter(Boolean)
+    })()
+    this.#cache[listKey] = load
+    load.catch(() => { if (this.#cache[listKey] === load) delete this.#cache[listKey] })
+    return load
   }
 
   get isRunning() { return this.#running }

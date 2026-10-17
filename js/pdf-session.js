@@ -107,8 +107,10 @@ export class PDFSession {
       throw new Error('Owner password required to remove protection')
     }
 
+    // Plain credential loading authenticates as user first when both passwords
+    // are the same string, which loses the owner access checked above.
     const pdf = this.#credentials
-      ? await PDF.load(this.#bytes, { credentials: this.#credentials })
+      ? await loadPreferringOwnerCredentials(this.#bytes, this.#credentials)
       : await PDF.load(this.#bytes)
     const meta = pdf.getMetadata()
     pdf.removeProtection()

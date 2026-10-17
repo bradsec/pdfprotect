@@ -1,6 +1,7 @@
 import { PDFSession } from './pdf-session.js'
 import { PasswordScanner } from './password-scanner.js'
 import { loadCommonPasswords, isCommonPassword } from './common-password-checker.js'
+import { passwordStrength } from './password-strength.js'
 
 const MAX_FILE_BYTES = 50 * 1024 * 1024  // 50 MB
 
@@ -147,12 +148,10 @@ const ownerScanNotFound    = document.getElementById('owner-scan-not-found')
 const ownerScanBtn10k      = document.getElementById('owner-scan-btn-10k')
 const ownerScanBtn100k     = document.getElementById('owner-scan-btn-100k')
 
-const forgotPasswordSection       = document.getElementById('forgot-password-section')
 const forgotPasswordBtn           = document.getElementById('forgot-password-btn')
 const scanChoices                 = document.getElementById('scan-choices')
 const scanTrigger10k              = document.getElementById('scan-trigger-10k')
 const scanTrigger100k             = document.getElementById('scan-trigger-100k')
-const ownerForgotPasswordSection  = document.getElementById('owner-forgot-password-section')
 const ownerForgotPasswordBtn      = document.getElementById('owner-forgot-password-btn')
 const ownerScanChoices            = document.getElementById('owner-scan-choices')
 const ownerScanTrigger10k         = document.getElementById('owner-scan-trigger-10k')
@@ -563,7 +562,11 @@ dropZone.addEventListener('dragleave', () => {
   dragDepth--
   if (dragDepth === 0) dropZone.classList.remove('drag-over')
 })
-dropZone.addEventListener('drop', e => {
+// Drops anywhere on the page load the file. Without this, a drop that misses
+// the drop zone (or lands while locked/ready, when no drop zone is shown)
+// navigates the tab to the PDF and discards the session.
+document.addEventListener('dragover', e => e.preventDefault())
+document.addEventListener('drop', e => {
   e.preventDefault()
   dragDepth = 0
   dropZone.classList.remove('drag-over')
@@ -717,9 +720,9 @@ changeFileOwnerLocked.addEventListener('click', resetToIdle)
 function triggerForgotPasswordScan(mode, listKey) {
   const isOwner   = mode === 'owner-locked'
   const choices   = isOwner ? ownerScanChoices           : scanChoices
-  const fpSection = isOwner ? ownerForgotPasswordSection : forgotPasswordSection
+  // Hide only the choices: the "Forgot password?" button was hidden on click,
+  // and the scan callbacks re-show it on cancel, error, or not found.
   choices.hidden   = true
-  fpSection.hidden = true
   scanListKey[mode] = listKey
   updateScanListButtons(mode, listKey)
   startScan(mode)
@@ -759,6 +762,8 @@ function updateCommonPwWarning(password, warningEl) {
       // already has text in them when the fetch completes
       updateCommonPwWarning(userPassword.value,  userPwWarning)
       updateCommonPwWarning(ownerPassword.value, ownerPwWarning)
+      applyStrength(userPassword.value, strengthBar, strengthSegments, strengthHint)
+      applyStrength(ownerPassword.value, ownerStrengthBar, ownerStrengthSegs, ownerStrengthHint)
     }).catch(() => {
       _commonPwLoading = false  // load failed — retry on the next call
     })
@@ -773,26 +778,6 @@ function updateCommonPwWarning(password, warningEl) {
 }
 
 // ── Password strength ─────────────────────────────────────────
-function passwordStrength(password) {
-  if (!password) return { score: 0, label: '', hint: '' }
-
-  let charset = 0
-  if (/[a-z]/.test(password)) charset += 26
-  if (/[A-Z]/.test(password)) charset += 26
-  if (/[0-9]/.test(password))  charset += 10
-  if (/[^a-zA-Z0-9]/.test(password)) charset += 32
-
-  const entropy = password.length * Math.log2(charset || 1)
-
-  if (entropy < 40) return { score: 1, label: 'Weak',
-    hint: 'Use 8+ characters with mixed case and numbers' }
-  if (entropy < 60) return { score: 2, label: 'Fair',
-    hint: 'Add symbols or increase length' }
-  if (entropy < 72) return { score: 3, label: 'Strong',
-    hint: 'Consider adding symbols for maximum strength' }
-  return { score: 4, label: 'Very strong', hint: 'Excellent password' }
-}
-
 const STRENGTH_COLOURS = ['', 'score-1', 'score-2', 'score-3', 'score-4']
 
 function applyStrength(password, bar, segments, hint) {
@@ -800,7 +785,8 @@ function applyStrength(password, bar, segments, hint) {
     bar.hidden = true
     return
   }
-  const { score, label, hint: hintText } = passwordStrength(password)
+  const { score, label, hint: hintText } =
+    passwordStrength(password, { isCommon: isCommonPassword(password) })
   bar.hidden = false
   hint.textContent = `${label}${hintText ? ' — ' + hintText : ''}`
   segments.forEach((seg, i) => {
@@ -1026,13 +1012,28 @@ function applyTheme(theme) {
   }
 }
 
+// Storage access throws when site data is blocked; the theme then simply
+// follows the system preference for this page load.
+function readStoredTheme() {
+  try { return localStorage.getItem('theme') } catch { return null }
+}
+
+function writeStoredTheme(theme) {
+  try {
+    if (theme === null) localStorage.removeItem('theme')
+    else localStorage.setItem('theme', theme)
+  } catch (err) {
+    console.warn('Theme preference not saved:', err)
+  }
+}
+
 function initTheme() {
-  const stored = localStorage.getItem('theme')
+  const stored = readStoredTheme()
   if (stored === 'dark' || stored === 'light') {
     applyTheme(stored)
     return
   }
-  if (stored !== null) localStorage.removeItem('theme')
+  if (stored !== null) writeStoredTheme(null)
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   applyTheme(prefersDark ? 'dark' : 'light')
 }
@@ -1041,13 +1042,13 @@ function toggleTheme() {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
   const next   = isDark ? 'light' : 'dark'
   applyTheme(next)
-  localStorage.setItem('theme', next)
+  writeStoredTheme(next)
 }
 
 themeToggle.addEventListener('click', toggleTheme)
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-  if (!localStorage.getItem('theme')) {
+  if (!readStoredTheme()) {
     applyTheme(e.matches ? 'dark' : 'light')
   }
 })
