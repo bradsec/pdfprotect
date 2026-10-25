@@ -71,7 +71,10 @@ PDF Protect runs client-side, so performance depends on the browser, device, and
 
 ## Support
 
-If pdfprotect is useful to you, please consider starring the repository to help others discover it. You can also support its development on [Ko-fi](https://ko-fi.com/bradsec).
+If pdfprotect is useful to you, please consider starring the repository to help others discover it.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C8G129FZKM)
+
 
 ## Credits and Third-Party Licensing
 
