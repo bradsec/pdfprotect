@@ -64,7 +64,7 @@ PDF Protect runs client-side, so performance depends on the browser, device, and
 - **Architecture**: Static single-page app with vanilla JavaScript ES modules: no build step, no framework, no server
 - **PDF Engine**: `js/vendor/libpdf-core.js` provides PDF loading, authentication, protection, and save operations
 - **State Handling**: `js/app.js` manages the UI state machine and form validation; `js/pdf-session.js` isolates PDF authentication and protection logic
-- **Font Handling**: UI fonts (Roboto, JetBrains Mono, Material Icons Outlined) are self-hosted in `fonts/`: no external CDN requests
+- **Font Handling**: UI fonts (Roboto, JetBrains Mono) are self-hosted in `fonts/`; Lucide icons are self-hosted in `images/`: no external font or icon requests
 - **Privacy**: All PDF processing happens locally in your browser; your files and passwords are never uploaded. The only external request the site makes is to Cloudflare Web Analytics (`cloudflareinsights.com`), a cookieless, privacy-preserving page-view counter that collects no personal data and no file content
 - **Security**: Content Security Policy restricts `default-src` to `'self'`; the only permitted external origin is Cloudflare Web Analytics (`script-src`/`connect-src`). No third-party scripts, fonts, or trackers are loaded. The Cloudflare Pages `_headers` file also sends the CSP as a header with `frame-ancestors 'none'`, plus `X-Content-Type-Options`, `Referrer-Policy`, and `Permissions-Policy`
 - **Tests**: Focused Node-based regression tests covering file validation, theme selection, password confirmation, password strength, state transitions, permissions disclosure, and owner-password-based protection removal
@@ -82,4 +82,4 @@ If pdfprotect is useful to you, please consider starring the repository to help 
 - **[SecLists](https://github.com/danielmiessler/SecLists)** by Daniel Miessler: the `passwords/10k-most-common.txt` and `passwords/100k-most-used.txt` word lists are sourced from this project | [MIT License](https://github.com/danielmiessler/SecLists/blob/master/LICENSE)
 - **Roboto Font** by Christian Robertson | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - **JetBrains Mono** by JetBrains | [SIL Open Font License 1.1](https://openfontlicense.org/)
-- **Material Icons** by Google | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- **[Lucide](https://lucide.dev)** 1.61.0 icons, self-hosted SVGs | [ISC licence](js/vendor/lucide-LICENSE)
