@@ -69,6 +69,10 @@ PDF Protect runs client-side, so performance depends on the browser, device, and
 - **Security**: Content Security Policy restricts `default-src` to `'self'`; the only permitted external origin is Cloudflare Web Analytics (`script-src`/`connect-src`). No third-party scripts, fonts, or trackers are loaded. The Cloudflare Pages `_headers` file also sends the CSP as a header with `frame-ancestors 'none'`, plus `X-Content-Type-Options`, `Referrer-Policy`, and `Permissions-Policy`
 - **Tests**: Focused Node-based regression tests covering file validation, theme selection, password confirmation, password strength, state transitions, permissions disclosure, and owner-password-based protection removal
 
+## Support
+
+If pdfprotect is useful to you, please consider starring the repository to help others discover it. You can also support its development on [Ko-fi](https://ko-fi.com/bradsec).
+
 ## Credits and Third-Party Licensing
 
 - **[libpdf-core](https://github.com/libpdf-js/core)** powers PDF encryption, authentication, and protection changes; bundled third-party licence notices are included directly in `js/vendor/libpdf-core.js`
