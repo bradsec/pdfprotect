@@ -1,10 +1,11 @@
+import { importApp } from './import-app.mjs';
 // Run: node tests/scanner-list-cache.test.mjs
 //
 // Regression test: concurrent loadList() calls (e.g. a quick 10k/100k toggle
 // while the first fetch is in flight) must share one download, and a failed
 // download must not be cached so the next call can retry.
 
-import { PasswordScanner } from '../js/password-scanner.js'
+const { PasswordScanner } = await importApp('password-scanner.js');
 
 function assert(description, condition) {
   if (!condition) throw new Error(`FAIL: ${description}`)

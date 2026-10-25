@@ -1,7 +1,8 @@
+import { importApp } from './import-app.mjs';
 // Tests passwordStrength() pure function.
 // Run: node tests/password-strength.test.mjs
 
-import { passwordStrength } from '../js/password-strength.js'
+const { passwordStrength } = await importApp('password-strength.js');
 
 function assert(description, condition) {
   if (!condition) throw new Error(`FAIL: ${description}`)

@@ -1,10 +1,11 @@
+import { importApp } from './import-app.mjs';
 // Run: node tests/scanner-owner-match.test.mjs
 //
 // Regression test for the owner-only scan match bug: a password that
 // authenticates as the USER must NOT be reported as the owner password.
 // Owner-only scans require result.authenticated && result.isOwner.
 
-import { PasswordScanner } from '../js/password-scanner.js'
+const { PasswordScanner } = await importApp('password-scanner.js');
 
 function assert(description, condition) {
   if (!condition) throw new Error(`FAIL: ${description}`)

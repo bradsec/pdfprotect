@@ -1,10 +1,11 @@
+import { importApp } from './import-app.mjs';
 // Run: node tests/common-password-checker.test.mjs
 //
 // Regression test for P-C12: a transient fetch failure must not permanently
 // disable the common-password check. loadCommonPasswords rejects on failure
 // and a later call retries the download.
 
-import { loadCommonPasswords, isCommonPassword } from '../js/common-password-checker.js'
+const { loadCommonPasswords, isCommonPassword } = await importApp('common-password-checker.js');
 
 function assert(description, condition) {
   if (!condition) throw new Error(`FAIL: ${description}`)
