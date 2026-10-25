@@ -1236,6 +1236,14 @@ footer a:hover {
   line-height: 1.55;
 }
 
+.footer-version {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--font-color-footer);
+}
+
 .footer-icon {
   width: 15px;
   height: 15px;
