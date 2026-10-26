@@ -1,8 +1,8 @@
-import { PDFSession } from './pdf-session.js?v=1.2.2'
-import { PasswordScanner } from './password-scanner.js?v=1.2.2'
-import { loadCommonPasswords, isCommonPassword } from './common-password-checker.js?v=1.2.2'
-import { passwordStrength } from './password-strength.js?v=1.2.2'
-import { showToast } from './toast.js?v=1.2.2'
+import { PDFSession } from './pdf-session.js?v=1.3.0'
+import { PasswordScanner } from './password-scanner.js?v=1.3.0'
+import { loadCommonPasswords, isCommonPassword } from './common-password-checker.js?v=1.3.0'
+import { passwordStrength } from './password-strength.js?v=1.3.0'
+import { showToast } from './toast.js?v=1.3.0'
 
 const MAX_FILE_BYTES = 50 * 1024 * 1024  // 50 MB
 
@@ -106,11 +106,13 @@ const permFill          = document.getElementById('perm-fill')
 const permAssemble      = document.getElementById('perm-assemble')
 const protectionForm    = document.getElementById('protection-form')
 const protectBtn        = document.getElementById('protect-btn')
+const protectButtonHTML = protectBtn.innerHTML
 const removeBtn         = document.getElementById('remove-btn')
 const ownerPwRow        = document.getElementById('owner-pw-row')
 const removeForm        = document.getElementById('remove-form')
 const removeOwnerPw     = document.getElementById('remove-owner-password')
 const confirmRemoveBtn  = document.getElementById('confirm-remove-btn')
+const operationStatus   = document.getElementById('operation-status')
 const removeError       = document.getElementById('remove-error')
 // ── Scan UI refs ──────────────────────────────────────────────
 const scanPanel         = document.getElementById('scan-panel')
@@ -307,10 +309,18 @@ function transition(newState) {
   }
   state.current = newState
   render()
+  // Ready focuses the first field, not the submit button at the end of the
+  // form, so the viewport does not jump past the fields the user fills first.
+  const focusTarget = { idle: browseBtn, locked: unlockPassword,
+    'owner-locked': ownerUnlockPassword, ready: userPassword }[newState]
+  focusTarget?.focus()
 }
 
 function render() {
   card.dataset.state = state.current
+  for (const mode of ['idle', 'locked', 'owner-locked', 'ready']) {
+    card.querySelector(`.state-${mode}`).inert = mode !== state.current
+  }
 
   if (state.current === 'locked') {
     lockedFilename.textContent = state.fileName
@@ -375,9 +385,25 @@ function renderEncryptionBadge() {
     `<div class="protection-pills">${pills}</div>`
 }
 
+// Stale async work skips its own cleanup once fileLoadSerial changes, so a
+// reset or new file must restore the action buttons itself.
+function resetActionControls() {
+  unlockBtn.disabled = false
+  unlockBtn.textContent = 'Unlock'
+  ownerUnlockBtn.disabled = false
+  ownerUnlockBtn.textContent = 'Unlock'
+  ownerUnlockInFlight = false
+  protectBtn.disabled = false
+  protectBtn.innerHTML = protectButtonHTML
+  confirmRemoveBtn.disabled = false
+  confirmRemoveBtn.textContent = 'Remove'
+  operationStatus.textContent = ''
+}
+
 function resetToIdle() {
   scanner.cancel()
   fileLoadSerial++
+  resetActionControls()
   state.session = null
   state.pdfBytes = null
   state.fileName = ''
@@ -506,6 +532,7 @@ function handleFileSelected(file) {
   if (error) { fileInput.value = ''; showToast(error, { type: 'warning' }); return }
 
   const serial = ++fileLoadSerial
+  resetActionControls()
 
   readFileAsArrayBuffer(file).then(buffer => {
     if (serial !== fileLoadSerial) return
@@ -618,12 +645,14 @@ async function loadPDF(bytes) {
 
 // ── Unlock ────────────────────────────────────────────────────
 async function attemptUnlock(password) {
+  const serial = fileLoadSerial
   unlockBtn.disabled = true
   unlockBtn.textContent = 'Unlocking…'
   unlockError.hidden = true
 
   try {
     const session = await PDFSession.loadWithCredentials(state.pdfBytes, password)
+    if (serial !== fileLoadSerial) return
     if (!session.hasOwnerAccess()) {
       // User password accepted but owner password also exists.
       prepareLockedState(state.pdfBytes, session, PROT.BOTH, true)
@@ -636,6 +665,7 @@ async function attemptUnlock(password) {
       transition('ready')
     }
   } catch (err) {
+    if (serial !== fileLoadSerial) return
     // Distinguish a genuine wrong-password from a corrupt/unreadable file so
     // the user is not sent into a futile password-retry loop on a real failure.
     const isAuthErr = /password|decrypt|crypt/i.test(err?.message ?? '')
@@ -646,8 +676,10 @@ async function attemptUnlock(password) {
     unlockError.hidden = false
     unlockPassword.focus()
   } finally {
-    unlockBtn.disabled = false
-    unlockBtn.textContent = 'Unlock'
+    if (serial === fileLoadSerial) {
+      unlockBtn.disabled = false
+      unlockBtn.textContent = 'Unlock'
+    }
   }
 }
 
@@ -664,6 +696,7 @@ let ownerUnlockInFlight = false
 
 async function attemptOwnerUnlock(password) {
   if (ownerUnlockInFlight) return
+  const serial = fileLoadSerial
   ownerUnlockInFlight = true
   ownerUnlockBtn.disabled = true
   ownerUnlockBtn.textContent = 'Unlocking…'
@@ -671,6 +704,7 @@ async function attemptOwnerUnlock(password) {
 
   try {
     const session = await PDFSession.loadWithCredentials(state.pdfBytes, password)
+    if (serial !== fileLoadSerial) return
     if (!session.hasOwnerAccess()) {
       ownerUnlockErrorText.textContent = 'Incorrect owner password — try again'
       ownerUnlockError.hidden = false
@@ -682,6 +716,7 @@ async function attemptOwnerUnlock(password) {
     state.wasEncrypted = true
     transition('ready')
   } catch (err) {
+    if (serial !== fileLoadSerial) return
     const isAuthErr = /password|decrypt|crypt/i.test(err?.message ?? '')
     ownerUnlockErrorText.textContent = isAuthErr
       ? 'Incorrect owner password — try again'
@@ -689,9 +724,11 @@ async function attemptOwnerUnlock(password) {
     ownerUnlockError.hidden = false
     ownerUnlockPassword.focus()
   } finally {
-    ownerUnlockInFlight = false
-    ownerUnlockBtn.disabled = false
-    ownerUnlockBtn.textContent = 'Unlock'
+    if (serial === fileLoadSerial) {
+      ownerUnlockInFlight = false
+      ownerUnlockBtn.disabled = false
+      ownerUnlockBtn.textContent = 'Unlock'
+    }
   }
 }
 
@@ -908,6 +945,8 @@ async function applyProtection() {
   // Capture before the awaits: Start over during async work resets state
   const session = state.session
   const fileName = state.fileName
+  const serial = fileLoadSerial
+  operationStatus.textContent = 'Protecting PDF…'
 
   try {
     const bytes = await session.protect({
@@ -916,10 +955,14 @@ async function applyProtection() {
       algorithm: algo,
       permissions: getPermissions(),
     })
-    if (state.session !== session) return
+    if (serial !== fileLoadSerial || state.session !== session) return
     const filename = outputFilename(fileName, 'protected')
     const result = await saveBytes(bytes, filename)
-    if (!result || state.session !== session) return
+    if (serial !== fileLoadSerial || state.session !== session) {
+      if (result?.blobUrl) URL.revokeObjectURL(result.blobUrl)
+      return
+    }
+    if (!result) return
     userPassword.value = ''
     userPasswordConfirm.value = ''
     ownerPassword.value = ''
@@ -931,10 +974,14 @@ async function applyProtection() {
     ownerMatchIndicator.hidden = true
     showSaveResult(result)
   } catch (err) {
+    if (serial !== fileLoadSerial) return
     showToast(`Failed to protect PDF: ${err.message}`, { type: 'error' })
   } finally {
-    protectBtn.disabled = false
-    protectBtn.innerHTML = originalHTML
+    if (serial === fileLoadSerial) {
+      protectBtn.disabled = false
+      protectBtn.innerHTML = originalHTML
+      operationStatus.textContent = ''
+    }
   }
 }
 
@@ -959,17 +1006,24 @@ async function doRemoveProtection(ownerPw) {
   // Capture before the awaits: Start over during async work resets state
   const session = state.session
   const fileName = state.fileName
+  const serial = fileLoadSerial
+  operationStatus.textContent = 'Removing protection…'
 
   try {
     const bytes = await session.removeProtection(ownerPw || null)
-    if (state.session !== session) return
+    if (serial !== fileLoadSerial || state.session !== session) return
     const filename = outputFilename(fileName, 'unlocked')
     const result = await saveBytes(bytes, filename)
-    if (!result || state.session !== session) return
+    if (serial !== fileLoadSerial || state.session !== session) {
+      if (result?.blobUrl) URL.revokeObjectURL(result.blobUrl)
+      return
+    }
+    if (!result) return
     showSaveResult(result)
     ownerPwRow.hidden = true
     removeOwnerPw.value = ''
   } catch (err) {
+    if (serial !== fileLoadSerial) return
     const isAuthError =
       err.message === 'Incorrect owner password' ||
       err.message === 'Owner password required to remove protection'
@@ -980,8 +1034,11 @@ async function doRemoveProtection(ownerPw) {
       showToast(`Failed to remove protection: ${err.message}`, { type: 'error' })
     }
   } finally {
-    confirmRemoveBtn.disabled = false
-    confirmRemoveBtn.textContent = originalText
+    if (serial === fileLoadSerial) {
+      confirmRemoveBtn.disabled = false
+      confirmRemoveBtn.textContent = originalText
+      operationStatus.textContent = ''
+    }
   }
 }
 

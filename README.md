@@ -46,11 +46,13 @@ Live at [pdfprotect.me](https://pdfprotect.me)
 - **Drag-and-Drop File Loading**: Drop a PDF anywhere on the page, at any step, or browse manually
 - **Locked-State Detection**: Detects whether a PDF is encrypted and switches into the unlock flow automatically
 - **Dark and Light Mode**: Persisted theme preference across sessions
+- **Notifications**: Dismissible toast messages that close on time, including on iOS Safari
+- **Accessibility**: Visible keyboard focus, 44px touch targets, screen-reader status for long operations, and reduced-motion support
 
 ## Browser Compatibility
 
 - **Optimal**: Google Chrome and other current Chromium-based browsers
-- **Good**: Firefox, Safari, and Microsoft Edge (latest versions)
+- **Good**: Firefox, Safari (including iOS and iPadOS), and Microsoft Edge (latest versions)
 - **Requirement**: A modern browser with ES module, File API, and Web Crypto support
 
 ## Development
