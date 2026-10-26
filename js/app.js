@@ -2,6 +2,7 @@ import { PDFSession } from './pdf-session.js?v=1.2.2'
 import { PasswordScanner } from './password-scanner.js?v=1.2.2'
 import { loadCommonPasswords, isCommonPassword } from './common-password-checker.js?v=1.2.2'
 import { passwordStrength } from './password-strength.js?v=1.2.2'
+import { showToast } from './toast.js?v=1.2.2'
 
 const MAX_FILE_BYTES = 50 * 1024 * 1024  // 50 MB
 
@@ -39,20 +40,6 @@ function validatePdfMagic(bytes) {
   return bytes.length >= 4 &&
     bytes[0] === 0x25 && bytes[1] === 0x50 &&
     bytes[2] === 0x44 && bytes[3] === 0x46
-}
-
-// ── Flash banner ──────────────────────────────────────────────
-const flashBanner = document.getElementById('flash-banner')
-let _flashTimer = null
-
-function showFlash(message, type = 'info', duration = 6000) {
-  if (_flashTimer) { clearTimeout(_flashTimer); _flashTimer = null }
-  flashBanner.className = `flash-banner-container flash-banner-${type} flash-visible`
-  flashBanner.textContent = message
-  _flashTimer = setTimeout(() => {
-    flashBanner.classList.remove('flash-visible')
-    _flashTimer = null
-  }, duration)
 }
 
 let fileLoadSerial = 0
@@ -279,6 +266,7 @@ async function startScan(mode) {
 
     onError(err) {
       console.warn('Password scan error:', err)
+      showToast(`Password scan failed: ${err?.message ?? String(err)}`, { type: 'error' })
       panel.hidden = true
       label.classList.remove('scanning')
       fpBtn.hidden = false; choices.hidden = true
@@ -497,7 +485,7 @@ function showSaveResult(result) {
 
   if (result.usedPicker) {
     successRedownload.hidden = true
-    showFlash(`Saved "${result.filename}" (${result.size})`, 'success')
+    showToast(`Saved "${result.filename}" (${result.size})`, { type: 'success' })
   } else {
     state.blobUrl = result.blobUrl
     successRedownload.href = result.blobUrl
@@ -507,7 +495,7 @@ function showSaveResult(result) {
     const msg = isMobile()
       ? `PDF ready — tap the link to save "${result.filename}" (${result.size})`
       : `"${result.filename}" (${result.size}) — check your downloads`
-    showFlash(msg, 'success')
+    showToast(msg, { type: 'success' })
   }
 
   successBanner.hidden = false
@@ -515,7 +503,7 @@ function showSaveResult(result) {
 
 function handleFileSelected(file) {
   const error = validateFile(file?.type ?? '', file?.size ?? 0, file?.name ?? '')
-  if (error) { fileInput.value = ''; alert(error); return }
+  if (error) { fileInput.value = ''; showToast(error, { type: 'warning' }); return }
 
   const serial = ++fileLoadSerial
 
@@ -524,14 +512,14 @@ function handleFileSelected(file) {
     const bytes = new Uint8Array(buffer)
     if (!validatePdfMagic(bytes)) {
       fileInput.value = ''
-      alert('Invalid file — content does not appear to be a PDF.')
+      showToast('Invalid file — content does not appear to be a PDF.', { type: 'error' })
       return
     }
     state.fileName = file.name
     loadPDF(bytes)
   }).catch(err => {
     if (serial !== fileLoadSerial) return
-    alert(`Failed to read file: ${err.message}`)
+    showToast(`Failed to read file: ${err.message}`, { type: 'error' })
     resetToIdle()
   })
 }
@@ -623,7 +611,7 @@ async function loadPDF(bytes) {
   } catch (err) {
     // A stale rejection must not wipe a newer file that loaded meanwhile
     if (serial !== fileLoadSerial) return
-    alert(`Failed to load PDF: ${err.message}`)
+    showToast(`Failed to load PDF: ${err.message}`, { type: 'error' })
     resetToIdle()
   }
 }
@@ -943,7 +931,7 @@ async function applyProtection() {
     ownerMatchIndicator.hidden = true
     showSaveResult(result)
   } catch (err) {
-    showFlash(`Failed to protect PDF: ${err.message}`, 'danger')
+    showToast(`Failed to protect PDF: ${err.message}`, { type: 'error' })
   } finally {
     protectBtn.disabled = false
     protectBtn.innerHTML = originalHTML
@@ -989,7 +977,7 @@ async function doRemoveProtection(ownerPw) {
       removeError.hidden = false
       removeOwnerPw.focus()
     } else {
-      showFlash(`Failed to remove protection: ${err.message}`, 'danger')
+      showToast(`Failed to remove protection: ${err.message}`, { type: 'error' })
     }
   } finally {
     confirmRemoveBtn.disabled = false
