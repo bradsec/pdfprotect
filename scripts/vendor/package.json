@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "description": "Pinned inputs for scripts/update-vendor.sh. Not an app dependency.",
+  "dependencies": {
+    "@libpdf/core": "0.5.3"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

@@ -5,7 +5,11 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -28,6 +32,30 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var require_build = __commonJS({
   "node_modules/pvtsutils/build/index.js"(exports) {
     "use strict";
+    /*!
+     * MIT License
+     * 
+     * Copyright (c) 2017-2024 Peculiar Ventures, LLC
+     * 
+     * Permission is hereby granted, free of charge, to any person obtaining a copy
+     * of this software and associated documentation files (the "Software"), to deal
+     * in the Software without restriction, including without limitation the rights
+     * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+     * copies of the Software, and to permit persons to whom the Software is
+     * furnished to do so, subject to the following conditions:
+     * 
+     * The above copyright notice and this permission notice shall be included in all
+     * copies or substantial portions of the Software.
+     * 
+     * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+     * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+     * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+     * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+     * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+     * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+     * SOFTWARE.
+     * 
+     */
     var ARRAY_BUFFER_NAME = "[object ArrayBuffer]";
     var BufferSourceConverter4 = class _BufferSourceConverter {
       static isArrayBuffer(data) {
@@ -388,7 +416,7 @@ var require_build = __commonJS({
   }
 });
 
-// node_modules/@libpdf/core/dist/chunk-CfYAbeIz.mjs
+// node_modules/@libpdf/core/dist/rolldown-runtime-D7D4PA-g.mjs
 var __defProp2 = Object.defineProperty;
 var __exportAll = (all, no_symbols) => {
   let target = {};
@@ -405,33 +433,33 @@ var L = { hasSubscribers: false };
 var S = L;
 var W = L;
 var M = typeof performance == "object" && performance && typeof performance.now == "function" ? performance : Date;
-var D = () => S.hasSubscribers || W.hasSubscribers;
+var R = () => S.hasSubscribers || W.hasSubscribers;
 var j = /* @__PURE__ */ new Set();
 var I = typeof process == "object" && process ? process : {};
-var P = (u3, e, t, i) => {
-  typeof I.emitWarning == "function" ? I.emitWarning(u3, e, t, i) : console.error(`[${t}] ${e}: ${u3}`);
+var P = (d3, e, t, i) => {
+  typeof I.emitWarning == "function" ? I.emitWarning(d3, e, t, i) : console.error(`[${t}] ${e}: ${d3}`);
 };
-var k = (u3) => !j.has(u3);
-var T = (u3) => !!u3 && u3 === Math.floor(u3) && u3 > 0 && isFinite(u3);
-var G = (u3) => T(u3) ? u3 <= Math.pow(2, 8) ? Uint8Array : u3 <= Math.pow(2, 16) ? Uint16Array : u3 <= Math.pow(2, 32) ? Uint32Array : u3 <= Number.MAX_SAFE_INTEGER ? O : null : null;
+var k = (d3) => !j.has(d3);
+var T = (d3) => !!d3 && d3 === Math.floor(d3) && d3 > 0 && isFinite(d3);
+var G = (d3) => T(d3) ? d3 <= Math.pow(2, 8) ? Uint8Array : d3 <= Math.pow(2, 16) ? Uint16Array : d3 <= Math.pow(2, 32) ? Uint32Array : d3 <= Number.MAX_SAFE_INTEGER ? O : null : null;
 var O = class extends Array {
   constructor(e) {
     super(e), this.fill(0);
   }
 };
-var R = class u {
+var x = class d {
   heap;
   length;
   static #o = false;
   static create(e) {
     let t = G(e);
     if (!t) return [];
-    u.#o = true;
-    let i = new u(e, t);
-    return u.#o = false, i;
+    d.#o = true;
+    let i = new d(e, t);
+    return d.#o = false, i;
   }
   constructor(e, t) {
-    if (!u.#o) throw new TypeError("instantiate Stack using Stack.create(n)");
+    if (!d.#o) throw new TypeError("instantiate Stack using Stack.create(n)");
     this.heap = new t(e), this.length = 0;
   }
   push(e) {
@@ -441,7 +469,7 @@ var R = class u {
     return this.heap[--this.length];
   }
 };
-var U = class u2 {
+var U = class d2 {
   #o;
   #c;
   #S;
@@ -487,7 +515,7 @@ var U = class u2 {
   #T;
   #U;
   #f;
-  #x;
+  #D;
   static unsafeExposeInternals(e) {
     return { starts: e.#F, ttls: e.#d, autopurgeTimers: e.#g, sizes: e.#_, keyMap: e.#s, keyList: e.#i, valList: e.#t, next: e.#l, prev: e.#u, get head() {
       return e.#a;
@@ -523,30 +551,30 @@ var U = class u2 {
     return this.#w;
   }
   constructor(e) {
-    let { max: t = 0, ttl: i, ttlResolution: s = 1, ttlAutopurge: n, updateAgeOnGet: r, updateAgeOnHas: h, allowStale: a, dispose: o, onInsert: d, disposeAfter: y, noDisposeOnSet: _, noUpdateTTL: c, maxSize: g = 0, maxEntrySize: f = 0, sizeCalculation: b, fetchMethod: l, memoMethod: w, noDeleteOnFetchRejection: F, noDeleteOnStaleGet: m, allowStaleOnFetchRejection: p, allowStaleOnFetchAbort: A, ignoreFetchAbort: z, backgroundFetchSize: C = 1, perf: E2 } = e;
+    let { max: t = 0, ttl: i, ttlResolution: s = 1, ttlAutopurge: n, updateAgeOnGet: o, updateAgeOnHas: l, allowStale: h, dispose: r, onInsert: c, disposeAfter: m, noDisposeOnSet: _, noUpdateTTL: u, maxSize: g = 0, maxEntrySize: f = 0, sizeCalculation: y, fetchMethod: a, memoMethod: w, noDeleteOnFetchRejection: F, noDeleteOnStaleGet: b, allowStaleOnFetchRejection: p, allowStaleOnFetchAbort: A, ignoreFetchAbort: z, backgroundFetchSize: C = 1, perf: E2 } = e;
     if (this.backgroundFetchSize = C, E2 !== void 0 && typeof E2?.now != "function") throw new TypeError("perf option must have a now() method if specified");
     if (this.#m = E2 ?? M, t !== 0 && !T(t)) throw new TypeError("max option must be a nonnegative integer");
     let v = t ? G(t) : Array;
     if (!v) throw new Error("invalid max value: " + t);
-    if (this.#o = t, this.#c = g, this.maxEntrySize = f || this.#c, this.sizeCalculation = b, this.sizeCalculation) {
+    if (this.#o = t, this.#c = g, this.maxEntrySize = f || this.#c, this.sizeCalculation = y, this.sizeCalculation) {
       if (!this.#c && !this.maxEntrySize) throw new TypeError("cannot set sizeCalculation without setting maxSize or maxEntrySize");
       if (typeof this.sizeCalculation != "function") throw new TypeError("sizeCalculation set to non-function");
     }
     if (w !== void 0 && typeof w != "function") throw new TypeError("memoMethod must be a function if defined");
-    if (this.#I = w, l !== void 0 && typeof l != "function") throw new TypeError("fetchMethod must be a function if specified");
-    if (this.#M = l, this.#U = !!l, this.#s = /* @__PURE__ */ new Map(), this.#i = Array.from({ length: t }).fill(void 0), this.#t = Array.from({ length: t }).fill(void 0), this.#l = new v(t), this.#u = new v(t), this.#a = 0, this.#h = 0, this.#y = R.create(t), this.#n = 0, this.#b = 0, typeof o == "function" && (this.#S = o), typeof d == "function" && (this.#O = d), typeof y == "function" ? (this.#w = y, this.#r = []) : (this.#w = void 0, this.#r = void 0), this.#T = !!this.#S, this.#x = !!this.#O, this.#f = !!this.#w, this.noDisposeOnSet = !!_, this.noUpdateTTL = !!c, this.noDeleteOnFetchRejection = !!F, this.allowStaleOnFetchRejection = !!p, this.allowStaleOnFetchAbort = !!A, this.ignoreFetchAbort = !!z, this.maxEntrySize !== 0) {
+    if (this.#I = w, a !== void 0 && typeof a != "function") throw new TypeError("fetchMethod must be a function if specified");
+    if (this.#M = a, this.#U = !!a, this.#s = /* @__PURE__ */ new Map(), this.#i = Array.from({ length: t }).fill(void 0), this.#t = Array.from({ length: t }).fill(void 0), this.#l = new v(t), this.#u = new v(t), this.#a = 0, this.#h = 0, this.#y = x.create(t), this.#n = 0, this.#b = 0, typeof r == "function" && (this.#S = r), typeof c == "function" && (this.#O = c), typeof m == "function" ? (this.#w = m, this.#r = []) : (this.#w = void 0, this.#r = void 0), this.#T = !!this.#S, this.#D = !!this.#O, this.#f = !!this.#w, this.noDisposeOnSet = !!_, this.noUpdateTTL = !!u, this.noDeleteOnFetchRejection = !!F, this.allowStaleOnFetchRejection = !!p, this.allowStaleOnFetchAbort = !!A, this.ignoreFetchAbort = !!z, this.maxEntrySize !== 0) {
       if (this.#c !== 0 && !T(this.#c)) throw new TypeError("maxSize must be a positive integer if specified");
       if (!T(this.maxEntrySize)) throw new TypeError("maxEntrySize must be a positive integer if specified");
       this.#X();
     }
-    if (this.allowStale = !!a, this.noDeleteOnStaleGet = !!m, this.updateAgeOnGet = !!r, this.updateAgeOnHas = !!h, this.ttlResolution = T(s) || s === 0 ? s : 1, this.ttlAutopurge = !!n, this.ttl = i || 0, this.ttl) {
+    if (this.allowStale = !!h, this.noDeleteOnStaleGet = !!b, this.updateAgeOnGet = !!o, this.updateAgeOnHas = !!l, this.ttlResolution = T(s) || s === 0 ? s : 1, this.ttlAutopurge = !!n, this.ttl = i || 0, this.ttl) {
       if (!T(this.ttl)) throw new TypeError("ttl must be a positive integer if specified");
       this.#k();
     }
     if (this.#o === 0 && this.ttl === 0 && this.#c === 0) throw new TypeError("At least one of max, maxSize, or ttl is required");
     if (!this.ttlAutopurge && !this.#o && !this.#c) {
-      let x = "LRU_CACHE_UNBOUNDED";
-      k(x) && (j.add(x), P("TTL caching without ttlAutopurge, max, or maxSize can result in unbounded memory consumption.", "UnboundedCacheWarning", x, u2));
+      let D = "LRU_CACHE_UNBOUNDED";
+      k(D) && (j.add(D), P("TTL caching without ttlAutopurge, max, or maxSize can result in unbounded memory consumption.", "UnboundedCacheWarning", D, d2));
     }
   }
   getRemainingTTL(e) {
@@ -556,51 +584,54 @@ var U = class u2 {
     let e = new O(this.#o), t = new O(this.#o);
     this.#d = e, this.#F = t;
     let i = this.ttlAutopurge ? Array.from({ length: this.#o }) : void 0;
-    this.#g = i, this.#H = (h, a, o = this.#m.now()) => {
-      t[h] = a !== 0 ? o : 0, e[h] = a, s(h, a);
-    }, this.#D = (h) => {
+    this.#g = i, this.#H = (h, r, c = this.#m.now()) => {
+      t[h] = r !== 0 ? c : 0, e[h] = r, s(h, r);
+    }, this.#R = (h) => {
       t[h] = e[h] !== 0 ? this.#m.now() : 0, s(h, e[h]);
     };
-    let s = this.ttlAutopurge ? (h, a) => {
-      if (i?.[h] && (clearTimeout(i[h]), i[h] = void 0), a && a !== 0 && i) {
-        let o = setTimeout(() => {
-          this.#p(h) && this.#E(this.#i[h], "expire");
-        }, a + 1);
-        o.unref && o.unref(), i[h] = o;
+    let s = this.ttlAutopurge ? (h, r) => {
+      if (i?.[h] && (clearTimeout(i[h]), i[h] = void 0), r && r !== 0 && i) {
+        let c = setTimeout(() => {
+          this.#p(h) ? (this.#E(this.#i[h], "expire"), i[h] = void 0) : s(h, l(h));
+        }, r + 1);
+        c.unref && c.unref(), i[h] = c;
       }
     } : () => {
     };
-    this.#v = (h, a) => {
-      if (e[a]) {
-        let o = e[a], d = t[a];
-        if (!o || !d) return;
-        h.ttl = o, h.start = d, h.now = n || r();
-        let y = h.now - d;
-        h.remainingTTL = o - y;
+    this.#v = (h, r) => {
+      if (e[r]) {
+        let c = e[r], m = t[r];
+        if (!c || !m) return;
+        h.ttl = c, h.start = m, h.now = n || o();
+        let _ = h.now - m;
+        h.remainingTTL = c - _;
       }
     };
-    let n = 0, r = () => {
+    let n = 0, o = () => {
       let h = this.#m.now();
       if (this.ttlResolution > 0) {
         n = h;
-        let a = setTimeout(() => n = 0, this.ttlResolution);
-        a.unref && a.unref();
+        let r = setTimeout(() => n = 0, this.ttlResolution);
+        r.unref && r.unref();
       }
       return h;
     };
     this.getRemainingTTL = (h) => {
-      let a = this.#s.get(h);
-      if (a === void 0) return 0;
-      let o = e[a], d = t[a];
-      if (!o || !d) return 1 / 0;
-      let y = (n || r()) - d;
-      return o - y;
-    }, this.#p = (h) => {
-      let a = t[h], o = e[h];
-      return !!o && !!a && (n || r()) - a > o;
+      let r = this.#s.get(h);
+      return r === void 0 ? 0 : l(r);
+    };
+    let l = (h) => {
+      let r = e[h], c = t[h];
+      if (!r || !c) return 1 / 0;
+      let m = (n || o()) - c;
+      return r - m;
+    };
+    this.#p = (h) => {
+      let r = t[h], c = e[h];
+      return !!c && !!r && (n || o()) - r > c;
     };
   }
-  #D = () => {
+  #R = () => {
   };
   #v = () => {
   };
@@ -609,7 +640,7 @@ var U = class u2 {
   #p = () => false;
   #X() {
     let e = new O(this.#o);
-    this.#b = 0, this.#_ = e, this.#R = (t) => {
+    this.#b = 0, this.#_ = e, this.#x = (t) => {
       this.#b -= e[t], e[t] = 0;
     }, this.#N = (t, i, s, n) => {
       if (!T(s)) {
@@ -628,7 +659,7 @@ var U = class u2 {
       this.#b += e[t], s && (s.entrySize = i, s.totalCalculatedSize = this.#b);
     };
   }
-  #R = (e) => {
+  #x = (e) => {
   };
   #j = (e, t, i) => {
   };
@@ -703,10 +734,10 @@ var U = class u2 {
     if (s === void 0) return;
     let n = { value: s };
     if (this.#d && this.#F) {
-      let r = this.#d[t], h = this.#F[t];
-      if (r && h) {
-        let a = r - (this.#m.now() - h);
-        n.ttl = a, n.start = Date.now();
+      let o = this.#d[t], l = this.#F[t];
+      if (o && l) {
+        let h = o - (this.#m.now() - l);
+        n.ttl = h, n.start = Date.now();
       }
     }
     return this.#_ && (n.size = this.#_[t]), n;
@@ -716,13 +747,13 @@ var U = class u2 {
     for (let t of this.#A({ allowStale: true })) {
       let i = this.#i[t], s = this.#t[t], n = this.#e(s) ? s.__staleWhileFetching : s;
       if (n === void 0 || i === void 0) continue;
-      let r = { value: n };
+      let o = { value: n };
       if (this.#d && this.#F) {
-        r.ttl = this.#d[t];
-        let h = this.#m.now() - this.#F[t];
-        r.start = Math.floor(Date.now() - h);
+        o.ttl = this.#d[t];
+        let l = this.#m.now() - this.#F[t];
+        o.start = Math.floor(Date.now() - l);
       }
-      this.#_ && (r.size = this.#_[t]), e.unshift([i, r]);
+      this.#_ && (o.size = this.#_[t]), e.unshift([i, o]);
     }
     return e;
   }
@@ -743,30 +774,30 @@ var U = class u2 {
     return s && S.hasSubscribers && S.publish(s), n;
   }
   #W(e, t, i, s) {
-    let { ttl: n = this.ttl, start: r, noDisposeOnSet: h = this.noDisposeOnSet, sizeCalculation: a = this.sizeCalculation, status: o } = i, d = this.#e(t);
-    if (t === void 0) return o && (o.set = "deleted"), this.delete(e), this;
-    let { noUpdateTTL: y = this.noUpdateTTL } = i;
-    o && !d && (o.value = t);
-    let _ = this.#N(e, t, i.size || 0, a, o);
-    if (this.maxEntrySize && _ > this.maxEntrySize) return this.#E(e, "set"), o && (o.set = "miss", o.maxEntrySizeExceeded = true), this;
-    let c = this.#n === 0 ? void 0 : this.#s.get(e);
-    if (c === void 0) c = this.#n === 0 ? this.#h : this.#y.length !== 0 ? this.#y.pop() : this.#n === this.#o ? this.#G(false) : this.#n, this.#i[c] = e, this.#t[c] = t, this.#s.set(e, c), this.#l[this.#h] = c, this.#u[c] = this.#h, this.#h = c, this.#n++, this.#j(c, _, o), o && (o.set = "add"), y = false, this.#x && !d && this.#O?.(t, e, "add");
+    let { ttl: n = this.ttl, start: o, noDisposeOnSet: l = this.noDisposeOnSet, sizeCalculation: h = this.sizeCalculation, status: r } = i, c = this.#e(t);
+    if (t === void 0) return r && (r.set = "deleted"), this.delete(e), this;
+    let { noUpdateTTL: m = this.noUpdateTTL } = i;
+    r && !c && (r.value = t);
+    let _ = this.#N(e, t, i.size || 0, h, r);
+    if (this.maxEntrySize && _ > this.maxEntrySize) return this.#E(e, "set"), r && (r.set = "miss", r.maxEntrySizeExceeded = true), this;
+    let u = this.#n === 0 ? void 0 : this.#s.get(e);
+    if (u === void 0) u = this.#n === 0 ? this.#h : this.#y.length !== 0 ? this.#y.pop() : this.#n === this.#o ? this.#G(false) : this.#n, this.#i[u] = e, this.#t[u] = t, this.#s.set(e, u), this.#l[this.#h] = u, this.#u[u] = this.#h, this.#h = u, this.#n++, this.#j(u, _, r), r && (r.set = "add"), m = false, this.#D && !c && this.#O?.(t, e, "add");
     else {
-      this.#L(c);
-      let g = this.#t[c];
+      this.#L(u);
+      let g = this.#t[u];
       if (t !== g) {
-        if (!h) if (this.#e(g)) {
+        if (!l) if (this.#e(g)) {
           g !== s && g.__abortController.abort(new Error("replaced"));
           let { __staleWhileFetching: f } = g;
           f !== void 0 && f !== t && (this.#T && this.#S?.(f, e, "set"), this.#f && this.#r?.push([f, e, "set"]));
         } else this.#T && this.#S?.(g, e, "set"), this.#f && this.#r?.push([g, e, "set"]);
-        if (this.#R(c), this.#j(c, _, o), this.#t[c] = t, !d) {
-          let f = g && this.#e(g) ? g.__staleWhileFetching : g, b = f === void 0 ? "add" : t !== f ? "replace" : "update";
-          o && (o.set = b, f !== void 0 && (o.oldValue = f)), this.#x && this.onInsert?.(t, e, b);
+        if (this.#x(u), this.#j(u, _, r), this.#t[u] = t, !c) {
+          let f = g && this.#e(g) ? g.__staleWhileFetching : g, y = f === void 0 ? "add" : t !== f ? "replace" : "update";
+          r && (r.set = y, f !== void 0 && (r.oldValue = f)), this.#D && this.onInsert?.(t, e, y);
         }
-      } else d || (o && (o.set = "update"), this.#x && this.onInsert?.(t, e, "update"));
+      } else c || (r && (r.set = "update"), this.#D && this.onInsert?.(t, e, "update"));
     }
-    if (n !== 0 && !this.#d && this.#k(), this.#d && (y || this.#H(c, n, r), o && this.#v(o, c)), !h && this.#f && this.#r) {
+    if (n !== 0 && !this.#d && this.#k(), this.#d && (m || this.#H(u, n, o), r && this.#v(r, u)), !l && this.#f && this.#r) {
       let g = this.#r, f;
       for (; f = g?.shift(); ) this.#w?.(...f);
     }
@@ -790,8 +821,8 @@ var U = class u2 {
   #G(e) {
     let t = this.#a, i = this.#i[t], s = this.#t[t], n = this.#e(s);
     n && s.__abortController.abort(new Error("evicted"));
-    let r = n ? s.__staleWhileFetching : s;
-    return (this.#T || this.#f) && r !== void 0 && (this.#T && this.#S?.(r, i, "evict"), this.#f && this.#r?.push([r, i, "evict"])), this.#R(t), this.#g?.[t] && (clearTimeout(this.#g[t]), this.#g[t] = void 0), e && (this.#i[t] = void 0, this.#t[t] = void 0, this.#y.push(t)), this.#n === 1 ? (this.#a = this.#h = 0, this.#y.length = 0) : this.#a = this.#l[t], this.#s.delete(i), this.#n--, t;
+    let o = n ? s.__staleWhileFetching : s;
+    return (this.#T || this.#f) && o !== void 0 && (this.#T && this.#S?.(o, i, "evict"), this.#f && this.#r?.push([o, i, "evict"])), this.#x(t), this.#g?.[t] && (clearTimeout(this.#g[t]), this.#g[t] = void 0), e && (this.#i[t] = void 0, this.#t[t] = void 0, this.#y.push(t)), this.#n === 1 ? (this.#a = this.#h = 0, this.#y.length = 0) : this.#a = this.#l[t], this.#s.delete(i), this.#n--, t;
   }
   has(e, t = {}) {
     let { status: i = S.hasSubscribers ? {} : void 0 } = t;
@@ -802,15 +833,15 @@ var U = class u2 {
   #Y(e, t = {}) {
     let { updateAgeOnHas: i = this.updateAgeOnHas, status: s } = t, n = this.#s.get(e);
     if (n !== void 0) {
-      let r = this.#t[n];
-      if (this.#e(r) && r.__staleWhileFetching === void 0) return false;
+      let o = this.#t[n];
+      if (this.#e(o) && o.__staleWhileFetching === void 0) return false;
       if (this.#p(n)) s && (s.has = "stale", this.#v(s, n));
-      else return i && this.#D(n), s && (s.has = "hit", this.#v(s, n)), true;
+      else return i && this.#R(n), s && (s.has = "hit", this.#v(s, n)), true;
     } else s && (s.has = "miss");
     return false;
   }
   peek(e, t = {}) {
-    let { status: i = D() ? {} : void 0 } = t;
+    let { status: i = R() ? {} : void 0 } = t;
     i && (i.op = "peek", i.key = e, i.cache = this), t.status = i;
     let s = this.#J(e, t);
     return S.hasSubscribers && S.publish(i), s;
@@ -821,32 +852,32 @@ var U = class u2 {
       i && (i.peek = n === void 0 ? "miss" : "stale");
       return;
     }
-    let r = this.#t[n], h = this.#e(r) ? r.__staleWhileFetching : r;
-    return i && (h !== void 0 ? (i.peek = "hit", i.value = h) : i.peek = "miss"), h;
+    let o = this.#t[n], l = this.#e(o) ? o.__staleWhileFetching : o;
+    return i && (l !== void 0 ? (i.peek = "hit", i.value = l) : i.peek = "miss"), l;
   }
   #P(e, t, i, s) {
     let n = t === void 0 ? void 0 : this.#t[t];
     if (this.#e(n)) return n;
-    let r = new AbortController(), { signal: h } = i;
-    h?.addEventListener("abort", () => r.abort(h.reason), { signal: r.signal });
-    let a = { signal: r.signal, options: i, context: s }, o = (f, b = false) => {
-      let { aborted: l } = r.signal, w = i.ignoreFetchAbort && f !== void 0, F = i.ignoreFetchAbort || !!(i.allowStaleOnFetchAbort && f !== void 0);
-      if (i.status && (l && !b ? (i.status.fetchAborted = true, i.status.fetchError = r.signal.reason, w && (i.status.fetchAbortIgnored = true)) : i.status.fetchResolved = true), l && !w && !b) return y(r.signal.reason, F);
-      let m = c, p = this.#t[t];
-      return (p === c || p === void 0 && w && b) && (f === void 0 ? m.__staleWhileFetching !== void 0 ? this.#t[t] = m.__staleWhileFetching : this.#E(e, "fetch") : (i.status && (i.status.fetchUpdated = true), this.#W(e, f, a.options, m))), f;
-    }, d = (f) => (i.status && (i.status.fetchRejected = true, i.status.fetchError = f), y(f, false)), y = (f, b) => {
-      let { aborted: l } = r.signal, w = l && i.allowStaleOnFetchAbort, F = w || i.allowStaleOnFetchRejection, m = F || i.noDeleteOnFetchRejection, p = c;
-      if (this.#t[t] === c && (!m || !b && p.__staleWhileFetching === void 0 ? this.#E(e, "fetch") : w || (this.#t[t] = p.__staleWhileFetching)), F) return i.status && p.__staleWhileFetching !== void 0 && (i.status.returnedStale = true), p.__staleWhileFetching;
+    let o = new AbortController(), { signal: l } = i;
+    l?.addEventListener("abort", () => o.abort(l.reason), { signal: o.signal });
+    let h = { signal: o.signal, options: i, context: s }, r = (f, y = false) => {
+      let { aborted: a } = o.signal, w = i.ignoreFetchAbort && f !== void 0, F = i.ignoreFetchAbort || !!(i.allowStaleOnFetchAbort && f !== void 0);
+      if (i.status && (a && !y ? (i.status.fetchAborted = true, i.status.fetchError = o.signal.reason, w && (i.status.fetchAbortIgnored = true)) : i.status.fetchResolved = true), a && !w && !y) return m(o.signal.reason, F);
+      let b = u, p = this.#t[t];
+      return (p === u || p === void 0 && w && y) && (f === void 0 ? b.__staleWhileFetching !== void 0 ? this.#t[t] = b.__staleWhileFetching : this.#E(e, "fetch") : (i.status && (i.status.fetchUpdated = true), this.#W(e, f, h.options, b))), f;
+    }, c = (f) => (i.status && (i.status.fetchRejected = true, i.status.fetchError = f), m(f, false)), m = (f, y) => {
+      let { aborted: a } = o.signal, w = a && i.allowStaleOnFetchAbort, F = w || i.allowStaleOnFetchRejection, b = F || i.noDeleteOnFetchRejection, p = u;
+      if (this.#t[t] === u && (!b || !y && p.__staleWhileFetching === void 0 ? this.#E(e, "fetch") : w || (this.#t[t] = p.__staleWhileFetching)), F) return i.status && p.__staleWhileFetching !== void 0 && (i.status.returnedStale = true), p.__staleWhileFetching;
       if (p.__returned === p) throw f;
-    }, _ = (f, b) => {
-      let l = this.#M?.(e, n, a);
-      r.signal.addEventListener("abort", () => {
-        (!i.ignoreFetchAbort || i.allowStaleOnFetchAbort) && (f(void 0), i.allowStaleOnFetchAbort && (f = (w) => o(w, true)));
-      }), l && l instanceof Promise ? l.then((w) => f(w === void 0 ? void 0 : w), b) : l !== void 0 && f(l);
+    }, _ = (f, y) => {
+      let a = this.#M?.(e, n, h);
+      o.signal.addEventListener("abort", () => {
+        (!i.ignoreFetchAbort || i.allowStaleOnFetchAbort) && (f(void 0), i.allowStaleOnFetchAbort && (f = (w) => r(w, true)));
+      }), a && a instanceof Promise ? a.then((w) => f(w === void 0 ? void 0 : w), y) : a !== void 0 && f(a);
     };
     i.status && (i.status.fetchDispatched = true);
-    let c = new Promise(_).then(o, d), g = Object.assign(c, { __abortController: r, __staleWhileFetching: n, __returned: void 0 });
-    return t === void 0 ? (this.#W(e, g, { ...a.options, status: void 0 }), t = this.#s.get(e)) : this.#t[t] = g, g;
+    let u = new Promise(_).then(r, c), g = Object.assign(u, { __abortController: o, __staleWhileFetching: n, __returned: void 0 });
+    return t === void 0 ? (this.#W(e, g, { ...h.options, status: void 0 }), t = this.#s.get(e)) : this.#t[t] = g, g;
   }
   #e(e) {
     if (!this.#U) return false;
@@ -854,34 +885,34 @@ var U = class u2 {
     return !!t && t instanceof Promise && t.hasOwnProperty("__staleWhileFetching") && t.__abortController instanceof AbortController;
   }
   fetch(e, t = {}) {
-    let i = W.hasSubscribers, { status: s = D() ? {} : void 0 } = t;
+    let i = W.hasSubscribers, { status: s = R() ? {} : void 0 } = t;
     t.status = s, s && t.context && (s.context = t.context);
     let n = this.#B(e, t);
     return s && i && (s.trace = true, W.tracePromise(() => n, s).catch(() => {
     })), n;
   }
   async #B(e, t = {}) {
-    let { allowStale: i = this.allowStale, updateAgeOnGet: s = this.updateAgeOnGet, noDeleteOnStaleGet: n = this.noDeleteOnStaleGet, ttl: r = this.ttl, noDisposeOnSet: h = this.noDisposeOnSet, size: a = 0, sizeCalculation: o = this.sizeCalculation, noUpdateTTL: d = this.noUpdateTTL, noDeleteOnFetchRejection: y = this.noDeleteOnFetchRejection, allowStaleOnFetchRejection: _ = this.allowStaleOnFetchRejection, ignoreFetchAbort: c = this.ignoreFetchAbort, allowStaleOnFetchAbort: g = this.allowStaleOnFetchAbort, context: f, forceRefresh: b = false, status: l, signal: w } = t;
-    if (l && (l.op = "fetch", l.key = e, b && (l.forceRefresh = true), l.cache = this), !this.#U) return l && (l.fetch = "get"), this.#C(e, { allowStale: i, updateAgeOnGet: s, noDeleteOnStaleGet: n, status: l });
-    let F = { allowStale: i, updateAgeOnGet: s, noDeleteOnStaleGet: n, ttl: r, noDisposeOnSet: h, size: a, sizeCalculation: o, noUpdateTTL: d, noDeleteOnFetchRejection: y, allowStaleOnFetchRejection: _, allowStaleOnFetchAbort: g, ignoreFetchAbort: c, status: l, signal: w }, m = this.#s.get(e);
-    if (m === void 0) {
-      l && (l.fetch = "miss");
-      let p = this.#P(e, m, F, f);
+    let { allowStale: i = this.allowStale, updateAgeOnGet: s = this.updateAgeOnGet, noDeleteOnStaleGet: n = this.noDeleteOnStaleGet, ttl: o = this.ttl, noDisposeOnSet: l = this.noDisposeOnSet, size: h = 0, sizeCalculation: r = this.sizeCalculation, noUpdateTTL: c = this.noUpdateTTL, noDeleteOnFetchRejection: m = this.noDeleteOnFetchRejection, allowStaleOnFetchRejection: _ = this.allowStaleOnFetchRejection, ignoreFetchAbort: u = this.ignoreFetchAbort, allowStaleOnFetchAbort: g = this.allowStaleOnFetchAbort, context: f, forceRefresh: y = false, status: a, signal: w } = t;
+    if (a && (a.op = "fetch", a.key = e, y && (a.forceRefresh = true), a.cache = this), !this.#U) return a && (a.fetch = "get"), this.#C(e, { allowStale: i, updateAgeOnGet: s, noDeleteOnStaleGet: n, status: a });
+    let F = { allowStale: i, updateAgeOnGet: s, noDeleteOnStaleGet: n, ttl: o, noDisposeOnSet: l, size: h, sizeCalculation: r, noUpdateTTL: c, noDeleteOnFetchRejection: m, allowStaleOnFetchRejection: _, allowStaleOnFetchAbort: g, ignoreFetchAbort: u, status: a, signal: w }, b = this.#s.get(e);
+    if (b === void 0) {
+      a && (a.fetch = "miss");
+      let p = this.#P(e, b, F, f);
       return p.__returned = p;
     } else {
-      let p = this.#t[m];
+      let p = this.#t[b];
       if (this.#e(p)) {
         let v = i && p.__staleWhileFetching !== void 0;
-        return l && (l.fetch = "inflight", v && (l.returnedStale = true)), v ? p.__staleWhileFetching : p.__returned = p;
+        return a && (a.fetch = "inflight", v && (a.returnedStale = true)), v ? p.__staleWhileFetching : p.__returned = p;
       }
-      let A = this.#p(m);
-      if (!b && !A) return l && (l.fetch = "hit"), this.#L(m), s && this.#D(m), l && this.#v(l, m), p;
-      let z = this.#P(e, m, F, f), E2 = z.__staleWhileFetching !== void 0 && i;
-      return l && (l.fetch = A ? "stale" : "refresh", E2 && A && (l.returnedStale = true)), E2 ? z.__staleWhileFetching : z.__returned = z;
+      let A = this.#p(b);
+      if (!y && !A) return a && (a.fetch = "hit"), this.#L(b), s && this.#R(b), a && this.#v(a, b), p;
+      let z = this.#P(e, b, F, f), E2 = z.__staleWhileFetching !== void 0 && i;
+      return a && (a.fetch = A ? "stale" : "refresh", E2 && A && (a.returnedStale = true)), E2 ? z.__staleWhileFetching : z.__returned = z;
     }
   }
   forceFetch(e, t = {}) {
-    let i = W.hasSubscribers, { status: s = D() ? {} : void 0 } = t;
+    let i = W.hasSubscribers, { status: s = R() ? {} : void 0 } = t;
     t.status = s, s && t.context && (s.context = t.context);
     let n = this.#K(e, t);
     return s && i && (s.trace = true, W.tracePromise(() => n, s).catch(() => {
@@ -901,12 +932,12 @@ var U = class u2 {
   #Q(e, t = {}) {
     let i = this.#I;
     if (!i) throw new Error("no memoMethod provided to constructor");
-    let { context: s, status: n, forceRefresh: r, ...h } = t;
-    n && r && (n.forceRefresh = true);
-    let a = this.#C(e, h), o = r || a === void 0;
-    if (n && (n.memo = o ? "miss" : "hit", o || (n.value = a)), !o) return a;
-    let d = i(e, a, { options: h, context: s });
-    return n && (n.value = d), this.#W(e, d, h), d;
+    let { context: s, status: n, forceRefresh: o, ...l } = t;
+    n && o && (n.forceRefresh = true);
+    let h = this.#C(e, l), r = o || h === void 0;
+    if (n && (n.memo = r ? "miss" : "hit", r || (n.value = h)), !r) return h;
+    let c = i(e, h, { options: l, context: s });
+    return n && (n.value = c), this.#W(e, c, l), c;
   }
   get(e, t = {}) {
     let { status: i = S.hasSubscribers ? {} : void 0 } = t;
@@ -915,13 +946,13 @@ var U = class u2 {
     return i && (s !== void 0 && (i.value = s), S.hasSubscribers && S.publish(i)), s;
   }
   #C(e, t = {}) {
-    let { allowStale: i = this.allowStale, updateAgeOnGet: s = this.updateAgeOnGet, noDeleteOnStaleGet: n = this.noDeleteOnStaleGet, status: r } = t, h = this.#s.get(e);
-    if (h === void 0) {
-      r && (r.get = "miss");
+    let { allowStale: i = this.allowStale, updateAgeOnGet: s = this.updateAgeOnGet, noDeleteOnStaleGet: n = this.noDeleteOnStaleGet, status: o } = t, l = this.#s.get(e);
+    if (l === void 0) {
+      o && (o.get = "miss");
       return;
     }
-    let a = this.#t[h], o = this.#e(a);
-    return r && this.#v(r, h), this.#p(h) ? o ? (r && (r.get = "stale-fetching"), i && a.__staleWhileFetching !== void 0 ? (r && (r.returnedStale = true), a.__staleWhileFetching) : void 0) : (n || this.#E(e, "expire"), r && (r.get = "stale"), i ? (r && (r.returnedStale = true), a) : void 0) : (r && (r.get = o ? "fetching" : "hit"), this.#L(h), s && this.#D(h), o ? a.__staleWhileFetching : a);
+    let h = this.#t[l], r = this.#e(h);
+    return o && this.#v(o, l), this.#p(l) ? r ? (o && (o.get = "stale-fetching"), i && h.__staleWhileFetching !== void 0 ? (o && (o.returnedStale = true), h.__staleWhileFetching) : void 0) : (n || this.#E(e, "expire"), o && (o.get = "stale"), i ? (o && (o.returnedStale = true), h) : void 0) : (o && (o.get = r ? "fetching" : "hit"), this.#L(l), s && this.#R(l), r ? h.__staleWhileFetching : h);
   }
   #$(e, t) {
     this.#u[t] = e, this.#l[e] = t;
@@ -937,17 +968,17 @@ var U = class u2 {
     let i = false;
     if (this.#n !== 0) {
       let s = this.#s.get(e);
-      if (s !== void 0) if (this.#g?.[s] && (clearTimeout(this.#g?.[s]), this.#g[s] = void 0), i = true, this.#n === 1) this.#q(t);
+      if (s !== void 0) if (this.#g?.[s] && (clearTimeout(this.#g[s]), this.#g[s] = void 0), i = true, this.#n === 1) this.#q(t);
       else {
-        this.#R(s);
+        this.#x(s);
         let n = this.#t[s];
         if (this.#e(n) ? n.__abortController.abort(new Error("deleted")) : (this.#T || this.#f) && (this.#T && this.#S?.(n, e, t), this.#f && this.#r?.push([n, e, t])), this.#s.delete(e), this.#i[s] = void 0, this.#t[s] = void 0, s === this.#h) this.#h = this.#u[s];
         else if (s === this.#a) this.#a = this.#l[s];
         else {
-          let r = this.#u[s];
-          this.#l[r] = this.#l[s];
-          let h = this.#l[s];
-          this.#u[h] = this.#u[s];
+          let o = this.#u[s];
+          this.#l[o] = this.#l[s];
+          let l = this.#l[s];
+          this.#u[l] = this.#u[s];
         }
         this.#n--, this.#y.push(s);
       }
@@ -983,6 +1014,7 @@ var U = class u2 {
 };
 
 // node_modules/pako/dist/pako.esm.mjs
+/*! pako 2.2.0 https://github.com/nodeca/pako @license (MIT AND Zlib) */
 var Z_FIXED$1 = 4;
 var Z_BINARY = 0;
 var Z_TEXT = 1;
@@ -1729,7 +1761,7 @@ var {
   Z_STREAM_END: Z_STREAM_END$3,
   Z_STREAM_ERROR: Z_STREAM_ERROR$2,
   Z_DATA_ERROR: Z_DATA_ERROR$2,
-  Z_BUF_ERROR: Z_BUF_ERROR$1,
+  Z_BUF_ERROR: Z_BUF_ERROR$2,
   Z_DEFAULT_COMPRESSION: Z_DEFAULT_COMPRESSION$1,
   Z_FILTERED,
   Z_HUFFMAN_ONLY,
@@ -1796,8 +1828,20 @@ var slide_hash = (s) => {
     s.prev[p] = m >= wsize ? m - wsize : 0;
   } while (--n);
 };
-var HASH_ZLIB = (s, prev, data) => (prev << s.hash_shift ^ data) & s.hash_mask;
-var HASH = HASH_ZLIB;
+var HASH = (s, prev, data) => (prev << s.hash_shift ^ data) & s.hash_mask;
+var INSERT_STRING = (s, str) => {
+  let h;
+  if (s.legacy_hash) {
+    h = s.ins_h = HASH(s, s.ins_h, s.window[str + MIN_MATCH - 1]);
+  } else {
+    const w = s.window;
+    const value = w[str] | w[str + 1] << 8 | w[str + 2] << 16 | w[str + 3] << 24;
+    h = s.ins_h = Math.imul(value, 66521) + 66521 >>> 16 & s.hash_mask;
+  }
+  const hash_head = s.prev[str & s.w_mask] = s.head[h];
+  s.head[h] = str;
+  return hash_head;
+};
 var flush_pending = (strm) => {
   const s = strm.state;
   let len = s.pending;
@@ -1915,14 +1959,24 @@ var fill_window = (s) => {
     }
     n = read_buf(s.strm, s.window, s.strstart + s.lookahead, more);
     s.lookahead += n;
-    if (s.lookahead + s.insert >= MIN_MATCH) {
+    if (!s.legacy_hash) {
+      if (s.lookahead + s.insert > MIN_MATCH) {
+        str = s.strstart - s.insert;
+        while (s.insert) {
+          INSERT_STRING(s, str);
+          str++;
+          s.insert--;
+          if (s.lookahead + s.insert <= MIN_MATCH) {
+            break;
+          }
+        }
+      }
+    } else if (s.lookahead + s.insert >= MIN_MATCH) {
       str = s.strstart - s.insert;
       s.ins_h = s.window[str];
       s.ins_h = HASH(s, s.ins_h, s.window[str + 1]);
       while (s.insert) {
-        s.ins_h = HASH(s, s.ins_h, s.window[str + MIN_MATCH - 1]);
-        s.prev[str & s.w_mask] = s.head[s.ins_h];
-        s.head[s.ins_h] = str;
+        INSERT_STRING(s, str);
         str++;
         s.insert--;
         if (s.lookahead + s.insert < MIN_MATCH) {
@@ -2063,9 +2117,7 @@ var deflate_fast = (s, flush) => {
     }
     hash_head = 0;
     if (s.lookahead >= MIN_MATCH) {
-      s.ins_h = HASH(s, s.ins_h, s.window[s.strstart + MIN_MATCH - 1]);
-      hash_head = s.prev[s.strstart & s.w_mask] = s.head[s.ins_h];
-      s.head[s.ins_h] = s.strstart;
+      hash_head = INSERT_STRING(s, s.strstart);
     }
     if (hash_head !== 0 && s.strstart - hash_head <= s.w_size - MIN_LOOKAHEAD) {
       s.match_length = longest_match(s, hash_head);
@@ -2077,16 +2129,16 @@ var deflate_fast = (s, flush) => {
         s.match_length--;
         do {
           s.strstart++;
-          s.ins_h = HASH(s, s.ins_h, s.window[s.strstart + MIN_MATCH - 1]);
-          hash_head = s.prev[s.strstart & s.w_mask] = s.head[s.ins_h];
-          s.head[s.ins_h] = s.strstart;
+          hash_head = INSERT_STRING(s, s.strstart);
         } while (--s.match_length !== 0);
         s.strstart++;
       } else {
         s.strstart += s.match_length;
         s.match_length = 0;
-        s.ins_h = s.window[s.strstart];
-        s.ins_h = HASH(s, s.ins_h, s.window[s.strstart + 1]);
+        if (s.legacy_hash) {
+          s.ins_h = s.window[s.strstart];
+          s.ins_h = HASH(s, s.ins_h, s.window[s.strstart + 1]);
+        }
       }
     } else {
       bflush = _tr_tally(s, 0, s.window[s.strstart]);
@@ -2132,9 +2184,7 @@ var deflate_slow = (s, flush) => {
     }
     hash_head = 0;
     if (s.lookahead >= MIN_MATCH) {
-      s.ins_h = HASH(s, s.ins_h, s.window[s.strstart + MIN_MATCH - 1]);
-      hash_head = s.prev[s.strstart & s.w_mask] = s.head[s.ins_h];
-      s.head[s.ins_h] = s.strstart;
+      hash_head = INSERT_STRING(s, s.strstart);
     }
     s.prev_length = s.match_length;
     s.prev_match = s.match_start;
@@ -2152,9 +2202,7 @@ var deflate_slow = (s, flush) => {
       s.prev_length -= 2;
       do {
         if (++s.strstart <= max_insert) {
-          s.ins_h = HASH(s, s.ins_h, s.window[s.strstart + MIN_MATCH - 1]);
-          hash_head = s.prev[s.strstart & s.w_mask] = s.head[s.ins_h];
-          s.head[s.ins_h] = s.strstart;
+          hash_head = INSERT_STRING(s, s.strstart);
         }
       } while (--s.prev_length !== 0);
       s.match_available = 0;
@@ -2368,6 +2416,7 @@ function DeflateState() {
   this.prev = null;
   this.head = null;
   this.ins_h = 0;
+  this.legacy_hash = 0;
   this.hash_size = 0;
   this.hash_bits = 0;
   this.hash_mask = 0;
@@ -2461,7 +2510,7 @@ var deflateSetHeader = (strm, head) => {
   strm.state.gzhead = head;
   return Z_OK$3;
 };
-var deflateInit2 = (strm, level, method, windowBits, memLevel, strategy) => {
+var deflateInit2 = (strm, level, method, windowBits, memLevel, strategy, legacyHash) => {
   if (!strm) {
     return Z_STREAM_ERROR$2;
   }
@@ -2491,7 +2540,11 @@ var deflateInit2 = (strm, level, method, windowBits, memLevel, strategy) => {
   s.w_bits = windowBits;
   s.w_size = 1 << s.w_bits;
   s.w_mask = s.w_size - 1;
+  s.legacy_hash = legacyHash ? 1 : 0;
   s.hash_bits = memLevel + 7;
+  if (!s.legacy_hash && s.hash_bits < 15) {
+    s.hash_bits = 15;
+  }
   s.hash_size = 1 << s.hash_bits;
   s.hash_mask = s.hash_size - 1;
   s.hash_shift = ~~((s.hash_bits + MIN_MATCH - 1) / MIN_MATCH);
@@ -2517,7 +2570,7 @@ var deflate$2 = (strm, flush) => {
   }
   const s = strm.state;
   if (!strm.output || strm.avail_in !== 0 && !strm.input || s.status === FINISH_STATE && flush !== Z_FINISH$3) {
-    return err(strm, strm.avail_out === 0 ? Z_BUF_ERROR$1 : Z_STREAM_ERROR$2);
+    return err(strm, strm.avail_out === 0 ? Z_BUF_ERROR$2 : Z_STREAM_ERROR$2);
   }
   const old_flush = s.last_flush;
   s.last_flush = flush;
@@ -2528,10 +2581,10 @@ var deflate$2 = (strm, flush) => {
       return Z_OK$3;
     }
   } else if (strm.avail_in === 0 && rank(flush) <= rank(old_flush) && flush !== Z_FINISH$3) {
-    return err(strm, Z_BUF_ERROR$1);
+    return err(strm, Z_BUF_ERROR$2);
   }
   if (s.status === FINISH_STATE && strm.avail_in !== 0) {
-    return err(strm, Z_BUF_ERROR$1);
+    return err(strm, Z_BUF_ERROR$2);
   }
   if (s.status === INIT_STATE && s.wrap === 0) {
     s.status = BUSY_STATE;
@@ -2818,9 +2871,7 @@ var deflateSetDictionary = (strm, dictionary) => {
     let str = s.strstart;
     let n = s.lookahead - (MIN_MATCH - 1);
     do {
-      s.ins_h = HASH(s, s.ins_h, s.window[str + MIN_MATCH - 1]);
-      s.prev[str & s.w_mask] = s.head[s.ins_h];
-      s.head[s.ins_h] = str;
+      INSERT_STRING(s, str);
       str++;
     } while (--n);
     s.strstart = str;
@@ -2907,7 +2958,7 @@ var _utf8len = new Uint8Array(256);
 for (let q = 0; q < 256; q++) {
   _utf8len[q] = q >= 252 ? 6 : q >= 248 ? 5 : q >= 240 ? 4 : q >= 224 ? 3 : q >= 192 ? 2 : 1;
 }
-_utf8len[254] = _utf8len[254] = 1;
+_utf8len[254] = _utf8len[255] = 1;
 var string2buf = (str) => {
   if (typeof TextEncoder === "function" && TextEncoder.prototype.encode) {
     return new TextEncoder().encode(str);
@@ -3051,15 +3102,17 @@ var {
   Z_DEFAULT_STRATEGY,
   Z_DEFLATED: Z_DEFLATED$1
 } = constants$2;
+var defaultOptions$1 = {
+  level: Z_DEFAULT_COMPRESSION,
+  method: Z_DEFLATED$1,
+  chunkSize: 16384,
+  windowBits: 15,
+  memLevel: 8,
+  strategy: Z_DEFAULT_STRATEGY,
+  legacyHash: true
+};
 function Deflate$1(options) {
-  this.options = common.assign({
-    level: Z_DEFAULT_COMPRESSION,
-    method: Z_DEFLATED$1,
-    chunkSize: 16384,
-    windowBits: 15,
-    memLevel: 8,
-    strategy: Z_DEFAULT_STRATEGY
-  }, options || {});
+  this.options = common.assign({}, defaultOptions$1, options || {});
   let opt = this.options;
   if (opt.raw && opt.windowBits > 0) {
     opt.windowBits = -opt.windowBits;
@@ -3078,7 +3131,8 @@ function Deflate$1(options) {
     opt.method,
     opt.windowBits,
     opt.memLevel,
-    opt.strategy
+    opt.strategy,
+    opt.legacyHash
   );
   if (status !== Z_OK$2) {
     throw new Error(messages[status]);
@@ -3220,13 +3274,13 @@ var inffast = function inflate_fast(strm, start) {
   let dist;
   let from;
   let from_source;
-  let input, output2;
+  let input, output;
   const state = strm.state;
   _in = strm.next_in;
   input = strm.input;
   last = _in + (strm.avail_in - 5);
   _out = strm.next_out;
-  output2 = strm.output;
+  output = strm.output;
   beg = _out - (start - strm.avail_out);
   end = _out + (strm.avail_out - 257);
   dmax = state.dmax;
@@ -3256,7 +3310,7 @@ var inffast = function inflate_fast(strm, start) {
           bits -= op;
           op = here >>> 16 & 255;
           if (op === 0) {
-            output2[_out++] = here & 65535;
+            output[_out++] = here & 65535;
           } else if (op & 16) {
             len = here & 65535;
             op &= 15;
@@ -3318,10 +3372,10 @@ var inffast = function inflate_fast(strm, start) {
                       if (op < len) {
                         len -= op;
                         do {
-                          output2[_out++] = s_window[from++];
+                          output[_out++] = s_window[from++];
                         } while (--op);
                         from = _out - dist;
-                        from_source = output2;
+                        from_source = output;
                       }
                     } else if (wnext < op) {
                       from += wsize + wnext - op;
@@ -3329,17 +3383,17 @@ var inffast = function inflate_fast(strm, start) {
                       if (op < len) {
                         len -= op;
                         do {
-                          output2[_out++] = s_window[from++];
+                          output[_out++] = s_window[from++];
                         } while (--op);
                         from = 0;
                         if (wnext < len) {
                           op = wnext;
                           len -= op;
                           do {
-                            output2[_out++] = s_window[from++];
+                            output[_out++] = s_window[from++];
                           } while (--op);
                           from = _out - dist;
-                          from_source = output2;
+                          from_source = output;
                         }
                       }
                     } else {
@@ -3347,36 +3401,36 @@ var inffast = function inflate_fast(strm, start) {
                       if (op < len) {
                         len -= op;
                         do {
-                          output2[_out++] = s_window[from++];
+                          output[_out++] = s_window[from++];
                         } while (--op);
                         from = _out - dist;
-                        from_source = output2;
+                        from_source = output;
                       }
                     }
                     while (len > 2) {
-                      output2[_out++] = from_source[from++];
-                      output2[_out++] = from_source[from++];
-                      output2[_out++] = from_source[from++];
+                      output[_out++] = from_source[from++];
+                      output[_out++] = from_source[from++];
+                      output[_out++] = from_source[from++];
                       len -= 3;
                     }
                     if (len) {
-                      output2[_out++] = from_source[from++];
+                      output[_out++] = from_source[from++];
                       if (len > 1) {
-                        output2[_out++] = from_source[from++];
+                        output[_out++] = from_source[from++];
                       }
                     }
                   } else {
                     from = _out - dist;
                     do {
-                      output2[_out++] = output2[from++];
-                      output2[_out++] = output2[from++];
-                      output2[_out++] = output2[from++];
+                      output[_out++] = output[from++];
+                      output[_out++] = output[from++];
+                      output[_out++] = output[from++];
                       len -= 3;
                     } while (len > 2);
                     if (len) {
-                      output2[_out++] = output2[from++];
+                      output[_out++] = output[from++];
                       if (len > 1) {
-                        output2[_out++] = output2[from++];
+                        output[_out++] = output[from++];
                       }
                     }
                   }
@@ -3487,8 +3541,8 @@ var lext = new Uint8Array([
   21,
   21,
   16,
-  72,
-  78
+  199,
+  75
 ]);
 var dbase = new Uint16Array([
   /* Distance codes 0..29 base */
@@ -3734,7 +3788,7 @@ var {
   Z_STREAM_ERROR: Z_STREAM_ERROR$1,
   Z_DATA_ERROR: Z_DATA_ERROR$1,
   Z_MEM_ERROR: Z_MEM_ERROR$1,
-  Z_BUF_ERROR,
+  Z_BUF_ERROR: Z_BUF_ERROR$1,
   Z_DEFLATED
 } = constants$2;
 var HEAD = 16180;
@@ -3938,10 +3992,12 @@ var updatewindow = (strm, src, end, copy) => {
   let dist;
   const state = strm.state;
   if (state.window === null) {
+    state.window = new Uint8Array(1 << state.wbits);
+  }
+  if (state.wsize === 0) {
     state.wsize = 1 << state.wbits;
     state.wnext = 0;
     state.whave = 0;
-    state.window = new Uint8Array(state.wsize);
   }
   if (copy >= state.wsize) {
     state.window.set(src.subarray(end - state.wsize, end), 0);
@@ -3972,7 +4028,7 @@ var updatewindow = (strm, src, end, copy) => {
 };
 var inflate$2 = (strm, flush) => {
   let state;
-  let input, output2;
+  let input, output;
   let next;
   let put;
   let have, left;
@@ -4002,7 +4058,7 @@ var inflate$2 = (strm, flush) => {
     state.mode = TYPEDO;
   }
   put = strm.next_out;
-  output2 = strm.output;
+  output = strm.output;
   left = strm.avail_out;
   next = strm.next_in;
   input = strm.input;
@@ -4401,7 +4457,7 @@ var inflate$2 = (strm, flush) => {
             if (copy === 0) {
               break inf_leave;
             }
-            output2.set(input.subarray(next, next + copy), put);
+            output.set(input.subarray(next, next + copy), put);
             have -= copy;
             next += copy;
             left -= copy;
@@ -4598,7 +4654,7 @@ var inflate$2 = (strm, flush) => {
             state.bits = bits;
             inffast(strm, _out);
             put = strm.next_out;
-            output2 = strm.output;
+            output = strm.output;
             left = strm.avail_out;
             next = strm.next_in;
             input = strm.input;
@@ -4788,7 +4844,7 @@ var inflate$2 = (strm, flush) => {
             }
             from_source = state.window;
           } else {
-            from_source = output2;
+            from_source = output;
             from = put - state.offset;
             copy = state.length;
           }
@@ -4798,7 +4854,7 @@ var inflate$2 = (strm, flush) => {
           left -= copy;
           state.length -= copy;
           do {
-            output2[put++] = from_source[from++];
+            output[put++] = from_source[from++];
           } while (--copy);
           if (state.length === 0) {
             state.mode = LEN;
@@ -4808,7 +4864,7 @@ var inflate$2 = (strm, flush) => {
           if (left === 0) {
             break inf_leave;
           }
-          output2[put++] = state.length;
+          output[put++] = state.length;
           left--;
           state.mode = LEN;
           break;
@@ -4827,7 +4883,7 @@ var inflate$2 = (strm, flush) => {
             state.total += _out;
             if (state.wrap & 4 && _out) {
               strm.adler = state.check = /*UPDATE_CHECK(state.check, put - _out, _out);*/
-              state.flags ? crc32_1(state.check, output2, _out, put - _out) : adler32_1(state.check, output2, _out, put - _out);
+              state.flags ? crc32_1(state.check, output, _out, put - _out) : adler32_1(state.check, output, _out, put - _out);
             }
             _out = left;
             if (state.wrap & 4 && (state.flags ? hold : zswap32(hold)) !== state.check) {
@@ -4890,11 +4946,11 @@ var inflate$2 = (strm, flush) => {
   state.total += _out;
   if (state.wrap & 4 && _out) {
     strm.adler = state.check = /*UPDATE_CHECK(state.check, strm.next_out - _out, _out);*/
-    state.flags ? crc32_1(state.check, output2, _out, strm.next_out - _out) : adler32_1(state.check, output2, _out, strm.next_out - _out);
+    state.flags ? crc32_1(state.check, output, _out, strm.next_out - _out) : adler32_1(state.check, output, _out, strm.next_out - _out);
   }
   strm.data_type = state.bits + (state.last ? 64 : 0) + (state.mode === TYPE ? 128 : 0) + (state.mode === LEN_ || state.mode === COPY_ ? 256 : 0);
   if ((_in === 0 && _out === 0 || flush === Z_FINISH$1) && ret === Z_OK$1) {
-    ret = Z_BUF_ERROR;
+    ret = Z_BUF_ERROR$1;
   }
   return ret;
 };
@@ -4992,14 +5048,16 @@ var {
   Z_NEED_DICT,
   Z_STREAM_ERROR,
   Z_DATA_ERROR,
-  Z_MEM_ERROR
+  Z_MEM_ERROR,
+  Z_BUF_ERROR
 } = constants$2;
+var defaultOptions = {
+  chunkSize: 1024 * 64,
+  windowBits: 15,
+  to: ""
+};
 function Inflate$1(options) {
-  this.options = common.assign({
-    chunkSize: 1024 * 64,
-    windowBits: 15,
-    to: ""
-  }, options || {});
+  this.options = common.assign({}, defaultOptions, options || {});
   const opt = this.options;
   if (opt.raw && opt.windowBits >= 0 && opt.windowBits < 16) {
     opt.windowBits = -opt.windowBits;
@@ -5074,7 +5132,7 @@ Inflate$1.prototype.push = function(data, flush_mode) {
         status = Z_NEED_DICT;
       }
     }
-    while (strm.avail_in > 0 && status === Z_STREAM_END && strm.state.wrap > 0 && data[strm.next_in] !== 0) {
+    while (strm.avail_in > 0 && status === Z_STREAM_END && strm.state.wrap & 2 && strm.state.flags !== 0 && strm.input[strm.next_in] !== 0) {
       inflate_1$2.inflateReset(strm);
       status = inflate_1$2.inflate(strm, _flush_mode);
     }
@@ -5089,7 +5147,7 @@ Inflate$1.prototype.push = function(data, flush_mode) {
     }
     last_avail_out = strm.avail_out;
     if (strm.next_out) {
-      if (strm.avail_out === 0 || status === Z_STREAM_END) {
+      if (strm.avail_out === 0 || status === Z_STREAM_END || _flush_mode > 0) {
         if (this.options.to === "string") {
           let next_out_utf8 = strings.utf8border(strm.output, strm.next_out);
           let tail = strm.next_out - next_out_utf8;
@@ -5100,17 +5158,27 @@ Inflate$1.prototype.push = function(data, flush_mode) {
           this.onData(utf8str);
         } else {
           this.onData(strm.output.length === strm.next_out ? strm.output : strm.output.subarray(0, strm.next_out));
+          strm.avail_out = 0;
+          strm.next_out = 0;
         }
       }
     }
-    if (status === Z_OK && last_avail_out === 0) continue;
+    if ((status === Z_OK || status === Z_BUF_ERROR) && last_avail_out === 0) continue;
     if (status === Z_STREAM_END) {
       status = inflate_1$2.inflateEnd(this.strm);
       this.onEnd(status);
       this.ended = true;
       return true;
     }
-    if (strm.avail_in === 0) break;
+    if (strm.avail_in === 0) {
+      if (_flush_mode === Z_FINISH) {
+        status = inflate_1$2.inflateEnd(this.strm);
+        this.onEnd(status === Z_OK ? Z_BUF_ERROR : status);
+        this.ended = true;
+        return false;
+      }
+      break;
+    }
   }
   return true;
 };
@@ -5131,7 +5199,7 @@ Inflate$1.prototype.onEnd = function(status) {
 };
 function inflate$1(input, options) {
   const inflator = new Inflate$1(options);
-  inflator.push(input);
+  inflator.push(input, true);
   if (inflator.err) throw inflator.msg || messages[inflator.err];
   return inflator.result;
 }
@@ -5176,29 +5244,30 @@ var pako = {
 };
 
 // node_modules/@noble/ciphers/utils.js
+/*! noble-ciphers - MIT License (c) 2023 Paul Miller (paulmillr.com) */
 function isBytes(a) {
   return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array" && "BYTES_PER_ELEMENT" in a && a.BYTES_PER_ELEMENT === 1;
 }
-function anumber(n) {
+var atitle = (title) => title ? `"${title}" ` : "";
+function anumber(n, title = "") {
   if (typeof n !== "number")
-    throw new TypeError("number expected, got " + typeof n);
+    throw new TypeError(atitle(title) + "expected number, got " + typeof n);
   if (!Number.isSafeInteger(n) || n < 0)
-    throw new RangeError("positive integer expected, got " + n);
+    throw new RangeError(atitle(title) + "expected integer >= 0, got " + n);
+  return n;
 }
 function abytes(value, length, title = "") {
-  const bytes2 = isBytes(value);
-  const len = value?.length;
-  const needsLen = length !== void 0;
-  if (!bytes2 || needsLen && len !== length) {
-    const prefix = title && `"${title}" `;
-    const ofLen = needsLen ? ` of length ${length}` : "";
-    const got = bytes2 ? `length=${len}` : `type=${typeof value}`;
-    const message = prefix + "expected Uint8Array" + ofLen + ", got " + got;
-    if (!bytes2)
-      throw new TypeError(message);
-    throw new RangeError(message);
-  }
-  return value;
+  if (isBytes(value) && (length === void 0 || value.length === length))
+    return value;
+  if (length !== void 0)
+    anumber(length, "length");
+  const bytes = isBytes(value);
+  const ofLen = length !== void 0 ? ` of length ${length}` : "";
+  const got = bytes ? `length=${value.length}` : `type=${typeof value}`;
+  const message = atitle(title) + "expected Uint8Array" + ofLen + ", got " + got;
+  if (!bytes)
+    throw new TypeError(message);
+  throw new RangeError(message);
 }
 function u32(arr) {
   return new Uint32Array(arr.buffer, arr.byteOffset, Math.floor(arr.byteLength / 4));
@@ -5209,13 +5278,16 @@ function clean(...arrays) {
   }
 }
 var isLE = /* @__PURE__ */ (() => new Uint8Array(new Uint32Array([287454020]).buffer)[0] === 68)();
-var byteSwap = (word) => word << 24 & 4278190080 | word << 8 & 16711680 | word >>> 8 & 65280 | word >>> 24 & 255;
-var byteSwap32 = (arr) => {
-  for (let i = 0; i < arr.length; i++)
+function byteSwap(word) {
+  return word << 24 & 4278190080 | word << 8 & 16711680 | word >>> 8 & 65280 | word >>> 24 & 255;
+}
+function byteSwap32(arr) {
+  for (let i = 0; i < arr.length; i++) {
     arr[i] = byteSwap(arr[i]);
+  }
   return arr;
-};
-var swap32IfBE = isLE ? (u3) => u3 : byteSwap32;
+}
+var swap32IfBE = isLE ? (u) => u : byteSwap32;
 function overlapBytes(a, b) {
   if (!a.byteLength || !b.byteLength)
     return false;
@@ -5223,8 +5295,8 @@ function overlapBytes(a, b) {
   a.byteOffset < b.byteOffset + b.byteLength && // a starts before b end
   b.byteOffset < a.byteOffset + a.byteLength;
 }
-function complexOverlapBytes(input, output2) {
-  if (overlapBytes(input, output2) && input.byteOffset < output2.byteOffset)
+function complexOverlapBytes(input, output) {
+  if (overlapBytes(input, output) && input.byteOffset < output.byteOffset)
     throw new Error("complex overlap of input and output is not supported");
 }
 var wrapCipher = /* @__NO_SIDE_EFFECTS__ */ (params, constructor) => {
@@ -5235,32 +5307,38 @@ var wrapCipher = /* @__NO_SIDE_EFFECTS__ */ (params, constructor) => {
       abytes(nonce, params.varSizeNonce ? void 0 : params.nonceLength, "nonce");
     }
     const tagl = params.tagLength;
-    if (tagl && args[1] !== void 0)
-      abytes(args[1], void 0, "AAD");
+    const aadStart = params.nonceLength !== void 0 ? 1 : 0;
+    if (!params.withAAD) {
+      for (let i = aadStart; i < args.length; i++)
+        if (isBytes(args[i]))
+          throw new Error("AAD not supported");
+    }
+    if (params.withAAD && args[aadStart] !== void 0)
+      abytes(args[aadStart], void 0, "AAD");
     const cipher = constructor(key2, ...args);
-    const checkOutput = (fnLength, output2) => {
-      if (output2 !== void 0) {
+    const checkOutput = (fnLength, output) => {
+      if (output !== void 0) {
         if (fnLength !== 2)
           throw new Error("cipher output not supported");
-        abytes(output2, void 0, "output");
+        abytes(output, void 0, "output");
       }
     };
     let called = false;
     const wrCipher = {
-      encrypt(data, output2) {
+      encrypt(data, output) {
         if (called)
           throw new Error("cannot encrypt() twice with same key + nonce");
         called = true;
-        abytes(data);
-        checkOutput(cipher.encrypt.length, output2);
-        return cipher.encrypt(data, output2);
+        abytes(data, void 0, "data");
+        checkOutput(cipher.encrypt.length, output);
+        return cipher.encrypt(data, output);
       },
-      decrypt(data, output2) {
-        abytes(data);
+      decrypt(data, output) {
+        abytes(data, void 0, "data");
         if (tagl && data.length < tagl)
-          throw new Error('"ciphertext" expected length bigger than tagLength=' + tagl);
-        checkOutput(cipher.decrypt.length, output2);
-        return cipher.decrypt(data, output2);
+          throw new Error('"ciphertext" expected length >= tagLength=' + tagl);
+        checkOutput(cipher.decrypt.length, output);
+        return cipher.decrypt(data, output);
       }
     };
     return wrCipher;
@@ -5271,24 +5349,24 @@ var wrapCipher = /* @__NO_SIDE_EFFECTS__ */ (params, constructor) => {
 function getOutput(expectedLength, out, onlyAligned = true) {
   if (out === void 0)
     return new Uint8Array(expectedLength);
-  abytes(out, void 0, "output");
-  if (out.length !== expectedLength)
-    throw new Error('"output" expected Uint8Array of length ' + expectedLength + ", got: " + out.length);
+  abytes(out, expectedLength, "output");
   if (onlyAligned && !isAligned32(out))
     throw new Error("invalid output, must be aligned");
   return out;
 }
-function isAligned32(bytes2) {
-  return bytes2.byteOffset % 4 === 0;
+function isAligned32(bytes) {
+  return bytes.byteOffset % 4 === 0;
 }
-function copyBytes(bytes2) {
-  return Uint8Array.from(abytes(bytes2));
+function copyBytes(bytes) {
+  return Uint8Array.from(abytes(bytes));
 }
 function randomBytes(bytesLength = 32) {
-  anumber(bytesLength);
+  anumber(bytesLength, "bytesLength");
   const cr = typeof globalThis === "object" ? globalThis.crypto : null;
   if (typeof cr?.getRandomValues !== "function")
     throw new Error("crypto.getRandomValues must be defined");
+  if (bytesLength > 65536)
+    throw new RangeError(`"bytesLength" expected <= 65536, got ${bytesLength}`);
   return cr.getRandomValues(new Uint8Array(bytesLength));
 }
 
@@ -5312,14 +5390,14 @@ function mul(a, b) {
 }
 var sbox = /* @__PURE__ */ (() => {
   const t = new Uint8Array(256);
-  for (let i = 0, x = 1; i < 256; i++, x ^= mul2(x))
-    t[i] = x;
+  for (let i = 0, x2 = 1; i < 256; i++, x2 ^= mul2(x2))
+    t[i] = x2;
   const box = new Uint8Array(256);
   box[0] = 99;
   for (let i = 0; i < 255; i++) {
-    let x = t[255 - i];
-    x |= x << 8;
-    box[t[i]] = (x ^ x >> 4 ^ x >> 5 ^ x >> 6 ^ x >> 7 ^ 99) & 255;
+    let x2 = t[255 - i];
+    x2 |= x2 << 8;
+    box[t[i]] = (x2 ^ x2 >> 4 ^ x2 >> 5 ^ x2 >> 6 ^ x2 >> 7 ^ 99) & 255;
   }
   clean(t);
   return box;
@@ -5329,7 +5407,7 @@ var rotr32_8 = (n) => n << 24 | n >>> 8;
 var rotl32_8 = (n) => n << 8 | n >>> 24;
 function genTtable(sbox2, fn) {
   if (sbox2.length !== 256)
-    throw new Error("Wrong sbox length");
+    throw new Error("wrong sbox length");
   const T0 = new Uint32Array(256).map((_, j2) => fn(sbox2[j2]));
   const T1 = T0.map(rotl32_8);
   const T2 = T1.map(rotl32_8);
@@ -5351,8 +5429,8 @@ var tableEncoding = /* @__PURE__ */ genTtable(sbox, (s) => mul(s, 3) << 24 | s <
 var tableDecoding = /* @__PURE__ */ genTtable(invSbox, (s) => mul(s, 11) << 24 | mul(s, 13) << 16 | mul(s, 9) << 8 | mul(s, 14));
 var xPowers = /* @__PURE__ */ (() => {
   const p = new Uint8Array(16);
-  for (let i = 0, x = 1; i < 16; i++, x = mul2(x))
-    p[i] = x;
+  for (let i = 0, x2 = 1; i < 16; i++, x2 = mul2(x2))
+    p[i] = x2;
   return p;
 })();
 function expandKeyLE(key2) {
@@ -5391,8 +5469,8 @@ function expandKeyDecLE(key2) {
   }
   clean(encKey);
   for (let i = 4; i < Nk - 4; i++) {
-    const x = xk[i];
-    const w = applySbox(sbox2, x, x, x, x);
+    const x2 = xk[i];
+    const w = applySbox(sbox2, x2, x2, x2, x2);
     xk[i] = T0[w & 255] ^ T1[w >>> 8 & 255] ^ T2[w >>> 16 & 255] ^ T3[w >>> 24];
   }
   return xk;
@@ -5439,10 +5517,14 @@ function decrypt(xk, s0, s1, s2, s3) {
   const t3 = xk[k2++] ^ applySbox(sbox2, s3, s2, s1, s0);
   return { s0: t0, s1: t1, s2: t2, s3: t3 };
 }
-function validateBlockDecrypt(data) {
+function validateBlockDecrypt(data, dst) {
   abytes(data);
   if (data.length % BLOCK_SIZE !== 0) {
-    throw new Error("aes-(cbc/ecb).decrypt ciphertext should consist of blocks with size " + BLOCK_SIZE);
+    throw new Error("ciphertext must be multiple of " + BLOCK_SIZE);
+  }
+  if (dst !== void 0) {
+    getOutput(data.length, dst);
+    complexOverlapBytes(data, dst);
   }
 }
 function validateBlockEncrypt(plaintext, pkcs5, dst) {
@@ -5450,28 +5532,33 @@ function validateBlockEncrypt(plaintext, pkcs5, dst) {
   let outLen = plaintext.length;
   const remaining = outLen % BLOCK_SIZE;
   if (!pkcs5 && remaining !== 0)
-    throw new Error("aec/(cbc-ecb): unpadded plaintext with disabled padding");
+    throw new Error("plaintext must be multiple of " + BLOCK_SIZE);
   if (pkcs5) {
     let left = BLOCK_SIZE - remaining;
     if (!left)
       left = BLOCK_SIZE;
     outLen = outLen + left;
   }
-  dst = getOutput(outLen, dst);
-  complexOverlapBytes(plaintext, dst);
+  if (dst !== void 0) {
+    getOutput(outLen, dst);
+    complexOverlapBytes(plaintext, dst);
+  }
+  return outLen;
+}
+function prepareBlockEncrypt(plaintext, outLen, dst) {
+  if (dst === void 0)
+    dst = new Uint8Array(outLen);
   if (!isLE || !isAligned32(plaintext))
     plaintext = copyBytes(plaintext);
-  const b = u32(plaintext);
-  swap32IfBE(b);
   const o = u32(dst);
-  return { b, o, out: dst };
+  return { b: plaintext, o, out: dst };
 }
 function validatePKCS(data, pkcs5) {
   if (!pkcs5)
     return data;
   const len = data.length;
   if (len === 0)
-    throw new Error("aes/pkcs7: empty ciphertext not allowed");
+    throw new Error("pkcs7: empty ciphertext not allowed");
   const lastByte = data[len - 1];
   let valid = 1;
   valid &= lastByte - 1 >>> 31 ^ 1;
@@ -5482,7 +5569,7 @@ function validatePKCS(data, pkcs5) {
     valid &= eq | shouldCheck ^ 1;
   }
   if (!valid)
-    throw new Error("aes/pkcs7: wrong padding");
+    throw new Error("aes: bad decrypt");
   return data.subarray(0, len - lastByte);
 }
 function padPCKS(left) {
@@ -5498,8 +5585,11 @@ var ecb = /* @__PURE__ */ wrapCipher({ blockSize: 16 }, function aesecb(key2, op
   const pkcs5 = !opts.disablePadding;
   return {
     encrypt(plaintext, dst) {
-      const { b, o, out: _out } = validateBlockEncrypt(plaintext, pkcs5, dst);
+      const outLen = validateBlockEncrypt(plaintext, pkcs5, dst);
       const xk = expandKeyLE(key2);
+      const { b: input, o, out: _out } = prepareBlockEncrypt(plaintext, outLen, dst);
+      const b = u32(input);
+      swap32IfBE(b);
       let i = 0;
       for (; i + 4 <= b.length; ) {
         const { s0, s1, s2, s3 } = encrypt(xk, b[i + 0], b[i + 1], b[i + 2], b[i + 3]);
@@ -5510,17 +5600,20 @@ var ecb = /* @__PURE__ */ wrapCipher({ blockSize: 16 }, function aesecb(key2, op
         swap32IfBE(tmp32);
         const { s0, s1, s2, s3 } = encrypt(xk, tmp32[0], tmp32[1], tmp32[2], tmp32[3]);
         o[i++] = s0, o[i++] = s1, o[i++] = s2, o[i++] = s3;
+        clean(tmp32);
       }
       swap32IfBE(o);
       clean(xk);
+      if (input !== plaintext)
+        clean(input);
       return _out;
     },
     decrypt(ciphertext, dst) {
-      validateBlockDecrypt(ciphertext);
+      validateBlockDecrypt(ciphertext, dst);
       const xk = expandKeyDecLE(key2);
-      dst = getOutput(ciphertext.length, dst);
+      if (dst === void 0)
+        dst = new Uint8Array(ciphertext.length);
       const toClean = [xk];
-      complexOverlapBytes(ciphertext, dst);
       if (!isLE || !isAligned32(ciphertext))
         toClean.push(ciphertext = copyBytes(ciphertext));
       const b = u32(ciphertext);
@@ -5540,8 +5633,11 @@ var cbc = /* @__PURE__ */ wrapCipher({ blockSize: 16, nonceLength: 16 }, functio
   const pkcs5 = !opts.disablePadding;
   return {
     encrypt(plaintext, dst) {
+      const outLen = validateBlockEncrypt(plaintext, pkcs5, dst);
       const xk = expandKeyLE(key2);
-      const { b, o, out: _out } = validateBlockEncrypt(plaintext, pkcs5, dst);
+      const { b: input, o, out: _out } = prepareBlockEncrypt(plaintext, outLen, dst);
+      const b = u32(input);
+      swap32IfBE(b);
       let _iv = iv;
       const toClean = [xk];
       if (!isLE || !isAligned32(_iv))
@@ -5561,22 +5657,25 @@ var cbc = /* @__PURE__ */ wrapCipher({ blockSize: 16, nonceLength: 16 }, functio
         s0 ^= tmp32[0], s1 ^= tmp32[1], s2 ^= tmp32[2], s3 ^= tmp32[3];
         ({ s0, s1, s2, s3 } = encrypt(xk, s0, s1, s2, s3));
         o[i++] = s0, o[i++] = s1, o[i++] = s2, o[i++] = s3;
+        clean(tmp32);
       }
       swap32IfBE(o);
       clean(...toClean);
+      if (input !== plaintext)
+        clean(input);
       return _out;
     },
     decrypt(ciphertext, dst) {
-      validateBlockDecrypt(ciphertext);
+      validateBlockDecrypt(ciphertext, dst);
       const xk = expandKeyDecLE(key2);
+      if (dst === void 0)
+        dst = new Uint8Array(ciphertext.length);
       let _iv = iv;
       const toClean = [xk];
       if (!isLE || !isAligned32(_iv))
         toClean.push(_iv = copyBytes(_iv));
       const n32 = u32(_iv);
       swap32IfBE(n32);
-      dst = getOutput(ciphertext.length, dst);
-      complexOverlapBytes(ciphertext, dst);
       if (!isLE || !isAligned32(ciphertext))
         toClean.push(ciphertext = copyBytes(ciphertext));
       const b = u32(ciphertext);
@@ -5596,36 +5695,97 @@ var cbc = /* @__PURE__ */ wrapCipher({ blockSize: 16, nonceLength: 16 }, functio
   };
 });
 
+// node_modules/@noble/hashes/_u64.js
+var U32_MASK64 = /* @__PURE__ */ (() => BigInt(2 ** 32 - 1))();
+var _32n = /* @__PURE__ */ BigInt(32);
+function fromBig(n, le = false) {
+  if (le)
+    return { h: Number(n & U32_MASK64), l: Number(n >> _32n & U32_MASK64) };
+  return { h: Number(n >> _32n & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
+}
+function split(lst, le = false) {
+  const len = lst.length;
+  let Ah = new Uint32Array(len);
+  let Al = new Uint32Array(len);
+  for (let i = 0; i < len; i++) {
+    const { h, l } = fromBig(lst[i], le);
+    [Ah[i], Al[i]] = [h, l];
+  }
+  return [Ah, Al];
+}
+var fromNumH = (n) => n / 2 ** 32 | 0;
+var fromNumL = (n) => n >>> 0;
+function setU64FromNum(view, byteOffset, n, isLE2) {
+  const h = fromNumH(n);
+  const l = fromNumL(n);
+  view.setUint32(byteOffset, isLE2 ? l : h, isLE2);
+  view.setUint32(byteOffset + 4, isLE2 ? h : l, isLE2);
+}
+var shrSH = (h, _l, s) => h >>> s;
+var shrSL = (h, l, s) => h << 32 - s | l >>> s;
+var rotrSH = (h, l, s) => h >>> s | l << 32 - s;
+var rotrSL = (h, l, s) => h << 32 - s | l >>> s;
+var rotrBH = (h, l, s) => h << 64 - s | l >>> s - 32;
+var rotrBL = (h, l, s) => h >>> s - 32 | l << 64 - s;
+function add(Ah, Al, Bh, Bl) {
+  const l = (Al >>> 0) + (Bl >>> 0);
+  return { h: Ah + Bh + (l / 2 ** 32 | 0) | 0, l: l | 0 };
+}
+var add3L = (Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0);
+var add3H = (low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0;
+var add4L = (Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0);
+var add4H = (low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0;
+var add5L = (Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0);
+var add5H = (low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0;
+
 // node_modules/@noble/hashes/utils.js
 function isBytes2(a) {
   return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array" && "BYTES_PER_ELEMENT" in a && a.BYTES_PER_ELEMENT === 1;
 }
+var atitle2 = (title) => title ? `"${title}" ` : "";
+function anumber2(n, title = "") {
+  if (typeof n !== "number")
+    throw new TypeError(atitle2(title) + "expected number, got " + typeof n);
+  if (!Number.isSafeInteger(n) || n < 0)
+    throw new RangeError(atitle2(title) + "expected integer >= 0, got " + n);
+  return n;
+}
 function abytes2(value, length, title = "") {
-  const bytes2 = isBytes2(value);
-  const len = value?.length;
-  const needsLen = length !== void 0;
-  if (!bytes2 || needsLen && len !== length) {
-    const prefix = title && `"${title}" `;
-    const ofLen = needsLen ? ` of length ${length}` : "";
-    const got = bytes2 ? `length=${len}` : `type=${typeof value}`;
-    const message = prefix + "expected Uint8Array" + ofLen + ", got " + got;
-    if (!bytes2)
-      throw new TypeError(message);
-    throw new RangeError(message);
-  }
-  return value;
+  if (isBytes2(value) && (length === void 0 || value.length === length))
+    return value;
+  if (length !== void 0)
+    anumber2(length, "length");
+  const bytes = isBytes2(value);
+  const ofLen = length !== void 0 ? ` of length ${length}` : "";
+  const got = bytes ? `length=${value.length}` : `type=${typeof value}`;
+  const message = atitle2(title) + "expected Uint8Array" + ofLen + ", got " + got;
+  if (!bytes)
+    throw new TypeError(message);
+  throw new RangeError(message);
 }
-function aexists(instance2, checkFinished = true) {
+var aobject = (value, label) => {
+  if (value === null || typeof value !== "object" || Array.isArray(value))
+    throw new TypeError((label === "object" ? "" : `"${label}" `) + "expected object, got type=" + typeof value);
+};
+var aopts = (value, label) => {
+  aobject(value, label);
+  const proto = Object.getPrototypeOf(value);
+  if (proto !== Object.prototype && proto !== null)
+    throw new TypeError(`"${label}" expected plain object`);
+  if (Object.hasOwn(value, "__proto__"))
+    throw new TypeError(`"${label}.__proto__" is not allowed`);
+};
+function aexists2(instance2, checkFinished = true) {
   if (instance2.destroyed)
-    throw new Error("Hash instance has been destroyed");
+    throw new Error("hash was destroyed");
   if (checkFinished && instance2.finished)
-    throw new Error("Hash#digest() has already been called");
+    throw new Error("digest() was already called");
 }
-function aoutput2(out, instance2) {
-  abytes2(out, void 0, "digestInto() output");
+function aoutput(out, instance2) {
+  abytes2(out, void 0, "output");
   const min2 = instance2.outputLen;
-  if (out.length < min2) {
-    throw new RangeError('"digestInto() output" expected to be of length >=' + min2);
+  if (!(out.length >= min2)) {
+    throw new RangeError('"output" expected length >= ' + min2);
   }
 }
 function clean2(...arrays) {
@@ -5642,7 +5802,17 @@ function rotr(word, shift) {
 function rotl(word, shift) {
   return word << shift | word >>> 32 - shift >>> 0;
 }
+function checkOpts(defaults, opts, title = "opts") {
+  aopts(defaults, "defaults");
+  if (opts !== void 0)
+    aopts(opts, title);
+  const merged = Object.assign(/* @__PURE__ */ Object.create(null), defaults, opts);
+  return merged;
+}
 function createHasher(hashCons, info = {}) {
+  if (typeof hashCons !== "function")
+    throw new TypeError('"hashCons" expected function, got type=' + typeof hashCons);
+  info = checkOpts({}, info, "info");
   const hashC = (msg, opts) => hashCons(opts).update(msg).digest();
   const tmp = hashCons(void 0);
   hashC.outputLen = tmp.outputLen;
@@ -5678,65 +5848,66 @@ var HashMD = class {
   length = 0;
   pos = 0;
   destroyed = false;
-  constructor(blockLen, outputLen, padOffset, isLE3) {
+  constructor(blockLen, outputLen, padOffset, isLE2) {
     this.blockLen = blockLen;
     this.outputLen = outputLen;
     this.padOffset = padOffset;
-    this.isLE = isLE3;
+    this.isLE = isLE2;
     this.buffer = new Uint8Array(blockLen);
     this.view = createView2(this.buffer);
   }
   update(data) {
-    aexists(this);
+    aexists2(this);
     abytes2(data);
     const { view, buffer, blockLen } = this;
     const len = data.length;
+    let processed = false;
     for (let pos = 0; pos < len; ) {
       const take = Math.min(blockLen - this.pos, len - pos);
       if (take === blockLen) {
         const dataView = createView2(data);
         for (; blockLen <= len - pos; pos += blockLen)
           this.process(dataView, pos);
+        processed = true;
         continue;
       }
-      buffer.set(data.subarray(pos, pos + take), this.pos);
+      buffer.set(pos === 0 && take === len ? data : data.subarray(pos, pos + take), this.pos);
       this.pos += take;
       pos += take;
       if (this.pos === blockLen) {
         this.process(view, 0);
         this.pos = 0;
+        processed = true;
       }
     }
     this.length += data.length;
-    this.roundClean();
+    if (processed)
+      this.roundClean();
     return this;
   }
   digestInto(out) {
-    aexists(this);
-    aoutput2(out, this);
+    aexists2(this);
+    aoutput(out, this);
     this.finished = true;
-    const { buffer, view, blockLen, isLE: isLE3 } = this;
+    const { buffer, view, blockLen, isLE: isLE2 } = this;
     let { pos } = this;
     buffer[pos++] = 128;
-    clean2(this.buffer.subarray(pos));
+    buffer.fill(0, pos);
     if (this.padOffset > blockLen - pos) {
       this.process(view, 0);
-      pos = 0;
+      buffer.fill(0);
     }
-    for (let i = pos; i < blockLen; i++)
-      buffer[i] = 0;
-    view.setBigUint64(blockLen - 8, BigInt(this.length * 8), isLE3);
+    setU64FromNum(view, blockLen - 8, this.length * 8, isLE2);
     this.process(view, 0);
-    const oview = createView2(out);
+    this.roundClean();
+    const oview = out === buffer ? view : createView2(out);
     const len = this.outputLen;
-    if (len % 4)
-      throw new Error("_sha2: outputLen must be aligned to 32bit");
     const outLen = len / 4;
     const state = this.get();
-    if (outLen > state.length)
-      throw new Error("_sha2: outputLen bigger than state");
+    if (len % 4 || outLen > state.length)
+      throw new Error("invalid outputLen");
     for (let i = 0; i < outLen; i++)
-      oview.setUint32(4 * i, state[i], isLE3);
+      oview.setUint32(4 * i, state[i], isLE2);
   }
   digest() {
     const { buffer, outputLen } = this;
@@ -5745,15 +5916,13 @@ var HashMD = class {
     this.destroy();
     return res;
   }
-  _cloneInto(to) {
-    to ||= new this.constructor();
-    to.set(...this.get());
-    const { blockLen, buffer, length, finished, destroyed, pos } = this;
+  _cloneIntoMeta(to) {
+    const { buffer, length, finished, destroyed, pos } = this;
     to.destroyed = destroyed;
     to.finished = finished;
     to.length = length;
     to.pos = pos;
-    if (length % blockLen)
+    if (pos)
       to.buffer.set(buffer);
     return to;
   }
@@ -5827,40 +5996,44 @@ var _SHA1 = class extends HashMD {
     super(64, 20, 8, false);
   }
   get() {
-    const { A, B, C, D: D2, E: E2 } = this;
-    return [A, B, C, D2, E2];
+    const { A, B, C, D, E: E2 } = this;
+    return [A, B, C, D, E2];
   }
-  set(A, B, C, D2, E2) {
+  set(A, B, C, D, E2) {
     this.A = A | 0;
     this.B = B | 0;
     this.C = C | 0;
-    this.D = D2 | 0;
+    this.D = D | 0;
     this.E = E2 | 0;
+  }
+  _cloneInto(to) {
+    (to ||= new this.constructor()).set(...this.get());
+    return this._cloneIntoMeta(to);
   }
   process(view, offset) {
     for (let i = 0; i < 16; i++, offset += 4)
       SHA1_W[i] = view.getUint32(offset, false);
     for (let i = 16; i < 80; i++)
       SHA1_W[i] = rotl(SHA1_W[i - 3] ^ SHA1_W[i - 8] ^ SHA1_W[i - 14] ^ SHA1_W[i - 16], 1);
-    let { A, B, C, D: D2, E: E2 } = this;
+    let { A, B, C, D, E: E2 } = this;
     for (let i = 0; i < 80; i++) {
       let F, K2;
       if (i < 20) {
-        F = Chi(B, C, D2);
+        F = Chi(B, C, D);
         K2 = 1518500249;
       } else if (i < 40) {
-        F = B ^ C ^ D2;
+        F = B ^ C ^ D;
         K2 = 1859775393;
       } else if (i < 60) {
-        F = Maj(B, C, D2);
+        F = Maj(B, C, D);
         K2 = 2400959708;
       } else {
-        F = B ^ C ^ D2;
+        F = B ^ C ^ D;
         K2 = 3395469782;
       }
       const T2 = rotl(A, 5) + F + E2 + K2 + SHA1_W[i] | 0;
-      E2 = D2;
-      D2 = C;
+      E2 = D;
+      D = C;
       C = rotl(B, 30);
       B = A;
       A = T2;
@@ -5868,9 +6041,9 @@ var _SHA1 = class extends HashMD {
     A = A + this.A | 0;
     B = B + this.B | 0;
     C = C + this.C | 0;
-    D2 = D2 + this.D | 0;
+    D = D + this.D | 0;
     E2 = E2 + this.E | 0;
-    this.set(A, B, C, D2, E2);
+    this.set(A, B, C, D, E2);
   }
   roundClean() {
     clean2(SHA1_W);
@@ -5886,6 +6059,15 @@ var p32 = /* @__PURE__ */ Math.pow(2, 32);
 var K = /* @__PURE__ */ Array.from({ length: 64 }, (_, i) => Math.floor(p32 * Math.abs(Math.sin(i + 1))));
 var MD5_IV = /* @__PURE__ */ SHA1_IV.slice(0, 4);
 var MD5_W = /* @__PURE__ */ new Uint32Array(16);
+var MD5_SHIFTS = /* @__PURE__ */ (() => {
+  const S2 = [
+    [7, 12, 17, 22],
+    [5, 9, 14, 20],
+    [4, 11, 16, 23],
+    [6, 10, 15, 21]
+  ];
+  return Uint8Array.from({ length: 64 }, (_, i) => S2[Math.floor(i / 16)][i % 4]);
+})();
 var _MD5 = class extends HashMD {
   A = MD5_IV[0] | 0;
   B = MD5_IV[1] | 0;
@@ -5895,49 +6077,49 @@ var _MD5 = class extends HashMD {
     super(64, 16, 8, true);
   }
   get() {
-    const { A, B, C, D: D2 } = this;
-    return [A, B, C, D2];
+    const { A, B, C, D } = this;
+    return [A, B, C, D];
   }
-  set(A, B, C, D2) {
+  set(A, B, C, D) {
     this.A = A | 0;
     this.B = B | 0;
     this.C = C | 0;
-    this.D = D2 | 0;
+    this.D = D | 0;
+  }
+  _cloneInto(to) {
+    (to ||= new this.constructor()).set(...this.get());
+    return this._cloneIntoMeta(to);
   }
   process(view, offset) {
     for (let i = 0; i < 16; i++, offset += 4)
       MD5_W[i] = view.getUint32(offset, true);
-    let { A, B, C, D: D2 } = this;
+    let { A, B, C, D } = this;
     for (let i = 0; i < 64; i++) {
-      let F, g, s;
+      let F, g;
       if (i < 16) {
-        F = Chi(B, C, D2);
+        F = Chi(B, C, D);
         g = i;
-        s = [7, 12, 17, 22];
       } else if (i < 32) {
-        F = Chi(D2, B, C);
+        F = Chi(D, B, C);
         g = (5 * i + 1) % 16;
-        s = [5, 9, 14, 20];
       } else if (i < 48) {
-        F = B ^ C ^ D2;
+        F = B ^ C ^ D;
         g = (3 * i + 5) % 16;
-        s = [4, 11, 16, 23];
       } else {
-        F = C ^ (B | ~D2);
+        F = C ^ (B | ~D);
         g = 7 * i % 16;
-        s = [6, 10, 15, 21];
       }
       F = F + A + K[i] + MD5_W[g];
-      A = D2;
-      D2 = C;
+      A = D;
+      D = C;
       C = B;
-      B = B + rotl(F, s[i % 4]);
+      B = B + rotl(F, MD5_SHIFTS[i]);
     }
     A = A + this.A | 0;
     B = B + this.B | 0;
     C = C + this.C | 0;
-    D2 = D2 + this.D | 0;
-    this.set(A, B, C, D2);
+    D = D + this.D | 0;
+    this.set(A, B, C, D);
   }
   roundClean() {
     clean2(MD5_W);
@@ -5949,41 +6131,6 @@ var _MD5 = class extends HashMD {
   }
 };
 var md5 = /* @__PURE__ */ createHasher(() => new _MD5());
-
-// node_modules/@noble/hashes/_u64.js
-var U32_MASK64 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
-var _32n = /* @__PURE__ */ BigInt(32);
-function fromBig(n, le = false) {
-  if (le)
-    return { h: Number(n & U32_MASK64), l: Number(n >> _32n & U32_MASK64) };
-  return { h: Number(n >> _32n & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
-}
-function split(lst, le = false) {
-  const len = lst.length;
-  let Ah = new Uint32Array(len);
-  let Al = new Uint32Array(len);
-  for (let i = 0; i < len; i++) {
-    const { h, l } = fromBig(lst[i], le);
-    [Ah[i], Al[i]] = [h, l];
-  }
-  return [Ah, Al];
-}
-var shrSH = (h, _l, s) => h >>> s;
-var shrSL = (h, l, s) => h << 32 - s | l >>> s;
-var rotrSH = (h, l, s) => h >>> s | l << 32 - s;
-var rotrSL = (h, l, s) => h << 32 - s | l >>> s;
-var rotrBH = (h, l, s) => h << 64 - s | l >>> s - 32;
-var rotrBL = (h, l, s) => h >>> s - 32 | l << 64 - s;
-function add(Ah, Al, Bh, Bl) {
-  const l = (Al >>> 0) + (Bl >>> 0);
-  return { h: Ah + Bh + (l / 2 ** 32 | 0) | 0, l: l | 0 };
-}
-var add3L = (Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0);
-var add3H = (low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0;
-var add4L = (Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0);
-var add4H = (low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0;
-var add5L = (Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0);
-var add5H = (low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0;
 
 // node_modules/@noble/hashes/sha2.js
 var SHA256_K = /* @__PURE__ */ Uint32Array.from([
@@ -6054,23 +6201,47 @@ var SHA256_K = /* @__PURE__ */ Uint32Array.from([
 ]);
 var SHA256_W = /* @__PURE__ */ new Uint32Array(64);
 var SHA2_32B = class extends HashMD {
-  constructor(outputLen) {
+  // We cannot use array here since array allows indexing by variable
+  // which means optimizer/compiler cannot use registers.
+  // Numeric initializers matter: starting the fields as `undefined` changes
+  // V8's field representation and makes sha256 3x slower (measured).
+  A = 0;
+  B = 0;
+  C = 0;
+  D = 0;
+  E = 0;
+  F = 0;
+  G = 0;
+  H = 0;
+  constructor(outputLen, IV) {
     super(64, outputLen, 8, false);
+    this.A = IV[0] | 0;
+    this.B = IV[1] | 0;
+    this.C = IV[2] | 0;
+    this.D = IV[3] | 0;
+    this.E = IV[4] | 0;
+    this.F = IV[5] | 0;
+    this.G = IV[6] | 0;
+    this.H = IV[7] | 0;
   }
   get() {
-    const { A, B, C, D: D2, E: E2, F, G: G2, H } = this;
-    return [A, B, C, D2, E2, F, G2, H];
+    const { A, B, C, D, E: E2, F, G: G2, H } = this;
+    return [A, B, C, D, E2, F, G2, H];
   }
   // prettier-ignore
-  set(A, B, C, D2, E2, F, G2, H) {
+  set(A, B, C, D, E2, F, G2, H) {
     this.A = A | 0;
     this.B = B | 0;
     this.C = C | 0;
-    this.D = D2 | 0;
+    this.D = D | 0;
     this.E = E2 | 0;
     this.F = F | 0;
     this.G = G2 | 0;
     this.H = H | 0;
+  }
+  _cloneInto(to) {
+    (to ||= new this.constructor()).set(...this.get());
+    return this._cloneIntoMeta(to);
   }
   process(view, offset) {
     for (let i = 0; i < 16; i++, offset += 4)
@@ -6082,7 +6253,7 @@ var SHA2_32B = class extends HashMD {
       const s1 = rotr(W2, 17) ^ rotr(W2, 19) ^ W2 >>> 10;
       SHA256_W[i] = s1 + SHA256_W[i - 7] + s0 + SHA256_W[i - 16] | 0;
     }
-    let { A, B, C, D: D2, E: E2, F, G: G2, H } = this;
+    let { A, B, C, D, E: E2, F, G: G2, H } = this;
     for (let i = 0; i < 64; i++) {
       const sigma1 = rotr(E2, 6) ^ rotr(E2, 11) ^ rotr(E2, 25);
       const T1 = H + sigma1 + Chi(E2, F, G2) + SHA256_K[i] + SHA256_W[i] | 0;
@@ -6091,8 +6262,8 @@ var SHA2_32B = class extends HashMD {
       H = G2;
       G2 = F;
       F = E2;
-      E2 = D2 + T1 | 0;
-      D2 = C;
+      E2 = D + T1 | 0;
+      D = C;
       C = B;
       B = A;
       A = T1 + T2 | 0;
@@ -6100,12 +6271,12 @@ var SHA2_32B = class extends HashMD {
     A = A + this.A | 0;
     B = B + this.B | 0;
     C = C + this.C | 0;
-    D2 = D2 + this.D | 0;
+    D = D + this.D | 0;
     E2 = E2 + this.E | 0;
     F = F + this.F | 0;
     G2 = G2 + this.G | 0;
     H = H + this.H | 0;
-    this.set(A, B, C, D2, E2, F, G2, H);
+    this.set(A, B, C, D, E2, F, G2, H);
   }
   roundClean() {
     clean2(SHA256_W);
@@ -6117,18 +6288,8 @@ var SHA2_32B = class extends HashMD {
   }
 };
 var _SHA256 = class extends SHA2_32B {
-  // We cannot use array here since array allows indexing by variable
-  // which means optimizer/compiler cannot use registers.
-  A = SHA256_IV[0] | 0;
-  B = SHA256_IV[1] | 0;
-  C = SHA256_IV[2] | 0;
-  D = SHA256_IV[3] | 0;
-  E = SHA256_IV[4] | 0;
-  F = SHA256_IV[5] | 0;
-  G = SHA256_IV[6] | 0;
-  H = SHA256_IV[7] | 0;
   constructor() {
-    super(32);
+    super(32, SHA256_IV);
   }
 };
 var K512 = /* @__PURE__ */ (() => split([
@@ -6218,8 +6379,45 @@ var SHA512_Kl = /* @__PURE__ */ (() => K512[1])();
 var SHA512_W_H = /* @__PURE__ */ new Uint32Array(80);
 var SHA512_W_L = /* @__PURE__ */ new Uint32Array(80);
 var SHA2_64B = class extends HashMD {
-  constructor(outputLen) {
+  // We cannot use array here since array allows indexing by variable
+  // which means optimizer/compiler cannot use registers.
+  // h -- high 32 bits, l -- low 32 bits
+  // Numeric initializers matter: starting the fields as `undefined` changes
+  // V8's field representation and slows hashing down (measured on sha256).
+  Ah = 0;
+  Al = 0;
+  Bh = 0;
+  Bl = 0;
+  Ch = 0;
+  Cl = 0;
+  Dh = 0;
+  Dl = 0;
+  Eh = 0;
+  El = 0;
+  Fh = 0;
+  Fl = 0;
+  Gh = 0;
+  Gl = 0;
+  Hh = 0;
+  Hl = 0;
+  constructor(outputLen, IV) {
     super(128, outputLen, 16, false);
+    this.Ah = IV[0] | 0;
+    this.Al = IV[1] | 0;
+    this.Bh = IV[2] | 0;
+    this.Bl = IV[3] | 0;
+    this.Ch = IV[4] | 0;
+    this.Cl = IV[5] | 0;
+    this.Dh = IV[6] | 0;
+    this.Dl = IV[7] | 0;
+    this.Eh = IV[8] | 0;
+    this.El = IV[9] | 0;
+    this.Fh = IV[10] | 0;
+    this.Fl = IV[11] | 0;
+    this.Gh = IV[12] | 0;
+    this.Gl = IV[13] | 0;
+    this.Hh = IV[14] | 0;
+    this.Hl = IV[15] | 0;
   }
   // prettier-ignore
   get() {
@@ -6244,6 +6442,10 @@ var SHA2_64B = class extends HashMD {
     this.Gl = Gl | 0;
     this.Hh = Hh | 0;
     this.Hl = Hl | 0;
+  }
+  _cloneInto(to) {
+    (to ||= new this.constructor()).set(...this.get());
+    return this._cloneIntoMeta(to);
   }
   process(view, offset) {
     for (let i = 0; i < 16; i++, offset += 4) {
@@ -6314,45 +6516,13 @@ var SHA2_64B = class extends HashMD {
   }
 };
 var _SHA512 = class extends SHA2_64B {
-  Ah = SHA512_IV[0] | 0;
-  Al = SHA512_IV[1] | 0;
-  Bh = SHA512_IV[2] | 0;
-  Bl = SHA512_IV[3] | 0;
-  Ch = SHA512_IV[4] | 0;
-  Cl = SHA512_IV[5] | 0;
-  Dh = SHA512_IV[6] | 0;
-  Dl = SHA512_IV[7] | 0;
-  Eh = SHA512_IV[8] | 0;
-  El = SHA512_IV[9] | 0;
-  Fh = SHA512_IV[10] | 0;
-  Fl = SHA512_IV[11] | 0;
-  Gh = SHA512_IV[12] | 0;
-  Gl = SHA512_IV[13] | 0;
-  Hh = SHA512_IV[14] | 0;
-  Hl = SHA512_IV[15] | 0;
   constructor() {
-    super(64);
+    super(64, SHA512_IV);
   }
 };
 var _SHA384 = class extends SHA2_64B {
-  Ah = SHA384_IV[0] | 0;
-  Al = SHA384_IV[1] | 0;
-  Bh = SHA384_IV[2] | 0;
-  Bl = SHA384_IV[3] | 0;
-  Ch = SHA384_IV[4] | 0;
-  Cl = SHA384_IV[5] | 0;
-  Dh = SHA384_IV[6] | 0;
-  Dl = SHA384_IV[7] | 0;
-  Eh = SHA384_IV[8] | 0;
-  El = SHA384_IV[9] | 0;
-  Fh = SHA384_IV[10] | 0;
-  Fl = SHA384_IV[11] | 0;
-  Gh = SHA384_IV[12] | 0;
-  Gl = SHA384_IV[13] | 0;
-  Hh = SHA384_IV[14] | 0;
-  Hl = SHA384_IV[15] | 0;
   constructor() {
-    super(48);
+    super(48, SHA384_IV);
   }
 };
 var sha256 = /* @__PURE__ */ createHasher(
@@ -6372,6 +6542,9 @@ var sha384 = /* @__PURE__ */ createHasher(
 var pvtsutils = __toESM(require_build());
 
 // node_modules/pvutils/build/utils.es.js
+/*!
+ Copyright (c) Peculiar Ventures, LLC
+*/
 function getParametersValue(parameters, name, defaultValue) {
   var _a3;
   if (parameters instanceof Object === false) {
@@ -6447,20 +6620,6 @@ function utilConcatBuf(...buffers) {
   }
   return retBuf;
 }
-function utilConcatView(...views) {
-  let outputLength = 0;
-  let prevLength = 0;
-  for (const view of views) {
-    outputLength += view.length;
-  }
-  const retBuf = new ArrayBuffer(outputLength);
-  const retView = new Uint8Array(retBuf);
-  for (const view of views) {
-    retView.set(view, prevLength);
-    prevLength += view.length;
-  }
-  return retView;
-}
 function utilDecodeTC() {
   const buf = new Uint8Array(this.valueHex);
   if (this.valueHex.byteLength >= 2) {
@@ -6535,7 +6694,7 @@ function padNumber(inputNumber, fullLength) {
     return "";
   }
   const dif = fullLength - str.length;
-  const padding2 = new Array(dif);
+  const padding2 = Array.from({ length: dif });
   for (let i = 0; i < dif; i++) {
     padding2[i] = "0";
   }
@@ -6548,7 +6707,7 @@ function toBase64(input, useUrlTemplate = false, skipPadding = false, skipLeadin
   let i = 0;
   let flag1 = 0;
   let flag2 = 0;
-  let output2 = "";
+  let output = "";
   const template = useUrlTemplate ? base64UrlTemplate : base64Template;
   if (skipLeadingZeros) {
     let nonZeroPosition = 0;
@@ -6583,19 +6742,19 @@ function toBase64(input, useUrlTemplate = false, skipPadding = false, skipLeadin
     }
     if (skipPadding) {
       if (enc3 === 64) {
-        output2 += `${template.charAt(enc1)}${template.charAt(enc2)}`;
+        output += `${template.charAt(enc1)}${template.charAt(enc2)}`;
       } else {
         if (enc4 === 64) {
-          output2 += `${template.charAt(enc1)}${template.charAt(enc2)}${template.charAt(enc3)}`;
+          output += `${template.charAt(enc1)}${template.charAt(enc2)}${template.charAt(enc3)}`;
         } else {
-          output2 += `${template.charAt(enc1)}${template.charAt(enc2)}${template.charAt(enc3)}${template.charAt(enc4)}`;
+          output += `${template.charAt(enc1)}${template.charAt(enc2)}${template.charAt(enc3)}${template.charAt(enc4)}`;
         }
       }
     } else {
-      output2 += `${template.charAt(enc1)}${template.charAt(enc2)}${template.charAt(enc3)}${template.charAt(enc4)}`;
+      output += `${template.charAt(enc1)}${template.charAt(enc2)}${template.charAt(enc3)}${template.charAt(enc4)}`;
     }
   }
-  return output2;
+  return output;
 }
 function fromBase64(input, useUrlTemplate = false, cutTailZeros = false) {
   const template = useUrlTemplate ? base64UrlTemplate : base64Template;
@@ -6610,7 +6769,7 @@ function fromBase64(input, useUrlTemplate = false, cutTailZeros = false) {
     return incoming === 64 ? 0 : incoming;
   }
   let i = 0;
-  let output2 = "";
+  let output = "";
   while (i < input.length) {
     const enc1 = indexOf(input.charAt(i++));
     const enc2 = i >= input.length ? 0 : indexOf(input.charAt(i++));
@@ -6619,30 +6778,30 @@ function fromBase64(input, useUrlTemplate = false, cutTailZeros = false) {
     const chr1 = test(enc1) << 2 | test(enc2) >> 4;
     const chr2 = (test(enc2) & 15) << 4 | test(enc3) >> 2;
     const chr3 = (test(enc3) & 3) << 6 | test(enc4);
-    output2 += String.fromCharCode(chr1);
+    output += String.fromCharCode(chr1);
     if (enc3 !== 64) {
-      output2 += String.fromCharCode(chr2);
+      output += String.fromCharCode(chr2);
     }
     if (enc4 !== 64) {
-      output2 += String.fromCharCode(chr3);
+      output += String.fromCharCode(chr3);
     }
   }
   if (cutTailZeros) {
-    const outputLength = output2.length;
+    const outputLength = output.length;
     let nonZeroStart = -1;
     for (let i2 = outputLength - 1; i2 >= 0; i2--) {
-      if (output2.charCodeAt(i2) !== 0) {
+      if (output.charCodeAt(i2) !== 0) {
         nonZeroStart = i2;
         break;
       }
     }
     if (nonZeroStart !== -1) {
-      output2 = output2.slice(0, nonZeroStart + 1);
+      output = output.slice(0, nonZeroStart + 1);
     } else {
-      output2 = "";
+      output = "";
     }
   }
-  return output2;
+  return output;
 }
 function arrayBufferToString(buffer) {
   let resultString = "";
@@ -6675,6 +6834,39 @@ function clearProps(object, propsArray) {
 }
 
 // node_modules/asn1js/build/index.es.js
+/*!
+ * Copyright (c) 2014, GMO GlobalSign
+ * Copyright (c) 2015-2022, Peculiar Ventures
+ * All rights reserved.
+ * 
+ * Author 2014-2019, Yury Strozhevsky
+ * 
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ * 
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ * 
+ * * Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ * 
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * 
+ */
 function assertBigInt() {
   if (typeof BigInt === "undefined") {
     throw new Error("BigInt is not defined. Your environment doesn't implement BigInt.");
@@ -6690,7 +6882,7 @@ function concat(buffers) {
   const retView = new Uint8Array(outputLength);
   for (let i = 0; i < buffers.length; i++) {
     const buffer = buffers[i];
-    retView.set(new Uint8Array(buffer), prevLength);
+    retView.set(buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer), prevLength);
     prevLength += buffer.byteLength;
   }
   return retView.buffer;
@@ -6723,14 +6915,14 @@ var ViewWriter = class {
     this.items = [];
   }
   write(buf) {
-    this.items.push(buf);
+    this.items.push(buf instanceof ArrayBuffer ? buf : concat([buf]));
   }
   final() {
     return concat(this.items);
   }
 };
-var powers2 = [new Uint8Array([1])];
-var digitsString = "0123456789";
+var ORIGINAL_VIEW_WRITER_WRITE = ViewWriter.prototype.write;
+var ORIGINAL_VIEW_WRITER_FINAL = ViewWriter.prototype.final;
 var NAME2 = "name";
 var VALUE_HEX_VIEW = "valueHexView";
 var IS_HEX_ONLY = "isHexOnly";
@@ -6757,10 +6949,10 @@ function HexBlock(BaseClass) {
       this.valueHexView = new Uint8Array(value);
     }
     constructor(...args) {
-      var _b;
+      var _b2;
       super(...args);
       const params = args[0] || {};
-      this.isHexOnly = (_b = params.isHexOnly) !== null && _b !== void 0 ? _b : false;
+      this.isHexOnly = (_b2 = params.isHexOnly) !== null && _b2 !== void 0 ? _b2 : false;
       this.valueHexView = params.valueHex ? pvtsutils.BufferSourceConverter.toUint8Array(params.valueHex) : EMPTY_VIEW;
     }
     fromBER(inputBuffer, inputOffset, inputLength, _context) {
@@ -6785,7 +6977,10 @@ function HexBlock(BaseClass) {
       if (sizeOnly) {
         return new ArrayBuffer(this.valueHexView.byteLength);
       }
-      return this.valueHexView.byteLength === this.valueHexView.buffer.byteLength ? this.valueHexView.buffer : this.valueHexView.slice().buffer;
+      if (this.valueHexView.buffer instanceof ArrayBuffer && this.valueHexView.byteLength === this.valueHexView.buffer.byteLength) {
+        return this.valueHexView.buffer;
+      }
+      return pvtsutils.BufferSourceConverter.toArrayBuffer(this.valueHexView);
     }
     toJSON() {
       return {
@@ -6834,13 +7029,13 @@ var ValueBlock = class extends LocalBaseBlock {
 ValueBlock.NAME = "valueBlock";
 var LocalIdentificationBlock = class extends HexBlock(LocalBaseBlock) {
   constructor({ idBlock = {} } = {}) {
-    var _a3, _b, _c, _d;
+    var _a3, _b2, _c2, _d;
     super();
     if (idBlock) {
       this.isHexOnly = (_a3 = idBlock.isHexOnly) !== null && _a3 !== void 0 ? _a3 : false;
       this.valueHexView = idBlock.valueHex ? pvtsutils.BufferSourceConverter.toUint8Array(idBlock.valueHex) : EMPTY_VIEW;
-      this.tagClass = (_b = idBlock.tagClass) !== null && _b !== void 0 ? _b : -1;
-      this.tagNumber = (_c = idBlock.tagNumber) !== null && _c !== void 0 ? _c : -1;
+      this.tagClass = (_b2 = idBlock.tagClass) !== null && _b2 !== void 0 ? _b2 : -1;
+      this.tagNumber = (_c2 = idBlock.tagNumber) !== null && _c2 !== void 0 ? _c2 : -1;
       this.isConstructed = (_d = idBlock.isConstructed) !== null && _d !== void 0 ? _d : false;
     } else {
       this.tagClass = -1;
@@ -6907,12 +7102,15 @@ var LocalIdentificationBlock = class extends HexBlock(LocalBaseBlock) {
     if (!checkBufferParams(this, inputView, inputOffset, inputLength)) {
       return -1;
     }
-    const intBuffer = inputView.subarray(inputOffset, inputOffset + inputLength);
-    if (intBuffer.length === 0) {
+    const fastArgs = Number.isInteger(inputOffset) && Number.isInteger(inputLength);
+    const intBuffer = fastArgs ? inputView : inputView.subarray(inputOffset, inputOffset + inputLength);
+    const baseIndex = fastArgs ? inputOffset : 0;
+    const bufferLength = fastArgs ? inputLength : intBuffer.length;
+    if (bufferLength === 0) {
       this.error = "Zero buffer length";
       return -1;
     }
-    const tagClassMask = intBuffer[0] & 192;
+    const tagClassMask = intBuffer[baseIndex] & 192;
     switch (tagClassMask) {
       case 0:
         this.tagClass = 1;
@@ -6930,9 +7128,9 @@ var LocalIdentificationBlock = class extends HexBlock(LocalBaseBlock) {
         this.error = "Unknown tag class";
         return -1;
     }
-    this.isConstructed = (intBuffer[0] & 32) === 32;
+    this.isConstructed = (intBuffer[baseIndex] & 32) === 32;
     this.isHexOnly = false;
-    const tagNumberMask = intBuffer[0] & 31;
+    const tagNumberMask = intBuffer[baseIndex] & 31;
     if (tagNumberMask !== 31) {
       this.tagNumber = tagNumberMask;
       this.blockLength = 1;
@@ -6940,18 +7138,18 @@ var LocalIdentificationBlock = class extends HexBlock(LocalBaseBlock) {
       let count = 0;
       while (true) {
         const tagByteIndex = count + 1;
-        if (tagByteIndex >= intBuffer.length) {
+        if (tagByteIndex >= bufferLength) {
           this.error = "End of input reached before message was fully decoded";
           return -1;
         }
         count++;
-        if ((intBuffer[tagByteIndex] & 128) === 0)
+        if ((intBuffer[baseIndex + tagByteIndex] & 128) === 0)
           break;
       }
       this.blockLength = count + 1;
       const intTagNumberBuffer = this.valueHexView = new Uint8Array(count);
       for (let i = 0; i < count; i++)
-        intTagNumberBuffer[i] = intBuffer[i + 1] & 127;
+        intTagNumberBuffer[i] = intBuffer[baseIndex + i + 1] & 127;
       if (this.blockLength <= 9)
         this.tagNumber = utilFromBase(intTagNumberBuffer, 7);
       else {
@@ -6990,45 +7188,50 @@ var LocalIdentificationBlock = class extends HexBlock(LocalBaseBlock) {
   }
 };
 LocalIdentificationBlock.NAME = "identificationBlock";
+var ORIGINAL_LOCAL_IDENTIFICATION_TO_BER = LocalIdentificationBlock.prototype.toBER;
+var ORIGINAL_LOCAL_IDENTIFICATION_FROM_BER = LocalIdentificationBlock.prototype.fromBER;
 var LocalLengthBlock = class extends LocalBaseBlock {
   constructor({ lenBlock = {} } = {}) {
-    var _a3, _b, _c;
+    var _a3, _b2, _c2;
     super();
     this.isIndefiniteForm = (_a3 = lenBlock.isIndefiniteForm) !== null && _a3 !== void 0 ? _a3 : false;
-    this.longFormUsed = (_b = lenBlock.longFormUsed) !== null && _b !== void 0 ? _b : false;
-    this.length = (_c = lenBlock.length) !== null && _c !== void 0 ? _c : 0;
+    this.longFormUsed = (_b2 = lenBlock.longFormUsed) !== null && _b2 !== void 0 ? _b2 : false;
+    this.length = (_c2 = lenBlock.length) !== null && _c2 !== void 0 ? _c2 : 0;
   }
   fromBER(inputBuffer, inputOffset, inputLength) {
     const view = pvtsutils.BufferSourceConverter.toUint8Array(inputBuffer);
     if (!checkBufferParams(this, view, inputOffset, inputLength)) {
       return -1;
     }
-    const intBuffer = view.subarray(inputOffset, inputOffset + inputLength);
-    if (intBuffer.length === 0) {
+    const fastArgs = Number.isInteger(inputOffset) && Number.isInteger(inputLength);
+    const intBuffer = fastArgs ? view : view.subarray(inputOffset, inputOffset + inputLength);
+    const baseIndex = fastArgs ? inputOffset : 0;
+    const bufferLength = fastArgs ? inputLength : intBuffer.length;
+    if (bufferLength === 0) {
       this.error = "Zero buffer length";
       return -1;
     }
-    if (intBuffer[0] === 255) {
+    if (intBuffer[baseIndex] === 255) {
       this.error = "Length block 0xFF is reserved by standard";
       return -1;
     }
-    this.isIndefiniteForm = intBuffer[0] === 128;
+    this.isIndefiniteForm = intBuffer[baseIndex] === 128;
     if (this.isIndefiniteForm) {
       this.blockLength = 1;
       return inputOffset + this.blockLength;
     }
-    this.longFormUsed = !!(intBuffer[0] & 128);
+    this.longFormUsed = !!(intBuffer[baseIndex] & 128);
     if (this.longFormUsed === false) {
-      this.length = intBuffer[0];
+      this.length = intBuffer[baseIndex];
       this.blockLength = 1;
       return inputOffset + this.blockLength;
     }
-    const count = intBuffer[0] & 127;
+    const count = intBuffer[baseIndex] & 127;
     if (count > 8) {
       this.error = "Too big integer";
       return -1;
     }
-    if (count + 1 > intBuffer.length) {
+    if (count + 1 > bufferLength) {
       this.error = "End of input reached before message was fully decoded";
       return -1;
     }
@@ -7088,7 +7291,375 @@ var LocalLengthBlock = class extends LocalBaseBlock {
   }
 };
 LocalLengthBlock.NAME = "lengthBlock";
+var ORIGINAL_LOCAL_LENGTH_TO_BER = LocalLengthBlock.prototype.toBER;
+var ORIGINAL_LOCAL_LENGTH_FROM_BER = LocalLengthBlock.prototype.fromBER;
 var typeStore = {};
+var _a$y;
+var _b;
+var _c;
+var originalUint8ArraySliceInfo = findMethod(Uint8Array.prototype, "slice");
+var originalUint8ArrayConstructor = (_a$y = Object.getOwnPropertyDescriptor(Uint8Array.prototype, "constructor")) === null || _a$y === void 0 ? void 0 : _a$y.value;
+var originalArrayIterator = (_b = Object.getOwnPropertyDescriptor(Array.prototype, Symbol.iterator)) === null || _b === void 0 ? void 0 : _b.value;
+var intrinsicTypedArrayByteLength = (_c = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype), "byteLength")) === null || _c === void 0 ? void 0 : _c.get;
+var BUILTIN_DISPATCH_PAYLOAD_THRESHOLD = 16384;
+var BUILTIN_DISPATCH_MAX_DEPTH = 64;
+var builtinRegistry;
+function registerBuiltinEncoder(builtinConstructors, internals) {
+  const current = builtinRegistry;
+  const nextInternals = internals || current;
+  if (!nextInternals) {
+    builtinRegistry = void 0;
+    return;
+  }
+  builtinRegistry = { ...nextInternals, ...builtinConstructors };
+}
+function dataProperty(object, name) {
+  const descriptor = Object.getOwnPropertyDescriptor(object, name);
+  if (!descriptor || !("value" in descriptor))
+    return void 0;
+  return descriptor.value;
+}
+function intrinsicPayloadByteLength(value) {
+  if (!intrinsicTypedArrayByteLength || !value || typeof value !== "object")
+    return void 0;
+  try {
+    const byteLength = intrinsicTypedArrayByteLength.call(value);
+    return typeof byteLength === "number" ? byteLength : void 0;
+  } catch {
+    return void 0;
+  }
+}
+function largePayloadOrChain(block, depth) {
+  if (depth > BUILTIN_DISPATCH_MAX_DEPTH || !block || typeof block !== "object")
+    return false;
+  const valueBlockDescriptor = Object.getOwnPropertyDescriptor(block, "valueBlock");
+  if (!valueBlockDescriptor || !("value" in valueBlockDescriptor))
+    return false;
+  const valueBlock = valueBlockDescriptor.value;
+  if (!valueBlock || typeof valueBlock !== "object")
+    return false;
+  const payloadDescriptor = Object.getOwnPropertyDescriptor(valueBlock, "valueHexView");
+  if (payloadDescriptor) {
+    if (!("value" in payloadDescriptor))
+      return false;
+    const byteLength = intrinsicPayloadByteLength(payloadDescriptor.value);
+    return byteLength !== void 0 && byteLength >= BUILTIN_DISPATCH_PAYLOAD_THRESHOLD;
+  }
+  const valuesDescriptor = Object.getOwnPropertyDescriptor(valueBlock, "value");
+  if (!valuesDescriptor || !("value" in valuesDescriptor) || !Array.isArray(valuesDescriptor.value))
+    return false;
+  const values = valuesDescriptor.value;
+  const lengthDescriptor = Object.getOwnPropertyDescriptor(values, "length");
+  if (!lengthDescriptor || !("value" in lengthDescriptor) || lengthDescriptor.value !== 1)
+    return false;
+  const indexDescriptor = Object.getOwnPropertyDescriptor(values, "0");
+  if (!indexDescriptor || !("value" in indexDescriptor))
+    return false;
+  return largePayloadOrChain(indexDescriptor.value, depth + 1);
+}
+function shouldUseBuiltinEncoder(block) {
+  try {
+    return largePayloadOrChain(block, 0);
+  } catch {
+    return false;
+  }
+}
+function sameDataMethod(current, original) {
+  return !!current && "value" in current && current.value === original && current.writable === true && current.enumerable === false && current.configurable === true;
+}
+function writerMethodsStable(registry) {
+  return sameDataMethod(Object.getOwnPropertyDescriptor(registry.ViewWriter.prototype, "write"), registry.originalWriterWrite) && sameDataMethod(Object.getOwnPropertyDescriptor(registry.ViewWriter.prototype, "final"), registry.originalWriterFinal);
+}
+function findMethod(prototype, name) {
+  let current = prototype;
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, name);
+    if (descriptor) {
+      if ("value" in descriptor && typeof descriptor.value === "function") {
+        return { declaringPrototype: current, method: descriptor.value };
+      }
+      return void 0;
+    }
+    current = Object.getPrototypeOf(current);
+  }
+  return void 0;
+}
+function stableInheritedMethod(prototype, name, original) {
+  if (!original)
+    return false;
+  let current = prototype;
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, name);
+    if (current === original.declaringPrototype) {
+      return !!descriptor && "value" in descriptor && descriptor.value === original.method;
+    }
+    if (descriptor)
+      return false;
+    current = Object.getPrototypeOf(current);
+  }
+  return false;
+}
+function prototypeMethod(object, prototype, name, expected) {
+  if (Object.prototype.hasOwnProperty.call(object, name))
+    return false;
+  if (Object.getPrototypeOf(object) !== prototype)
+    return false;
+  const descriptor = Object.getOwnPropertyDescriptor(prototype, name);
+  return !!descriptor && "value" in descriptor && descriptor.value === expected;
+}
+function inheritedMethod(object, name, expected, primitiveConstructor) {
+  if (Object.prototype.hasOwnProperty.call(object, name))
+    return false;
+  const prototype = Object.getPrototypeOf(object);
+  const originalPrimitiveValuePrototype = Object.getPrototypeOf(primitiveConstructor.prototype);
+  if (prototype !== primitiveConstructor.prototype || Object.getPrototypeOf(prototype) !== originalPrimitiveValuePrototype) {
+    return false;
+  }
+  const descriptor = prototype && Object.getOwnPropertyDescriptor(prototype, name);
+  if (descriptor)
+    return false;
+  const parentDescriptor = Object.getOwnPropertyDescriptor(originalPrimitiveValuePrototype, name);
+  return !!parentDescriptor && "value" in parentDescriptor && parentDescriptor.value === expected;
+}
+function plainPayload(value, allowEmpty = false) {
+  if (!(value instanceof Uint8Array) || Object.getPrototypeOf(value) !== Uint8Array.prototype)
+    return void 0;
+  for (const name of ["buffer", "byteOffset", "byteLength", "length", "slice", "constructor"]) {
+    if (Object.prototype.hasOwnProperty.call(value, name))
+      return void 0;
+  }
+  const constructorDescriptor = Object.getOwnPropertyDescriptor(Uint8Array.prototype, "constructor");
+  if (!constructorDescriptor || !("value" in constructorDescriptor) || constructorDescriptor.value !== originalUint8ArrayConstructor)
+    return void 0;
+  if (!stableInheritedMethod(Uint8Array.prototype, "slice", originalUint8ArraySliceInfo))
+    return void 0;
+  try {
+    const buffer = value.buffer;
+    if (!(buffer instanceof ArrayBuffer) || Object.getPrototypeOf(buffer) !== ArrayBuffer.prototype)
+      return void 0;
+    if (Object.prototype.hasOwnProperty.call(buffer, "byteLength"))
+      return void 0;
+    if (value.byteLength !== value.length || !allowEmpty && value.byteLength === 0)
+      return void 0;
+    if (value.byteOffset < 0 || value.byteOffset + value.byteLength > buffer.byteLength)
+      return void 0;
+  } catch {
+    return void 0;
+  }
+  return value;
+}
+function validIdBlock(block, constructed, registry) {
+  if (Object.getPrototypeOf(block) !== registry.LocalIdentificationBlock.prototype)
+    return false;
+  if (!prototypeMethod(block, registry.LocalIdentificationBlock.prototype, "toBER", registry.originalIdentificationToBER))
+    return false;
+  const tagClass = dataProperty(block, "tagClass");
+  const tagNumber = dataProperty(block, "tagNumber");
+  const isConstructed2 = dataProperty(block, "isConstructed");
+  const isHexOnly = dataProperty(block, "isHexOnly");
+  const valueHexView = dataProperty(block, "valueHexView");
+  if (typeof tagClass !== "number" || !Number.isInteger(tagClass) || tagClass < 1 || tagClass > 4)
+    return false;
+  if (typeof tagNumber !== "number" || !Number.isInteger(tagNumber) || tagNumber < 0)
+    return false;
+  if (isConstructed2 !== constructed || typeof isHexOnly !== "boolean")
+    return false;
+  if (isHexOnly)
+    return !!plainPayload(valueHexView);
+  return Number.isSafeInteger(tagNumber);
+}
+function validLengthBlock(block, allowIndefinite, registry) {
+  if (Object.getPrototypeOf(block) !== registry.LocalLengthBlock.prototype)
+    return false;
+  if (!prototypeMethod(block, registry.LocalLengthBlock.prototype, "toBER", registry.originalLengthToBER))
+    return false;
+  const indefinite = dataProperty(block, "isIndefiniteForm");
+  const longForm = dataProperty(block, "longFormUsed");
+  const lengthDescriptor = Object.getOwnPropertyDescriptor(block, "length");
+  const length = lengthDescriptor && "value" in lengthDescriptor ? lengthDescriptor.value : void 0;
+  const longFormDescriptor = Object.getOwnPropertyDescriptor(block, "longFormUsed");
+  return typeof indefinite === "boolean" && (indefinite === false || allowIndefinite) && typeof longForm === "boolean" && !!longFormDescriptor && "value" in longFormDescriptor && longFormDescriptor.writable === true && !!lengthDescriptor && "value" in lengthDescriptor && lengthDescriptor.writable === true && typeof length === "number" && Number.isSafeInteger(length) && length >= 0;
+}
+function validBaseBlock(block, isConstructed2, registry) {
+  const idBlock = dataProperty(block, "idBlock");
+  const lenBlock = dataProperty(block, "lenBlock");
+  return !!idBlock && !!lenBlock && validIdBlock(idBlock, isConstructed2, registry) && validLengthBlock(lenBlock, isConstructed2, registry);
+}
+function constructedChild(block, registry) {
+  const valueBlock = dataProperty(block, "valueBlock");
+  if (!valueBlock || Object.getPrototypeOf(valueBlock) !== registry.LocalConstructedValueBlock.prototype)
+    return void 0;
+  if (!prototypeMethod(valueBlock, registry.LocalConstructedValueBlock.prototype, "toBER", registry.originalConstructedToBER))
+    return void 0;
+  const values = dataProperty(valueBlock, "value");
+  if (!Array.isArray(values) || Object.getPrototypeOf(values) !== Array.prototype)
+    return void 0;
+  const lengthDescriptor = Object.getOwnPropertyDescriptor(values, "length");
+  if (!lengthDescriptor || !("value" in lengthDescriptor) || lengthDescriptor.value !== 1)
+    return void 0;
+  if (Object.prototype.hasOwnProperty.call(values, Symbol.iterator))
+    return void 0;
+  const iteratorDescriptor = Object.getOwnPropertyDescriptor(Array.prototype, Symbol.iterator);
+  if (!iteratorDescriptor || !("value" in iteratorDescriptor) || iteratorDescriptor.value !== originalArrayIterator)
+    return void 0;
+  const indexDescriptor = Object.getOwnPropertyDescriptor(values, "0");
+  if (!indexDescriptor || !("value" in indexDescriptor))
+    return void 0;
+  if (Object.getOwnPropertyNames(values).length !== 2)
+    return void 0;
+  return indexDescriptor.value;
+}
+function bitPayload(block, registry) {
+  const valueBlock = dataProperty(block, "valueBlock");
+  if (!valueBlock || Object.getPrototypeOf(valueBlock) !== registry.LocalBitStringValueBlock.prototype)
+    return void 0;
+  if (!prototypeMethod(valueBlock, registry.LocalBitStringValueBlock.prototype, "toBER", registry.originalBitStringToBER))
+    return void 0;
+  if (dataProperty(valueBlock, "isConstructed") !== false)
+    return void 0;
+  const unusedBits = dataProperty(valueBlock, "unusedBits");
+  if (typeof unusedBits !== "number" || !Number.isInteger(unusedBits) || unusedBits < 0 || unusedBits > 7)
+    return void 0;
+  const payload = plainPayload(dataProperty(valueBlock, "valueHexView"), true);
+  if (!payload)
+    return void 0;
+  return { payload, prefix: Uint8Array.of(payload.byteLength ? unusedBits : 0) };
+}
+function primitivePayload(block, kind, registry) {
+  const valueBlock = dataProperty(block, "valueBlock");
+  if (!valueBlock)
+    return void 0;
+  if (kind === "integer") {
+    if (Object.getPrototypeOf(valueBlock) !== registry.LocalIntegerValueBlock.prototype)
+      return void 0;
+    if (!prototypeMethod(valueBlock, registry.LocalIntegerValueBlock.prototype, "toBER", registry.originalIntegerToBER))
+      return void 0;
+  } else if (kind === "octet") {
+    if (Object.getPrototypeOf(valueBlock) !== registry.LocalOctetStringValueBlock.prototype)
+      return void 0;
+    if (!prototypeMethod(valueBlock, registry.LocalOctetStringValueBlock.prototype, "toBER", registry.originalOctetStringToBER))
+      return void 0;
+    if (dataProperty(valueBlock, "isConstructed") !== false)
+      return void 0;
+  } else {
+    if (Object.getPrototypeOf(valueBlock) !== registry.LocalPrimitiveValueBlock.prototype)
+      return void 0;
+    if (!inheritedMethod(valueBlock, "toBER", registry.originalPrimitiveToBER, registry.LocalPrimitiveValueBlock))
+      return void 0;
+  }
+  if (kind === "primitive" && dataProperty(valueBlock, "isHexOnly") !== true)
+    return void 0;
+  if (typeof dataProperty(valueBlock, "isHexOnly") !== "boolean")
+    return void 0;
+  return plainPayload(dataProperty(valueBlock, "valueHexView"));
+}
+function validOuterMethod(block, registry) {
+  if (Object.prototype.hasOwnProperty.call(block, "toBER"))
+    return false;
+  let prototype = block;
+  while (prototype) {
+    const descriptor = Object.getOwnPropertyDescriptor(prototype, "toBER");
+    if (descriptor)
+      return "value" in descriptor && descriptor.value === registry.originalBaseBlockToBER;
+    prototype = Object.getPrototypeOf(prototype);
+  }
+  return false;
+}
+function isPrimitive(block, type, registry) {
+  const constructor = registry[type];
+  return !!constructor && Object.getPrototypeOf(block) === constructor.prototype;
+}
+function isConstructed(block, registry) {
+  return Object.getPrototypeOf(block) === registry.Sequence.prototype || Object.getPrototypeOf(block) === registry.Set.prototype || Object.getPrototypeOf(block) === registry.Constructed.prototype;
+}
+function inspectNode(block, depth, registry) {
+  if (depth > BUILTIN_DISPATCH_MAX_DEPTH || !block || typeof block !== "object")
+    return void 0;
+  try {
+    if (!validOuterMethod(block, registry))
+      return void 0;
+    const primitiveKind = isPrimitive(block, "BitString", registry) ? "bit" : isPrimitive(block, "Integer", registry) ? "integer" : isPrimitive(block, "OctetString", registry) ? "octet" : isPrimitive(block, "Primitive", registry) ? "primitive" : void 0;
+    const constructed = primitiveKind === void 0 && isConstructed(block, registry);
+    if (!primitiveKind && !constructed)
+      return void 0;
+    if (!validBaseBlock(block, constructed, registry))
+      return void 0;
+    const idBlock = dataProperty(block, "idBlock");
+    const lenBlock = dataProperty(block, "lenBlock");
+    if (!idBlock || !lenBlock)
+      return void 0;
+    if (primitiveKind) {
+      const bit = primitiveKind === "bit" ? bitPayload(block, registry) : void 0;
+      const payload = primitiveKind === "bit" ? bit === null || bit === void 0 ? void 0 : bit.payload : primitivePayload(block, primitiveKind, registry);
+      return payload ? { block, kind: primitiveKind, idBlock, lenBlock, indefinite: false, payload, prefix: bit === null || bit === void 0 ? void 0 : bit.prefix } : void 0;
+    }
+    const child = constructedChild(block, registry);
+    const validatedChild = child && inspectNode(child, depth + 1, registry);
+    const indefinite = dataProperty(lenBlock, "isIndefiniteForm");
+    return validatedChild ? { block, kind: "constructed", idBlock, lenBlock, indefinite: indefinite === true, child: validatedChild } : void 0;
+  } catch {
+    return void 0;
+  }
+}
+function buildNode(node, sizeOnly, registry) {
+  var _a3, _b2;
+  const id = Reflect.apply(registry.originalIdentificationToBER, node.idBlock, [sizeOnly]);
+  if (!(id instanceof ArrayBuffer) || id.byteLength === 0)
+    throw TypeError("Built-in identifier encoding failed");
+  let payload;
+  if (node.kind === "constructed") {
+    payload = buildNode(node.child, sizeOnly, registry);
+  } else {
+    payload = node.payload;
+  }
+  const length = (payload instanceof Uint8Array ? payload.byteLength : payload.total) + ((_b2 = (_a3 = node.prefix) === null || _a3 === void 0 ? void 0 : _a3.byteLength) !== null && _b2 !== void 0 ? _b2 : 0);
+  let len;
+  if (node.indefinite) {
+    len = Uint8Array.of(128).buffer;
+  } else {
+    node.lenBlock.length = length;
+    len = Reflect.apply(registry.originalLengthToBER, node.lenBlock, [sizeOnly]);
+    if (!(len instanceof ArrayBuffer) || len.byteLength === 0)
+      throw TypeError("Built-in length encoding failed");
+  }
+  const total = id.byteLength + len.byteLength + length + (node.indefinite ? 2 : 0);
+  if (!Number.isSafeInteger(total))
+    throw RangeError("Built-in encoding is too large");
+  return { id, len, payload, length, total, indefinite: node.indefinite, prefix: node.prefix };
+}
+function flatten(node, output, offset, sizeOnly) {
+  output.set(new Uint8Array(node.id), offset);
+  offset += node.id.byteLength;
+  output.set(new Uint8Array(node.len), offset);
+  offset += node.len.byteLength;
+  if (node.prefix) {
+    if (!sizeOnly)
+      output.set(node.prefix, offset);
+    offset += node.prefix.byteLength;
+  }
+  if (node.payload instanceof Uint8Array) {
+    if (!sizeOnly)
+      output.set(node.payload, offset);
+    offset += node.payload.byteLength;
+  } else {
+    offset = flatten(node.payload, output, offset, sizeOnly);
+  }
+  if (node.indefinite)
+    offset += 2;
+  return offset;
+}
+function tryEncodeBuiltin(block, sizeOnly = false) {
+  const registry = builtinRegistry;
+  if (!registry || !writerMethodsStable(registry))
+    return void 0;
+  const validated = inspectNode(block, 0, registry);
+  if (!validated)
+    return void 0;
+  const node = buildNode(validated, sizeOnly, registry);
+  const output = new Uint8Array(node.total);
+  flatten(node, output, 0, sizeOnly);
+  return output.buffer;
+}
 var BaseBlock = class extends LocalBaseBlock {
   constructor({ name = EMPTY_STRING, optional = false, primitiveSchema, ...parameters } = {}, valueBlockType) {
     super(parameters);
@@ -7119,6 +7690,13 @@ var BaseBlock = class extends LocalBaseBlock {
     const _writer = writer || new ViewWriter();
     if (!writer) {
       prepareIndefiniteForm(this);
+      if (sizeOnly === true || sizeOnly === false || sizeOnly === void 0) {
+        if (shouldUseBuiltinEncoder(this)) {
+          const encoded = tryEncodeBuiltin(this, sizeOnly === true);
+          if (encoded)
+            return encoded;
+        }
+      }
     }
     const idBlockBuf = this.idBlock.toBER(sizeOnly);
     _writer.write(idBlockBuf);
@@ -7175,6 +7753,7 @@ var BaseBlock = class extends LocalBaseBlock {
   }
 };
 BaseBlock.NAME = "BaseBlock";
+var ORIGINAL_BASE_BLOCK_TO_BER = BaseBlock.prototype.toBER;
 function prepareIndefiniteForm(baseBlock) {
   var _a3;
   if (baseBlock instanceof typeStore.Constructed) {
@@ -7219,6 +7798,7 @@ var BaseStringBlock = class extends BaseBlock {
   }
 };
 BaseStringBlock.NAME = "BaseStringBlock";
+var _a$x;
 var LocalPrimitiveValueBlock = class extends HexBlock(ValueBlock) {
   constructor({ isHexOnly = true, ...parameters } = {}) {
     super(parameters);
@@ -7226,6 +7806,7 @@ var LocalPrimitiveValueBlock = class extends HexBlock(ValueBlock) {
   }
 };
 LocalPrimitiveValueBlock.NAME = "PrimitiveValueBlock";
+var ORIGINAL_LOCAL_PRIMITIVE_TO_BER = (_a$x = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(LocalPrimitiveValueBlock.prototype), "toBER")) === null || _a$x === void 0 ? void 0 : _a$x.value;
 var _a$w;
 var Primitive = class extends BaseBlock {
   constructor(parameters = {}) {
@@ -7238,6 +7819,83 @@ _a$w = Primitive;
   typeStore.Primitive = _a$w;
 })();
 Primitive.NAME = "PRIMITIVE";
+var fastParserRegistry;
+function registerFastParser(constructors) {
+  fastParserRegistry = {
+    Integer: constructors.Integer,
+    Null: constructors.Null,
+    Sequence: constructors.Sequence
+  };
+}
+function fastParserContext(context) {
+  const nodes = Object.getOwnPropertyDescriptor(context, "nodesCount");
+  const maxNodes = Object.getOwnPropertyDescriptor(context, "maxNodes");
+  const maxContentLength = Object.getOwnPropertyDescriptor(context, "maxContentLength");
+  if (!nodes || !("value" in nodes) || nodes.writable !== true)
+    return false;
+  if (!maxNodes || !("value" in maxNodes) || !maxContentLength || !("value" in maxContentLength))
+    return false;
+  return typeof nodes.value === "number" && Number.isSafeInteger(nodes.value) && nodes.value >= 0 && typeof maxNodes.value === "number" && Number.isSafeInteger(maxNodes.value) && maxNodes.value >= 0 && typeof maxContentLength.value === "number" && Number.isSafeInteger(maxContentLength.value) && maxContentLength.value >= 0 && nodes.value < maxNodes.value;
+}
+function fastParserType(store, name, value) {
+  const descriptor = Object.getOwnPropertyDescriptor(store, name);
+  return !!descriptor && "value" in descriptor && descriptor.value === value;
+}
+function tryFastFromBER(inputBuffer, inputOffset, inputLength, context) {
+  const registry = fastParserRegistry;
+  if (!registry)
+    return void 0;
+  let Constructor;
+  let length = 0;
+  try {
+    if (Object.getPrototypeOf(inputBuffer) !== Uint8Array.prototype)
+      return void 0;
+    if (!Number.isSafeInteger(inputOffset) || inputOffset < 0 || !Number.isSafeInteger(inputLength) || inputLength < 2) {
+      return void 0;
+    }
+    if (inputOffset > inputBuffer.byteLength || inputLength > inputBuffer.byteLength - inputOffset)
+      return void 0;
+    const tag = inputBuffer[inputOffset];
+    if (tag !== 2 && tag !== 5 && tag !== 48)
+      return void 0;
+    length = inputBuffer[inputOffset + 1];
+    if (length >= 128 || length > inputLength - 2)
+      return void 0;
+    if (tag === 5 && length !== 0)
+      return void 0;
+    if (!fastParserContext(context))
+      return void 0;
+    if (length > Object.getOwnPropertyDescriptor(context, "maxContentLength").value) {
+      return void 0;
+    }
+    const constructorName = tag === 2 ? "Integer" : tag === 5 ? "Null" : "Sequence";
+    Constructor = registry[constructorName];
+    if (!fastParserType(typeStore, constructorName, Constructor))
+      return void 0;
+    const identificationFromBER = Object.getOwnPropertyDescriptor(LocalIdentificationBlock.prototype, "fromBER");
+    const lengthFromBER = Object.getOwnPropertyDescriptor(LocalLengthBlock.prototype, "fromBER");
+    if (!identificationFromBER || !("value" in identificationFromBER) || identificationFromBER.value !== ORIGINAL_LOCAL_IDENTIFICATION_FROM_BER || !lengthFromBER || !("value" in lengthFromBER) || lengthFromBER.value !== ORIGINAL_LOCAL_LENGTH_FROM_BER)
+      return void 0;
+  } catch {
+    return void 0;
+  }
+  if (!Constructor)
+    return void 0;
+  const result = new Constructor();
+  result.idBlock.tagClass = 1;
+  result.idBlock.tagNumber = inputBuffer[inputOffset] & 31;
+  result.idBlock.isConstructed = inputBuffer[inputOffset] === 48;
+  result.idBlock.isHexOnly = false;
+  result.idBlock.blockLength = 1;
+  result.lenBlock.isIndefiniteForm = false;
+  result.lenBlock.longFormUsed = false;
+  result.lenBlock.length = length;
+  result.lenBlock.blockLength = 1;
+  context.nodesCount += 1;
+  const resultOffset = result.fromBER(inputBuffer, inputOffset + 2, length, context);
+  result.valueBeforeDecodeView = inputBuffer.subarray(inputOffset, inputOffset + result.blockLength);
+  return { offset: resultOffset, result };
+}
 var DEFAULT_MAX_DEPTH = 100;
 var DEFAULT_MAX_NODES = 1e4;
 var DEFAULT_MAX_CONTENT_LENGTH = 16 * 1024 * 1024;
@@ -7245,13 +7903,14 @@ var MAX_DEPTH_EXCEEDED_ERROR = "Maximum ASN.1 nesting depth exceeded";
 var MAX_NODES_EXCEEDED_ERROR = "Maximum ASN.1 node count exceeded";
 var MAX_CONTENT_LENGTH_EXCEEDED_ERROR = "Maximum ASN.1 content length exceeded";
 function createFromBerContext(options = {}) {
-  var _a3, _b, _c;
+  var _a3, _b2, _c2, _d;
   return {
     depth: 0,
     maxDepth: (_a3 = options.maxDepth) !== null && _a3 !== void 0 ? _a3 : DEFAULT_MAX_DEPTH,
     nodesCount: 0,
-    maxNodes: (_b = options.maxNodes) !== null && _b !== void 0 ? _b : DEFAULT_MAX_NODES,
-    maxContentLength: (_c = options.maxContentLength) !== null && _c !== void 0 ? _c : DEFAULT_MAX_CONTENT_LENGTH
+    maxNodes: (_b2 = options.maxNodes) !== null && _b2 !== void 0 ? _b2 : DEFAULT_MAX_NODES,
+    maxContentLength: (_c2 = options.maxContentLength) !== null && _c2 !== void 0 ? _c2 : DEFAULT_MAX_CONTENT_LENGTH,
+    parseEmbedded: (_d = options.parseEmbedded) !== null && _d !== void 0 ? _d : true
   };
 }
 function createErrorResult(error) {
@@ -7299,18 +7958,19 @@ function localChangeType(inputObject, newType) {
   return newObject;
 }
 function localFromBER(inputBuffer, inputOffset = 0, inputLength = inputBuffer.length, context = createFromBerContext()) {
+  const fastResult = tryFastFromBER(inputBuffer, inputOffset, inputLength, context);
+  if (fastResult)
+    return fastResult;
   const incomingOffset = inputOffset;
   let returnObject = new BaseBlock({}, ValueBlock);
-  const baseBlock = new LocalBaseBlock();
-  if (!checkBufferParams(baseBlock, inputBuffer, inputOffset, inputLength)) {
-    returnObject.error = baseBlock.error;
+  if (!checkBufferParams(returnObject, inputBuffer, inputOffset, inputLength)) {
     return {
       offset: -1,
       result: returnObject
     };
   }
-  const intBuffer = inputBuffer.subarray(inputOffset, inputOffset + inputLength);
-  if (!intBuffer.length) {
+  const fastArgs = Number.isInteger(inputOffset) && Number.isInteger(inputLength);
+  if (fastArgs ? inputLength === 0 : inputBuffer.subarray(inputOffset, inputOffset + inputLength).length === 0) {
     returnObject.error = "Zero buffer length";
     return {
       offset: -1,
@@ -7514,7 +8174,9 @@ function fromBER(inputBuffer, options = {}) {
       result
     };
   }
-  return localFromBER(pvtsutils.BufferSourceConverter.toUint8Array(inputBuffer).slice(), 0, inputBuffer.byteLength, createFromBerContext(options));
+  const inputView = pvtsutils.BufferSourceConverter.toUint8Array(inputBuffer);
+  const normalizedInput = options.copyInput === false ? inputView : inputView.slice();
+  return localFromBER(normalizedInput, 0, inputBuffer.byteLength, createFromBerContext(options));
 }
 function checkLen(indefiniteLength, length) {
   if (indefiniteLength) {
@@ -7587,6 +8249,7 @@ var LocalConstructedValueBlock = class extends ValueBlock {
   }
 };
 LocalConstructedValueBlock.NAME = "ConstructedValueBlock";
+var ORIGINAL_LOCAL_CONSTRUCTED_TO_BER = LocalConstructedValueBlock.prototype.toBER;
 var _a$v;
 var Constructed = class extends BaseBlock {
   constructor(parameters = {}) {
@@ -7724,7 +8387,7 @@ var LocalBooleanValueBlock = class extends HexBlock(ValueBlock) {
     return inputOffset + inputLength;
   }
   toBER() {
-    return this.valueHexView.slice();
+    return this.valueHexView.slice().buffer;
   }
   toJSON() {
     return {
@@ -7757,9 +8420,9 @@ _a$s = Boolean;
 })();
 Boolean.NAME = "BOOLEAN";
 var LocalOctetStringValueBlock = class extends HexBlock(LocalConstructedValueBlock) {
-  constructor({ isConstructed = false, ...parameters } = {}) {
+  constructor({ isConstructed: isConstructed2 = false, ...parameters } = {}) {
     super(parameters);
-    this.isConstructed = isConstructed;
+    this.isConstructed = isConstructed2;
   }
   fromBER(inputBuffer, inputOffset, inputLength, context) {
     let resultOffset = 0;
@@ -7803,11 +8466,12 @@ var LocalOctetStringValueBlock = class extends HexBlock(LocalConstructedValueBlo
   }
 };
 LocalOctetStringValueBlock.NAME = "OctetStringValueBlock";
+var ORIGINAL_LOCAL_OCTET_STRING_TO_BER = LocalOctetStringValueBlock.prototype.toBER;
 var _a$r;
 var OctetString = class extends BaseBlock {
   constructor({ idBlock = {}, lenBlock = {}, ...parameters } = {}) {
-    var _b, _c;
-    (_b = parameters.isConstructed) !== null && _b !== void 0 ? _b : parameters.isConstructed = !!((_c = parameters.value) === null || _c === void 0 ? void 0 : _c.length);
+    var _b2, _c2;
+    (_b2 = parameters.isConstructed) !== null && _b2 !== void 0 ? _b2 : parameters.isConstructed = !!((_c2 = parameters.value) === null || _c2 === void 0 ? void 0 : _c2.length);
     super({
       idBlock: {
         isConstructed: parameters.isConstructed,
@@ -7832,7 +8496,7 @@ var OctetString = class extends BaseBlock {
         this.blockLength += this.lenBlock.blockLength;
       return inputOffset;
     }
-    if (!this.valueBlock.isConstructed) {
+    if (!this.valueBlock.isConstructed && (context === null || context === void 0 ? void 0 : context.parseEmbedded) !== false) {
       const view = inputBuffer instanceof ArrayBuffer ? new Uint8Array(inputBuffer) : inputBuffer;
       const buf = view.subarray(inputOffset, inputOffset + inputLength);
       try {
@@ -7875,10 +8539,10 @@ _a$r = OctetString;
 })();
 OctetString.NAME = OCTET_STRING_NAME;
 var LocalBitStringValueBlock = class extends HexBlock(LocalConstructedValueBlock) {
-  constructor({ unusedBits = 0, isConstructed = false, ...parameters } = {}) {
+  constructor({ unusedBits = 0, isConstructed: isConstructed2 = false, ...parameters } = {}) {
     super(parameters);
     this.unusedBits = unusedBits;
-    this.isConstructed = isConstructed;
+    this.isConstructed = isConstructed2;
     this.blockLength = this.valueHexView.byteLength;
   }
   fromBER(inputBuffer, inputOffset, inputLength, context) {
@@ -7923,7 +8587,7 @@ var LocalBitStringValueBlock = class extends HexBlock(LocalConstructedValueBlock
       this.error = "Unused bits for BitString must be in range 0-7";
       return -1;
     }
-    if (!this.unusedBits) {
+    if (!this.unusedBits && (context === null || context === void 0 ? void 0 : context.parseEmbedded) !== false) {
       const buf = intBuffer.subarray(1);
       try {
         if (buf.byteLength) {
@@ -7966,11 +8630,12 @@ var LocalBitStringValueBlock = class extends HexBlock(LocalConstructedValueBlock
   }
 };
 LocalBitStringValueBlock.NAME = "BitStringValueBlock";
+var ORIGINAL_LOCAL_BIT_STRING_TO_BER = LocalBitStringValueBlock.prototype.toBER;
 var _a$q;
 var BitString = class extends BaseBlock {
   constructor({ idBlock = {}, lenBlock = {}, ...parameters } = {}) {
-    var _b, _c;
-    (_b = parameters.isConstructed) !== null && _b !== void 0 ? _b : parameters.isConstructed = !!((_c = parameters.value) === null || _c === void 0 ? void 0 : _c.length);
+    var _b2, _c2;
+    (_b2 = parameters.isConstructed) !== null && _b2 !== void 0 ? _b2 : parameters.isConstructed = !!((_c2 = parameters.value) === null || _c2 === void 0 ? void 0 : _c2.length);
     super({
       idBlock: {
         isConstructed: parameters.isConstructed,
@@ -8011,93 +8676,52 @@ _a$q = BitString;
   typeStore.BitString = _a$q;
 })();
 BitString.NAME = BIT_STRING_NAME;
+function bytesToSignedBigInt(view) {
+  if (!view.byteLength)
+    return BigInt(0);
+  const value = BigInt(`0x${pvtsutils.Convert.ToHex(view)}`);
+  if (view[0] & 128)
+    return value - (BigInt(1) << BigInt(view.byteLength * 8));
+  return value;
+}
+function bytesToSignedDecimal(view) {
+  if (typeof BigInt !== "undefined")
+    return bytesToSignedBigInt(view).toString(10);
+  const BASE2 = 1e7;
+  const DECIMAL_DIGITS = 7;
+  if (!view.byteLength)
+    return "0";
+  const negative = !!(view[0] & 128);
+  let magnitude = view;
+  if (negative) {
+    magnitude = new Uint8Array(view.length);
+    let carry = 1;
+    for (let i = view.length - 1; i >= 0; i--) {
+      const value = (view[i] ^ 255) + carry;
+      magnitude[i] = value & 255;
+      carry = value >> 8;
+    }
+  }
+  const limbs = [0];
+  for (let index = 0; index < magnitude.length; index++) {
+    let carry = magnitude[index];
+    for (let i = 0; i < limbs.length; i++) {
+      const value = limbs[i] * 256 + carry;
+      limbs[i] = value % BASE2;
+      carry = Math.floor(value / BASE2);
+    }
+    if (carry)
+      limbs.push(carry);
+  }
+  let top = limbs.length - 1;
+  while (top > 0 && limbs[top] === 0)
+    top--;
+  let result = String(limbs[top]);
+  for (let i = top - 1; i >= 0; i--)
+    result += String(limbs[i]).padStart(DECIMAL_DIGITS, "0");
+  return negative && result !== "0" ? `-${result}` : result;
+}
 var _a$p;
-function viewAdd(first, second) {
-  const c = new Uint8Array([0]);
-  const firstView = new Uint8Array(first);
-  const secondView = new Uint8Array(second);
-  let firstViewCopy = firstView.slice(0);
-  const firstViewCopyLength = firstViewCopy.length - 1;
-  const secondViewCopy = secondView.slice(0);
-  const secondViewCopyLength = secondViewCopy.length - 1;
-  let value = 0;
-  const max2 = secondViewCopyLength < firstViewCopyLength ? firstViewCopyLength : secondViewCopyLength;
-  let counter = 0;
-  for (let i = max2; i >= 0; i--, counter++) {
-    switch (true) {
-      case counter < secondViewCopy.length:
-        value = firstViewCopy[firstViewCopyLength - counter] + secondViewCopy[secondViewCopyLength - counter] + c[0];
-        break;
-      default:
-        value = firstViewCopy[firstViewCopyLength - counter] + c[0];
-    }
-    c[0] = value / 10;
-    switch (true) {
-      case counter >= firstViewCopy.length:
-        firstViewCopy = utilConcatView(new Uint8Array([value % 10]), firstViewCopy);
-        break;
-      default:
-        firstViewCopy[firstViewCopyLength - counter] = value % 10;
-    }
-  }
-  if (c[0] > 0)
-    firstViewCopy = utilConcatView(c, firstViewCopy);
-  return firstViewCopy;
-}
-function power2(n) {
-  if (n >= powers2.length) {
-    for (let p = powers2.length; p <= n; p++) {
-      const c = new Uint8Array([0]);
-      let digits = powers2[p - 1].slice(0);
-      for (let i = digits.length - 1; i >= 0; i--) {
-        const newValue = new Uint8Array([(digits[i] << 1) + c[0]]);
-        c[0] = newValue[0] / 10;
-        digits[i] = newValue[0] % 10;
-      }
-      if (c[0] > 0)
-        digits = utilConcatView(c, digits);
-      powers2.push(digits);
-    }
-  }
-  return powers2[n];
-}
-function viewSub(first, second) {
-  let b = 0;
-  const firstView = new Uint8Array(first);
-  const secondView = new Uint8Array(second);
-  const firstViewCopy = firstView.slice(0);
-  const firstViewCopyLength = firstViewCopy.length - 1;
-  const secondViewCopy = secondView.slice(0);
-  const secondViewCopyLength = secondViewCopy.length - 1;
-  let value;
-  let counter = 0;
-  for (let i = secondViewCopyLength; i >= 0; i--, counter++) {
-    value = firstViewCopy[firstViewCopyLength - counter] - secondViewCopy[secondViewCopyLength - counter] - b;
-    switch (true) {
-      case value < 0:
-        b = 1;
-        firstViewCopy[firstViewCopyLength - counter] = value + 10;
-        break;
-      default:
-        b = 0;
-        firstViewCopy[firstViewCopyLength - counter] = value;
-    }
-  }
-  if (b > 0) {
-    for (let i = firstViewCopyLength - secondViewCopyLength + 1; i >= 0; i--, counter++) {
-      value = firstViewCopy[firstViewCopyLength - counter] - b;
-      if (value < 0) {
-        b = 1;
-        firstViewCopy[firstViewCopyLength - counter] = value + 10;
-      } else {
-        b = 0;
-        firstViewCopy[firstViewCopyLength - counter] = value;
-        break;
-      }
-    }
-  }
-  return firstViewCopy.slice();
-}
 var LocalIntegerValueBlock = class extends HexBlock(ValueBlock) {
   setValueHex() {
     if (this.valueHexView.length >= 4) {
@@ -8184,39 +8808,7 @@ var LocalIntegerValueBlock = class extends HexBlock(ValueBlock) {
     };
   }
   toString() {
-    const firstBit = this.valueHexView.length * 8 - 1;
-    let digits = new Uint8Array(this.valueHexView.length * 8 / 3);
-    let bitNumber = 0;
-    let currentByte;
-    const asn1View = this.valueHexView;
-    let result = "";
-    let flag = false;
-    for (let byteNumber = asn1View.byteLength - 1; byteNumber >= 0; byteNumber--) {
-      currentByte = asn1View[byteNumber];
-      for (let i = 0; i < 8; i++) {
-        if ((currentByte & 1) === 1) {
-          switch (bitNumber) {
-            case firstBit:
-              digits = viewSub(power2(bitNumber), digits);
-              result = "-";
-              break;
-            default:
-              digits = viewAdd(digits, power2(bitNumber));
-          }
-        }
-        bitNumber++;
-        currentByte >>= 1;
-      }
-    }
-    for (let i = 0; i < digits.length; i++) {
-      if (digits[i])
-        flag = true;
-      if (flag)
-        result += digitsString.charAt(digits[i]);
-    }
-    if (flag === false)
-      result += digitsString.charAt(0);
-    return result;
+    return bytesToSignedDecimal(this.valueHexView);
   }
 };
 _a$p = LocalIntegerValueBlock;
@@ -8232,6 +8824,8 @@ LocalIntegerValueBlock.NAME = "IntegerValueBlock";
     }
   });
 })();
+var ORIGINAL_LOCAL_INTEGER_TO_BER = LocalIntegerValueBlock.prototype.toBER;
+var ORIGINAL_LOCAL_INTEGER_TO_STRING = LocalIntegerValueBlock.prototype.toString;
 var _a$o;
 var Integer = class extends BaseBlock {
   constructor(parameters = {}) {
@@ -8241,7 +8835,11 @@ var Integer = class extends BaseBlock {
   }
   toBigInt() {
     assertBigInt();
-    return BigInt(this.valueBlock.toString());
+    const valueBlock = this.valueBlock;
+    const toString2 = valueBlock.toString;
+    if (toString2 === ORIGINAL_LOCAL_INTEGER_TO_STRING)
+      return bytesToSignedBigInt(valueBlock.valueHexView);
+    return BigInt(Reflect.apply(toString2, valueBlock, []));
   }
   static fromBigInt(value) {
     assertBigInt();
@@ -8313,18 +8911,33 @@ var LocalSidValueBlock = class extends HexBlock(ValueBlock) {
       return -1;
     }
     const intBuffer = inputView.subarray(inputOffset, inputOffset + inputLength);
-    this.valueHexView = new Uint8Array(inputLength);
-    for (let i = 0; i < inputLength; i++) {
-      this.valueHexView[i] = intBuffer[i] & 127;
-      this.blockLength++;
-      if ((intBuffer[i] & 128) === 0)
-        break;
+    const fastPath = this.blockLength === 0 && Number.isInteger(inputOffset) && Number.isInteger(inputLength);
+    if (fastPath) {
+      let sidLength = 0;
+      while (sidLength < inputLength) {
+        const octet = intBuffer[sidLength];
+        sidLength++;
+        if ((octet & 128) === 0)
+          break;
+      }
+      this.blockLength = sidLength;
+      this.valueHexView = new Uint8Array(sidLength);
+      for (let i = 0; i < sidLength; i++)
+        this.valueHexView[i] = intBuffer[i] & 127;
+    } else {
+      this.valueHexView = new Uint8Array(inputLength);
+      for (let i = 0; i < inputLength; i++) {
+        this.valueHexView[i] = intBuffer[i] & 127;
+        this.blockLength++;
+        if ((intBuffer[i] & 128) === 0)
+          break;
+      }
+      const tempView = new Uint8Array(this.blockLength);
+      for (let i = 0; i < this.blockLength; i++) {
+        tempView[i] = this.valueHexView[i];
+      }
+      this.valueHexView = tempView;
     }
-    const tempView = new Uint8Array(this.blockLength);
-    for (let i = 0; i < this.blockLength; i++) {
-      tempView[i] = this.valueHexView[i];
-    }
-    this.valueHexView = tempView;
     if ((intBuffer[this.blockLength - 1] & 128) !== 0) {
       this.error = "End of input reached before message was fully decoded";
       return -1;
@@ -8345,11 +8958,11 @@ var LocalSidValueBlock = class extends HexBlock(ValueBlock) {
     while (bits.length % 7) {
       bits = "0" + bits;
     }
-    const bytes2 = new Uint8Array(bits.length / 7);
-    for (let i = 0; i < bytes2.length; i++) {
-      bytes2[i] = parseInt(bits.slice(i * 7, i * 7 + 7), 2) + (i + 1 < bytes2.length ? 128 : 0);
+    const bytes = new Uint8Array(bits.length / 7);
+    for (let i = 0; i < bytes.length; i++) {
+      bytes[i] = parseInt(bits.slice(i * 7, i * 7 + 7), 2) + (i + 1 < bytes.length ? 128 : 0);
     }
-    this.fromBER(bytes2.buffer, 0, bytes2.length);
+    this.fromBER(bytes.buffer, 0, bytes.length);
   }
   toBER(sizeOnly) {
     if (this.isHexOnly) {
@@ -8360,7 +8973,7 @@ var LocalSidValueBlock = class extends HexBlock(ValueBlock) {
       for (let i = 0; i < this.blockLength - 1; i++)
         retView2[i] = curView[i] | 128;
       retView2[this.blockLength - 1] = curView[this.blockLength - 1];
-      return retView2.buffer;
+      return pvtsutils.BufferSourceConverter.toArrayBuffer(retView2);
     }
     const encodedBuf = utilToBase(this.valueDec, 7);
     if (encodedBuf.byteLength === 0) {
@@ -8375,7 +8988,7 @@ var LocalSidValueBlock = class extends HexBlock(ValueBlock) {
         retView[i] = encodedView[i] | 128;
       retView[len] = encodedView[len];
     }
-    return retView;
+    return pvtsutils.BufferSourceConverter.toArrayBuffer(retView);
   }
   toString() {
     let result = "";
@@ -8573,17 +9186,32 @@ var LocalRelativeSidValueBlock = class extends HexBlock(LocalBaseBlock) {
     if (!checkBufferParams(this, inputView, inputOffset, inputLength))
       return -1;
     const intBuffer = inputView.subarray(inputOffset, inputOffset + inputLength);
-    this.valueHexView = new Uint8Array(inputLength);
-    for (let i = 0; i < inputLength; i++) {
-      this.valueHexView[i] = intBuffer[i] & 127;
-      this.blockLength++;
-      if ((intBuffer[i] & 128) === 0)
-        break;
+    const fastPath = this.blockLength === 0 && Number.isInteger(inputOffset) && Number.isInteger(inputLength);
+    if (fastPath) {
+      let sidLength = 0;
+      while (sidLength < inputLength) {
+        const octet = intBuffer[sidLength];
+        sidLength++;
+        if ((octet & 128) === 0)
+          break;
+      }
+      this.blockLength = sidLength;
+      this.valueHexView = new Uint8Array(sidLength);
+      for (let i = 0; i < sidLength; i++)
+        this.valueHexView[i] = intBuffer[i] & 127;
+    } else {
+      this.valueHexView = new Uint8Array(inputLength);
+      for (let i = 0; i < inputLength; i++) {
+        this.valueHexView[i] = intBuffer[i] & 127;
+        this.blockLength++;
+        if ((intBuffer[i] & 128) === 0)
+          break;
+      }
+      const tempView = new Uint8Array(this.blockLength);
+      for (let i = 0; i < this.blockLength; i++)
+        tempView[i] = this.valueHexView[i];
+      this.valueHexView = tempView;
     }
-    const tempView = new Uint8Array(this.blockLength);
-    for (let i = 0; i < this.blockLength; i++)
-      tempView[i] = this.valueHexView[i];
-    this.valueHexView = tempView;
     if ((intBuffer[this.blockLength - 1] & 128) !== 0) {
       this.error = "End of input reached before message was fully decoded";
       return -1;
@@ -9069,7 +9697,7 @@ var UTCTime = class extends VisibleString {
     return new Date(Date.UTC(this.year, this.month - 1, this.day, this.hour, this.minute, this.second));
   }
   fromString(inputString) {
-    const parser = /(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})Z/ig;
+    const parser = /(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})Z/gi;
     const parserArray = parser.exec(inputString);
     if (parserArray === null) {
       this.error = "Wrong input string for conversion";
@@ -9088,7 +9716,7 @@ var UTCTime = class extends VisibleString {
   }
   toString(encoding = "iso") {
     if (encoding === "iso") {
-      const outputArray = new Array(7);
+      const outputArray = Array.from({ length: 7 });
       outputArray[0] = padNumber(this.year < 2e3 ? this.year - 1900 : this.year - 2e3, 2);
       outputArray[1] = padNumber(this.month, 2);
       outputArray[2] = padNumber(this.day, 2);
@@ -9123,9 +9751,9 @@ UTCTime.NAME = "UTCTime";
 var _a$5;
 var GeneralizedTime = class extends UTCTime {
   constructor(parameters = {}) {
-    var _b;
+    var _b2;
     super(parameters);
-    (_b = this.millisecond) !== null && _b !== void 0 ? _b : this.millisecond = 0;
+    (_b2 = this.millisecond) !== null && _b2 !== void 0 ? _b2 : this.millisecond = 0;
     this.idBlock.tagClass = 1;
     this.idBlock.tagNumber = 24;
   }
@@ -9197,12 +9825,12 @@ var GeneralizedTime = class extends UTCTime {
       dateTimeString = timeString;
     switch (true) {
       case dateTimeString.length === 8:
-        parser = /(\d{4})(\d{2})(\d{2})/ig;
+        parser = /(\d{4})(\d{2})(\d{2})/gi;
         if (fractionPointPosition !== -1)
           throw new Error("Wrong input string for conversion");
         break;
       case dateTimeString.length === 10:
-        parser = /(\d{4})(\d{2})(\d{2})(\d{2})/ig;
+        parser = /(\d{4})(\d{2})(\d{2})(\d{2})/gi;
         if (fractionPointPosition !== -1) {
           let fractionResult = 60 * fractionPart;
           this.minute = Math.floor(fractionResult);
@@ -9213,7 +9841,7 @@ var GeneralizedTime = class extends UTCTime {
         }
         break;
       case dateTimeString.length === 12:
-        parser = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/ig;
+        parser = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/gi;
         if (fractionPointPosition !== -1) {
           let fractionResult = 60 * fractionPart;
           this.second = Math.floor(fractionResult);
@@ -9222,7 +9850,7 @@ var GeneralizedTime = class extends UTCTime {
         }
         break;
       case dateTimeString.length === 14:
-        parser = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/ig;
+        parser = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/gi;
         if (fractionPointPosition !== -1) {
           const fractionResult = 1e3 * fractionPart;
           this.millisecond = Math.floor(fractionResult);
@@ -9280,7 +9908,7 @@ var GeneralizedTime = class extends UTCTime {
       outputArray.push(padNumber(this.second, 2));
       if (this.millisecond !== 0) {
         outputArray.push(".");
-        outputArray.push(padNumber(this.millisecond, 3));
+        outputArray.push(padNumber(this.millisecond, 3).replace(/0+$/, ""));
       }
       outputArray.push("Z");
       return outputArray.join("");
@@ -9698,6 +10326,28 @@ function compareSchema(root, inputData, inputSchema) {
     result: root
   };
 }
+registerBuiltinEncoder({ BitString, Integer, OctetString, Primitive, Constructed, Sequence, Set: Set2 }, {
+  BaseBlock,
+  ViewWriter,
+  LocalIdentificationBlock,
+  LocalLengthBlock,
+  LocalIntegerValueBlock,
+  LocalOctetStringValueBlock,
+  LocalConstructedValueBlock,
+  LocalBitStringValueBlock,
+  LocalPrimitiveValueBlock,
+  originalBaseBlockToBER: ORIGINAL_BASE_BLOCK_TO_BER,
+  originalWriterWrite: ORIGINAL_VIEW_WRITER_WRITE,
+  originalWriterFinal: ORIGINAL_VIEW_WRITER_FINAL,
+  originalIdentificationToBER: ORIGINAL_LOCAL_IDENTIFICATION_TO_BER,
+  originalLengthToBER: ORIGINAL_LOCAL_LENGTH_TO_BER,
+  originalIntegerToBER: ORIGINAL_LOCAL_INTEGER_TO_BER,
+  originalOctetStringToBER: ORIGINAL_LOCAL_OCTET_STRING_TO_BER,
+  originalBitStringToBER: ORIGINAL_LOCAL_BIT_STRING_TO_BER,
+  originalConstructedToBER: ORIGINAL_LOCAL_CONSTRUCTED_TO_BER,
+  originalPrimitiveToBER: ORIGINAL_LOCAL_PRIMITIVE_TO_BER
+});
+registerFastParser({ Integer, Null, Sequence });
 
 // node_modules/pkijs/build/index.es.js
 var pvtsutils2 = __toESM(require_build());
@@ -10225,7 +10875,7 @@ var ByteStream = class _ByteStream {
   replacePattern(searchPattern, replacePattern, start_, length_, findAllResult = null) {
     let result = [];
     let i;
-    const output2 = {
+    const output = {
       status: -1,
       searchPatternPositions: [],
       replacePatternPositions: []
@@ -10234,12 +10884,12 @@ var ByteStream = class _ByteStream {
     if (findAllResult == null) {
       result = this.findAllIn([searchPattern], start, length);
       if (result.length == 0) {
-        return output2;
+        return output;
       }
     } else {
       result = findAllResult;
     }
-    output2.searchPatternPositions.push(...Array.from(result, (element) => element.position));
+    output.searchPatternPositions.push(...Array.from(result, (element) => element.position));
     const patternDifference = searchPattern.length - replacePattern.length;
     const changedBuffer = new ArrayBuffer(this.view.length - result.length * patternDifference);
     const changedView = new Uint8Array(changedBuffer);
@@ -10248,14 +10898,14 @@ var ByteStream = class _ByteStream {
       const currentPosition = i == 0 ? start : result[i - 1].position;
       changedView.set(new Uint8Array(this.buffer, currentPosition, result[i].position - searchPattern.length - currentPosition), currentPosition - i * patternDifference);
       changedView.set(replacePattern.view, result[i].position - searchPattern.length - i * patternDifference);
-      output2.replacePatternPositions.push(result[i].position - searchPattern.length - i * patternDifference);
+      output.replacePatternPositions.push(result[i].position - searchPattern.length - i * patternDifference);
     }
     i--;
     changedView.set(new Uint8Array(this.buffer, result[i].position, this.length - result[i].position), result[i].position - searchPattern.length + replacePattern.length - i * patternDifference);
     this.buffer = changedBuffer;
     this.view = new Uint8Array(this.buffer);
-    output2.status = 1;
-    return output2;
+    output.status = 1;
+    return output;
   }
   skipPatterns(patterns, start_, length_, backward_) {
     const { start, length, backward } = this.prepareFindParameters(start_, length_, backward_);
@@ -10750,54 +11400,58 @@ var SeqStream = class _SeqStream {
 };
 SeqStream.APPEND_BLOCK = 1e3;
 
-// node_modules/pkijs/node_modules/@noble/hashes/esm/_assert.js
+// node_modules/pkijs/node_modules/@noble/hashes/esm/utils.js
+/*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 function isBytes3(a) {
-  return a instanceof Uint8Array || a != null && typeof a === "object" && a.constructor.name === "Uint8Array";
+  return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array";
 }
-function bytes(b, ...lengths) {
+function abytes3(b, ...lengths) {
   if (!isBytes3(b))
     throw new Error("Uint8Array expected");
   if (lengths.length > 0 && !lengths.includes(b.length))
-    throw new Error(`Uint8Array expected of length ${lengths}, not of length=${b.length}`);
+    throw new Error("Uint8Array expected of length " + lengths + ", got length=" + b.length);
 }
-function exists(instance2, checkFinished = true) {
+function aexists3(instance2, checkFinished = true) {
   if (instance2.destroyed)
     throw new Error("Hash instance has been destroyed");
   if (checkFinished && instance2.finished)
     throw new Error("Hash#digest() has already been called");
 }
-function output(out, instance2) {
-  bytes(out);
+function aoutput2(out, instance2) {
+  abytes3(out);
   const min2 = instance2.outputLen;
   if (out.length < min2) {
-    throw new Error(`digestInto() expects output buffer of length at least ${min2}`);
+    throw new Error("digestInto() expects output buffer of length at least " + min2);
   }
 }
-
-// node_modules/pkijs/node_modules/@noble/hashes/esm/utils.js
-var createView3 = (arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength);
-var rotr2 = (word, shift) => word << 32 - shift | word >>> shift;
-var rotl2 = (word, shift) => word << shift | word >>> 32 - shift >>> 0;
-var isLE2 = new Uint8Array(new Uint32Array([287454020]).buffer)[0] === 68;
+function clean3(...arrays) {
+  for (let i = 0; i < arrays.length; i++) {
+    arrays[i].fill(0);
+  }
+}
+function createView3(arr) {
+  return new DataView(arr.buffer, arr.byteOffset, arr.byteLength);
+}
+function rotr2(word, shift) {
+  return word << 32 - shift | word >>> shift;
+}
+function rotl2(word, shift) {
+  return word << shift | word >>> 32 - shift >>> 0;
+}
 function utf8ToBytes(str) {
   if (typeof str !== "string")
-    throw new Error(`utf8ToBytes expected string, got ${typeof str}`);
+    throw new Error("string expected");
   return new Uint8Array(new TextEncoder().encode(str));
 }
 function toBytes(data) {
   if (typeof data === "string")
     data = utf8ToBytes(data);
-  bytes(data);
+  abytes3(data);
   return data;
 }
 var Hash = class {
-  // Safe version that clones internal state
-  clone() {
-    return this._cloneInto();
-  }
 };
-var toStr = {}.toString;
-function wrapConstructor(hashCons) {
+function createHasher2(hashCons) {
   const hashC = (msg) => hashCons().update(toBytes(msg)).digest();
   const tmp = hashCons();
   hashC.outputLen = tmp.outputLen;
@@ -10807,38 +11461,43 @@ function wrapConstructor(hashCons) {
 }
 
 // node_modules/pkijs/node_modules/@noble/hashes/esm/_md.js
-function setBigUint64(view, byteOffset, value, isLE3) {
+function setBigUint64(view, byteOffset, value, isLE2) {
   if (typeof view.setBigUint64 === "function")
-    return view.setBigUint64(byteOffset, value, isLE3);
+    return view.setBigUint64(byteOffset, value, isLE2);
   const _32n3 = BigInt(32);
   const _u32_max = BigInt(4294967295);
   const wh = Number(value >> _32n3 & _u32_max);
   const wl = Number(value & _u32_max);
-  const h = isLE3 ? 4 : 0;
-  const l = isLE3 ? 0 : 4;
-  view.setUint32(byteOffset + h, wh, isLE3);
-  view.setUint32(byteOffset + l, wl, isLE3);
+  const h = isLE2 ? 4 : 0;
+  const l = isLE2 ? 0 : 4;
+  view.setUint32(byteOffset + h, wh, isLE2);
+  view.setUint32(byteOffset + l, wl, isLE2);
 }
-var Chi2 = (a, b, c) => a & b ^ ~a & c;
-var Maj2 = (a, b, c) => a & b ^ a & c ^ b & c;
+function Chi2(a, b, c) {
+  return a & b ^ ~a & c;
+}
+function Maj2(a, b, c) {
+  return a & b ^ a & c ^ b & c;
+}
 var HashMD2 = class extends Hash {
-  constructor(blockLen, outputLen, padOffset, isLE3) {
+  constructor(blockLen, outputLen, padOffset, isLE2) {
     super();
-    this.blockLen = blockLen;
-    this.outputLen = outputLen;
-    this.padOffset = padOffset;
-    this.isLE = isLE3;
     this.finished = false;
     this.length = 0;
     this.pos = 0;
     this.destroyed = false;
+    this.blockLen = blockLen;
+    this.outputLen = outputLen;
+    this.padOffset = padOffset;
+    this.isLE = isLE2;
     this.buffer = new Uint8Array(blockLen);
     this.view = createView3(this.buffer);
   }
   update(data) {
-    exists(this);
-    const { view, buffer, blockLen } = this;
+    aexists3(this);
     data = toBytes(data);
+    abytes3(data);
+    const { view, buffer, blockLen } = this;
     const len = data.length;
     for (let pos = 0; pos < len; ) {
       const take = Math.min(blockLen - this.pos, len - pos);
@@ -10861,20 +11520,20 @@ var HashMD2 = class extends Hash {
     return this;
   }
   digestInto(out) {
-    exists(this);
-    output(out, this);
+    aexists3(this);
+    aoutput2(out, this);
     this.finished = true;
-    const { buffer, view, blockLen, isLE: isLE3 } = this;
+    const { buffer, view, blockLen, isLE: isLE2 } = this;
     let { pos } = this;
     buffer[pos++] = 128;
-    this.buffer.subarray(pos).fill(0);
+    clean3(this.buffer.subarray(pos));
     if (this.padOffset > blockLen - pos) {
       this.process(view, 0);
       pos = 0;
     }
     for (let i = pos; i < blockLen; i++)
       buffer[i] = 0;
-    setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE3);
+    setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE2);
     this.process(view, 0);
     const oview = createView3(out);
     const len = this.outputLen;
@@ -10885,7 +11544,7 @@ var HashMD2 = class extends Hash {
     if (outLen > state.length)
       throw new Error("_sha2: outputLen bigger than state");
     for (let i = 0; i < outLen; i++)
-      oview.setUint32(4 * i, state[i], isLE3);
+      oview.setUint32(4 * i, state[i], isLE2);
   }
   digest() {
     const { buffer, outputLen } = this;
@@ -10898,18 +11557,67 @@ var HashMD2 = class extends Hash {
     to || (to = new this.constructor());
     to.set(...this.get());
     const { blockLen, buffer, length, finished, destroyed, pos } = this;
+    to.destroyed = destroyed;
+    to.finished = finished;
     to.length = length;
     to.pos = pos;
-    to.finished = finished;
-    to.destroyed = destroyed;
     if (length % blockLen)
       to.buffer.set(buffer);
     return to;
   }
+  clone() {
+    return this._cloneInto();
+  }
 };
+var SHA256_IV2 = /* @__PURE__ */ Uint32Array.from([
+  1779033703,
+  3144134277,
+  1013904242,
+  2773480762,
+  1359893119,
+  2600822924,
+  528734635,
+  1541459225
+]);
+var SHA384_IV2 = /* @__PURE__ */ Uint32Array.from([
+  3418070365,
+  3238371032,
+  1654270250,
+  914150663,
+  2438529370,
+  812702999,
+  355462360,
+  4144912697,
+  1731405415,
+  4290775857,
+  2394180231,
+  1750603025,
+  3675008525,
+  1694076839,
+  1203062813,
+  3204075428
+]);
+var SHA512_IV2 = /* @__PURE__ */ Uint32Array.from([
+  1779033703,
+  4089235720,
+  3144134277,
+  2227873595,
+  1013904242,
+  4271175723,
+  2773480762,
+  1595750129,
+  1359893119,
+  2917565137,
+  2600822924,
+  725511199,
+  528734635,
+  4215389547,
+  1541459225,
+  327033209
+]);
 
-// node_modules/pkijs/node_modules/@noble/hashes/esm/sha1.js
-var SHA1_IV2 = /* @__PURE__ */ new Uint32Array([
+// node_modules/pkijs/node_modules/@noble/hashes/esm/legacy.js
+var SHA1_IV2 = /* @__PURE__ */ Uint32Array.from([
   1732584193,
   4023233417,
   2562383102,
@@ -10927,14 +11635,14 @@ var SHA1 = class extends HashMD2 {
     this.E = SHA1_IV2[4] | 0;
   }
   get() {
-    const { A, B, C, D: D2, E: E2 } = this;
-    return [A, B, C, D2, E2];
+    const { A, B, C, D, E: E2 } = this;
+    return [A, B, C, D, E2];
   }
-  set(A, B, C, D2, E2) {
+  set(A, B, C, D, E2) {
     this.A = A | 0;
     this.B = B | 0;
     this.C = C | 0;
-    this.D = D2 | 0;
+    this.D = D | 0;
     this.E = E2 | 0;
   }
   process(view, offset) {
@@ -10942,25 +11650,25 @@ var SHA1 = class extends HashMD2 {
       SHA1_W2[i] = view.getUint32(offset, false);
     for (let i = 16; i < 80; i++)
       SHA1_W2[i] = rotl2(SHA1_W2[i - 3] ^ SHA1_W2[i - 8] ^ SHA1_W2[i - 14] ^ SHA1_W2[i - 16], 1);
-    let { A, B, C, D: D2, E: E2 } = this;
+    let { A, B, C, D, E: E2 } = this;
     for (let i = 0; i < 80; i++) {
       let F, K2;
       if (i < 20) {
-        F = Chi2(B, C, D2);
+        F = Chi2(B, C, D);
         K2 = 1518500249;
       } else if (i < 40) {
-        F = B ^ C ^ D2;
+        F = B ^ C ^ D;
         K2 = 1859775393;
       } else if (i < 60) {
-        F = Maj2(B, C, D2);
+        F = Maj2(B, C, D);
         K2 = 2400959708;
       } else {
-        F = B ^ C ^ D2;
+        F = B ^ C ^ D;
         K2 = 3395469782;
       }
       const T2 = rotl2(A, 5) + F + E2 + K2 + SHA1_W2[i] | 0;
-      E2 = D2;
-      D2 = C;
+      E2 = D;
+      D = C;
       C = rotl2(B, 30);
       B = A;
       A = T2;
@@ -10968,22 +11676,60 @@ var SHA1 = class extends HashMD2 {
     A = A + this.A | 0;
     B = B + this.B | 0;
     C = C + this.C | 0;
-    D2 = D2 + this.D | 0;
+    D = D + this.D | 0;
     E2 = E2 + this.E | 0;
-    this.set(A, B, C, D2, E2);
+    this.set(A, B, C, D, E2);
   }
   roundClean() {
-    SHA1_W2.fill(0);
+    clean3(SHA1_W2);
   }
   destroy() {
     this.set(0, 0, 0, 0, 0);
-    this.buffer.fill(0);
+    clean3(this.buffer);
   }
 };
-var sha12 = /* @__PURE__ */ wrapConstructor(() => new SHA1());
+var sha12 = /* @__PURE__ */ createHasher2(() => new SHA1());
 
-// node_modules/pkijs/node_modules/@noble/hashes/esm/sha256.js
-var SHA256_K2 = /* @__PURE__ */ new Uint32Array([
+// node_modules/pkijs/node_modules/@noble/hashes/esm/sha1.js
+var sha13 = sha12;
+
+// node_modules/pkijs/node_modules/@noble/hashes/esm/_u64.js
+var U32_MASK642 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
+var _32n2 = /* @__PURE__ */ BigInt(32);
+function fromBig2(n, le = false) {
+  if (le)
+    return { h: Number(n & U32_MASK642), l: Number(n >> _32n2 & U32_MASK642) };
+  return { h: Number(n >> _32n2 & U32_MASK642) | 0, l: Number(n & U32_MASK642) | 0 };
+}
+function split2(lst, le = false) {
+  const len = lst.length;
+  let Ah = new Uint32Array(len);
+  let Al = new Uint32Array(len);
+  for (let i = 0; i < len; i++) {
+    const { h, l } = fromBig2(lst[i], le);
+    [Ah[i], Al[i]] = [h, l];
+  }
+  return [Ah, Al];
+}
+var shrSH2 = (h, _l, s) => h >>> s;
+var shrSL2 = (h, l, s) => h << 32 - s | l >>> s;
+var rotrSH2 = (h, l, s) => h >>> s | l << 32 - s;
+var rotrSL2 = (h, l, s) => h << 32 - s | l >>> s;
+var rotrBH2 = (h, l, s) => h << 64 - s | l >>> s - 32;
+var rotrBL2 = (h, l, s) => h >>> s - 32 | l << 64 - s;
+function add2(Ah, Al, Bh, Bl) {
+  const l = (Al >>> 0) + (Bl >>> 0);
+  return { h: Ah + Bh + (l / 2 ** 32 | 0) | 0, l: l | 0 };
+}
+var add3L2 = (Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0);
+var add3H2 = (low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0;
+var add4L2 = (Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0);
+var add4H2 = (low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0;
+var add5L2 = (Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0);
+var add5H2 = (low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0;
+
+// node_modules/pkijs/node_modules/@noble/hashes/esm/sha2.js
+var SHA256_K2 = /* @__PURE__ */ Uint32Array.from([
   1116352408,
   1899447441,
   3049323471,
@@ -11049,20 +11795,10 @@ var SHA256_K2 = /* @__PURE__ */ new Uint32Array([
   3204031479,
   3329325298
 ]);
-var SHA256_IV2 = /* @__PURE__ */ new Uint32Array([
-  1779033703,
-  3144134277,
-  1013904242,
-  2773480762,
-  1359893119,
-  2600822924,
-  528734635,
-  1541459225
-]);
 var SHA256_W2 = /* @__PURE__ */ new Uint32Array(64);
 var SHA256 = class extends HashMD2 {
-  constructor() {
-    super(64, 32, 8, false);
+  constructor(outputLen = 32) {
+    super(64, outputLen, 8, false);
     this.A = SHA256_IV2[0] | 0;
     this.B = SHA256_IV2[1] | 0;
     this.C = SHA256_IV2[2] | 0;
@@ -11073,15 +11809,15 @@ var SHA256 = class extends HashMD2 {
     this.H = SHA256_IV2[7] | 0;
   }
   get() {
-    const { A, B, C, D: D2, E: E2, F, G: G2, H } = this;
-    return [A, B, C, D2, E2, F, G2, H];
+    const { A, B, C, D, E: E2, F, G: G2, H } = this;
+    return [A, B, C, D, E2, F, G2, H];
   }
   // prettier-ignore
-  set(A, B, C, D2, E2, F, G2, H) {
+  set(A, B, C, D, E2, F, G2, H) {
     this.A = A | 0;
     this.B = B | 0;
     this.C = C | 0;
-    this.D = D2 | 0;
+    this.D = D | 0;
     this.E = E2 | 0;
     this.F = F | 0;
     this.G = G2 | 0;
@@ -11097,7 +11833,7 @@ var SHA256 = class extends HashMD2 {
       const s1 = rotr2(W2, 17) ^ rotr2(W2, 19) ^ W2 >>> 10;
       SHA256_W2[i] = s1 + SHA256_W2[i - 7] + s0 + SHA256_W2[i - 16] | 0;
     }
-    let { A, B, C, D: D2, E: E2, F, G: G2, H } = this;
+    let { A, B, C, D, E: E2, F, G: G2, H } = this;
     for (let i = 0; i < 64; i++) {
       const sigma1 = rotr2(E2, 6) ^ rotr2(E2, 11) ^ rotr2(E2, 25);
       const T1 = H + sigma1 + Chi2(E2, F, G2) + SHA256_K2[i] + SHA256_W2[i] | 0;
@@ -11106,8 +11842,8 @@ var SHA256 = class extends HashMD2 {
       H = G2;
       G2 = F;
       F = E2;
-      E2 = D2 + T1 | 0;
-      D2 = C;
+      E2 = D + T1 | 0;
+      D = C;
       C = B;
       B = A;
       A = T1 + T2 | 0;
@@ -11115,91 +11851,22 @@ var SHA256 = class extends HashMD2 {
     A = A + this.A | 0;
     B = B + this.B | 0;
     C = C + this.C | 0;
-    D2 = D2 + this.D | 0;
+    D = D + this.D | 0;
     E2 = E2 + this.E | 0;
     F = F + this.F | 0;
     G2 = G2 + this.G | 0;
     H = H + this.H | 0;
-    this.set(A, B, C, D2, E2, F, G2, H);
+    this.set(A, B, C, D, E2, F, G2, H);
   }
   roundClean() {
-    SHA256_W2.fill(0);
+    clean3(SHA256_W2);
   }
   destroy() {
     this.set(0, 0, 0, 0, 0, 0, 0, 0);
-    this.buffer.fill(0);
+    clean3(this.buffer);
   }
 };
-var sha2562 = /* @__PURE__ */ wrapConstructor(() => new SHA256());
-
-// node_modules/pkijs/node_modules/@noble/hashes/esm/_u64.js
-var U32_MASK642 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
-var _32n2 = /* @__PURE__ */ BigInt(32);
-function fromBig2(n, le = false) {
-  if (le)
-    return { h: Number(n & U32_MASK642), l: Number(n >> _32n2 & U32_MASK642) };
-  return { h: Number(n >> _32n2 & U32_MASK642) | 0, l: Number(n & U32_MASK642) | 0 };
-}
-function split2(lst, le = false) {
-  let Ah = new Uint32Array(lst.length);
-  let Al = new Uint32Array(lst.length);
-  for (let i = 0; i < lst.length; i++) {
-    const { h, l } = fromBig2(lst[i], le);
-    [Ah[i], Al[i]] = [h, l];
-  }
-  return [Ah, Al];
-}
-var toBig = (h, l) => BigInt(h >>> 0) << _32n2 | BigInt(l >>> 0);
-var shrSH2 = (h, _l, s) => h >>> s;
-var shrSL2 = (h, l, s) => h << 32 - s | l >>> s;
-var rotrSH2 = (h, l, s) => h >>> s | l << 32 - s;
-var rotrSL2 = (h, l, s) => h << 32 - s | l >>> s;
-var rotrBH2 = (h, l, s) => h << 64 - s | l >>> s - 32;
-var rotrBL2 = (h, l, s) => h >>> s - 32 | l << 64 - s;
-var rotr32H = (_h, l) => l;
-var rotr32L = (h, _l) => h;
-var rotlSH = (h, l, s) => h << s | l >>> 32 - s;
-var rotlSL = (h, l, s) => l << s | h >>> 32 - s;
-var rotlBH = (h, l, s) => l << s - 32 | h >>> 64 - s;
-var rotlBL = (h, l, s) => h << s - 32 | l >>> 64 - s;
-function add2(Ah, Al, Bh, Bl) {
-  const l = (Al >>> 0) + (Bl >>> 0);
-  return { h: Ah + Bh + (l / 2 ** 32 | 0) | 0, l: l | 0 };
-}
-var add3L2 = (Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0);
-var add3H2 = (low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0;
-var add4L2 = (Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0);
-var add4H2 = (low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0;
-var add5L2 = (Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0);
-var add5H2 = (low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0;
-var u64 = {
-  fromBig: fromBig2,
-  split: split2,
-  toBig,
-  shrSH: shrSH2,
-  shrSL: shrSL2,
-  rotrSH: rotrSH2,
-  rotrSL: rotrSL2,
-  rotrBH: rotrBH2,
-  rotrBL: rotrBL2,
-  rotr32H,
-  rotr32L,
-  rotlSH,
-  rotlSL,
-  rotlBH,
-  rotlBL,
-  add: add2,
-  add3L: add3L2,
-  add3H: add3H2,
-  add4L: add4L2,
-  add4H: add4H2,
-  add5H: add5H2,
-  add5L: add5L2
-};
-var u64_default = u64;
-
-// node_modules/pkijs/node_modules/@noble/hashes/esm/sha512.js
-var [SHA512_Kh2, SHA512_Kl2] = /* @__PURE__ */ (() => u64_default.split([
+var K5122 = /* @__PURE__ */ (() => split2([
   "0x428a2f98d728ae22",
   "0x7137449123ef65cd",
   "0xb5c0fbcfec4d3b2f",
@@ -11281,27 +11948,29 @@ var [SHA512_Kh2, SHA512_Kl2] = /* @__PURE__ */ (() => u64_default.split([
   "0x5fcb6fab3ad6faec",
   "0x6c44198c4a475817"
 ].map((n) => BigInt(n))))();
+var SHA512_Kh2 = /* @__PURE__ */ (() => K5122[0])();
+var SHA512_Kl2 = /* @__PURE__ */ (() => K5122[1])();
 var SHA512_W_H2 = /* @__PURE__ */ new Uint32Array(80);
 var SHA512_W_L2 = /* @__PURE__ */ new Uint32Array(80);
 var SHA512 = class extends HashMD2 {
-  constructor() {
-    super(128, 64, 16, false);
-    this.Ah = 1779033703 | 0;
-    this.Al = 4089235720 | 0;
-    this.Bh = 3144134277 | 0;
-    this.Bl = 2227873595 | 0;
-    this.Ch = 1013904242 | 0;
-    this.Cl = 4271175723 | 0;
-    this.Dh = 2773480762 | 0;
-    this.Dl = 1595750129 | 0;
-    this.Eh = 1359893119 | 0;
-    this.El = 2917565137 | 0;
-    this.Fh = 2600822924 | 0;
-    this.Fl = 725511199 | 0;
-    this.Gh = 528734635 | 0;
-    this.Gl = 4215389547 | 0;
-    this.Hh = 1541459225 | 0;
-    this.Hl = 327033209 | 0;
+  constructor(outputLen = 64) {
+    super(128, outputLen, 16, false);
+    this.Ah = SHA512_IV2[0] | 0;
+    this.Al = SHA512_IV2[1] | 0;
+    this.Bh = SHA512_IV2[2] | 0;
+    this.Bl = SHA512_IV2[3] | 0;
+    this.Ch = SHA512_IV2[4] | 0;
+    this.Cl = SHA512_IV2[5] | 0;
+    this.Dh = SHA512_IV2[6] | 0;
+    this.Dl = SHA512_IV2[7] | 0;
+    this.Eh = SHA512_IV2[8] | 0;
+    this.El = SHA512_IV2[9] | 0;
+    this.Fh = SHA512_IV2[10] | 0;
+    this.Fl = SHA512_IV2[11] | 0;
+    this.Gh = SHA512_IV2[12] | 0;
+    this.Gl = SHA512_IV2[13] | 0;
+    this.Hh = SHA512_IV2[14] | 0;
+    this.Hl = SHA512_IV2[15] | 0;
   }
   // prettier-ignore
   get() {
@@ -11335,28 +12004,28 @@ var SHA512 = class extends HashMD2 {
     for (let i = 16; i < 80; i++) {
       const W15h = SHA512_W_H2[i - 15] | 0;
       const W15l = SHA512_W_L2[i - 15] | 0;
-      const s0h = u64_default.rotrSH(W15h, W15l, 1) ^ u64_default.rotrSH(W15h, W15l, 8) ^ u64_default.shrSH(W15h, W15l, 7);
-      const s0l = u64_default.rotrSL(W15h, W15l, 1) ^ u64_default.rotrSL(W15h, W15l, 8) ^ u64_default.shrSL(W15h, W15l, 7);
+      const s0h = rotrSH2(W15h, W15l, 1) ^ rotrSH2(W15h, W15l, 8) ^ shrSH2(W15h, W15l, 7);
+      const s0l = rotrSL2(W15h, W15l, 1) ^ rotrSL2(W15h, W15l, 8) ^ shrSL2(W15h, W15l, 7);
       const W2h = SHA512_W_H2[i - 2] | 0;
       const W2l = SHA512_W_L2[i - 2] | 0;
-      const s1h = u64_default.rotrSH(W2h, W2l, 19) ^ u64_default.rotrBH(W2h, W2l, 61) ^ u64_default.shrSH(W2h, W2l, 6);
-      const s1l = u64_default.rotrSL(W2h, W2l, 19) ^ u64_default.rotrBL(W2h, W2l, 61) ^ u64_default.shrSL(W2h, W2l, 6);
-      const SUMl = u64_default.add4L(s0l, s1l, SHA512_W_L2[i - 7], SHA512_W_L2[i - 16]);
-      const SUMh = u64_default.add4H(SUMl, s0h, s1h, SHA512_W_H2[i - 7], SHA512_W_H2[i - 16]);
+      const s1h = rotrSH2(W2h, W2l, 19) ^ rotrBH2(W2h, W2l, 61) ^ shrSH2(W2h, W2l, 6);
+      const s1l = rotrSL2(W2h, W2l, 19) ^ rotrBL2(W2h, W2l, 61) ^ shrSL2(W2h, W2l, 6);
+      const SUMl = add4L2(s0l, s1l, SHA512_W_L2[i - 7], SHA512_W_L2[i - 16]);
+      const SUMh = add4H2(SUMl, s0h, s1h, SHA512_W_H2[i - 7], SHA512_W_H2[i - 16]);
       SHA512_W_H2[i] = SUMh | 0;
       SHA512_W_L2[i] = SUMl | 0;
     }
     let { Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl } = this;
     for (let i = 0; i < 80; i++) {
-      const sigma1h = u64_default.rotrSH(Eh, El, 14) ^ u64_default.rotrSH(Eh, El, 18) ^ u64_default.rotrBH(Eh, El, 41);
-      const sigma1l = u64_default.rotrSL(Eh, El, 14) ^ u64_default.rotrSL(Eh, El, 18) ^ u64_default.rotrBL(Eh, El, 41);
+      const sigma1h = rotrSH2(Eh, El, 14) ^ rotrSH2(Eh, El, 18) ^ rotrBH2(Eh, El, 41);
+      const sigma1l = rotrSL2(Eh, El, 14) ^ rotrSL2(Eh, El, 18) ^ rotrBL2(Eh, El, 41);
       const CHIh = Eh & Fh ^ ~Eh & Gh;
       const CHIl = El & Fl ^ ~El & Gl;
-      const T1ll = u64_default.add5L(Hl, sigma1l, CHIl, SHA512_Kl2[i], SHA512_W_L2[i]);
-      const T1h = u64_default.add5H(T1ll, Hh, sigma1h, CHIh, SHA512_Kh2[i], SHA512_W_H2[i]);
+      const T1ll = add5L2(Hl, sigma1l, CHIl, SHA512_Kl2[i], SHA512_W_L2[i]);
+      const T1h = add5H2(T1ll, Hh, sigma1h, CHIh, SHA512_Kh2[i], SHA512_W_H2[i]);
       const T1l = T1ll | 0;
-      const sigma0h = u64_default.rotrSH(Ah, Al, 28) ^ u64_default.rotrBH(Ah, Al, 34) ^ u64_default.rotrBH(Ah, Al, 39);
-      const sigma0l = u64_default.rotrSL(Ah, Al, 28) ^ u64_default.rotrBL(Ah, Al, 34) ^ u64_default.rotrBL(Ah, Al, 39);
+      const sigma0h = rotrSH2(Ah, Al, 28) ^ rotrBH2(Ah, Al, 34) ^ rotrBH2(Ah, Al, 39);
+      const sigma0l = rotrSL2(Ah, Al, 28) ^ rotrBL2(Ah, Al, 34) ^ rotrBL2(Ah, Al, 39);
       const MAJh = Ah & Bh ^ Ah & Ch ^ Bh & Ch;
       const MAJl = Al & Bl ^ Al & Cl ^ Bl & Cl;
       Hh = Gh | 0;
@@ -11365,62 +12034,94 @@ var SHA512 = class extends HashMD2 {
       Gl = Fl | 0;
       Fh = Eh | 0;
       Fl = El | 0;
-      ({ h: Eh, l: El } = u64_default.add(Dh | 0, Dl | 0, T1h | 0, T1l | 0));
+      ({ h: Eh, l: El } = add2(Dh | 0, Dl | 0, T1h | 0, T1l | 0));
       Dh = Ch | 0;
       Dl = Cl | 0;
       Ch = Bh | 0;
       Cl = Bl | 0;
       Bh = Ah | 0;
       Bl = Al | 0;
-      const All = u64_default.add3L(T1l, sigma0l, MAJl);
-      Ah = u64_default.add3H(All, T1h, sigma0h, MAJh);
+      const All = add3L2(T1l, sigma0l, MAJl);
+      Ah = add3H2(All, T1h, sigma0h, MAJh);
       Al = All | 0;
     }
-    ({ h: Ah, l: Al } = u64_default.add(this.Ah | 0, this.Al | 0, Ah | 0, Al | 0));
-    ({ h: Bh, l: Bl } = u64_default.add(this.Bh | 0, this.Bl | 0, Bh | 0, Bl | 0));
-    ({ h: Ch, l: Cl } = u64_default.add(this.Ch | 0, this.Cl | 0, Ch | 0, Cl | 0));
-    ({ h: Dh, l: Dl } = u64_default.add(this.Dh | 0, this.Dl | 0, Dh | 0, Dl | 0));
-    ({ h: Eh, l: El } = u64_default.add(this.Eh | 0, this.El | 0, Eh | 0, El | 0));
-    ({ h: Fh, l: Fl } = u64_default.add(this.Fh | 0, this.Fl | 0, Fh | 0, Fl | 0));
-    ({ h: Gh, l: Gl } = u64_default.add(this.Gh | 0, this.Gl | 0, Gh | 0, Gl | 0));
-    ({ h: Hh, l: Hl } = u64_default.add(this.Hh | 0, this.Hl | 0, Hh | 0, Hl | 0));
+    ({ h: Ah, l: Al } = add2(this.Ah | 0, this.Al | 0, Ah | 0, Al | 0));
+    ({ h: Bh, l: Bl } = add2(this.Bh | 0, this.Bl | 0, Bh | 0, Bl | 0));
+    ({ h: Ch, l: Cl } = add2(this.Ch | 0, this.Cl | 0, Ch | 0, Cl | 0));
+    ({ h: Dh, l: Dl } = add2(this.Dh | 0, this.Dl | 0, Dh | 0, Dl | 0));
+    ({ h: Eh, l: El } = add2(this.Eh | 0, this.El | 0, Eh | 0, El | 0));
+    ({ h: Fh, l: Fl } = add2(this.Fh | 0, this.Fl | 0, Fh | 0, Fl | 0));
+    ({ h: Gh, l: Gl } = add2(this.Gh | 0, this.Gl | 0, Gh | 0, Gl | 0));
+    ({ h: Hh, l: Hl } = add2(this.Hh | 0, this.Hl | 0, Hh | 0, Hl | 0));
     this.set(Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl);
   }
   roundClean() {
-    SHA512_W_H2.fill(0);
-    SHA512_W_L2.fill(0);
+    clean3(SHA512_W_H2, SHA512_W_L2);
   }
   destroy() {
-    this.buffer.fill(0);
+    clean3(this.buffer);
     this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   }
 };
 var SHA384 = class extends SHA512 {
   constructor() {
-    super();
-    this.Ah = 3418070365 | 0;
-    this.Al = 3238371032 | 0;
-    this.Bh = 1654270250 | 0;
-    this.Bl = 914150663 | 0;
-    this.Ch = 2438529370 | 0;
-    this.Cl = 812702999 | 0;
-    this.Dh = 355462360 | 0;
-    this.Dl = 4144912697 | 0;
-    this.Eh = 1731405415 | 0;
-    this.El = 4290775857 | 0;
-    this.Fh = 2394180231 | 0;
-    this.Fl = 1750603025 | 0;
-    this.Gh = 3675008525 | 0;
-    this.Gl = 1694076839 | 0;
-    this.Hh = 1203062813 | 0;
-    this.Hl = 3204075428 | 0;
-    this.outputLen = 48;
+    super(48);
+    this.Ah = SHA384_IV2[0] | 0;
+    this.Al = SHA384_IV2[1] | 0;
+    this.Bh = SHA384_IV2[2] | 0;
+    this.Bl = SHA384_IV2[3] | 0;
+    this.Ch = SHA384_IV2[4] | 0;
+    this.Cl = SHA384_IV2[5] | 0;
+    this.Dh = SHA384_IV2[6] | 0;
+    this.Dl = SHA384_IV2[7] | 0;
+    this.Eh = SHA384_IV2[8] | 0;
+    this.El = SHA384_IV2[9] | 0;
+    this.Fh = SHA384_IV2[10] | 0;
+    this.Fl = SHA384_IV2[11] | 0;
+    this.Gh = SHA384_IV2[12] | 0;
+    this.Gl = SHA384_IV2[13] | 0;
+    this.Hh = SHA384_IV2[14] | 0;
+    this.Hl = SHA384_IV2[15] | 0;
   }
 };
-var sha5122 = /* @__PURE__ */ wrapConstructor(() => new SHA512());
-var sha3842 = /* @__PURE__ */ wrapConstructor(() => new SHA384());
+var sha2562 = /* @__PURE__ */ createHasher2(() => new SHA256());
+var sha5122 = /* @__PURE__ */ createHasher2(() => new SHA512());
+var sha3842 = /* @__PURE__ */ createHasher2(() => new SHA384());
 
 // node_modules/pkijs/build/index.es.js
+/*!
+ * Copyright (c) 2014, GlobalSign
+ * Copyright (c) 2015-2019, Peculiar Ventures
+ * All rights reserved.
+ * 
+ * Author 2014-2019, Yury Strozhevsky
+ * 
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ * 
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ * 
+ * * Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ * 
+ * * Neither the name of the {organization} nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * 
+ */
 var EMPTY_BUFFER2 = new ArrayBuffer(0);
 var EMPTY_STRING2 = "";
 var ArgumentError = class _ArgumentError extends TypeError {
@@ -11588,17 +12289,11 @@ var AttributeTypeAndValue = class _AttributeTypeAndValue extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new ObjectIdentifier({ name: names.type || EMPTY_STRING2 }),
-        new Any({ name: names.value || EMPTY_STRING2 })
-      ]
+      value: [new ObjectIdentifier({ name: names.type || EMPTY_STRING2 }), new Any({ name: names.value || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      TYPE$5,
-      "typeValue"
-    ]);
+    clearProps(schema, [TYPE$5, "typeValue"]);
     const asn1 = compareSchema(schema, schema, _AttributeTypeAndValue.schema({
       names: {
         type: TYPE$5,
@@ -11611,10 +12306,7 @@ var AttributeTypeAndValue = class _AttributeTypeAndValue extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new ObjectIdentifier({ value: this.type }),
-        this.value
-      ]
+      value: [new ObjectIdentifier({ value: this.type }), this.value]
     });
   }
   toJSON() {
@@ -11730,10 +12422,7 @@ var RelativeDistinguishedNames = class _RelativeDistinguishedNames extends PkiOb
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      RDN,
-      TYPE_AND_VALUES
-    ]);
+    clearProps(schema, [RDN, TYPE_AND_VALUES]);
     const asn1 = compareSchema(schema, schema, _RelativeDistinguishedNames.schema({
       names: {
         blockName: RDN,
@@ -11749,9 +12438,11 @@ var RelativeDistinguishedNames = class _RelativeDistinguishedNames extends PkiOb
   toSchema() {
     if (this.valueBeforeDecode.byteLength === 0) {
       return new Sequence({
-        value: [new Set2({
-          value: Array.from(this.typesAndValues, (o) => o.toSchema())
-        })]
+        value: [
+          new Set2({
+            value: Array.from(this.typesAndValues, (o) => o.toSchema())
+          })
+        ]
       });
     }
     const asn1 = fromBER(this.valueBeforeDecode);
@@ -11799,10 +12490,7 @@ function builtInStandardAttributes(parameters = {}, optional = false) {
         name: names.country_name || EMPTY_STRING2,
         value: [
           new Choice({
-            value: [
-              new NumericString(),
-              new PrintableString()
-            ]
+            value: [new NumericString(), new PrintableString()]
           })
         ]
       }),
@@ -11815,10 +12503,7 @@ function builtInStandardAttributes(parameters = {}, optional = false) {
         name: names.administration_domain_name || EMPTY_STRING2,
         value: [
           new Choice({
-            value: [
-              new NumericString(),
-              new PrintableString()
-            ]
+            value: [new NumericString(), new PrintableString()]
           })
         ]
       }),
@@ -11849,10 +12534,7 @@ function builtInStandardAttributes(parameters = {}, optional = false) {
         name: names.private_domain_name || EMPTY_STRING2,
         value: [
           new Choice({
-            value: [
-              new NumericString(),
-              new PrintableString()
-            ]
+            value: [new NumericString(), new PrintableString()]
           })
         ]
       }),
@@ -11934,10 +12616,7 @@ function builtInStandardAttributes(parameters = {}, optional = false) {
 function builtInDomainDefinedAttributes(optional = false) {
   return new Sequence({
     optional,
-    value: [
-      new PrintableString(),
-      new PrintableString()
-    ]
+    value: [new PrintableString(), new PrintableString()]
   });
 }
 function extensionAttributes(optional = false) {
@@ -12033,11 +12712,7 @@ var GeneralName = class _GeneralName extends PkiObject {
             tagNumber: 3
           },
           name: names.blockName || EMPTY_STRING2,
-          value: [
-            builtInStandardAttributes(names.builtInStandardAttributes || {}, false),
-            builtInDomainDefinedAttributes(true),
-            extensionAttributes(true)
-          ]
+          value: [builtInStandardAttributes(names.builtInStandardAttributes || {}, false), builtInDomainDefinedAttributes(true), extensionAttributes(true)]
         }),
         new Constructed({
           idBlock: {
@@ -12062,13 +12737,7 @@ var GeneralName = class _GeneralName extends PkiObject {
               },
               value: [
                 new Choice({
-                  value: [
-                    new TeletexString(),
-                    new PrintableString(),
-                    new UniversalString(),
-                    new Utf8String(),
-                    new BmpString()
-                  ]
+                  value: [new TeletexString(), new PrintableString(), new UniversalString(), new Utf8String(), new BmpString()]
                 })
               ]
             }),
@@ -12079,13 +12748,7 @@ var GeneralName = class _GeneralName extends PkiObject {
               },
               value: [
                 new Choice({
-                  value: [
-                    new TeletexString(),
-                    new PrintableString(),
-                    new UniversalString(),
-                    new Utf8String(),
-                    new BmpString()
-                  ]
+                  value: [new TeletexString(), new PrintableString(), new UniversalString(), new Utf8String(), new BmpString()]
                 })
               ]
             })
@@ -12116,18 +12779,7 @@ var GeneralName = class _GeneralName extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      "blockName",
-      "otherName",
-      "rfc822Name",
-      "dNSName",
-      "x400Address",
-      "directoryName",
-      "ediPartyName",
-      "uniformResourceIdentifier",
-      "iPAddress",
-      "registeredID"
-    ]);
+    clearProps(schema, ["blockName", "otherName", "rfc822Name", "dNSName", "x400Address", "directoryName", "ediPartyName", "uniformResourceIdentifier", "iPAddress", "registeredID"]);
     const asn1 = compareSchema(schema, schema, _GeneralName.schema({
       names: {
         blockName: "blockName",
@@ -12175,7 +12827,9 @@ var GeneralName = class _GeneralName extends PkiObject {
         this.value = asn1.result.ediPartyName;
         break;
       case 7:
-        this.value = new OctetString({ valueHex: asn1.result.blockName.valueBlock.valueHex });
+        this.value = new OctetString({
+          valueHex: asn1.result.blockName.valueBlock.valueHex
+        });
         break;
       case 8:
         {
@@ -12200,9 +12854,7 @@ var GeneralName = class _GeneralName extends PkiObject {
             tagClass: 3,
             tagNumber: this.type
           },
-          value: [
-            this.value
-          ]
+          value: [this.value]
         });
       case 1:
       case 2:
@@ -12255,10 +12907,7 @@ var GeneralName = class _GeneralName extends PkiObject {
 GeneralName.CLASS_NAME = "GeneralName";
 var ACCESS_METHOD = "accessMethod";
 var ACCESS_LOCATION = "accessLocation";
-var CLEAR_PROPS$1v = [
-  ACCESS_METHOD,
-  ACCESS_LOCATION
-];
+var CLEAR_PROPS$1v = [ACCESS_METHOD, ACCESS_LOCATION];
 var AccessDescription = class _AccessDescription extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -12282,10 +12931,7 @@ var AccessDescription = class _AccessDescription extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new ObjectIdentifier({ name: names.accessMethod || EMPTY_STRING2 }),
-        GeneralName.schema(names.accessLocation || {})
-      ]
+      value: [new ObjectIdentifier({ name: names.accessMethod || EMPTY_STRING2 }), GeneralName.schema(names.accessLocation || {})]
     });
   }
   fromSchema(schema) {
@@ -12306,10 +12952,7 @@ var AccessDescription = class _AccessDescription extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new ObjectIdentifier({ value: this.accessMethod }),
-        this.accessLocation.toSchema()
-      ]
+      value: [new ObjectIdentifier({ value: this.accessMethod }), this.accessLocation.toSchema()]
     });
   }
   toJSON() {
@@ -12389,11 +13032,7 @@ var Accuracy = class _Accuracy extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      SECONDS,
-      MILLIS,
-      MICROS
-    ]);
+    clearProps(schema, [SECONDS, MILLIS, MICROS]);
     const asn1 = compareSchema(schema, schema, _Accuracy.schema({
       names: {
         seconds: SECONDS,
@@ -12458,10 +13097,7 @@ var ALGORITHM_ID = "algorithmId";
 var ALGORITHM_PARAMS = "algorithmParams";
 var ALGORITHM$2 = "algorithm";
 var PARAMS = "params";
-var CLEAR_PROPS$1u = [
-  ALGORITHM$2,
-  PARAMS
-];
+var CLEAR_PROPS$1u = [ALGORITHM$2, PARAMS];
 var AlgorithmIdentifier = class _AlgorithmIdentifier extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -12498,10 +13134,7 @@ var AlgorithmIdentifier = class _AlgorithmIdentifier extends PkiObject {
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
       optional: names.optional || false,
-      value: [
-        new ObjectIdentifier({ name: names.algorithmIdentifier || EMPTY_STRING2 }),
-        new Any({ name: names.algorithmParams || EMPTY_STRING2, optional: true })
-      ]
+      value: [new ObjectIdentifier({ name: names.algorithmIdentifier || EMPTY_STRING2 }), new Any({ name: names.algorithmParams || EMPTY_STRING2, optional: true })]
     });
   }
   fromSchema(schema) {
@@ -12558,9 +13191,7 @@ var AlgorithmIdentifier = class _AlgorithmIdentifier extends PkiObject {
 };
 AlgorithmIdentifier.CLASS_NAME = "AlgorithmIdentifier";
 var ALT_NAMES = "altNames";
-var CLEAR_PROPS$1t = [
-  ALT_NAMES
-];
+var CLEAR_PROPS$1t = [ALT_NAMES];
 var AltName = class _AltName extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -12615,10 +13246,7 @@ var AltName = class _AltName extends PkiObject {
 AltName.CLASS_NAME = "AltName";
 var TYPE$3 = "type";
 var VALUES$1 = "values";
-var CLEAR_PROPS$1s = [
-  TYPE$3,
-  VALUES$1
-];
+var CLEAR_PROPS$1s = [TYPE$3, VALUES$1];
 var Attribute = class _Attribute extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -12698,10 +13326,7 @@ var Attribute = class _Attribute extends PkiObject {
 Attribute.CLASS_NAME = "Attribute";
 var NOT_BEFORE_TIME = "notBeforeTime";
 var NOT_AFTER_TIME = "notAfterTime";
-var CLEAR_PROPS$1r = [
-  NOT_BEFORE_TIME,
-  NOT_AFTER_TIME
-];
+var CLEAR_PROPS$1r = [NOT_BEFORE_TIME, NOT_AFTER_TIME];
 var AttCertValidityPeriod = class _AttCertValidityPeriod extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -12724,10 +13349,7 @@ var AttCertValidityPeriod = class _AttCertValidityPeriod extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new GeneralizedTime({ name: names.notBeforeTime || EMPTY_STRING2 }),
-        new GeneralizedTime({ name: names.notAfterTime || EMPTY_STRING2 })
-      ]
+      value: [new GeneralizedTime({ name: names.notBeforeTime || EMPTY_STRING2 }), new GeneralizedTime({ name: names.notAfterTime || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -12744,10 +13366,7 @@ var AttCertValidityPeriod = class _AttCertValidityPeriod extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new GeneralizedTime({ valueDate: this.notBeforeTime }),
-        new GeneralizedTime({ valueDate: this.notAfterTime })
-      ]
+      value: [new GeneralizedTime({ valueDate: this.notBeforeTime }), new GeneralizedTime({ valueDate: this.notAfterTime })]
     });
   }
   toJSON() {
@@ -12790,10 +13409,7 @@ var GeneralNames = class _GeneralNames extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      NAMES,
-      GENERAL_NAMES
-    ]);
+    clearProps(schema, [NAMES, GENERAL_NAMES]);
     const asn1 = compareSchema(schema, schema, _GeneralNames.schema({
       names: {
         blockName: NAMES,
@@ -12862,11 +13478,7 @@ var id_ad_ocsp = `${id_ad}.1`;
 var KEY_IDENTIFIER$1 = "keyIdentifier";
 var AUTHORITY_CERT_ISSUER = "authorityCertIssuer";
 var AUTHORITY_CERT_SERIAL_NUMBER = "authorityCertSerialNumber";
-var CLEAR_PROPS$1q = [
-  KEY_IDENTIFIER$1,
-  AUTHORITY_CERT_ISSUER,
-  AUTHORITY_CERT_SERIAL_NUMBER
-];
+var CLEAR_PROPS$1q = [KEY_IDENTIFIER$1, AUTHORITY_CERT_ISSUER, AUTHORITY_CERT_SERIAL_NUMBER];
 var AuthorityKeyIdentifier = class _AuthorityKeyIdentifier extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -12943,11 +13555,15 @@ var AuthorityKeyIdentifier = class _AuthorityKeyIdentifier extends PkiObject {
     }));
     AsnError.assertSchema(asn1, this.className);
     if (KEY_IDENTIFIER$1 in asn1.result)
-      this.keyIdentifier = new OctetString({ valueHex: asn1.result.keyIdentifier.valueBlock.valueHex });
+      this.keyIdentifier = new OctetString({
+        valueHex: asn1.result.keyIdentifier.valueBlock.valueHex
+      });
     if (AUTHORITY_CERT_ISSUER in asn1.result)
       this.authorityCertIssuer = Array.from(asn1.result.authorityCertIssuer, (o) => new GeneralName({ schema: o }));
     if (AUTHORITY_CERT_SERIAL_NUMBER in asn1.result)
-      this.authorityCertSerialNumber = new Integer({ valueHex: asn1.result.authorityCertSerialNumber.valueBlock.valueHex });
+      this.authorityCertSerialNumber = new Integer({
+        valueHex: asn1.result.authorityCertSerialNumber.valueBlock.valueHex
+      });
   }
   toSchema() {
     const outputArray = [];
@@ -13035,10 +13651,7 @@ var BasicConstraints = class _BasicConstraints extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      CA,
-      PATH_LENGTH_CONSTRAINT
-    ]);
+    clearProps(schema, [CA, PATH_LENGTH_CONSTRAINT]);
     const asn1 = compareSchema(schema, schema, _BasicConstraints.schema({
       names: {
         cA: CA,
@@ -13179,10 +13792,7 @@ var CAVersion = class _CAVersion extends PkiObject {
 CAVersion.CLASS_NAME = "CAVersion";
 var POLICY_QUALIFIER_ID = "policyQualifierId";
 var QUALIFIER = "qualifier";
-var CLEAR_PROPS$1p = [
-  POLICY_QUALIFIER_ID,
-  QUALIFIER
-];
+var CLEAR_PROPS$1p = [POLICY_QUALIFIER_ID, QUALIFIER];
 var PolicyQualifierInfo = class _PolicyQualifierInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -13206,10 +13816,7 @@ var PolicyQualifierInfo = class _PolicyQualifierInfo extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new ObjectIdentifier({ name: names.policyQualifierId || EMPTY_STRING2 }),
-        new Any({ name: names.qualifier || EMPTY_STRING2 })
-      ]
+      value: [new ObjectIdentifier({ name: names.policyQualifierId || EMPTY_STRING2 }), new Any({ name: names.qualifier || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -13226,10 +13833,7 @@ var PolicyQualifierInfo = class _PolicyQualifierInfo extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new ObjectIdentifier({ value: this.policyQualifierId }),
-        this.qualifier
-      ]
+      value: [new ObjectIdentifier({ value: this.policyQualifierId }), this.qualifier]
     });
   }
   toJSON() {
@@ -13242,10 +13846,7 @@ var PolicyQualifierInfo = class _PolicyQualifierInfo extends PkiObject {
 PolicyQualifierInfo.CLASS_NAME = "PolicyQualifierInfo";
 var POLICY_IDENTIFIER = "policyIdentifier";
 var POLICY_QUALIFIERS = "policyQualifiers";
-var CLEAR_PROPS$1o = [
-  POLICY_IDENTIFIER,
-  POLICY_QUALIFIERS
-];
+var CLEAR_PROPS$1o = [POLICY_IDENTIFIER, POLICY_QUALIFIERS];
 var PolicyInformation = class _PolicyInformation extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -13322,9 +13923,7 @@ var PolicyInformation = class _PolicyInformation extends PkiObject {
 };
 PolicyInformation.CLASS_NAME = "PolicyInformation";
 var CERTIFICATE_POLICIES = "certificatePolicies";
-var CLEAR_PROPS$1n = [
-  CERTIFICATE_POLICIES
-];
+var CLEAR_PROPS$1n = [CERTIFICATE_POLICIES];
 var CertificatePolicies = class _CertificatePolicies extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -13378,11 +13977,7 @@ CertificatePolicies.CLASS_NAME = "CertificatePolicies";
 var TEMPLATE_ID = "templateID";
 var TEMPLATE_MAJOR_VERSION = "templateMajorVersion";
 var TEMPLATE_MINOR_VERSION = "templateMinorVersion";
-var CLEAR_PROPS$1m = [
-  TEMPLATE_ID,
-  TEMPLATE_MAJOR_VERSION,
-  TEMPLATE_MINOR_VERSION
-];
+var CLEAR_PROPS$1m = [TEMPLATE_ID, TEMPLATE_MAJOR_VERSION, TEMPLATE_MINOR_VERSION];
 var CertificateTemplate = class _CertificateTemplate extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -13472,13 +14067,7 @@ var DISTRIBUTION_POINT_NAMES$1 = "distributionPointNames";
 var REASONS = "reasons";
 var CRL_ISSUER = "cRLIssuer";
 var CRL_ISSUER_NAMES = "cRLIssuerNames";
-var CLEAR_PROPS$1l = [
-  DISTRIBUTION_POINT$1,
-  DISTRIBUTION_POINT_NAMES$1,
-  REASONS,
-  CRL_ISSUER,
-  CRL_ISSUER_NAMES
-];
+var CLEAR_PROPS$1l = [DISTRIBUTION_POINT$1, DISTRIBUTION_POINT_NAMES$1, REASONS, CRL_ISSUER, CRL_ISSUER_NAMES];
 var DistributionPoint = class _DistributionPoint extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -13675,9 +14264,7 @@ var DistributionPoint = class _DistributionPoint extends PkiObject {
 };
 DistributionPoint.CLASS_NAME = "DistributionPoint";
 var DISTRIBUTION_POINTS = "distributionPoints";
-var CLEAR_PROPS$1k = [
-  DISTRIBUTION_POINTS
-];
+var CLEAR_PROPS$1k = [DISTRIBUTION_POINTS];
 var CRLDistributionPoints = class _CRLDistributionPoints extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -13729,9 +14316,7 @@ var CRLDistributionPoints = class _CRLDistributionPoints extends PkiObject {
 };
 CRLDistributionPoints.CLASS_NAME = "CRLDistributionPoints";
 var KEY_PURPOSES = "keyPurposes";
-var CLEAR_PROPS$1j = [
-  KEY_PURPOSES
-];
+var CLEAR_PROPS$1j = [KEY_PURPOSES];
 var ExtKeyUsage = class _ExtKeyUsage extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -13812,9 +14397,7 @@ var InfoAccess = class _InfoAccess extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      ACCESS_DESCRIPTIONS
-    ]);
+    clearProps(schema, [ACCESS_DESCRIPTIONS]);
     const asn1 = compareSchema(schema, schema, _InfoAccess.schema({
       names: {
         accessDescriptions: ACCESS_DESCRIPTIONS
@@ -13842,15 +14425,7 @@ var ONLY_CONTAINS_CA_CERTS = "onlyContainsCACerts";
 var ONLY_SOME_REASON = "onlySomeReasons";
 var INDIRECT_CRL = "indirectCRL";
 var ONLY_CONTAINS_ATTRIBUTE_CERTS = "onlyContainsAttributeCerts";
-var CLEAR_PROPS$1i = [
-  DISTRIBUTION_POINT,
-  DISTRIBUTION_POINT_NAMES,
-  ONLY_CONTAINS_USER_CERTS,
-  ONLY_CONTAINS_CA_CERTS,
-  ONLY_SOME_REASON,
-  INDIRECT_CRL,
-  ONLY_CONTAINS_ATTRIBUTE_CERTS
-];
+var CLEAR_PROPS$1i = [DISTRIBUTION_POINT, DISTRIBUTION_POINT_NAMES, ONLY_CONTAINS_USER_CERTS, ONLY_CONTAINS_CA_CERTS, ONLY_SOME_REASON, INDIRECT_CRL, ONLY_CONTAINS_ATTRIBUTE_CERTS];
 var IssuingDistributionPoint = class _IssuingDistributionPoint extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -14129,11 +14704,7 @@ IssuingDistributionPoint.CLASS_NAME = "IssuingDistributionPoint";
 var BASE = "base";
 var MINIMUM = "minimum";
 var MAXIMUM = "maximum";
-var CLEAR_PROPS$1h = [
-  BASE,
-  MINIMUM,
-  MAXIMUM
-];
+var CLEAR_PROPS$1h = [BASE, MINIMUM, MAXIMUM];
 var GeneralSubtree = class _GeneralSubtree extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -14274,10 +14845,7 @@ var GeneralSubtree = class _GeneralSubtree extends PkiObject {
 GeneralSubtree.CLASS_NAME = "GeneralSubtree";
 var PERMITTED_SUBTREES = "permittedSubtrees";
 var EXCLUDED_SUBTREES = "excludedSubtrees";
-var CLEAR_PROPS$1g = [
-  PERMITTED_SUBTREES,
-  EXCLUDED_SUBTREES
-];
+var CLEAR_PROPS$1g = [PERMITTED_SUBTREES, EXCLUDED_SUBTREES];
 var NameConstraints = class _NameConstraints extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -14386,10 +14954,7 @@ var NameConstraints = class _NameConstraints extends PkiObject {
 NameConstraints.CLASS_NAME = "NameConstraints";
 var REQUIRE_EXPLICIT_POLICY = "requireExplicitPolicy";
 var INHIBIT_POLICY_MAPPING = "inhibitPolicyMapping";
-var CLEAR_PROPS$1f = [
-  REQUIRE_EXPLICIT_POLICY,
-  INHIBIT_POLICY_MAPPING
-];
+var CLEAR_PROPS$1f = [REQUIRE_EXPLICIT_POLICY, INHIBIT_POLICY_MAPPING];
 var PolicyConstraints = class _PolicyConstraints extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -14497,10 +15062,7 @@ var PolicyConstraints = class _PolicyConstraints extends PkiObject {
 PolicyConstraints.CLASS_NAME = "PolicyConstraints";
 var ISSUER_DOMAIN_POLICY = "issuerDomainPolicy";
 var SUBJECT_DOMAIN_POLICY = "subjectDomainPolicy";
-var CLEAR_PROPS$1e = [
-  ISSUER_DOMAIN_POLICY,
-  SUBJECT_DOMAIN_POLICY
-];
+var CLEAR_PROPS$1e = [ISSUER_DOMAIN_POLICY, SUBJECT_DOMAIN_POLICY];
 var PolicyMapping = class _PolicyMapping extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -14524,10 +15086,7 @@ var PolicyMapping = class _PolicyMapping extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new ObjectIdentifier({ name: names.issuerDomainPolicy || EMPTY_STRING2 }),
-        new ObjectIdentifier({ name: names.subjectDomainPolicy || EMPTY_STRING2 })
-      ]
+      value: [new ObjectIdentifier({ name: names.issuerDomainPolicy || EMPTY_STRING2 }), new ObjectIdentifier({ name: names.subjectDomainPolicy || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -14544,10 +15103,7 @@ var PolicyMapping = class _PolicyMapping extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new ObjectIdentifier({ value: this.issuerDomainPolicy }),
-        new ObjectIdentifier({ value: this.subjectDomainPolicy })
-      ]
+      value: [new ObjectIdentifier({ value: this.issuerDomainPolicy }), new ObjectIdentifier({ value: this.subjectDomainPolicy })]
     });
   }
   toJSON() {
@@ -14559,9 +15115,7 @@ var PolicyMapping = class _PolicyMapping extends PkiObject {
 };
 PolicyMapping.CLASS_NAME = "PolicyMapping";
 var MAPPINGS = "mappings";
-var CLEAR_PROPS$1d = [
-  MAPPINGS
-];
+var CLEAR_PROPS$1d = [MAPPINGS];
 var PolicyMappings = class _PolicyMappings extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -14614,10 +15168,7 @@ var PolicyMappings = class _PolicyMappings extends PkiObject {
 PolicyMappings.CLASS_NAME = "PolicyMappings";
 var NOT_BEFORE$1 = "notBefore";
 var NOT_AFTER$1 = "notAfter";
-var CLEAR_PROPS$1c = [
-  NOT_BEFORE$1,
-  NOT_AFTER$1
-];
+var CLEAR_PROPS$1c = [NOT_BEFORE$1, NOT_AFTER$1];
 var PrivateKeyUsagePeriod = class _PrivateKeyUsagePeriod extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -14680,7 +15231,9 @@ var PrivateKeyUsagePeriod = class _PrivateKeyUsagePeriod extends PkiObject {
       this.notBefore = localNotBefore.toDate();
     }
     if (NOT_AFTER$1 in asn1.result) {
-      const localNotAfter = new GeneralizedTime({ valueHex: asn1.result.notAfter.valueBlock.valueHex });
+      const localNotAfter = new GeneralizedTime({
+        valueHex: asn1.result.notAfter.valueBlock.valueHex
+      });
       localNotAfter.fromBuffer(asn1.result.notAfter.valueBlock.valueHex);
       this.notAfter = localNotAfter.toDate();
     }
@@ -14724,13 +15277,8 @@ PrivateKeyUsagePeriod.CLASS_NAME = "PrivateKeyUsagePeriod";
 var ID = "id";
 var TYPE$2 = "type";
 var VALUES = "values";
-var QC_STATEMENT_CLEAR_PROPS = [
-  ID,
-  TYPE$2
-];
-var QC_STATEMENTS_CLEAR_PROPS = [
-  VALUES
-];
+var QC_STATEMENT_CLEAR_PROPS = [ID, TYPE$2];
+var QC_STATEMENTS_CLEAR_PROPS = [VALUES];
 var QCStatement = class _QCStatement extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -14789,9 +15337,7 @@ var QCStatement = class _QCStatement extends PkiObject {
       this.type = asn1.result.type;
   }
   toSchema() {
-    const value = [
-      new ObjectIdentifier({ value: this.id })
-    ];
+    const value = [new ObjectIdentifier({ value: this.id })];
     if (TYPE$2 in this)
       value.push(this.type);
     return new Sequence({
@@ -15015,10 +15561,7 @@ var RSAPublicKey = class _RSAPublicKey extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new Integer({ name: names.modulus || EMPTY_STRING2 }),
-        new Integer({ name: names.publicExponent || EMPTY_STRING2 })
-      ]
+      value: [new Integer({ name: names.modulus || EMPTY_STRING2 }), new Integer({ name: names.publicExponent || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -15035,10 +15578,7 @@ var RSAPublicKey = class _RSAPublicKey extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.modulus.convertToDER(),
-        this.publicExponent
-      ]
+      value: [this.modulus.convertToDER(), this.publicExponent]
     });
   }
   toJSON() {
@@ -15050,8 +15590,12 @@ var RSAPublicKey = class _RSAPublicKey extends PkiObject {
   fromJSON(json) {
     ParameterError.assert("json", json, "n", "e");
     const array = stringToArrayBuffer(fromBase64(json.n, true));
-    this.modulus = new Integer({ valueHex: array.slice(0, Math.pow(2, nearestPowerOf2(array.byteLength))) });
-    this.publicExponent = new Integer({ valueHex: stringToArrayBuffer(fromBase64(json.e, true)).slice(0, 3) });
+    this.modulus = new Integer({
+      valueHex: array.slice(0, Math.pow(2, nearestPowerOf2(array.byteLength)))
+    });
+    this.publicExponent = new Integer({
+      valueHex: stringToArrayBuffer(fromBase64(json.e, true)).slice(0, 3)
+    });
   }
 };
 RSAPublicKey.CLASS_NAME = "RSAPublicKey";
@@ -15124,10 +15668,7 @@ var PublicKeyInfo = class _PublicKeyInfo extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        AlgorithmIdentifier.schema(names.algorithm || {}),
-        new BitString({ name: names.subjectPublicKey || EMPTY_STRING2 })
-      ]
+      value: [AlgorithmIdentifier.schema(names.algorithm || {}), new BitString({ name: names.subjectPublicKey || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -15148,10 +15689,7 @@ var PublicKeyInfo = class _PublicKeyInfo extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.algorithm.toSchema(),
-        this.subjectPublicKey
-      ]
+      value: [this.algorithm.toSchema(), this.subjectPublicKey]
     });
   }
   toJSON() {
@@ -15195,7 +15733,9 @@ var PublicKeyInfo = class _PublicKeyInfo extends PkiObject {
         default:
           throw new Error(`Invalid value for "kty" parameter: ${json.kty}`);
       }
-      this.subjectPublicKey = new BitString({ valueHex: this.parsedKey.toSchema().toBER(false) });
+      this.subjectPublicKey = new BitString({
+        valueHex: this.parsedKey.toSchema().toBER(false)
+      });
     }
   }
   async importKey(publicKey, crypto2 = getCrypto(true)) {
@@ -15221,12 +15761,7 @@ var VERSION$l = "version";
 var PRIVATE_KEY$1 = "privateKey";
 var NAMED_CURVE = "namedCurve";
 var PUBLIC_KEY$1 = "publicKey";
-var CLEAR_PROPS$19 = [
-  VERSION$l,
-  PRIVATE_KEY$1,
-  NAMED_CURVE,
-  PUBLIC_KEY$1
-];
+var CLEAR_PROPS$19 = [VERSION$l, PRIVATE_KEY$1, NAMED_CURVE, PUBLIC_KEY$1];
 var ECPrivateKey = class _ECPrivateKey extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -15286,9 +15821,7 @@ var ECPrivateKey = class _ECPrivateKey extends PkiObject {
             tagClass: 3,
             tagNumber: 0
           },
-          value: [
-            new ObjectIdentifier({ name: names.namedCurve || EMPTY_STRING2 })
-          ]
+          value: [new ObjectIdentifier({ name: names.namedCurve || EMPTY_STRING2 })]
         }),
         new Constructed({
           optional: true,
@@ -15296,9 +15829,7 @@ var ECPrivateKey = class _ECPrivateKey extends PkiObject {
             tagClass: 3,
             tagNumber: 1
           },
-          value: [
-            new BitString({ name: names.publicKey || EMPTY_STRING2 })
-          ]
+          value: [new BitString({ name: names.publicKey || EMPTY_STRING2 })]
         })
       ]
     });
@@ -15320,7 +15851,9 @@ var ECPrivateKey = class _ECPrivateKey extends PkiObject {
       this.namedCurve = asn1.result.namedCurve.valueBlock.toString();
     }
     if (PUBLIC_KEY$1 in asn1.result) {
-      const publicKeyData = { schema: asn1.result.publicKey.valueBlock.valueHex };
+      const publicKeyData = {
+        schema: asn1.result.publicKey.valueBlock.valueHex
+      };
       if (NAMED_CURVE in this) {
         publicKeyData.namedCurve = this.namedCurve;
       }
@@ -15328,19 +15861,14 @@ var ECPrivateKey = class _ECPrivateKey extends PkiObject {
     }
   }
   toSchema() {
-    const outputArray = [
-      new Integer({ value: this.version }),
-      this.privateKey
-    ];
+    const outputArray = [new Integer({ value: this.version }), this.privateKey];
     if (this.namedCurve) {
       outputArray.push(new Constructed({
         idBlock: {
           tagClass: 3,
           tagNumber: 0
         },
-        value: [
-          new ObjectIdentifier({ value: this.namedCurve })
-        ]
+        value: [new ObjectIdentifier({ value: this.namedCurve })]
       }));
     }
     if (this.publicKey) {
@@ -15349,9 +15877,7 @@ var ECPrivateKey = class _ECPrivateKey extends PkiObject {
           tagClass: 3,
           tagNumber: 1
         },
-        value: [
-          new BitString({ valueHex: this.publicKey.toSchema().toBER(false) })
-        ]
+        value: [new BitString({ valueHex: this.publicKey.toSchema().toBER(false) })]
       }));
     }
     return new Sequence({
@@ -15390,7 +15916,9 @@ var ECPrivateKey = class _ECPrivateKey extends PkiObject {
       view.set(convertBufferView, 1);
       this.privateKey = new OctetString({ valueHex: buffer });
     } else {
-      this.privateKey = new OctetString({ valueHex: convertBuffer.slice(0, coordinateLength) });
+      this.privateKey = new OctetString({
+        valueHex: convertBuffer.slice(0, coordinateLength)
+      });
     }
     if (json.x && json.y) {
       this.publicKey = new ECPublicKey({ json });
@@ -15401,11 +15929,7 @@ ECPrivateKey.CLASS_NAME = "ECPrivateKey";
 var PRIME = "prime";
 var EXPONENT = "exponent";
 var COEFFICIENT$1 = "coefficient";
-var CLEAR_PROPS$18 = [
-  PRIME,
-  EXPONENT,
-  COEFFICIENT$1
-];
+var CLEAR_PROPS$18 = [PRIME, EXPONENT, COEFFICIENT$1];
 var OtherPrimeInfo = class _OtherPrimeInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -15435,11 +15959,7 @@ var OtherPrimeInfo = class _OtherPrimeInfo extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new Integer({ name: names.prime || EMPTY_STRING2 }),
-        new Integer({ name: names.exponent || EMPTY_STRING2 }),
-        new Integer({ name: names.coefficient || EMPTY_STRING2 })
-      ]
+      value: [new Integer({ name: names.prime || EMPTY_STRING2 }), new Integer({ name: names.exponent || EMPTY_STRING2 }), new Integer({ name: names.coefficient || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -15458,11 +15978,7 @@ var OtherPrimeInfo = class _OtherPrimeInfo extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.prime.convertToDER(),
-        this.exponent.convertToDER(),
-        this.coefficient.convertToDER()
-      ]
+      value: [this.prime.convertToDER(), this.exponent.convertToDER(), this.coefficient.convertToDER()]
     });
   }
   toJSON() {
@@ -15490,18 +16006,7 @@ var EXPONENT1 = "exponent1";
 var EXPONENT2 = "exponent2";
 var COEFFICIENT = "coefficient";
 var OTHER_PRIME_INFOS = "otherPrimeInfos";
-var CLEAR_PROPS$17 = [
-  VERSION$k,
-  MODULUS,
-  PUBLIC_EXPONENT,
-  PRIVATE_EXPONENT,
-  PRIME1,
-  PRIME2,
-  EXPONENT1,
-  EXPONENT2,
-  COEFFICIENT,
-  OTHER_PRIME_INFOS
-];
+var CLEAR_PROPS$17 = [VERSION$k, MODULUS, PUBLIC_EXPONENT, PRIVATE_EXPONENT, PRIME1, PRIME2, EXPONENT1, EXPONENT2, COEFFICIENT, OTHER_PRIME_INFOS];
 var RSAPrivateKey = class _RSAPrivateKey extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -15649,7 +16154,9 @@ var RSAPrivateKey = class _RSAPrivateKey extends PkiObject {
     ParameterError.assert("json", json, "n", "e", "d", "p", "q", "dp", "dq", "qi");
     this.modulus = new Integer({ valueHex: pvtsutils2.Convert.FromBase64Url(json.n) });
     this.publicExponent = new Integer({ valueHex: pvtsutils2.Convert.FromBase64Url(json.e) });
-    this.privateExponent = new Integer({ valueHex: pvtsutils2.Convert.FromBase64Url(json.d) });
+    this.privateExponent = new Integer({
+      valueHex: pvtsutils2.Convert.FromBase64Url(json.d)
+    });
     this.prime1 = new Integer({ valueHex: pvtsutils2.Convert.FromBase64Url(json.p) });
     this.prime2 = new Integer({ valueHex: pvtsutils2.Convert.FromBase64Url(json.q) });
     this.exponent1 = new Integer({ valueHex: pvtsutils2.Convert.FromBase64Url(json.dp) });
@@ -15666,12 +16173,7 @@ var PRIVATE_KEY_ALGORITHM = "privateKeyAlgorithm";
 var PRIVATE_KEY = "privateKey";
 var ATTRIBUTES$5 = "attributes";
 var PARSED_KEY = "parsedKey";
-var CLEAR_PROPS$16 = [
-  VERSION$j,
-  PRIVATE_KEY_ALGORITHM,
-  PRIVATE_KEY,
-  ATTRIBUTES$5
-];
+var CLEAR_PROPS$16 = [VERSION$j, PRIVATE_KEY_ALGORITHM, PRIVATE_KEY, ATTRIBUTES$5];
 var PrivateKeyInfo = class _PrivateKeyInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -15775,11 +16277,7 @@ var PrivateKeyInfo = class _PrivateKeyInfo extends PkiObject {
     }
   }
   toSchema() {
-    const outputArray = [
-      new Integer({ value: this.version }),
-      this.privateKeyAlgorithm.toSchema(),
-      this.privateKey
-    ];
+    const outputArray = [new Integer({ value: this.version }), this.privateKeyAlgorithm.toSchema(), this.privateKey];
     if (this.attributes) {
       outputArray.push(new Constructed({
         optional: true,
@@ -15839,7 +16337,9 @@ var PrivateKeyInfo = class _PrivateKeyInfo extends PkiObject {
         default:
           throw new Error(`Invalid value for "kty" parameter: ${json.kty}`);
       }
-      this.privateKey = new OctetString({ valueHex: this.parsedKey.toSchema().toBER(false) });
+      this.privateKey = new OctetString({
+        valueHex: this.parsedKey.toSchema().toBER(false)
+      });
     }
   }
 };
@@ -15847,11 +16347,7 @@ PrivateKeyInfo.CLASS_NAME = "PrivateKeyInfo";
 var CONTENT_TYPE$1 = "contentType";
 var CONTENT_ENCRYPTION_ALGORITHM = "contentEncryptionAlgorithm";
 var ENCRYPTED_CONTENT = "encryptedContent";
-var CLEAR_PROPS$15 = [
-  CONTENT_TYPE$1,
-  CONTENT_ENCRYPTION_ALGORITHM,
-  ENCRYPTED_CONTENT
-];
+var CLEAR_PROPS$15 = [CONTENT_TYPE$1, CONTENT_ENCRYPTION_ALGORITHM, ENCRYPTED_CONTENT];
 var PIECE_SIZE = 1024;
 var EncryptedContentInfo = class _EncryptedContentInfo extends PkiObject {
   constructor(parameters = {}) {
@@ -15959,7 +16455,9 @@ var EncryptedContentInfo = class _EncryptedContentInfo extends PkiObject {
     }));
     AsnError.assertSchema(asn1, this.className);
     this.contentType = asn1.result.contentType.valueBlock.toString();
-    this.contentEncryptionAlgorithm = new AlgorithmIdentifier({ schema: asn1.result.contentEncryptionAlgorithm });
+    this.contentEncryptionAlgorithm = new AlgorithmIdentifier({
+      schema: asn1.result.contentEncryptionAlgorithm
+    });
     if (ENCRYPTED_CONTENT in asn1.result) {
       this.encryptedContent = asn1.result.encryptedContent;
       this.encryptedContent.idBlock.tagClass = 1;
@@ -16008,12 +16506,7 @@ var HASH_ALGORITHM$4 = "hashAlgorithm";
 var MASK_GEN_ALGORITHM$1 = "maskGenAlgorithm";
 var SALT_LENGTH = "saltLength";
 var TRAILER_FIELD = "trailerField";
-var CLEAR_PROPS$14 = [
-  HASH_ALGORITHM$4,
-  MASK_GEN_ALGORITHM$1,
-  SALT_LENGTH,
-  TRAILER_FIELD
-];
+var CLEAR_PROPS$14 = [HASH_ALGORITHM$4, MASK_GEN_ALGORITHM$1, SALT_LENGTH, TRAILER_FIELD];
 var RSASSAPSSParams = class _RSASSAPSSParams extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -16180,12 +16673,7 @@ var SALT = "salt";
 var ITERATION_COUNT = "iterationCount";
 var KEY_LENGTH = "keyLength";
 var PRF = "prf";
-var CLEAR_PROPS$13 = [
-  SALT,
-  ITERATION_COUNT,
-  KEY_LENGTH,
-  PRF
-];
+var CLEAR_PROPS$13 = [SALT, ITERATION_COUNT, KEY_LENGTH, PRF];
 var PBKDF2Params = class _PBKDF2Params extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -16224,10 +16712,7 @@ var PBKDF2Params = class _PBKDF2Params extends PkiObject {
       name: names.blockName || EMPTY_STRING2,
       value: [
         new Choice({
-          value: [
-            new OctetString({ name: names.saltPrimitive || EMPTY_STRING2 }),
-            AlgorithmIdentifier.schema(names.saltConstructed || {})
-          ]
+          value: [new OctetString({ name: names.saltPrimitive || EMPTY_STRING2 }), AlgorithmIdentifier.schema(names.saltConstructed || {})]
         }),
         new Integer({ name: names.iterationCount || EMPTY_STRING2 }),
         new Integer({
@@ -16305,10 +16790,7 @@ var PBKDF2Params = class _PBKDF2Params extends PkiObject {
 PBKDF2Params.CLASS_NAME = "PBKDF2Params";
 var KEY_DERIVATION_FUNC = "keyDerivationFunc";
 var ENCRYPTION_SCHEME = "encryptionScheme";
-var CLEAR_PROPS$12 = [
-  KEY_DERIVATION_FUNC,
-  ENCRYPTION_SCHEME
-];
+var CLEAR_PROPS$12 = [KEY_DERIVATION_FUNC, ENCRYPTION_SCHEME];
 var PBES2Params = class _PBES2Params extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -16332,10 +16814,7 @@ var PBES2Params = class _PBES2Params extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        AlgorithmIdentifier.schema(names.keyDerivationFunc || {}),
-        AlgorithmIdentifier.schema(names.encryptionScheme || {})
-      ]
+      value: [AlgorithmIdentifier.schema(names.keyDerivationFunc || {}), AlgorithmIdentifier.schema(names.encryptionScheme || {})]
     });
   }
   fromSchema(schema) {
@@ -16360,10 +16839,7 @@ var PBES2Params = class _PBES2Params extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.keyDerivationFunc.toSchema(),
-        this.encryptionScheme.toSchema()
-      ]
+      value: [this.keyDerivationFunc.toSchema(), this.encryptionScheme.toSchema()]
     });
   }
   toJSON() {
@@ -16424,27 +16900,27 @@ var AbstractCryptoEngine = class {
   }
 };
 async function makePKCS12B2Key(hashAlgorithm, keyLength, password, salt, iterationCount) {
-  let u3;
+  let u;
   let v;
   let md;
   switch (hashAlgorithm.toUpperCase()) {
     case "SHA-1":
-      u3 = 20;
+      u = 20;
       v = 64;
-      md = sha12;
+      md = sha13;
       break;
     case "SHA-256":
-      u3 = 32;
+      u = 32;
       v = 64;
       md = sha2562;
       break;
     case "SHA-384":
-      u3 = 48;
+      u = 48;
       v = 128;
       md = sha3842;
       break;
     case "SHA-512":
-      u3 = 64;
+      u = 64;
       v = 128;
       md = sha5122;
       break;
@@ -16463,19 +16939,19 @@ async function makePKCS12B2Key(hashAlgorithm, keyLength, password, salt, iterati
     passwordView.setUint16(i * 2, decodedPassword.charCodeAt(i), false);
   }
   passwordView.setUint16(decodedPassword.length * 2, 0, false);
-  const D2 = new Uint8Array(v).fill(3);
+  const D = new Uint8Array(v).fill(3);
   const saltView = new Uint8Array(salt);
   const S2 = new Uint8Array(v * Math.ceil(saltView.length / v)).map((_, i) => saltView[i % saltView.length]);
   const P3 = new Uint8Array(v * Math.ceil(passwordTransformed.length / v)).map((_, i) => passwordTransformed[i % passwordTransformed.length]);
   let I3 = new Uint8Array(S2.length + P3.length);
   I3.set(S2);
   I3.set(P3, S2.length);
-  const c = Math.ceil((keyLength >> 3) / u3);
+  const c = Math.ceil((keyLength >> 3) / u);
   const result = [];
   for (let i = 0; i < c; i++) {
-    let A = new Uint8Array(D2.length + I3.length);
-    A.set(D2);
-    A.set(I3, D2.length);
+    let A = new Uint8Array(D.length + I3.length);
+    A.set(D);
+    A.set(I3, D.length);
     for (let j2 = 0; j2 < iterationCount; j2++) {
       A = md(A);
     }
@@ -16484,11 +16960,11 @@ async function makePKCS12B2Key(hashAlgorithm, keyLength, password, salt, iterati
     const iRound = [];
     for (let j2 = 0; j2 < k2; j2++) {
       const chunk = Array.from(I3.slice(j2 * v, (j2 + 1) * v));
-      let x = 511;
+      let x2 = 511;
       for (let l = B.length - 1; l >= 0; l--) {
-        x >>= 8;
-        x += B[l] + (chunk[l] || 0);
-        chunk[l] = x & 255;
+        x2 >>= 8;
+        x2 += B[l] + (chunk[l] || 0);
+        chunk[l] = x2 & 255;
       }
       iRound.push(...chunk);
     }
@@ -16509,7 +16985,7 @@ function prepareAlgorithm(data) {
 }
 var CryptoEngine = class extends AbstractCryptoEngine {
   async importKey(format, keyData, algorithm, extractable, keyUsages) {
-    var _a3, _b, _c, _d, _e, _f;
+    var _a3, _b2, _c2, _d, _e, _f;
     let jwk = {};
     const alg = prepareAlgorithm(algorithm);
     switch (format.toLowerCase()) {
@@ -16679,7 +17155,7 @@ var CryptoEngine = class extends AbstractCryptoEngine {
                   jwk.alg = "PS512";
                   break;
                 default:
-                  throw new Error(`Incorrect hash algorithm: ${(_b = alg.hash) === null || _b === void 0 ? void 0 : _b.name.toUpperCase()}`);
+                  throw new Error(`Incorrect hash algorithm: ${(_b2 = alg.hash) === null || _b2 === void 0 ? void 0 : _b2.name.toUpperCase()}`);
               }
             }
             case "RSASSA-PKCS1-V1_5":
@@ -16691,7 +17167,7 @@ var CryptoEngine = class extends AbstractCryptoEngine {
                 if (privateKeyInfo.privateKeyAlgorithm.algorithmId !== "1.2.840.113549.1.1.1")
                   throw new Error(`Incorrect private key algorithm: ${privateKeyInfo.privateKeyAlgorithm.algorithmId}`);
                 if ("alg" in jwk === false) {
-                  switch ((_c = alg.hash) === null || _c === void 0 ? void 0 : _c.name.toUpperCase()) {
+                  switch ((_c2 = alg.hash) === null || _c2 === void 0 ? void 0 : _c2.name.toUpperCase()) {
                     case "SHA-1":
                       jwk.alg = "RS1";
                       break;
@@ -17738,13 +18214,17 @@ var CryptoEngine = class extends AbstractCryptoEngine {
       throw new Error(`Unknown "contentEncryptionAlgorithm": ${parameters.encryptedContentInfo.contentEncryptionAlgorithm.algorithmId}`);
     let pbes2Parameters;
     try {
-      pbes2Parameters = new PBES2Params({ schema: parameters.encryptedContentInfo.contentEncryptionAlgorithm.algorithmParams });
+      pbes2Parameters = new PBES2Params({
+        schema: parameters.encryptedContentInfo.contentEncryptionAlgorithm.algorithmParams
+      });
     } catch {
       throw new Error('Incorrectly encoded "pbes2Parameters"');
     }
     let pbkdf2Params;
     try {
-      pbkdf2Params = new PBKDF2Params({ schema: pbes2Parameters.keyDerivationFunc.algorithmParams });
+      pbkdf2Params = new PBKDF2Params({
+        schema: pbes2Parameters.keyDerivationFunc.algorithmParams
+      });
     } catch {
       throw new Error('Incorrectly encoded "pbkdf2Params"');
     }
@@ -18008,6 +18488,9 @@ var engine = {
 function isCryptoEngine(engine2) {
   return engine2 && typeof engine2 === "object" && "crypto" in engine2 ? true : false;
 }
+function getEngineGlobalKey() {
+  return typeof process !== "undefined" && Number.isInteger(process.pid) ? process.pid : /* @__PURE__ */ Symbol.for("pkijs.engine");
+}
 function setEngine(name, ...args) {
   let crypto2 = null;
   if (args.length < 2) {
@@ -18030,21 +18513,22 @@ function setEngine(name, ...args) {
     }
   }
   if (typeof process !== "undefined" && "pid" in process && typeof global !== "undefined" && typeof window === "undefined") {
-    if (typeof global[process.pid] === "undefined") {
-      global[process.pid] = {};
+    const engineKey = getEngineGlobalKey();
+    if (typeof global[engineKey] === "undefined") {
+      global[engineKey] = {};
     } else {
-      if (typeof global[process.pid] !== "object") {
-        throw new Error(`Name global.${process.pid} already exists and it is not an object`);
+      if (typeof global[engineKey] !== "object") {
+        throw new Error(`Name global.${String(engineKey)} already exists and it is not an object`);
       }
     }
-    if (typeof global[process.pid].pkijs === "undefined") {
-      global[process.pid].pkijs = {};
+    if (typeof global[engineKey].pkijs === "undefined") {
+      global[engineKey].pkijs = {};
     } else {
-      if (typeof global[process.pid].pkijs !== "object") {
-        throw new Error(`Name global.${process.pid}.pkijs already exists and it is not an object`);
+      if (typeof global[engineKey].pkijs !== "object") {
+        throw new Error(`Name global.${String(engineKey)}.pkijs already exists and it is not an object`);
       }
     }
-    global[process.pid].pkijs.engine = {
+    global[engineKey].pkijs.engine = {
       name,
       crypto: crypto2
     };
@@ -18059,7 +18543,7 @@ function getEngine() {
   if (typeof process !== "undefined" && "pid" in process && typeof global !== "undefined" && typeof window === "undefined") {
     let _engine;
     try {
-      _engine = global[process.pid].pkijs.engine;
+      _engine = global[getEngineGlobalKey()].pkijs.engine;
     } catch {
       throw new Error("Please call 'setEngine' before call to 'getEngine'");
     }
@@ -18078,19 +18562,10 @@ function createCMSECDSASignature(signatureBuffer) {
   if (signatureBuffer.byteLength % 2 !== 0)
     return EMPTY_BUFFER2;
   const length = signatureBuffer.byteLength / 2;
-  const rBuffer = new ArrayBuffer(length);
-  const rView = new Uint8Array(rBuffer);
-  rView.set(new Uint8Array(signatureBuffer, 0, length));
-  const rInteger = new Integer({ valueHex: rBuffer });
-  const sBuffer = new ArrayBuffer(length);
-  const sView = new Uint8Array(sBuffer);
-  sView.set(new Uint8Array(signatureBuffer, length, length));
-  const sInteger = new Integer({ valueHex: sBuffer });
+  const rInteger = new Integer({ valueHex: toMinimalUnsignedInteger(new Uint8Array(signatureBuffer, 0, length)) });
+  const sInteger = new Integer({ valueHex: toMinimalUnsignedInteger(new Uint8Array(signatureBuffer, length, length)) });
   return new Sequence({
-    value: [
-      rInteger.convertToDER(),
-      sInteger.convertToDER()
-    ]
+    value: [rInteger, sInteger]
   }).toBER(false);
 }
 function createECDSASignatureFromCMS(cmsSignature, pointSize) {
@@ -18136,7 +18611,7 @@ async function kdfWithCounter(hashFunction, zBuffer, Counter, SharedInfo, crypto
   };
 }
 async function kdf(hashFunction, Zbuffer, keydatalen, SharedInfo, crypto2 = getCrypto(true)) {
-  let hashLength = 0;
+  let hashLength;
   let maxCounter = 1;
   switch (hashFunction.toUpperCase()) {
     case "SHA-1":
@@ -18192,13 +18667,501 @@ async function kdf(hashFunction, Zbuffer, keydatalen, SharedInfo, crypto2 = getC
   }
   return combinedBuffer;
 }
+function toMinimalUnsignedInteger(view) {
+  let start = 0;
+  while (start < view.length - 1 && view[start] === 0)
+    start++;
+  const value = view.subarray(start);
+  if (value.length && value[0] & 128) {
+    const res = new Uint8Array(value.length + 1);
+    res.set(value, 1);
+    return res;
+  }
+  return value.slice();
+}
+var TYPE$12 = "type";
+var VALUE$4 = "value";
+var UTC_TIME_NAME = "utcTimeName";
+var GENERAL_TIME_NAME = "generalTimeName";
+var CLEAR_PROPS$11 = [UTC_TIME_NAME, GENERAL_TIME_NAME];
+var TimeType;
+(function(TimeType2) {
+  TimeType2[TimeType2["UTCTime"] = 0] = "UTCTime";
+  TimeType2[TimeType2["GeneralizedTime"] = 1] = "GeneralizedTime";
+  TimeType2[TimeType2["empty"] = 2] = "empty";
+})(TimeType || (TimeType = {}));
+var Time = class _Time extends PkiObject {
+  constructor(parameters = {}) {
+    super();
+    this.type = getParametersValue(parameters, TYPE$12, _Time.defaultValues(TYPE$12));
+    this.value = getParametersValue(parameters, VALUE$4, _Time.defaultValues(VALUE$4));
+    if (parameters.schema) {
+      this.fromSchema(parameters.schema);
+    }
+  }
+  static defaultValues(memberName) {
+    switch (memberName) {
+      case TYPE$12:
+        return 0;
+      case VALUE$4:
+        return new Date(0, 0, 0);
+      default:
+        return super.defaultValues(memberName);
+    }
+  }
+  static schema(parameters = {}, optional = false) {
+    const names = getParametersValue(parameters, "names", {});
+    return new Choice({
+      optional,
+      value: [new UTCTime({ name: names.utcTimeName || EMPTY_STRING2 }), new GeneralizedTime({ name: names.generalTimeName || EMPTY_STRING2 })]
+    });
+  }
+  fromSchema(schema) {
+    clearProps(schema, CLEAR_PROPS$11);
+    const asn1 = compareSchema(schema, schema, _Time.schema({
+      names: {
+        utcTimeName: UTC_TIME_NAME,
+        generalTimeName: GENERAL_TIME_NAME
+      }
+    }));
+    AsnError.assertSchema(asn1, this.className);
+    if (UTC_TIME_NAME in asn1.result) {
+      this.type = 0;
+      this.value = asn1.result.utcTimeName.toDate();
+    }
+    if (GENERAL_TIME_NAME in asn1.result) {
+      this.type = 1;
+      this.value = asn1.result.generalTimeName.toDate();
+    }
+  }
+  toSchema() {
+    if (this.type === 0) {
+      return new UTCTime({ valueDate: this.value });
+    } else if (this.type === 1) {
+      return new GeneralizedTime({ valueDate: this.value });
+    }
+    return {};
+  }
+  toJSON() {
+    return {
+      type: this.type,
+      value: this.value
+    };
+  }
+};
+Time.CLASS_NAME = "Time";
+var TBS$4 = "tbs";
 var VERSION$i = "version";
-var LOG_ID = "logID";
+var SERIAL_NUMBER$6 = "serialNumber";
+var SIGNATURE$7 = "signature";
+var ISSUER$5 = "issuer";
+var NOT_BEFORE = "notBefore";
+var NOT_AFTER = "notAfter";
+var SUBJECT$1 = "subject";
+var SUBJECT_PUBLIC_KEY_INFO = "subjectPublicKeyInfo";
+var ISSUER_UNIQUE_ID$2 = "issuerUniqueID";
+var SUBJECT_UNIQUE_ID = "subjectUniqueID";
 var EXTENSIONS$6 = "extensions";
+var SIGNATURE_ALGORITHM$8 = "signatureAlgorithm";
+var SIGNATURE_VALUE$4 = "signatureValue";
+var TBS_CERTIFICATE = "tbsCertificate";
+var TBS_CERTIFICATE_VERSION = `${TBS_CERTIFICATE}.${VERSION$i}`;
+var TBS_CERTIFICATE_SERIAL_NUMBER = `${TBS_CERTIFICATE}.${SERIAL_NUMBER$6}`;
+var TBS_CERTIFICATE_SIGNATURE = `${TBS_CERTIFICATE}.${SIGNATURE$7}`;
+var TBS_CERTIFICATE_ISSUER = `${TBS_CERTIFICATE}.${ISSUER$5}`;
+var TBS_CERTIFICATE_NOT_BEFORE = `${TBS_CERTIFICATE}.${NOT_BEFORE}`;
+var TBS_CERTIFICATE_NOT_AFTER = `${TBS_CERTIFICATE}.${NOT_AFTER}`;
+var TBS_CERTIFICATE_SUBJECT = `${TBS_CERTIFICATE}.${SUBJECT$1}`;
+var TBS_CERTIFICATE_SUBJECT_PUBLIC_KEY = `${TBS_CERTIFICATE}.${SUBJECT_PUBLIC_KEY_INFO}`;
+var TBS_CERTIFICATE_ISSUER_UNIQUE_ID = `${TBS_CERTIFICATE}.${ISSUER_UNIQUE_ID$2}`;
+var TBS_CERTIFICATE_SUBJECT_UNIQUE_ID = `${TBS_CERTIFICATE}.${SUBJECT_UNIQUE_ID}`;
+var TBS_CERTIFICATE_EXTENSIONS = `${TBS_CERTIFICATE}.${EXTENSIONS$6}`;
+var CLEAR_PROPS$10 = [
+  TBS_CERTIFICATE,
+  TBS_CERTIFICATE_VERSION,
+  TBS_CERTIFICATE_SERIAL_NUMBER,
+  TBS_CERTIFICATE_SIGNATURE,
+  TBS_CERTIFICATE_ISSUER,
+  TBS_CERTIFICATE_NOT_BEFORE,
+  TBS_CERTIFICATE_NOT_AFTER,
+  TBS_CERTIFICATE_SUBJECT,
+  TBS_CERTIFICATE_SUBJECT_PUBLIC_KEY,
+  TBS_CERTIFICATE_ISSUER_UNIQUE_ID,
+  TBS_CERTIFICATE_SUBJECT_UNIQUE_ID,
+  TBS_CERTIFICATE_EXTENSIONS,
+  SIGNATURE_ALGORITHM$8,
+  SIGNATURE_VALUE$4
+];
+function tbsCertificate(parameters = {}) {
+  const names = getParametersValue(parameters, "names", {});
+  return new Sequence({
+    name: names.blockName || TBS_CERTIFICATE,
+    value: [
+      new Constructed({
+        optional: true,
+        idBlock: {
+          tagClass: 3,
+          tagNumber: 0
+        },
+        value: [
+          new Integer({ name: names.tbsCertificateVersion || TBS_CERTIFICATE_VERSION })
+        ]
+      }),
+      new Integer({
+        name: names.tbsCertificateSerialNumber || TBS_CERTIFICATE_SERIAL_NUMBER
+      }),
+      AlgorithmIdentifier.schema(names.signature || {
+        names: {
+          blockName: TBS_CERTIFICATE_SIGNATURE
+        }
+      }),
+      RelativeDistinguishedNames.schema(names.issuer || {
+        names: {
+          blockName: TBS_CERTIFICATE_ISSUER
+        }
+      }),
+      new Sequence({
+        name: names.tbsCertificateValidity || "tbsCertificate.validity",
+        value: [
+          Time.schema(names.notBefore || {
+            names: {
+              utcTimeName: TBS_CERTIFICATE_NOT_BEFORE,
+              generalTimeName: TBS_CERTIFICATE_NOT_BEFORE
+            }
+          }),
+          Time.schema(names.notAfter || {
+            names: {
+              utcTimeName: TBS_CERTIFICATE_NOT_AFTER,
+              generalTimeName: TBS_CERTIFICATE_NOT_AFTER
+            }
+          })
+        ]
+      }),
+      RelativeDistinguishedNames.schema(names.subject || {
+        names: {
+          blockName: TBS_CERTIFICATE_SUBJECT
+        }
+      }),
+      PublicKeyInfo.schema(names.subjectPublicKeyInfo || {
+        names: {
+          blockName: TBS_CERTIFICATE_SUBJECT_PUBLIC_KEY
+        }
+      }),
+      new Primitive({
+        name: names.tbsCertificateIssuerUniqueID || TBS_CERTIFICATE_ISSUER_UNIQUE_ID,
+        optional: true,
+        idBlock: {
+          tagClass: 3,
+          tagNumber: 1
+        }
+      }),
+      new Primitive({
+        name: names.tbsCertificateSubjectUniqueID || TBS_CERTIFICATE_SUBJECT_UNIQUE_ID,
+        optional: true,
+        idBlock: {
+          tagClass: 3,
+          tagNumber: 2
+        }
+      }),
+      new Constructed({
+        optional: true,
+        idBlock: {
+          tagClass: 3,
+          tagNumber: 3
+        },
+        value: [
+          Extensions.schema(names.extensions || {
+            names: {
+              blockName: TBS_CERTIFICATE_EXTENSIONS
+            }
+          })
+        ]
+      })
+    ]
+  });
+}
+var Certificate = class _Certificate extends PkiObject {
+  get tbs() {
+    return pvtsutils2.BufferSourceConverter.toArrayBuffer(this.tbsView);
+  }
+  set tbs(value) {
+    this.tbsView = new Uint8Array(value);
+  }
+  constructor(parameters = {}) {
+    super();
+    this.tbsView = new Uint8Array(getParametersValue(parameters, TBS$4, _Certificate.defaultValues(TBS$4)));
+    this.version = getParametersValue(parameters, VERSION$i, _Certificate.defaultValues(VERSION$i));
+    this.serialNumber = getParametersValue(parameters, SERIAL_NUMBER$6, _Certificate.defaultValues(SERIAL_NUMBER$6));
+    this.signature = getParametersValue(parameters, SIGNATURE$7, _Certificate.defaultValues(SIGNATURE$7));
+    this.issuer = getParametersValue(parameters, ISSUER$5, _Certificate.defaultValues(ISSUER$5));
+    this.notBefore = getParametersValue(parameters, NOT_BEFORE, _Certificate.defaultValues(NOT_BEFORE));
+    this.notAfter = getParametersValue(parameters, NOT_AFTER, _Certificate.defaultValues(NOT_AFTER));
+    this.subject = getParametersValue(parameters, SUBJECT$1, _Certificate.defaultValues(SUBJECT$1));
+    this.subjectPublicKeyInfo = getParametersValue(parameters, SUBJECT_PUBLIC_KEY_INFO, _Certificate.defaultValues(SUBJECT_PUBLIC_KEY_INFO));
+    if (ISSUER_UNIQUE_ID$2 in parameters) {
+      this.issuerUniqueID = getParametersValue(parameters, ISSUER_UNIQUE_ID$2, _Certificate.defaultValues(ISSUER_UNIQUE_ID$2));
+    }
+    if (SUBJECT_UNIQUE_ID in parameters) {
+      this.subjectUniqueID = getParametersValue(parameters, SUBJECT_UNIQUE_ID, _Certificate.defaultValues(SUBJECT_UNIQUE_ID));
+    }
+    if (EXTENSIONS$6 in parameters) {
+      this.extensions = getParametersValue(parameters, EXTENSIONS$6, _Certificate.defaultValues(EXTENSIONS$6));
+    }
+    this.signatureAlgorithm = getParametersValue(parameters, SIGNATURE_ALGORITHM$8, _Certificate.defaultValues(SIGNATURE_ALGORITHM$8));
+    this.signatureValue = getParametersValue(parameters, SIGNATURE_VALUE$4, _Certificate.defaultValues(SIGNATURE_VALUE$4));
+    if (parameters.schema) {
+      this.fromSchema(parameters.schema);
+    }
+  }
+  static defaultValues(memberName) {
+    switch (memberName) {
+      case TBS$4:
+        return EMPTY_BUFFER2;
+      case VERSION$i:
+        return 0;
+      case SERIAL_NUMBER$6:
+        return new Integer();
+      case SIGNATURE$7:
+        return new AlgorithmIdentifier();
+      case ISSUER$5:
+        return new RelativeDistinguishedNames();
+      case NOT_BEFORE:
+        return new Time();
+      case NOT_AFTER:
+        return new Time();
+      case SUBJECT$1:
+        return new RelativeDistinguishedNames();
+      case SUBJECT_PUBLIC_KEY_INFO:
+        return new PublicKeyInfo();
+      case ISSUER_UNIQUE_ID$2:
+        return EMPTY_BUFFER2;
+      case SUBJECT_UNIQUE_ID:
+        return EMPTY_BUFFER2;
+      case EXTENSIONS$6:
+        return [];
+      case SIGNATURE_ALGORITHM$8:
+        return new AlgorithmIdentifier();
+      case SIGNATURE_VALUE$4:
+        return new BitString();
+      default:
+        return super.defaultValues(memberName);
+    }
+  }
+  static schema(parameters = {}) {
+    const names = getParametersValue(parameters, "names", {});
+    return new Sequence({
+      name: names.blockName || EMPTY_STRING2,
+      value: [
+        tbsCertificate(names.tbsCertificate),
+        AlgorithmIdentifier.schema(names.signatureAlgorithm || {
+          names: {
+            blockName: SIGNATURE_ALGORITHM$8
+          }
+        }),
+        new BitString({ name: names.signatureValue || SIGNATURE_VALUE$4 })
+      ]
+    });
+  }
+  fromSchema(schema) {
+    clearProps(schema, CLEAR_PROPS$10);
+    const asn1 = compareSchema(schema, schema, _Certificate.schema({
+      names: {
+        tbsCertificate: {
+          names: {
+            extensions: {
+              names: {
+                extensions: TBS_CERTIFICATE_EXTENSIONS
+              }
+            }
+          }
+        }
+      }
+    }));
+    AsnError.assertSchema(asn1, this.className);
+    this.tbsView = asn1.result.tbsCertificate.valueBeforeDecodeView;
+    if (TBS_CERTIFICATE_VERSION in asn1.result)
+      this.version = asn1.result[TBS_CERTIFICATE_VERSION].valueBlock.valueDec;
+    this.serialNumber = asn1.result[TBS_CERTIFICATE_SERIAL_NUMBER];
+    this.signature = new AlgorithmIdentifier({ schema: asn1.result[TBS_CERTIFICATE_SIGNATURE] });
+    this.issuer = new RelativeDistinguishedNames({ schema: asn1.result[TBS_CERTIFICATE_ISSUER] });
+    this.notBefore = new Time({ schema: asn1.result[TBS_CERTIFICATE_NOT_BEFORE] });
+    this.notAfter = new Time({ schema: asn1.result[TBS_CERTIFICATE_NOT_AFTER] });
+    this.subject = new RelativeDistinguishedNames({ schema: asn1.result[TBS_CERTIFICATE_SUBJECT] });
+    this.subjectPublicKeyInfo = new PublicKeyInfo({
+      schema: asn1.result[TBS_CERTIFICATE_SUBJECT_PUBLIC_KEY]
+    });
+    if (TBS_CERTIFICATE_ISSUER_UNIQUE_ID in asn1.result)
+      this.issuerUniqueID = asn1.result[TBS_CERTIFICATE_ISSUER_UNIQUE_ID].valueBlock.valueHex;
+    if (TBS_CERTIFICATE_SUBJECT_UNIQUE_ID in asn1.result)
+      this.subjectUniqueID = asn1.result[TBS_CERTIFICATE_SUBJECT_UNIQUE_ID].valueBlock.valueHex;
+    if (TBS_CERTIFICATE_EXTENSIONS in asn1.result)
+      this.extensions = Array.from(asn1.result[TBS_CERTIFICATE_EXTENSIONS], (element) => new Extension({ schema: element }));
+    this.signatureAlgorithm = new AlgorithmIdentifier({ schema: asn1.result.signatureAlgorithm });
+    this.signatureValue = asn1.result.signatureValue;
+  }
+  encodeTBS() {
+    const outputArray = [];
+    if (VERSION$i in this && this.version !== _Certificate.defaultValues(VERSION$i)) {
+      outputArray.push(new Constructed({
+        optional: true,
+        idBlock: {
+          tagClass: 3,
+          tagNumber: 0
+        },
+        value: [
+          new Integer({ value: this.version })
+        ]
+      }));
+    }
+    outputArray.push(this.serialNumber);
+    outputArray.push(this.signature.toSchema());
+    outputArray.push(this.issuer.toSchema());
+    outputArray.push(new Sequence({
+      value: [this.notBefore.toSchema(), this.notAfter.toSchema()]
+    }));
+    outputArray.push(this.subject.toSchema());
+    outputArray.push(this.subjectPublicKeyInfo.toSchema());
+    if (this.issuerUniqueID) {
+      outputArray.push(new Primitive({
+        optional: true,
+        idBlock: {
+          tagClass: 3,
+          tagNumber: 1
+        },
+        valueHex: this.issuerUniqueID
+      }));
+    }
+    if (this.subjectUniqueID) {
+      outputArray.push(new Primitive({
+        optional: true,
+        idBlock: {
+          tagClass: 3,
+          tagNumber: 2
+        },
+        valueHex: this.subjectUniqueID
+      }));
+    }
+    if (this.extensions) {
+      outputArray.push(new Constructed({
+        optional: true,
+        idBlock: {
+          tagClass: 3,
+          tagNumber: 3
+        },
+        value: [
+          new Sequence({
+            value: Array.from(this.extensions, (o) => o.toSchema())
+          })
+        ]
+      }));
+    }
+    return new Sequence({
+      value: outputArray
+    });
+  }
+  toSchema(encodeFlag = false) {
+    let tbsSchema;
+    if (encodeFlag === false) {
+      if (!this.tbsView.byteLength) {
+        return _Certificate.schema().value[0];
+      }
+      const asn1 = fromBER(this.tbsView);
+      AsnError.assert(asn1, "TBS Certificate");
+      tbsSchema = asn1.result;
+    } else {
+      tbsSchema = this.encodeTBS();
+    }
+    return new Sequence({
+      value: [tbsSchema, this.signatureAlgorithm.toSchema(), this.signatureValue]
+    });
+  }
+  toJSON() {
+    const res = {
+      tbs: pvtsutils2.Convert.ToHex(this.tbsView),
+      version: this.version,
+      serialNumber: this.serialNumber.toJSON(),
+      signature: this.signature.toJSON(),
+      issuer: this.issuer.toJSON(),
+      notBefore: this.notBefore.toJSON(),
+      notAfter: this.notAfter.toJSON(),
+      subject: this.subject.toJSON(),
+      subjectPublicKeyInfo: this.subjectPublicKeyInfo.toJSON(),
+      signatureAlgorithm: this.signatureAlgorithm.toJSON(),
+      signatureValue: this.signatureValue.toJSON()
+    };
+    if (VERSION$i in this && this.version !== _Certificate.defaultValues(VERSION$i)) {
+      res.version = this.version;
+    }
+    if (this.issuerUniqueID) {
+      res.issuerUniqueID = pvtsutils2.Convert.ToHex(this.issuerUniqueID);
+    }
+    if (this.subjectUniqueID) {
+      res.subjectUniqueID = pvtsutils2.Convert.ToHex(this.subjectUniqueID);
+    }
+    if (this.extensions) {
+      res.extensions = Array.from(this.extensions, (o) => o.toJSON());
+    }
+    return res;
+  }
+  async getPublicKey(parameters, crypto2 = getCrypto(true)) {
+    return crypto2.getPublicKey(this.subjectPublicKeyInfo, this.signatureAlgorithm, parameters);
+  }
+  async getKeyHash(hashAlgorithm = "SHA-1", crypto2 = getCrypto(true)) {
+    return crypto2.digest({ name: hashAlgorithm }, this.subjectPublicKeyInfo.subjectPublicKey.valueBlock.valueHexView);
+  }
+  async sign(privateKey, hashAlgorithm = "SHA-1", crypto2 = getCrypto(true)) {
+    if (!privateKey) {
+      throw new Error("Need to provide a private key for signing");
+    }
+    const signatureParameters = await crypto2.getSignatureParameters(privateKey, hashAlgorithm);
+    const parameters = signatureParameters.parameters;
+    this.signature = signatureParameters.signatureAlgorithm;
+    this.signatureAlgorithm = signatureParameters.signatureAlgorithm;
+    this.tbsView = new Uint8Array(this.encodeTBS().toBER());
+    const signature = await crypto2.signWithPrivateKey(this.tbsView, privateKey, parameters);
+    this.signatureValue = new BitString({ valueHex: signature });
+  }
+  async verify(issuerCertificate, crypto2 = getCrypto(true)) {
+    let subjectPublicKeyInfo;
+    if (issuerCertificate) {
+      subjectPublicKeyInfo = issuerCertificate.subjectPublicKeyInfo;
+    } else if (this.issuer.isEqual(this.subject)) {
+      subjectPublicKeyInfo = this.subjectPublicKeyInfo;
+    }
+    if (!(subjectPublicKeyInfo instanceof PublicKeyInfo)) {
+      throw new Error("Please provide issuer certificate as a parameter");
+    }
+    return crypto2.verifyWithPublicKey(this.tbsView, this.signatureValue, subjectPublicKeyInfo, this.signatureAlgorithm);
+  }
+};
+Certificate.CLASS_NAME = "Certificate";
+function checkCA(cert, signerCert = null) {
+  if (signerCert && cert.issuer.isEqual(signerCert.issuer) && cert.serialNumber.isEqual(signerCert.serialNumber)) {
+    return null;
+  }
+  let isCA = false;
+  if (cert.extensions) {
+    for (const extension of cert.extensions) {
+      if (extension.extnID === id_BasicConstraints && extension.parsedValue instanceof BasicConstraints) {
+        if (extension.parsedValue.cA) {
+          isCA = true;
+          break;
+        }
+      }
+    }
+  }
+  if (isCA) {
+    return cert;
+  }
+  return null;
+}
+var VERSION$h = "version";
+var LOG_ID = "logID";
+var EXTENSIONS$5 = "extensions";
 var TIMESTAMP = "timestamp";
 var HASH_ALGORITHM$3 = "hashAlgorithm";
-var SIGNATURE_ALGORITHM$8 = "signatureAlgorithm";
-var SIGNATURE$7 = "signature";
+var SIGNATURE_ALGORITHM$7 = "signatureAlgorithm";
+var SIGNATURE$6 = "signature";
 var NONE = "none";
 var MD5 = "md5";
 var SHA12 = "sha1";
@@ -18213,13 +19176,13 @@ var ECDSA = "ecdsa";
 var SignedCertificateTimestamp = class _SignedCertificateTimestamp extends PkiObject {
   constructor(parameters = {}) {
     super();
-    this.version = getParametersValue(parameters, VERSION$i, _SignedCertificateTimestamp.defaultValues(VERSION$i));
+    this.version = getParametersValue(parameters, VERSION$h, _SignedCertificateTimestamp.defaultValues(VERSION$h));
     this.logID = getParametersValue(parameters, LOG_ID, _SignedCertificateTimestamp.defaultValues(LOG_ID));
     this.timestamp = getParametersValue(parameters, TIMESTAMP, _SignedCertificateTimestamp.defaultValues(TIMESTAMP));
-    this.extensions = getParametersValue(parameters, EXTENSIONS$6, _SignedCertificateTimestamp.defaultValues(EXTENSIONS$6));
+    this.extensions = getParametersValue(parameters, EXTENSIONS$5, _SignedCertificateTimestamp.defaultValues(EXTENSIONS$5));
     this.hashAlgorithm = getParametersValue(parameters, HASH_ALGORITHM$3, _SignedCertificateTimestamp.defaultValues(HASH_ALGORITHM$3));
-    this.signatureAlgorithm = getParametersValue(parameters, SIGNATURE_ALGORITHM$8, _SignedCertificateTimestamp.defaultValues(SIGNATURE_ALGORITHM$8));
-    this.signature = getParametersValue(parameters, SIGNATURE$7, _SignedCertificateTimestamp.defaultValues(SIGNATURE$7));
+    this.signatureAlgorithm = getParametersValue(parameters, SIGNATURE_ALGORITHM$7, _SignedCertificateTimestamp.defaultValues(SIGNATURE_ALGORITHM$7));
+    this.signature = getParametersValue(parameters, SIGNATURE$6, _SignedCertificateTimestamp.defaultValues(SIGNATURE$6));
     if ("stream" in parameters && parameters.stream) {
       this.fromStream(parameters.stream);
     }
@@ -18229,17 +19192,17 @@ var SignedCertificateTimestamp = class _SignedCertificateTimestamp extends PkiOb
   }
   static defaultValues(memberName) {
     switch (memberName) {
-      case VERSION$i:
+      case VERSION$h:
         return 0;
       case LOG_ID:
-      case EXTENSIONS$6:
+      case EXTENSIONS$5:
         return EMPTY_BUFFER2;
       case TIMESTAMP:
         return /* @__PURE__ */ new Date(0);
       case HASH_ALGORITHM$3:
-      case SIGNATURE_ALGORITHM$8:
+      case SIGNATURE_ALGORITHM$7:
         return EMPTY_STRING2;
-      case SIGNATURE$7:
+      case SIGNATURE$6:
         return EMPTY_BUFFER2;
       default:
         return super.defaultValues(memberName);
@@ -18421,6 +19384,7 @@ var SignedCertificateTimestamp = class _SignedCertificateTimestamp extends PkiOb
   }
 };
 SignedCertificateTimestamp.CLASS_NAME = "SignedCertificateTimestamp";
+var SCT_EXTENSION_OID = new ObjectIdentifier({ value: id_SignedCertificateTimestampList }).valueBlock.toBER(false);
 var TIMESTAMPS = "timestamps";
 var SignedCertificateTimestampList = class _SignedCertificateTimestampList extends PkiObject {
   constructor(parameters = {}) {
@@ -18495,9 +19459,7 @@ var SignedCertificateTimestampList = class _SignedCertificateTimestampList exten
 };
 SignedCertificateTimestampList.CLASS_NAME = "SignedCertificateTimestampList";
 var ATTRIBUTES$4 = "attributes";
-var CLEAR_PROPS$11 = [
-  ATTRIBUTES$4
-];
+var CLEAR_PROPS$$ = [ATTRIBUTES$4];
 var SubjectDirectoryAttributes = class _SubjectDirectoryAttributes extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -18527,7 +19489,7 @@ var SubjectDirectoryAttributes = class _SubjectDirectoryAttributes extends PkiOb
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$11);
+    clearProps(schema, CLEAR_PROPS$$);
     const asn1 = compareSchema(schema, schema, _SubjectDirectoryAttributes.schema({
       names: {
         attributes: ATTRIBUTES$4
@@ -18606,11 +19568,7 @@ var EXTN_ID = "extnID";
 var CRITICAL = "critical";
 var EXTN_VALUE = "extnValue";
 var PARSED_VALUE$5 = "parsedValue";
-var CLEAR_PROPS$10 = [
-  EXTN_ID,
-  CRITICAL,
-  EXTN_VALUE
-];
+var CLEAR_PROPS$_ = [EXTN_ID, CRITICAL, EXTN_VALUE];
 var Extension = class _Extension extends PkiObject {
   get parsedValue() {
     if (this._parsedValue === void 0) {
@@ -18667,7 +19625,7 @@ var Extension = class _Extension extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$10);
+    clearProps(schema, CLEAR_PROPS$_);
     const asn1 = compareSchema(schema, schema, _Extension.schema({
       names: {
         extnID: EXTN_ID,
@@ -18708,21 +19666,19 @@ var Extension = class _Extension extends PkiObject {
   }
 };
 Extension.CLASS_NAME = "Extension";
-var EXTENSIONS$5 = "extensions";
-var CLEAR_PROPS$$ = [
-  EXTENSIONS$5
-];
+var EXTENSIONS$4 = "extensions";
+var CLEAR_PROPS$Z = [EXTENSIONS$4];
 var Extensions = class _Extensions extends PkiObject {
   constructor(parameters = {}) {
     super();
-    this.extensions = getParametersValue(parameters, EXTENSIONS$5, _Extensions.defaultValues(EXTENSIONS$5));
+    this.extensions = getParametersValue(parameters, EXTENSIONS$4, _Extensions.defaultValues(EXTENSIONS$4));
     if (parameters.schema) {
       this.fromSchema(parameters.schema);
     }
   }
   static defaultValues(memberName) {
     switch (memberName) {
-      case EXTENSIONS$5:
+      case EXTENSIONS$4:
         return [];
       default:
         return super.defaultValues(memberName);
@@ -18742,10 +19698,10 @@ var Extensions = class _Extensions extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$$);
+    clearProps(schema, CLEAR_PROPS$Z);
     const asn1 = compareSchema(schema, schema, _Extensions.schema({
       names: {
-        extensions: EXTENSIONS$5
+        extensions: EXTENSIONS$4
       }
     }));
     AsnError.assertSchema(asn1, this.className);
@@ -18763,19 +19719,15 @@ var Extensions = class _Extensions extends PkiObject {
   }
 };
 Extensions.CLASS_NAME = "Extensions";
-var ISSUER$5 = "issuer";
-var SERIAL_NUMBER$6 = "serialNumber";
+var ISSUER$4 = "issuer";
+var SERIAL_NUMBER$5 = "serialNumber";
 var ISSUER_UID = "issuerUID";
-var CLEAR_PROPS$_ = [
-  ISSUER$5,
-  SERIAL_NUMBER$6,
-  ISSUER_UID
-];
+var CLEAR_PROPS$Y = [ISSUER$4, SERIAL_NUMBER$5, ISSUER_UID];
 var IssuerSerial = class _IssuerSerial extends PkiObject {
   constructor(parameters = {}) {
     super();
-    this.issuer = getParametersValue(parameters, ISSUER$5, _IssuerSerial.defaultValues(ISSUER$5));
-    this.serialNumber = getParametersValue(parameters, SERIAL_NUMBER$6, _IssuerSerial.defaultValues(SERIAL_NUMBER$6));
+    this.issuer = getParametersValue(parameters, ISSUER$4, _IssuerSerial.defaultValues(ISSUER$4));
+    this.serialNumber = getParametersValue(parameters, SERIAL_NUMBER$5, _IssuerSerial.defaultValues(SERIAL_NUMBER$5));
     if (ISSUER_UID in parameters) {
       this.issuerUID = getParametersValue(parameters, ISSUER_UID, _IssuerSerial.defaultValues(ISSUER_UID));
     }
@@ -18785,9 +19737,9 @@ var IssuerSerial = class _IssuerSerial extends PkiObject {
   }
   static defaultValues(memberName) {
     switch (memberName) {
-      case ISSUER$5:
+      case ISSUER$4:
         return new GeneralNames();
-      case SERIAL_NUMBER$6:
+      case SERIAL_NUMBER$5:
         return new Integer();
       case ISSUER_UID:
         return new BitString();
@@ -18810,15 +19762,15 @@ var IssuerSerial = class _IssuerSerial extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$_);
+    clearProps(schema, CLEAR_PROPS$Y);
     const asn1 = compareSchema(schema, schema, _IssuerSerial.schema({
       names: {
         issuer: {
           names: {
-            blockName: ISSUER$5
+            blockName: ISSUER$4
           }
         },
-        serialNumber: SERIAL_NUMBER$6,
+        serialNumber: SERIAL_NUMBER$5,
         issuerUID: ISSUER_UID
       }
     }));
@@ -18830,10 +19782,7 @@ var IssuerSerial = class _IssuerSerial extends PkiObject {
   }
   toSchema() {
     const result = new Sequence({
-      value: [
-        this.issuer.toSchema(),
-        this.serialNumber
-      ]
+      value: [this.issuer.toSchema(), this.serialNumber]
     });
     if (this.issuerUID) {
       result.valueBlock.value.push(this.issuerUID);
@@ -18852,47 +19801,36 @@ var IssuerSerial = class _IssuerSerial extends PkiObject {
   }
 };
 IssuerSerial.CLASS_NAME = "IssuerSerial";
-var VERSION$h = "version";
+var VERSION$g = "version";
 var BASE_CERTIFICATE_ID$2 = "baseCertificateID";
 var SUBJECT_NAME = "subjectName";
-var ISSUER$4 = "issuer";
-var SIGNATURE$6 = "signature";
-var SERIAL_NUMBER$5 = "serialNumber";
+var ISSUER$3 = "issuer";
+var SIGNATURE$5 = "signature";
+var SERIAL_NUMBER$4 = "serialNumber";
 var ATTR_CERT_VALIDITY_PERIOD$1 = "attrCertValidityPeriod";
 var ATTRIBUTES$3 = "attributes";
-var ISSUER_UNIQUE_ID$2 = "issuerUniqueID";
-var EXTENSIONS$4 = "extensions";
-var CLEAR_PROPS$Z = [
-  VERSION$h,
-  BASE_CERTIFICATE_ID$2,
-  SUBJECT_NAME,
-  ISSUER$4,
-  SIGNATURE$6,
-  SERIAL_NUMBER$5,
-  ATTR_CERT_VALIDITY_PERIOD$1,
-  ATTRIBUTES$3,
-  ISSUER_UNIQUE_ID$2,
-  EXTENSIONS$4
-];
+var ISSUER_UNIQUE_ID$1 = "issuerUniqueID";
+var EXTENSIONS$3 = "extensions";
+var CLEAR_PROPS$X = [VERSION$g, BASE_CERTIFICATE_ID$2, SUBJECT_NAME, ISSUER$3, SIGNATURE$5, SERIAL_NUMBER$4, ATTR_CERT_VALIDITY_PERIOD$1, ATTRIBUTES$3, ISSUER_UNIQUE_ID$1, EXTENSIONS$3];
 var AttributeCertificateInfoV1 = class _AttributeCertificateInfoV1 extends PkiObject {
   constructor(parameters = {}) {
     super();
-    this.version = getParametersValue(parameters, VERSION$h, _AttributeCertificateInfoV1.defaultValues(VERSION$h));
+    this.version = getParametersValue(parameters, VERSION$g, _AttributeCertificateInfoV1.defaultValues(VERSION$g));
     if (BASE_CERTIFICATE_ID$2 in parameters) {
       this.baseCertificateID = getParametersValue(parameters, BASE_CERTIFICATE_ID$2, _AttributeCertificateInfoV1.defaultValues(BASE_CERTIFICATE_ID$2));
     }
     if (SUBJECT_NAME in parameters) {
       this.subjectName = getParametersValue(parameters, SUBJECT_NAME, _AttributeCertificateInfoV1.defaultValues(SUBJECT_NAME));
     }
-    this.issuer = getParametersValue(parameters, ISSUER$4, _AttributeCertificateInfoV1.defaultValues(ISSUER$4));
-    this.signature = getParametersValue(parameters, SIGNATURE$6, _AttributeCertificateInfoV1.defaultValues(SIGNATURE$6));
-    this.serialNumber = getParametersValue(parameters, SERIAL_NUMBER$5, _AttributeCertificateInfoV1.defaultValues(SERIAL_NUMBER$5));
+    this.issuer = getParametersValue(parameters, ISSUER$3, _AttributeCertificateInfoV1.defaultValues(ISSUER$3));
+    this.signature = getParametersValue(parameters, SIGNATURE$5, _AttributeCertificateInfoV1.defaultValues(SIGNATURE$5));
+    this.serialNumber = getParametersValue(parameters, SERIAL_NUMBER$4, _AttributeCertificateInfoV1.defaultValues(SERIAL_NUMBER$4));
     this.attrCertValidityPeriod = getParametersValue(parameters, ATTR_CERT_VALIDITY_PERIOD$1, _AttributeCertificateInfoV1.defaultValues(ATTR_CERT_VALIDITY_PERIOD$1));
     this.attributes = getParametersValue(parameters, ATTRIBUTES$3, _AttributeCertificateInfoV1.defaultValues(ATTRIBUTES$3));
-    if (ISSUER_UNIQUE_ID$2 in parameters)
-      this.issuerUniqueID = getParametersValue(parameters, ISSUER_UNIQUE_ID$2, _AttributeCertificateInfoV1.defaultValues(ISSUER_UNIQUE_ID$2));
-    if (EXTENSIONS$4 in parameters) {
-      this.extensions = getParametersValue(parameters, EXTENSIONS$4, _AttributeCertificateInfoV1.defaultValues(EXTENSIONS$4));
+    if (ISSUER_UNIQUE_ID$1 in parameters)
+      this.issuerUniqueID = getParametersValue(parameters, ISSUER_UNIQUE_ID$1, _AttributeCertificateInfoV1.defaultValues(ISSUER_UNIQUE_ID$1));
+    if (EXTENSIONS$3 in parameters) {
+      this.extensions = getParametersValue(parameters, EXTENSIONS$3, _AttributeCertificateInfoV1.defaultValues(EXTENSIONS$3));
     }
     if (parameters.schema) {
       this.fromSchema(parameters.schema);
@@ -18900,25 +19838,25 @@ var AttributeCertificateInfoV1 = class _AttributeCertificateInfoV1 extends PkiOb
   }
   static defaultValues(memberName) {
     switch (memberName) {
-      case VERSION$h:
+      case VERSION$g:
         return 0;
       case BASE_CERTIFICATE_ID$2:
         return new IssuerSerial();
       case SUBJECT_NAME:
         return new GeneralNames();
-      case ISSUER$4:
+      case ISSUER$3:
         return new GeneralNames();
-      case SIGNATURE$6:
+      case SIGNATURE$5:
         return new AlgorithmIdentifier();
-      case SERIAL_NUMBER$5:
+      case SERIAL_NUMBER$4:
         return new Integer();
       case ATTR_CERT_VALIDITY_PERIOD$1:
         return new AttCertValidityPeriod();
       case ATTRIBUTES$3:
         return [];
-      case ISSUER_UNIQUE_ID$2:
+      case ISSUER_UNIQUE_ID$1:
         return new BitString();
-      case EXTENSIONS$4:
+      case EXTENSIONS$3:
         return new Extensions();
       default:
         return super.defaultValues(memberName);
@@ -18975,29 +19913,29 @@ var AttributeCertificateInfoV1 = class _AttributeCertificateInfoV1 extends PkiOb
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$Z);
+    clearProps(schema, CLEAR_PROPS$X);
     const asn1 = compareSchema(schema, schema, _AttributeCertificateInfoV1.schema({
       names: {
-        version: VERSION$h,
+        version: VERSION$g,
         baseCertificateID: BASE_CERTIFICATE_ID$2,
         subjectName: SUBJECT_NAME,
-        issuer: ISSUER$4,
+        issuer: ISSUER$3,
         signature: {
           names: {
-            blockName: SIGNATURE$6
+            blockName: SIGNATURE$5
           }
         },
-        serialNumber: SERIAL_NUMBER$5,
+        serialNumber: SERIAL_NUMBER$4,
         attrCertValidityPeriod: {
           names: {
             blockName: ATTR_CERT_VALIDITY_PERIOD$1
           }
         },
         attributes: ATTRIBUTES$3,
-        issuerUniqueID: ISSUER_UNIQUE_ID$2,
+        issuerUniqueID: ISSUER_UNIQUE_ID$1,
         extensions: {
           names: {
-            blockName: EXTENSIONS$4
+            blockName: EXTENSIONS$3
           }
         }
       }
@@ -19021,12 +19959,14 @@ var AttributeCertificateInfoV1 = class _AttributeCertificateInfoV1 extends PkiOb
     this.issuer = asn1.result.issuer;
     this.signature = new AlgorithmIdentifier({ schema: asn1.result.signature });
     this.serialNumber = asn1.result.serialNumber;
-    this.attrCertValidityPeriod = new AttCertValidityPeriod({ schema: asn1.result.attrCertValidityPeriod });
+    this.attrCertValidityPeriod = new AttCertValidityPeriod({
+      schema: asn1.result.attrCertValidityPeriod
+    });
     this.attributes = Array.from(asn1.result.attributes.valueBlock.value, (element) => new Attribute({ schema: element }));
-    if (ISSUER_UNIQUE_ID$2 in asn1.result) {
+    if (ISSUER_UNIQUE_ID$1 in asn1.result) {
       this.issuerUniqueID = asn1.result.issuerUniqueID;
     }
-    if (EXTENSIONS$4 in asn1.result) {
+    if (EXTENSIONS$3 in asn1.result) {
       this.extensions = new Extensions({ schema: asn1.result.extensions });
     }
   }
@@ -19093,19 +20033,15 @@ var AttributeCertificateInfoV1 = class _AttributeCertificateInfoV1 extends PkiOb
 };
 AttributeCertificateInfoV1.CLASS_NAME = "AttributeCertificateInfoV1";
 var ACINFO$1 = "acinfo";
-var SIGNATURE_ALGORITHM$7 = "signatureAlgorithm";
-var SIGNATURE_VALUE$4 = "signatureValue";
-var CLEAR_PROPS$Y = [
-  ACINFO$1,
-  SIGNATURE_VALUE$4,
-  SIGNATURE_ALGORITHM$7
-];
+var SIGNATURE_ALGORITHM$6 = "signatureAlgorithm";
+var SIGNATURE_VALUE$3 = "signatureValue";
+var CLEAR_PROPS$W = [ACINFO$1, SIGNATURE_VALUE$3, SIGNATURE_ALGORITHM$6];
 var AttributeCertificateV1 = class _AttributeCertificateV1 extends PkiObject {
   constructor(parameters = {}) {
     super();
     this.acinfo = getParametersValue(parameters, ACINFO$1, _AttributeCertificateV1.defaultValues(ACINFO$1));
-    this.signatureAlgorithm = getParametersValue(parameters, SIGNATURE_ALGORITHM$7, _AttributeCertificateV1.defaultValues(SIGNATURE_ALGORITHM$7));
-    this.signatureValue = getParametersValue(parameters, SIGNATURE_VALUE$4, _AttributeCertificateV1.defaultValues(SIGNATURE_VALUE$4));
+    this.signatureAlgorithm = getParametersValue(parameters, SIGNATURE_ALGORITHM$6, _AttributeCertificateV1.defaultValues(SIGNATURE_ALGORITHM$6));
+    this.signatureValue = getParametersValue(parameters, SIGNATURE_VALUE$3, _AttributeCertificateV1.defaultValues(SIGNATURE_VALUE$3));
     if (parameters.schema) {
       this.fromSchema(parameters.schema);
     }
@@ -19114,9 +20050,9 @@ var AttributeCertificateV1 = class _AttributeCertificateV1 extends PkiObject {
     switch (memberName) {
       case ACINFO$1:
         return new AttributeCertificateInfoV1();
-      case SIGNATURE_ALGORITHM$7:
+      case SIGNATURE_ALGORITHM$6:
         return new AlgorithmIdentifier();
-      case SIGNATURE_VALUE$4:
+      case SIGNATURE_VALUE$3:
         return new BitString();
       default:
         return super.defaultValues(memberName);
@@ -19126,15 +20062,11 @@ var AttributeCertificateV1 = class _AttributeCertificateV1 extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        AttributeCertificateInfoV1.schema(names.acinfo || {}),
-        AlgorithmIdentifier.schema(names.signatureAlgorithm || {}),
-        new BitString({ name: names.signatureValue || EMPTY_STRING2 })
-      ]
+      value: [AttributeCertificateInfoV1.schema(names.acinfo || {}), AlgorithmIdentifier.schema(names.signatureAlgorithm || {}), new BitString({ name: names.signatureValue || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$Y);
+    clearProps(schema, CLEAR_PROPS$W);
     const asn1 = compareSchema(schema, schema, _AttributeCertificateV1.schema({
       names: {
         acinfo: {
@@ -19144,10 +20076,10 @@ var AttributeCertificateV1 = class _AttributeCertificateV1 extends PkiObject {
         },
         signatureAlgorithm: {
           names: {
-            blockName: SIGNATURE_ALGORITHM$7
+            blockName: SIGNATURE_ALGORITHM$6
           }
         },
-        signatureValue: SIGNATURE_VALUE$4
+        signatureValue: SIGNATURE_VALUE$3
       }
     }));
     AsnError.assertSchema(asn1, this.className);
@@ -19157,11 +20089,7 @@ var AttributeCertificateV1 = class _AttributeCertificateV1 extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.acinfo.toSchema(),
-        this.signatureAlgorithm.toSchema(),
-        this.signatureValue
-      ]
+      value: [this.acinfo.toSchema(), this.signatureAlgorithm.toSchema(), this.signatureValue]
     });
   }
   toJSON() {
@@ -19177,12 +20105,7 @@ var DIGESTED_OBJECT_TYPE = "digestedObjectType";
 var OTHER_OBJECT_TYPE_ID = "otherObjectTypeID";
 var DIGEST_ALGORITHM$2 = "digestAlgorithm";
 var OBJECT_DIGEST = "objectDigest";
-var CLEAR_PROPS$X = [
-  DIGESTED_OBJECT_TYPE,
-  OTHER_OBJECT_TYPE_ID,
-  DIGEST_ALGORITHM$2,
-  OBJECT_DIGEST
-];
+var CLEAR_PROPS$V = [DIGESTED_OBJECT_TYPE, OTHER_OBJECT_TYPE_ID, DIGEST_ALGORITHM$2, OBJECT_DIGEST];
 var ObjectDigestInfo = class _ObjectDigestInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -19226,7 +20149,7 @@ var ObjectDigestInfo = class _ObjectDigestInfo extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$X);
+    clearProps(schema, CLEAR_PROPS$V);
     const asn1 = compareSchema(schema, schema, _ObjectDigestInfo.schema({
       names: {
         digestedObjectType: DIGESTED_OBJECT_TYPE,
@@ -19274,11 +20197,7 @@ ObjectDigestInfo.CLASS_NAME = "ObjectDigestInfo";
 var ISSUER_NAME = "issuerName";
 var BASE_CERTIFICATE_ID$1 = "baseCertificateID";
 var OBJECT_DIGEST_INFO$1 = "objectDigestInfo";
-var CLEAR_PROPS$W = [
-  ISSUER_NAME,
-  BASE_CERTIFICATE_ID$1,
-  OBJECT_DIGEST_INFO$1
-];
+var CLEAR_PROPS$U = [ISSUER_NAME, BASE_CERTIFICATE_ID$1, OBJECT_DIGEST_INFO$1];
 var V2Form = class _V2Form extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -19339,7 +20258,7 @@ var V2Form = class _V2Form extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$W);
+    clearProps(schema, CLEAR_PROPS$U);
     const asn1 = compareSchema(schema, schema, _V2Form.schema({
       names: {
         issuerName: ISSUER_NAME,
@@ -19407,11 +20326,7 @@ V2Form.CLASS_NAME = "V2Form";
 var BASE_CERTIFICATE_ID = "baseCertificateID";
 var ENTITY_NAME = "entityName";
 var OBJECT_DIGEST_INFO = "objectDigestInfo";
-var CLEAR_PROPS$V = [
-  BASE_CERTIFICATE_ID,
-  ENTITY_NAME,
-  OBJECT_DIGEST_INFO
-];
+var CLEAR_PROPS$T = [BASE_CERTIFICATE_ID, ENTITY_NAME, OBJECT_DIGEST_INFO];
 var Holder = class _Holder extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -19476,7 +20391,7 @@ var Holder = class _Holder extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$V);
+    clearProps(schema, CLEAR_PROPS$T);
     const asn1 = compareSchema(schema, schema, _Holder.schema({
       names: {
         baseCertificateID: BASE_CERTIFICATE_ID,
@@ -19553,41 +20468,31 @@ var Holder = class _Holder extends PkiObject {
   }
 };
 Holder.CLASS_NAME = "Holder";
-var VERSION$g = "version";
+var VERSION$f = "version";
 var HOLDER = "holder";
-var ISSUER$3 = "issuer";
-var SIGNATURE$5 = "signature";
-var SERIAL_NUMBER$4 = "serialNumber";
+var ISSUER$2 = "issuer";
+var SIGNATURE$4 = "signature";
+var SERIAL_NUMBER$3 = "serialNumber";
 var ATTR_CERT_VALIDITY_PERIOD = "attrCertValidityPeriod";
 var ATTRIBUTES$2 = "attributes";
-var ISSUER_UNIQUE_ID$1 = "issuerUniqueID";
-var EXTENSIONS$3 = "extensions";
-var CLEAR_PROPS$U = [
-  VERSION$g,
-  HOLDER,
-  ISSUER$3,
-  SIGNATURE$5,
-  SERIAL_NUMBER$4,
-  ATTR_CERT_VALIDITY_PERIOD,
-  ATTRIBUTES$2,
-  ISSUER_UNIQUE_ID$1,
-  EXTENSIONS$3
-];
+var ISSUER_UNIQUE_ID = "issuerUniqueID";
+var EXTENSIONS$2 = "extensions";
+var CLEAR_PROPS$S = [VERSION$f, HOLDER, ISSUER$2, SIGNATURE$4, SERIAL_NUMBER$3, ATTR_CERT_VALIDITY_PERIOD, ATTRIBUTES$2, ISSUER_UNIQUE_ID, EXTENSIONS$2];
 var AttributeCertificateInfoV2 = class _AttributeCertificateInfoV2 extends PkiObject {
   constructor(parameters = {}) {
     super();
-    this.version = getParametersValue(parameters, VERSION$g, _AttributeCertificateInfoV2.defaultValues(VERSION$g));
+    this.version = getParametersValue(parameters, VERSION$f, _AttributeCertificateInfoV2.defaultValues(VERSION$f));
     this.holder = getParametersValue(parameters, HOLDER, _AttributeCertificateInfoV2.defaultValues(HOLDER));
-    this.issuer = getParametersValue(parameters, ISSUER$3, _AttributeCertificateInfoV2.defaultValues(ISSUER$3));
-    this.signature = getParametersValue(parameters, SIGNATURE$5, _AttributeCertificateInfoV2.defaultValues(SIGNATURE$5));
-    this.serialNumber = getParametersValue(parameters, SERIAL_NUMBER$4, _AttributeCertificateInfoV2.defaultValues(SERIAL_NUMBER$4));
+    this.issuer = getParametersValue(parameters, ISSUER$2, _AttributeCertificateInfoV2.defaultValues(ISSUER$2));
+    this.signature = getParametersValue(parameters, SIGNATURE$4, _AttributeCertificateInfoV2.defaultValues(SIGNATURE$4));
+    this.serialNumber = getParametersValue(parameters, SERIAL_NUMBER$3, _AttributeCertificateInfoV2.defaultValues(SERIAL_NUMBER$3));
     this.attrCertValidityPeriod = getParametersValue(parameters, ATTR_CERT_VALIDITY_PERIOD, _AttributeCertificateInfoV2.defaultValues(ATTR_CERT_VALIDITY_PERIOD));
     this.attributes = getParametersValue(parameters, ATTRIBUTES$2, _AttributeCertificateInfoV2.defaultValues(ATTRIBUTES$2));
-    if (ISSUER_UNIQUE_ID$1 in parameters) {
-      this.issuerUniqueID = getParametersValue(parameters, ISSUER_UNIQUE_ID$1, _AttributeCertificateInfoV2.defaultValues(ISSUER_UNIQUE_ID$1));
+    if (ISSUER_UNIQUE_ID in parameters) {
+      this.issuerUniqueID = getParametersValue(parameters, ISSUER_UNIQUE_ID, _AttributeCertificateInfoV2.defaultValues(ISSUER_UNIQUE_ID));
     }
-    if (EXTENSIONS$3 in parameters) {
-      this.extensions = getParametersValue(parameters, EXTENSIONS$3, _AttributeCertificateInfoV2.defaultValues(EXTENSIONS$3));
+    if (EXTENSIONS$2 in parameters) {
+      this.extensions = getParametersValue(parameters, EXTENSIONS$2, _AttributeCertificateInfoV2.defaultValues(EXTENSIONS$2));
     }
     if (parameters.schema) {
       this.fromSchema(parameters.schema);
@@ -19595,23 +20500,23 @@ var AttributeCertificateInfoV2 = class _AttributeCertificateInfoV2 extends PkiOb
   }
   static defaultValues(memberName) {
     switch (memberName) {
-      case VERSION$g:
+      case VERSION$f:
         return 1;
       case HOLDER:
         return new Holder();
-      case ISSUER$3:
+      case ISSUER$2:
         return {};
-      case SIGNATURE$5:
+      case SIGNATURE$4:
         return new AlgorithmIdentifier();
-      case SERIAL_NUMBER$4:
+      case SERIAL_NUMBER$3:
         return new Integer();
       case ATTR_CERT_VALIDITY_PERIOD:
         return new AttCertValidityPeriod();
       case ATTRIBUTES$2:
         return [];
-      case ISSUER_UNIQUE_ID$1:
+      case ISSUER_UNIQUE_ID:
         return new BitString();
-      case EXTENSIONS$3:
+      case EXTENSIONS$2:
         return new Extensions();
       default:
         return super.defaultValues(memberName);
@@ -19661,32 +20566,32 @@ var AttributeCertificateInfoV2 = class _AttributeCertificateInfoV2 extends PkiOb
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$U);
+    clearProps(schema, CLEAR_PROPS$S);
     const asn1 = compareSchema(schema, schema, _AttributeCertificateInfoV2.schema({
       names: {
-        version: VERSION$g,
+        version: VERSION$f,
         holder: {
           names: {
             blockName: HOLDER
           }
         },
-        issuer: ISSUER$3,
+        issuer: ISSUER$2,
         signature: {
           names: {
-            blockName: SIGNATURE$5
+            blockName: SIGNATURE$4
           }
         },
-        serialNumber: SERIAL_NUMBER$4,
+        serialNumber: SERIAL_NUMBER$3,
         attrCertValidityPeriod: {
           names: {
             blockName: ATTR_CERT_VALIDITY_PERIOD
           }
         },
         attributes: ATTRIBUTES$2,
-        issuerUniqueID: ISSUER_UNIQUE_ID$1,
+        issuerUniqueID: ISSUER_UNIQUE_ID,
         extensions: {
           names: {
-            blockName: EXTENSIONS$3
+            blockName: EXTENSIONS$2
           }
         }
       }
@@ -19708,12 +20613,14 @@ var AttributeCertificateInfoV2 = class _AttributeCertificateInfoV2 extends PkiOb
     }
     this.signature = new AlgorithmIdentifier({ schema: asn1.result.signature });
     this.serialNumber = asn1.result.serialNumber;
-    this.attrCertValidityPeriod = new AttCertValidityPeriod({ schema: asn1.result.attrCertValidityPeriod });
+    this.attrCertValidityPeriod = new AttCertValidityPeriod({
+      schema: asn1.result.attrCertValidityPeriod
+    });
     this.attributes = Array.from(asn1.result.attributes.valueBlock.value, (element) => new Attribute({ schema: element }));
-    if (ISSUER_UNIQUE_ID$1 in asn1.result) {
+    if (ISSUER_UNIQUE_ID in asn1.result) {
       this.issuerUniqueID = asn1.result.issuerUniqueID;
     }
-    if (EXTENSIONS$3 in asn1.result) {
+    if (EXTENSIONS$2 in asn1.result) {
       this.extensions = new Extensions({ schema: asn1.result.extensions });
     }
   }
@@ -19766,19 +20673,15 @@ var AttributeCertificateInfoV2 = class _AttributeCertificateInfoV2 extends PkiOb
 };
 AttributeCertificateInfoV2.CLASS_NAME = "AttributeCertificateInfoV2";
 var ACINFO = "acinfo";
-var SIGNATURE_ALGORITHM$6 = "signatureAlgorithm";
-var SIGNATURE_VALUE$3 = "signatureValue";
-var CLEAR_PROPS$T = [
-  ACINFO,
-  SIGNATURE_ALGORITHM$6,
-  SIGNATURE_VALUE$3
-];
+var SIGNATURE_ALGORITHM$5 = "signatureAlgorithm";
+var SIGNATURE_VALUE$2 = "signatureValue";
+var CLEAR_PROPS$R = [ACINFO, SIGNATURE_ALGORITHM$5, SIGNATURE_VALUE$2];
 var AttributeCertificateV2 = class _AttributeCertificateV2 extends PkiObject {
   constructor(parameters = {}) {
     super();
     this.acinfo = getParametersValue(parameters, ACINFO, _AttributeCertificateV2.defaultValues(ACINFO));
-    this.signatureAlgorithm = getParametersValue(parameters, SIGNATURE_ALGORITHM$6, _AttributeCertificateV2.defaultValues(SIGNATURE_ALGORITHM$6));
-    this.signatureValue = getParametersValue(parameters, SIGNATURE_VALUE$3, _AttributeCertificateV2.defaultValues(SIGNATURE_VALUE$3));
+    this.signatureAlgorithm = getParametersValue(parameters, SIGNATURE_ALGORITHM$5, _AttributeCertificateV2.defaultValues(SIGNATURE_ALGORITHM$5));
+    this.signatureValue = getParametersValue(parameters, SIGNATURE_VALUE$2, _AttributeCertificateV2.defaultValues(SIGNATURE_VALUE$2));
     if (parameters.schema) {
       this.fromSchema(parameters.schema);
     }
@@ -19787,9 +20690,9 @@ var AttributeCertificateV2 = class _AttributeCertificateV2 extends PkiObject {
     switch (memberName) {
       case ACINFO:
         return new AttributeCertificateInfoV2();
-      case SIGNATURE_ALGORITHM$6:
+      case SIGNATURE_ALGORITHM$5:
         return new AlgorithmIdentifier();
-      case SIGNATURE_VALUE$3:
+      case SIGNATURE_VALUE$2:
         return new BitString();
       default:
         return super.defaultValues(memberName);
@@ -19799,15 +20702,11 @@ var AttributeCertificateV2 = class _AttributeCertificateV2 extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        AttributeCertificateInfoV2.schema(names.acinfo || {}),
-        AlgorithmIdentifier.schema(names.signatureAlgorithm || {}),
-        new BitString({ name: names.signatureValue || EMPTY_STRING2 })
-      ]
+      value: [AttributeCertificateInfoV2.schema(names.acinfo || {}), AlgorithmIdentifier.schema(names.signatureAlgorithm || {}), new BitString({ name: names.signatureValue || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$T);
+    clearProps(schema, CLEAR_PROPS$R);
     const asn1 = compareSchema(schema, schema, _AttributeCertificateV2.schema({
       names: {
         acinfo: {
@@ -19817,10 +20716,10 @@ var AttributeCertificateV2 = class _AttributeCertificateV2 extends PkiObject {
         },
         signatureAlgorithm: {
           names: {
-            blockName: SIGNATURE_ALGORITHM$6
+            blockName: SIGNATURE_ALGORITHM$5
           }
         },
-        signatureValue: SIGNATURE_VALUE$3
+        signatureValue: SIGNATURE_VALUE$2
       }
     }));
     AsnError.assertSchema(asn1, this.className);
@@ -19830,11 +20729,7 @@ var AttributeCertificateV2 = class _AttributeCertificateV2 extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.acinfo.toSchema(),
-        this.signatureAlgorithm.toSchema(),
-        this.signatureValue
-      ]
+      value: [this.acinfo.toSchema(), this.signatureAlgorithm.toSchema(), this.signatureValue]
     });
   }
   toJSON() {
@@ -19848,7 +20743,7 @@ var AttributeCertificateV2 = class _AttributeCertificateV2 extends PkiObject {
 AttributeCertificateV2.CLASS_NAME = "AttributeCertificateV2";
 var CONTENT_TYPE = "contentType";
 var CONTENT = "content";
-var CLEAR_PROPS$S = [CONTENT_TYPE, CONTENT];
+var CLEAR_PROPS$Q = [CONTENT_TYPE, CONTENT];
 var ContentInfo = class _ContentInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -19899,7 +20794,7 @@ var ContentInfo = class _ContentInfo extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$S);
+    clearProps(schema, CLEAR_PROPS$Q);
     const asn1 = compareSchema(schema, schema, _ContentInfo.schema());
     AsnError.assertSchema(asn1, this.className);
     this.contentType = asn1.result.contentType.valueBlock.toString();
@@ -19934,491 +20829,10 @@ ContentInfo.DATA = id_ContentType_Data;
 ContentInfo.SIGNED_DATA = id_ContentType_SignedData;
 ContentInfo.ENVELOPED_DATA = id_ContentType_EnvelopedData;
 ContentInfo.ENCRYPTED_DATA = id_ContentType_EncryptedData;
-var TYPE$12 = "type";
-var VALUE$4 = "value";
-var UTC_TIME_NAME = "utcTimeName";
-var GENERAL_TIME_NAME = "generalTimeName";
-var CLEAR_PROPS$R = [UTC_TIME_NAME, GENERAL_TIME_NAME];
-var TimeType;
-(function(TimeType2) {
-  TimeType2[TimeType2["UTCTime"] = 0] = "UTCTime";
-  TimeType2[TimeType2["GeneralizedTime"] = 1] = "GeneralizedTime";
-  TimeType2[TimeType2["empty"] = 2] = "empty";
-})(TimeType || (TimeType = {}));
-var Time = class _Time extends PkiObject {
-  constructor(parameters = {}) {
-    super();
-    this.type = getParametersValue(parameters, TYPE$12, _Time.defaultValues(TYPE$12));
-    this.value = getParametersValue(parameters, VALUE$4, _Time.defaultValues(VALUE$4));
-    if (parameters.schema) {
-      this.fromSchema(parameters.schema);
-    }
-  }
-  static defaultValues(memberName) {
-    switch (memberName) {
-      case TYPE$12:
-        return 0;
-      case VALUE$4:
-        return new Date(0, 0, 0);
-      default:
-        return super.defaultValues(memberName);
-    }
-  }
-  static schema(parameters = {}, optional = false) {
-    const names = getParametersValue(parameters, "names", {});
-    return new Choice({
-      optional,
-      value: [
-        new UTCTime({ name: names.utcTimeName || EMPTY_STRING2 }),
-        new GeneralizedTime({ name: names.generalTimeName || EMPTY_STRING2 })
-      ]
-    });
-  }
-  fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$R);
-    const asn1 = compareSchema(schema, schema, _Time.schema({
-      names: {
-        utcTimeName: UTC_TIME_NAME,
-        generalTimeName: GENERAL_TIME_NAME
-      }
-    }));
-    AsnError.assertSchema(asn1, this.className);
-    if (UTC_TIME_NAME in asn1.result) {
-      this.type = 0;
-      this.value = asn1.result.utcTimeName.toDate();
-    }
-    if (GENERAL_TIME_NAME in asn1.result) {
-      this.type = 1;
-      this.value = asn1.result.generalTimeName.toDate();
-    }
-  }
-  toSchema() {
-    if (this.type === 0) {
-      return new UTCTime({ valueDate: this.value });
-    } else if (this.type === 1) {
-      return new GeneralizedTime({ valueDate: this.value });
-    }
-    return {};
-  }
-  toJSON() {
-    return {
-      type: this.type,
-      value: this.value
-    };
-  }
-};
-Time.CLASS_NAME = "Time";
-var TBS$4 = "tbs";
-var VERSION$f = "version";
-var SERIAL_NUMBER$3 = "serialNumber";
-var SIGNATURE$4 = "signature";
-var ISSUER$2 = "issuer";
-var NOT_BEFORE = "notBefore";
-var NOT_AFTER = "notAfter";
-var SUBJECT$1 = "subject";
-var SUBJECT_PUBLIC_KEY_INFO = "subjectPublicKeyInfo";
-var ISSUER_UNIQUE_ID = "issuerUniqueID";
-var SUBJECT_UNIQUE_ID = "subjectUniqueID";
-var EXTENSIONS$2 = "extensions";
-var SIGNATURE_ALGORITHM$5 = "signatureAlgorithm";
-var SIGNATURE_VALUE$2 = "signatureValue";
-var TBS_CERTIFICATE = "tbsCertificate";
-var TBS_CERTIFICATE_VERSION = `${TBS_CERTIFICATE}.${VERSION$f}`;
-var TBS_CERTIFICATE_SERIAL_NUMBER = `${TBS_CERTIFICATE}.${SERIAL_NUMBER$3}`;
-var TBS_CERTIFICATE_SIGNATURE = `${TBS_CERTIFICATE}.${SIGNATURE$4}`;
-var TBS_CERTIFICATE_ISSUER = `${TBS_CERTIFICATE}.${ISSUER$2}`;
-var TBS_CERTIFICATE_NOT_BEFORE = `${TBS_CERTIFICATE}.${NOT_BEFORE}`;
-var TBS_CERTIFICATE_NOT_AFTER = `${TBS_CERTIFICATE}.${NOT_AFTER}`;
-var TBS_CERTIFICATE_SUBJECT = `${TBS_CERTIFICATE}.${SUBJECT$1}`;
-var TBS_CERTIFICATE_SUBJECT_PUBLIC_KEY = `${TBS_CERTIFICATE}.${SUBJECT_PUBLIC_KEY_INFO}`;
-var TBS_CERTIFICATE_ISSUER_UNIQUE_ID = `${TBS_CERTIFICATE}.${ISSUER_UNIQUE_ID}`;
-var TBS_CERTIFICATE_SUBJECT_UNIQUE_ID = `${TBS_CERTIFICATE}.${SUBJECT_UNIQUE_ID}`;
-var TBS_CERTIFICATE_EXTENSIONS = `${TBS_CERTIFICATE}.${EXTENSIONS$2}`;
-var CLEAR_PROPS$Q = [
-  TBS_CERTIFICATE,
-  TBS_CERTIFICATE_VERSION,
-  TBS_CERTIFICATE_SERIAL_NUMBER,
-  TBS_CERTIFICATE_SIGNATURE,
-  TBS_CERTIFICATE_ISSUER,
-  TBS_CERTIFICATE_NOT_BEFORE,
-  TBS_CERTIFICATE_NOT_AFTER,
-  TBS_CERTIFICATE_SUBJECT,
-  TBS_CERTIFICATE_SUBJECT_PUBLIC_KEY,
-  TBS_CERTIFICATE_ISSUER_UNIQUE_ID,
-  TBS_CERTIFICATE_SUBJECT_UNIQUE_ID,
-  TBS_CERTIFICATE_EXTENSIONS,
-  SIGNATURE_ALGORITHM$5,
-  SIGNATURE_VALUE$2
-];
-function tbsCertificate(parameters = {}) {
-  const names = getParametersValue(parameters, "names", {});
-  return new Sequence({
-    name: names.blockName || TBS_CERTIFICATE,
-    value: [
-      new Constructed({
-        optional: true,
-        idBlock: {
-          tagClass: 3,
-          tagNumber: 0
-        },
-        value: [
-          new Integer({ name: names.tbsCertificateVersion || TBS_CERTIFICATE_VERSION })
-        ]
-      }),
-      new Integer({ name: names.tbsCertificateSerialNumber || TBS_CERTIFICATE_SERIAL_NUMBER }),
-      AlgorithmIdentifier.schema(names.signature || {
-        names: {
-          blockName: TBS_CERTIFICATE_SIGNATURE
-        }
-      }),
-      RelativeDistinguishedNames.schema(names.issuer || {
-        names: {
-          blockName: TBS_CERTIFICATE_ISSUER
-        }
-      }),
-      new Sequence({
-        name: names.tbsCertificateValidity || "tbsCertificate.validity",
-        value: [
-          Time.schema(names.notBefore || {
-            names: {
-              utcTimeName: TBS_CERTIFICATE_NOT_BEFORE,
-              generalTimeName: TBS_CERTIFICATE_NOT_BEFORE
-            }
-          }),
-          Time.schema(names.notAfter || {
-            names: {
-              utcTimeName: TBS_CERTIFICATE_NOT_AFTER,
-              generalTimeName: TBS_CERTIFICATE_NOT_AFTER
-            }
-          })
-        ]
-      }),
-      RelativeDistinguishedNames.schema(names.subject || {
-        names: {
-          blockName: TBS_CERTIFICATE_SUBJECT
-        }
-      }),
-      PublicKeyInfo.schema(names.subjectPublicKeyInfo || {
-        names: {
-          blockName: TBS_CERTIFICATE_SUBJECT_PUBLIC_KEY
-        }
-      }),
-      new Primitive({
-        name: names.tbsCertificateIssuerUniqueID || TBS_CERTIFICATE_ISSUER_UNIQUE_ID,
-        optional: true,
-        idBlock: {
-          tagClass: 3,
-          tagNumber: 1
-        }
-      }),
-      new Primitive({
-        name: names.tbsCertificateSubjectUniqueID || TBS_CERTIFICATE_SUBJECT_UNIQUE_ID,
-        optional: true,
-        idBlock: {
-          tagClass: 3,
-          tagNumber: 2
-        }
-      }),
-      new Constructed({
-        optional: true,
-        idBlock: {
-          tagClass: 3,
-          tagNumber: 3
-        },
-        value: [Extensions.schema(names.extensions || {
-          names: {
-            blockName: TBS_CERTIFICATE_EXTENSIONS
-          }
-        })]
-      })
-    ]
-  });
-}
-var Certificate = class _Certificate extends PkiObject {
-  get tbs() {
-    return pvtsutils2.BufferSourceConverter.toArrayBuffer(this.tbsView);
-  }
-  set tbs(value) {
-    this.tbsView = new Uint8Array(value);
-  }
-  constructor(parameters = {}) {
-    super();
-    this.tbsView = new Uint8Array(getParametersValue(parameters, TBS$4, _Certificate.defaultValues(TBS$4)));
-    this.version = getParametersValue(parameters, VERSION$f, _Certificate.defaultValues(VERSION$f));
-    this.serialNumber = getParametersValue(parameters, SERIAL_NUMBER$3, _Certificate.defaultValues(SERIAL_NUMBER$3));
-    this.signature = getParametersValue(parameters, SIGNATURE$4, _Certificate.defaultValues(SIGNATURE$4));
-    this.issuer = getParametersValue(parameters, ISSUER$2, _Certificate.defaultValues(ISSUER$2));
-    this.notBefore = getParametersValue(parameters, NOT_BEFORE, _Certificate.defaultValues(NOT_BEFORE));
-    this.notAfter = getParametersValue(parameters, NOT_AFTER, _Certificate.defaultValues(NOT_AFTER));
-    this.subject = getParametersValue(parameters, SUBJECT$1, _Certificate.defaultValues(SUBJECT$1));
-    this.subjectPublicKeyInfo = getParametersValue(parameters, SUBJECT_PUBLIC_KEY_INFO, _Certificate.defaultValues(SUBJECT_PUBLIC_KEY_INFO));
-    if (ISSUER_UNIQUE_ID in parameters) {
-      this.issuerUniqueID = getParametersValue(parameters, ISSUER_UNIQUE_ID, _Certificate.defaultValues(ISSUER_UNIQUE_ID));
-    }
-    if (SUBJECT_UNIQUE_ID in parameters) {
-      this.subjectUniqueID = getParametersValue(parameters, SUBJECT_UNIQUE_ID, _Certificate.defaultValues(SUBJECT_UNIQUE_ID));
-    }
-    if (EXTENSIONS$2 in parameters) {
-      this.extensions = getParametersValue(parameters, EXTENSIONS$2, _Certificate.defaultValues(EXTENSIONS$2));
-    }
-    this.signatureAlgorithm = getParametersValue(parameters, SIGNATURE_ALGORITHM$5, _Certificate.defaultValues(SIGNATURE_ALGORITHM$5));
-    this.signatureValue = getParametersValue(parameters, SIGNATURE_VALUE$2, _Certificate.defaultValues(SIGNATURE_VALUE$2));
-    if (parameters.schema) {
-      this.fromSchema(parameters.schema);
-    }
-  }
-  static defaultValues(memberName) {
-    switch (memberName) {
-      case TBS$4:
-        return EMPTY_BUFFER2;
-      case VERSION$f:
-        return 0;
-      case SERIAL_NUMBER$3:
-        return new Integer();
-      case SIGNATURE$4:
-        return new AlgorithmIdentifier();
-      case ISSUER$2:
-        return new RelativeDistinguishedNames();
-      case NOT_BEFORE:
-        return new Time();
-      case NOT_AFTER:
-        return new Time();
-      case SUBJECT$1:
-        return new RelativeDistinguishedNames();
-      case SUBJECT_PUBLIC_KEY_INFO:
-        return new PublicKeyInfo();
-      case ISSUER_UNIQUE_ID:
-        return EMPTY_BUFFER2;
-      case SUBJECT_UNIQUE_ID:
-        return EMPTY_BUFFER2;
-      case EXTENSIONS$2:
-        return [];
-      case SIGNATURE_ALGORITHM$5:
-        return new AlgorithmIdentifier();
-      case SIGNATURE_VALUE$2:
-        return new BitString();
-      default:
-        return super.defaultValues(memberName);
-    }
-  }
-  static schema(parameters = {}) {
-    const names = getParametersValue(parameters, "names", {});
-    return new Sequence({
-      name: names.blockName || EMPTY_STRING2,
-      value: [
-        tbsCertificate(names.tbsCertificate),
-        AlgorithmIdentifier.schema(names.signatureAlgorithm || {
-          names: {
-            blockName: SIGNATURE_ALGORITHM$5
-          }
-        }),
-        new BitString({ name: names.signatureValue || SIGNATURE_VALUE$2 })
-      ]
-    });
-  }
-  fromSchema(schema) {
-    clearProps(schema, CLEAR_PROPS$Q);
-    const asn1 = compareSchema(schema, schema, _Certificate.schema({
-      names: {
-        tbsCertificate: {
-          names: {
-            extensions: {
-              names: {
-                extensions: TBS_CERTIFICATE_EXTENSIONS
-              }
-            }
-          }
-        }
-      }
-    }));
-    AsnError.assertSchema(asn1, this.className);
-    this.tbsView = asn1.result.tbsCertificate.valueBeforeDecodeView;
-    if (TBS_CERTIFICATE_VERSION in asn1.result)
-      this.version = asn1.result[TBS_CERTIFICATE_VERSION].valueBlock.valueDec;
-    this.serialNumber = asn1.result[TBS_CERTIFICATE_SERIAL_NUMBER];
-    this.signature = new AlgorithmIdentifier({ schema: asn1.result[TBS_CERTIFICATE_SIGNATURE] });
-    this.issuer = new RelativeDistinguishedNames({ schema: asn1.result[TBS_CERTIFICATE_ISSUER] });
-    this.notBefore = new Time({ schema: asn1.result[TBS_CERTIFICATE_NOT_BEFORE] });
-    this.notAfter = new Time({ schema: asn1.result[TBS_CERTIFICATE_NOT_AFTER] });
-    this.subject = new RelativeDistinguishedNames({ schema: asn1.result[TBS_CERTIFICATE_SUBJECT] });
-    this.subjectPublicKeyInfo = new PublicKeyInfo({ schema: asn1.result[TBS_CERTIFICATE_SUBJECT_PUBLIC_KEY] });
-    if (TBS_CERTIFICATE_ISSUER_UNIQUE_ID in asn1.result)
-      this.issuerUniqueID = asn1.result[TBS_CERTIFICATE_ISSUER_UNIQUE_ID].valueBlock.valueHex;
-    if (TBS_CERTIFICATE_SUBJECT_UNIQUE_ID in asn1.result)
-      this.subjectUniqueID = asn1.result[TBS_CERTIFICATE_SUBJECT_UNIQUE_ID].valueBlock.valueHex;
-    if (TBS_CERTIFICATE_EXTENSIONS in asn1.result)
-      this.extensions = Array.from(asn1.result[TBS_CERTIFICATE_EXTENSIONS], (element) => new Extension({ schema: element }));
-    this.signatureAlgorithm = new AlgorithmIdentifier({ schema: asn1.result.signatureAlgorithm });
-    this.signatureValue = asn1.result.signatureValue;
-  }
-  encodeTBS() {
-    const outputArray = [];
-    if (VERSION$f in this && this.version !== _Certificate.defaultValues(VERSION$f)) {
-      outputArray.push(new Constructed({
-        optional: true,
-        idBlock: {
-          tagClass: 3,
-          tagNumber: 0
-        },
-        value: [
-          new Integer({ value: this.version })
-        ]
-      }));
-    }
-    outputArray.push(this.serialNumber);
-    outputArray.push(this.signature.toSchema());
-    outputArray.push(this.issuer.toSchema());
-    outputArray.push(new Sequence({
-      value: [
-        this.notBefore.toSchema(),
-        this.notAfter.toSchema()
-      ]
-    }));
-    outputArray.push(this.subject.toSchema());
-    outputArray.push(this.subjectPublicKeyInfo.toSchema());
-    if (this.issuerUniqueID) {
-      outputArray.push(new Primitive({
-        optional: true,
-        idBlock: {
-          tagClass: 3,
-          tagNumber: 1
-        },
-        valueHex: this.issuerUniqueID
-      }));
-    }
-    if (this.subjectUniqueID) {
-      outputArray.push(new Primitive({
-        optional: true,
-        idBlock: {
-          tagClass: 3,
-          tagNumber: 2
-        },
-        valueHex: this.subjectUniqueID
-      }));
-    }
-    if (this.extensions) {
-      outputArray.push(new Constructed({
-        optional: true,
-        idBlock: {
-          tagClass: 3,
-          tagNumber: 3
-        },
-        value: [new Sequence({
-          value: Array.from(this.extensions, (o) => o.toSchema())
-        })]
-      }));
-    }
-    return new Sequence({
-      value: outputArray
-    });
-  }
-  toSchema(encodeFlag = false) {
-    let tbsSchema;
-    if (encodeFlag === false) {
-      if (!this.tbsView.byteLength) {
-        return _Certificate.schema().value[0];
-      }
-      const asn1 = fromBER(this.tbsView);
-      AsnError.assert(asn1, "TBS Certificate");
-      tbsSchema = asn1.result;
-    } else {
-      tbsSchema = this.encodeTBS();
-    }
-    return new Sequence({
-      value: [
-        tbsSchema,
-        this.signatureAlgorithm.toSchema(),
-        this.signatureValue
-      ]
-    });
-  }
-  toJSON() {
-    const res = {
-      tbs: pvtsutils2.Convert.ToHex(this.tbsView),
-      version: this.version,
-      serialNumber: this.serialNumber.toJSON(),
-      signature: this.signature.toJSON(),
-      issuer: this.issuer.toJSON(),
-      notBefore: this.notBefore.toJSON(),
-      notAfter: this.notAfter.toJSON(),
-      subject: this.subject.toJSON(),
-      subjectPublicKeyInfo: this.subjectPublicKeyInfo.toJSON(),
-      signatureAlgorithm: this.signatureAlgorithm.toJSON(),
-      signatureValue: this.signatureValue.toJSON()
-    };
-    if (VERSION$f in this && this.version !== _Certificate.defaultValues(VERSION$f)) {
-      res.version = this.version;
-    }
-    if (this.issuerUniqueID) {
-      res.issuerUniqueID = pvtsutils2.Convert.ToHex(this.issuerUniqueID);
-    }
-    if (this.subjectUniqueID) {
-      res.subjectUniqueID = pvtsutils2.Convert.ToHex(this.subjectUniqueID);
-    }
-    if (this.extensions) {
-      res.extensions = Array.from(this.extensions, (o) => o.toJSON());
-    }
-    return res;
-  }
-  async getPublicKey(parameters, crypto2 = getCrypto(true)) {
-    return crypto2.getPublicKey(this.subjectPublicKeyInfo, this.signatureAlgorithm, parameters);
-  }
-  async getKeyHash(hashAlgorithm = "SHA-1", crypto2 = getCrypto(true)) {
-    return crypto2.digest({ name: hashAlgorithm }, this.subjectPublicKeyInfo.subjectPublicKey.valueBlock.valueHexView);
-  }
-  async sign(privateKey, hashAlgorithm = "SHA-1", crypto2 = getCrypto(true)) {
-    if (!privateKey) {
-      throw new Error("Need to provide a private key for signing");
-    }
-    const signatureParameters = await crypto2.getSignatureParameters(privateKey, hashAlgorithm);
-    const parameters = signatureParameters.parameters;
-    this.signature = signatureParameters.signatureAlgorithm;
-    this.signatureAlgorithm = signatureParameters.signatureAlgorithm;
-    this.tbsView = new Uint8Array(this.encodeTBS().toBER());
-    const signature = await crypto2.signWithPrivateKey(this.tbsView, privateKey, parameters);
-    this.signatureValue = new BitString({ valueHex: signature });
-  }
-  async verify(issuerCertificate, crypto2 = getCrypto(true)) {
-    let subjectPublicKeyInfo;
-    if (issuerCertificate) {
-      subjectPublicKeyInfo = issuerCertificate.subjectPublicKeyInfo;
-    } else if (this.issuer.isEqual(this.subject)) {
-      subjectPublicKeyInfo = this.subjectPublicKeyInfo;
-    }
-    if (!(subjectPublicKeyInfo instanceof PublicKeyInfo)) {
-      throw new Error("Please provide issuer certificate as a parameter");
-    }
-    return crypto2.verifyWithPublicKey(this.tbsView, this.signatureValue, subjectPublicKeyInfo, this.signatureAlgorithm);
-  }
-};
-Certificate.CLASS_NAME = "Certificate";
-function checkCA(cert, signerCert = null) {
-  if (signerCert && cert.issuer.isEqual(signerCert.issuer) && cert.serialNumber.isEqual(signerCert.serialNumber)) {
-    return null;
-  }
-  let isCA = false;
-  if (cert.extensions) {
-    for (const extension of cert.extensions) {
-      if (extension.extnID === id_BasicConstraints && extension.parsedValue instanceof BasicConstraints) {
-        if (extension.parsedValue.cA) {
-          isCA = true;
-          break;
-        }
-      }
-    }
-  }
-  if (isCA) {
-    return cert;
-  }
-  return null;
-}
 var CERT_ID$1 = "certId";
 var CERT_VALUE = "certValue";
 var PARSED_VALUE$4 = "parsedValue";
-var CLEAR_PROPS$P = [
-  CERT_ID$1,
-  CERT_VALUE
-];
+var CLEAR_PROPS$P = [CERT_ID$1, CERT_VALUE];
 var CertBag = class _CertBag extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -20510,7 +20924,9 @@ var CertBag = class _CertBag extends PkiObject {
       } else {
         this.certId = id_CertBag_X509Certificate;
       }
-      this.certValue = new OctetString({ valueHex: this.parsedValue.toSchema().toBER(false) });
+      this.certValue = new OctetString({
+        valueHex: this.parsedValue.toSchema().toBER(false)
+      });
     }
     return new Sequence({
       value: [
@@ -20536,11 +20952,7 @@ CertBag.CLASS_NAME = "CertBag";
 var USER_CERTIFICATE = "userCertificate";
 var REVOCATION_DATE = "revocationDate";
 var CRL_ENTRY_EXTENSIONS = "crlEntryExtensions";
-var CLEAR_PROPS$O = [
-  USER_CERTIFICATE,
-  REVOCATION_DATE,
-  CRL_ENTRY_EXTENSIONS
-];
+var CLEAR_PROPS$O = [USER_CERTIFICATE, REVOCATION_DATE, CRL_ENTRY_EXTENSIONS];
 var RevokedCertificate = class _RevokedCertificate extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -20596,10 +21008,7 @@ var RevokedCertificate = class _RevokedCertificate extends PkiObject {
     }
   }
   toSchema() {
-    const outputArray = [
-      this.userCertificate,
-      this.revocationDate.toSchema()
-    ];
+    const outputArray = [this.userCertificate, this.revocationDate.toSchema()];
     if (this.crlEntryExtensions) {
       outputArray.push(this.crlEntryExtensions.toSchema());
     }
@@ -20687,11 +21096,7 @@ function tbsCertList(parameters = {}) {
           new Repeated({
             name: names.tbsCertListRevokedCertificates || TBS_CERT_LIST_REVOKED_CERTIFICATES,
             value: new Sequence({
-              value: [
-                new Integer(),
-                Time.schema(),
-                Extensions.schema({}, true)
-              ]
+              value: [new Integer(), Time.schema(), Extensions.schema({}, true)]
             })
           })
         ]
@@ -20702,11 +21107,13 @@ function tbsCertList(parameters = {}) {
           tagClass: 3,
           tagNumber: 0
         },
-        value: [Extensions.schema(names.crlExtensions || {
-          names: {
-            blockName: TBS_CERT_LIST_EXTENSIONS
-          }
-        })]
+        value: [
+          Extensions.schema(names.crlExtensions || {
+            names: {
+              blockName: TBS_CERT_LIST_EXTENSIONS
+            }
+          })
+        ]
       })
     ]
   });
@@ -20839,9 +21246,7 @@ var CertificateRevocationList = class _CertificateRevocationList extends PkiObje
           tagClass: 3,
           tagNumber: 0
         },
-        value: [
-          this.crlExtensions.toSchema()
-        ]
+        value: [this.crlExtensions.toSchema()]
       }));
     }
     return new Sequence({
@@ -20861,11 +21266,7 @@ var CertificateRevocationList = class _CertificateRevocationList extends PkiObje
       tbsSchema = this.encodeTBS();
     }
     return new Sequence({
-      value: [
-        tbsSchema,
-        this.signatureAlgorithm.toSchema(),
-        this.signatureValue
-      ]
+      value: [tbsSchema, this.signatureAlgorithm.toSchema(), this.signatureValue]
     });
   }
   toJSON() {
@@ -20946,10 +21347,7 @@ CertificateRevocationList.CLASS_NAME = "CertificateRevocationList";
 var CRL_ID = "crlId";
 var CRL_VALUE = "crlValue";
 var PARSED_VALUE$3 = "parsedValue";
-var CLEAR_PROPS$M = [
-  CRL_ID,
-  CRL_VALUE
-];
+var CLEAR_PROPS$M = [CRL_ID, CRL_VALUE];
 var CRLBag = class _CRLBag extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21026,7 +21424,9 @@ var CRLBag = class _CRLBag extends PkiObject {
   toSchema() {
     if (this.parsedValue) {
       this.crlId = id_CRLBag_X509CRL;
-      this.crlValue = new OctetString({ valueHex: this.parsedValue.toSchema().toBER(false) });
+      this.crlValue = new OctetString({
+        valueHex: this.parsedValue.toSchema().toBER(false)
+      });
     }
     return new Sequence({
       value: [
@@ -21052,11 +21452,7 @@ CRLBag.CLASS_NAME = "CRLBag";
 var VERSION$d = "version";
 var ENCRYPTED_CONTENT_INFO$1 = "encryptedContentInfo";
 var UNPROTECTED_ATTRS$1 = "unprotectedAttrs";
-var CLEAR_PROPS$L = [
-  VERSION$d,
-  ENCRYPTED_CONTENT_INFO$1,
-  UNPROTECTED_ATTRS$1
-];
+var CLEAR_PROPS$L = [VERSION$d, ENCRYPTED_CONTENT_INFO$1, UNPROTECTED_ATTRS$1];
 var EncryptedData = class _EncryptedData extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21131,7 +21527,9 @@ var EncryptedData = class _EncryptedData extends PkiObject {
     }));
     AsnError.assertSchema(asn1, this.className);
     this.version = asn1.result.version.valueBlock.valueDec;
-    this.encryptedContentInfo = new EncryptedContentInfo({ schema: asn1.result.encryptedContentInfo });
+    this.encryptedContentInfo = new EncryptedContentInfo({
+      schema: asn1.result.encryptedContentInfo
+    });
     if (UNPROTECTED_ATTRS$1 in asn1.result)
       this.unprotectedAttrs = Array.from(asn1.result.unprotectedAttrs, (element) => new Attribute({ schema: element }));
   }
@@ -21183,10 +21581,7 @@ EncryptedData.CLASS_NAME = "EncryptedData";
 var ENCRYPTION_ALGORITHM = "encryptionAlgorithm";
 var ENCRYPTED_DATA = "encryptedData";
 var PARSED_VALUE$2 = "parsedValue";
-var CLEAR_PROPS$K = [
-  ENCRYPTION_ALGORITHM,
-  ENCRYPTED_DATA
-];
+var CLEAR_PROPS$K = [ENCRYPTION_ALGORITHM, ENCRYPTED_DATA];
 var PKCS8ShroudedKeyBag = class _PKCS8ShroudedKeyBag extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21265,10 +21660,7 @@ var PKCS8ShroudedKeyBag = class _PKCS8ShroudedKeyBag extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.encryptionAlgorithm.toSchema(),
-        this.encryptedData
-      ]
+      value: [this.encryptionAlgorithm.toSchema(), this.encryptedData]
     });
   }
   toJSON() {
@@ -21307,10 +21699,7 @@ var PKCS8ShroudedKeyBag = class _PKCS8ShroudedKeyBag extends PkiObject {
 PKCS8ShroudedKeyBag.CLASS_NAME = "PKCS8ShroudedKeyBag";
 var SECRET_TYPE_ID = "secretTypeId";
 var SECRET_VALUE = "secretValue";
-var CLEAR_PROPS$J = [
-  SECRET_TYPE_ID,
-  SECRET_VALUE
-];
+var CLEAR_PROPS$J = [SECRET_TYPE_ID, SECRET_VALUE];
 var SecretBag = class _SecretBag extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21413,11 +21802,7 @@ var SafeBagValueFactory = class _SafeBagValueFactory {
 var BAG_ID = "bagId";
 var BAG_VALUE = "bagValue";
 var BAG_ATTRIBUTES = "bagAttributes";
-var CLEAR_PROPS$I = [
-  BAG_ID,
-  BAG_VALUE,
-  BAG_ATTRIBUTES
-];
+var CLEAR_PROPS$I = [BAG_ID, BAG_VALUE, BAG_ATTRIBUTES];
 var SafeBag = class _SafeBag extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21520,14 +21905,14 @@ var SafeBag = class _SafeBag extends PkiObject {
     });
   }
   toJSON() {
-    const output2 = {
+    const output = {
       bagId: this.bagId,
       bagValue: this.bagValue.toJSON()
     };
     if (this.bagAttributes) {
-      output2.bagAttributes = Array.from(this.bagAttributes, (o) => o.toJSON());
+      output.bagAttributes = Array.from(this.bagAttributes, (o) => o.toJSON());
     }
-    return output2;
+    return output;
   }
 };
 SafeBag.CLASS_NAME = "SafeBag";
@@ -21569,9 +21954,7 @@ var SafeContents = class _SafeContents extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      SAFE_BUGS
-    ]);
+    clearProps(schema, [SAFE_BUGS]);
     const asn1 = compareSchema(schema, schema, _SafeContents.schema({
       names: {
         safeBags: SAFE_BUGS
@@ -21594,10 +21977,7 @@ var SafeContents = class _SafeContents extends PkiObject {
 SafeContents.CLASS_NAME = "SafeContents";
 var OTHER_CERT_FORMAT = "otherCertFormat";
 var OTHER_CERT = "otherCert";
-var CLEAR_PROPS$H = [
-  OTHER_CERT_FORMAT,
-  OTHER_CERT
-];
+var CLEAR_PROPS$H = [OTHER_CERT_FORMAT, OTHER_CERT];
 var OtherCertificateFormat = class _OtherCertificateFormat extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21621,10 +22001,7 @@ var OtherCertificateFormat = class _OtherCertificateFormat extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new ObjectIdentifier({ name: names.otherCertFormat || OTHER_CERT_FORMAT }),
-        new Any({ name: names.otherCert || OTHER_CERT })
-      ]
+      value: [new ObjectIdentifier({ name: names.otherCertFormat || OTHER_CERT_FORMAT }), new Any({ name: names.otherCert || OTHER_CERT })]
     });
   }
   fromSchema(schema) {
@@ -21636,10 +22013,7 @@ var OtherCertificateFormat = class _OtherCertificateFormat extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new ObjectIdentifier({ value: this.otherCertFormat }),
-        this.otherCert
-      ]
+      value: [new ObjectIdentifier({ value: this.otherCertFormat }), this.otherCert]
     });
   }
   toJSON() {
@@ -21653,9 +22027,7 @@ var OtherCertificateFormat = class _OtherCertificateFormat extends PkiObject {
   }
 };
 var CERTIFICATES$1 = "certificates";
-var CLEAR_PROPS$G = [
-  CERTIFICATES$1
-];
+var CLEAR_PROPS$G = [CERTIFICATES$1];
 var CertificateSet = class _CertificateSet extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21687,18 +22059,14 @@ var CertificateSet = class _CertificateSet extends PkiObject {
                   tagClass: 3,
                   tagNumber: 0
                 },
-                value: [
-                  new Any()
-                ]
+                value: [new Any()]
               }),
               new Constructed({
                 idBlock: {
                   tagClass: 3,
                   tagNumber: 1
                 },
-                value: [
-                  new Sequence()
-                ]
+                value: [new Sequence()]
               }),
               new Constructed({
                 idBlock: {
@@ -21790,10 +22158,7 @@ var CertificateSet = class _CertificateSet extends PkiObject {
 CertificateSet.CLASS_NAME = "CertificateSet";
 var OTHER_REV_INFO_FORMAT = "otherRevInfoFormat";
 var OTHER_REV_INFO = "otherRevInfo";
-var CLEAR_PROPS$F = [
-  OTHER_REV_INFO_FORMAT,
-  OTHER_REV_INFO
-];
+var CLEAR_PROPS$F = [OTHER_REV_INFO_FORMAT, OTHER_REV_INFO];
 var OtherRevocationInfoFormat = class _OtherRevocationInfoFormat extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21817,10 +22182,7 @@ var OtherRevocationInfoFormat = class _OtherRevocationInfoFormat extends PkiObje
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new ObjectIdentifier({ name: names.otherRevInfoFormat || OTHER_REV_INFO_FORMAT }),
-        new Any({ name: names.otherRevInfo || OTHER_REV_INFO })
-      ]
+      value: [new ObjectIdentifier({ name: names.otherRevInfoFormat || OTHER_REV_INFO_FORMAT }), new Any({ name: names.otherRevInfo || OTHER_REV_INFO })]
     });
   }
   fromSchema(schema) {
@@ -21832,10 +22194,7 @@ var OtherRevocationInfoFormat = class _OtherRevocationInfoFormat extends PkiObje
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new ObjectIdentifier({ value: this.otherRevInfoFormat }),
-        this.otherRevInfo
-      ]
+      value: [new ObjectIdentifier({ value: this.otherRevInfoFormat }), this.otherRevInfo]
     });
   }
   toJSON() {
@@ -21851,9 +22210,7 @@ var OtherRevocationInfoFormat = class _OtherRevocationInfoFormat extends PkiObje
 OtherRevocationInfoFormat.CLASS_NAME = "OtherRevocationInfoFormat";
 var CRLS$3 = "crls";
 var OTHER_REVOCATION_INFOS = "otherRevocationInfos";
-var CLEAR_PROPS$E = [
-  CRLS$3
-];
+var CLEAR_PROPS$E = [CRLS$3];
 var RevocationInfoChoices = class _RevocationInfoChoices extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -21888,10 +22245,7 @@ var RevocationInfoChoices = class _RevocationInfoChoices extends PkiObject {
                   tagClass: 3,
                   tagNumber: 1
                 },
-                value: [
-                  new ObjectIdentifier(),
-                  new Any()
-                ]
+                value: [new ObjectIdentifier(), new Any()]
               })
             ]
           })
@@ -21939,10 +22293,7 @@ var RevocationInfoChoices = class _RevocationInfoChoices extends PkiObject {
 RevocationInfoChoices.CLASS_NAME = "RevocationInfoChoices";
 var CERTS$3 = "certs";
 var CRLS$2 = "crls";
-var CLEAR_PROPS$D = [
-  CERTS$3,
-  CRLS$2
-];
+var CLEAR_PROPS$D = [CERTS$3, CRLS$2];
 var OriginatorInfo = class _OriginatorInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22059,10 +22410,7 @@ var OriginatorInfo = class _OriginatorInfo extends PkiObject {
 OriginatorInfo.CLASS_NAME = "OriginatorInfo";
 var ISSUER = "issuer";
 var SERIAL_NUMBER$2 = "serialNumber";
-var CLEAR_PROPS$C = [
-  ISSUER,
-  SERIAL_NUMBER$2
-];
+var CLEAR_PROPS$C = [ISSUER, SERIAL_NUMBER$2];
 var IssuerAndSerialNumber = class _IssuerAndSerialNumber extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22086,10 +22434,7 @@ var IssuerAndSerialNumber = class _IssuerAndSerialNumber extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        RelativeDistinguishedNames.schema(names.issuer || {}),
-        new Integer({ name: names.serialNumber || EMPTY_STRING2 })
-      ]
+      value: [RelativeDistinguishedNames.schema(names.issuer || {}), new Integer({ name: names.serialNumber || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -22110,10 +22455,7 @@ var IssuerAndSerialNumber = class _IssuerAndSerialNumber extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.issuer.toSchema(),
-        this.serialNumber
-      ]
+      value: [this.issuer.toSchema(), this.serialNumber]
     });
   }
   toJSON() {
@@ -22126,9 +22468,7 @@ var IssuerAndSerialNumber = class _IssuerAndSerialNumber extends PkiObject {
 IssuerAndSerialNumber.CLASS_NAME = "IssuerAndSerialNumber";
 var VARIANT$3 = "variant";
 var VALUE$3 = "value";
-var CLEAR_PROPS$B = [
-  "blockName"
-];
+var CLEAR_PROPS$B = ["blockName"];
 var RecipientIdentifier = class _RecipientIdentifier extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22233,12 +22573,7 @@ var RID$1 = "rid";
 var KEY_ENCRYPTION_ALGORITHM$3 = "keyEncryptionAlgorithm";
 var ENCRYPTED_KEY$3 = "encryptedKey";
 var RECIPIENT_CERTIFICATE$1 = "recipientCertificate";
-var CLEAR_PROPS$A = [
-  VERSION$c,
-  RID$1,
-  KEY_ENCRYPTION_ALGORITHM$3,
-  ENCRYPTED_KEY$3
-];
+var CLEAR_PROPS$A = [VERSION$c, RID$1, KEY_ENCRYPTION_ALGORITHM$3, ENCRYPTED_KEY$3];
 var KeyTransRecipientInfo = class _KeyTransRecipientInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22319,7 +22654,9 @@ var KeyTransRecipientInfo = class _KeyTransRecipientInfo extends PkiObject {
     } else {
       this.rid = new IssuerAndSerialNumber({ schema: asn1.result.rid });
     }
-    this.keyEncryptionAlgorithm = new AlgorithmIdentifier({ schema: asn1.result.keyEncryptionAlgorithm });
+    this.keyEncryptionAlgorithm = new AlgorithmIdentifier({
+      schema: asn1.result.keyEncryptionAlgorithm
+    });
     this.encryptedKey = asn1.result.encryptedKey;
   }
   toSchema() {
@@ -22357,10 +22694,7 @@ var KeyTransRecipientInfo = class _KeyTransRecipientInfo extends PkiObject {
 KeyTransRecipientInfo.CLASS_NAME = "KeyTransRecipientInfo";
 var ALGORITHM = "algorithm";
 var PUBLIC_KEY = "publicKey";
-var CLEAR_PROPS$z = [
-  ALGORITHM,
-  PUBLIC_KEY
-];
+var CLEAR_PROPS$z = [ALGORITHM, PUBLIC_KEY];
 var OriginatorPublicKey = class _OriginatorPublicKey extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22393,10 +22727,7 @@ var OriginatorPublicKey = class _OriginatorPublicKey extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        AlgorithmIdentifier.schema(names.algorithm || {}),
-        new BitString({ name: names.publicKey || EMPTY_STRING2 })
-      ]
+      value: [AlgorithmIdentifier.schema(names.algorithm || {}), new BitString({ name: names.publicKey || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -22417,10 +22748,7 @@ var OriginatorPublicKey = class _OriginatorPublicKey extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.algorithm.toSchema(),
-        this.publicKey
-      ]
+      value: [this.algorithm.toSchema(), this.publicKey]
     });
   }
   toJSON() {
@@ -22433,9 +22761,7 @@ var OriginatorPublicKey = class _OriginatorPublicKey extends PkiObject {
 OriginatorPublicKey.CLASS_NAME = "OriginatorPublicKey";
 var VARIANT$2 = "variant";
 var VALUE$2 = "value";
-var CLEAR_PROPS$y = [
-  "blockName"
-];
+var CLEAR_PROPS$y = ["blockName"];
 var OriginatorIdentifierOrKey = class _OriginatorIdentifierOrKey extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22552,10 +22878,7 @@ var OriginatorIdentifierOrKey = class _OriginatorIdentifierOrKey extends PkiObje
 OriginatorIdentifierOrKey.CLASS_NAME = "OriginatorIdentifierOrKey";
 var KEY_ATTR_ID = "keyAttrId";
 var KEY_ATTR = "keyAttr";
-var CLEAR_PROPS$x = [
-  KEY_ATTR_ID,
-  KEY_ATTR
-];
+var CLEAR_PROPS$x = [KEY_ATTR_ID, KEY_ATTR];
 var OtherKeyAttribute = class _OtherKeyAttribute extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22639,11 +22962,7 @@ OtherKeyAttribute.CLASS_NAME = "OtherKeyAttribute";
 var SUBJECT_KEY_IDENTIFIER = "subjectKeyIdentifier";
 var DATE$1 = "date";
 var OTHER$1 = "other";
-var CLEAR_PROPS$w = [
-  SUBJECT_KEY_IDENTIFIER,
-  DATE$1,
-  OTHER$1
-];
+var CLEAR_PROPS$w = [SUBJECT_KEY_IDENTIFIER, DATE$1, OTHER$1];
 var RecipientKeyIdentifier = class _RecipientKeyIdentifier extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22745,9 +23064,7 @@ var RecipientKeyIdentifier = class _RecipientKeyIdentifier extends PkiObject {
 RecipientKeyIdentifier.CLASS_NAME = "RecipientKeyIdentifier";
 var VARIANT$1 = "variant";
 var VALUE$1 = "value";
-var CLEAR_PROPS$v = [
-  "blockName"
-];
+var CLEAR_PROPS$v = ["blockName"];
 var KeyAgreeRecipientIdentifier = class _KeyAgreeRecipientIdentifier extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22850,10 +23167,7 @@ var KeyAgreeRecipientIdentifier = class _KeyAgreeRecipientIdentifier extends Pki
 KeyAgreeRecipientIdentifier.CLASS_NAME = "KeyAgreeRecipientIdentifier";
 var RID = "rid";
 var ENCRYPTED_KEY$2 = "encryptedKey";
-var CLEAR_PROPS$u = [
-  RID,
-  ENCRYPTED_KEY$2
-];
+var CLEAR_PROPS$u = [RID, ENCRYPTED_KEY$2];
 var RecipientEncryptedKey = class _RecipientEncryptedKey extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22887,10 +23201,7 @@ var RecipientEncryptedKey = class _RecipientEncryptedKey extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        KeyAgreeRecipientIdentifier.schema(names.rid || {}),
-        new OctetString({ name: names.encryptedKey || EMPTY_STRING2 })
-      ]
+      value: [KeyAgreeRecipientIdentifier.schema(names.rid || {}), new OctetString({ name: names.encryptedKey || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -22911,10 +23222,7 @@ var RecipientEncryptedKey = class _RecipientEncryptedKey extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.rid.toSchema(),
-        this.encryptedKey
-      ]
+      value: [this.rid.toSchema(), this.encryptedKey]
     });
   }
   toJSON() {
@@ -22927,9 +23235,7 @@ var RecipientEncryptedKey = class _RecipientEncryptedKey extends PkiObject {
 RecipientEncryptedKey.CLASS_NAME = "RecipientEncryptedKey";
 var ENCRYPTED_KEYS = "encryptedKeys";
 var RECIPIENT_ENCRYPTED_KEYS = "RecipientEncryptedKeys";
-var CLEAR_PROPS$t = [
-  RECIPIENT_ENCRYPTED_KEYS
-];
+var CLEAR_PROPS$t = [RECIPIENT_ENCRYPTED_KEYS];
 var RecipientEncryptedKeys = class _RecipientEncryptedKeys extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -22995,13 +23301,7 @@ var KEY_ENCRYPTION_ALGORITHM$2 = "keyEncryptionAlgorithm";
 var RECIPIENT_ENCRYPTED_KEY = "recipientEncryptedKeys";
 var RECIPIENT_CERTIFICATE = "recipientCertificate";
 var RECIPIENT_PUBLIC_KEY = "recipientPublicKey";
-var CLEAR_PROPS$s = [
-  VERSION$b,
-  ORIGINATOR,
-  UKM,
-  KEY_ENCRYPTION_ALGORITHM$2,
-  RECIPIENT_ENCRYPTED_KEY
-];
+var CLEAR_PROPS$s = [VERSION$b, ORIGINATOR, UKM, KEY_ENCRYPTION_ALGORITHM$2, RECIPIENT_ENCRYPTED_KEY];
 var KeyAgreeRecipientInfo = class _KeyAgreeRecipientInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -23069,9 +23369,7 @@ var KeyAgreeRecipientInfo = class _KeyAgreeRecipientInfo extends PkiObject {
             tagClass: 3,
             tagNumber: 0
           },
-          value: [
-            OriginatorIdentifierOrKey.schema(names.originator || {})
-          ]
+          value: [OriginatorIdentifierOrKey.schema(names.originator || {})]
         }),
         new Constructed({
           optional: true,
@@ -23114,8 +23412,12 @@ var KeyAgreeRecipientInfo = class _KeyAgreeRecipientInfo extends PkiObject {
     this.originator = new OriginatorIdentifierOrKey({ schema: asn1.result.originator });
     if (UKM in asn1.result)
       this.ukm = asn1.result.ukm;
-    this.keyEncryptionAlgorithm = new AlgorithmIdentifier({ schema: asn1.result.keyEncryptionAlgorithm });
-    this.recipientEncryptedKeys = new RecipientEncryptedKeys({ schema: asn1.result.recipientEncryptedKeys });
+    this.keyEncryptionAlgorithm = new AlgorithmIdentifier({
+      schema: asn1.result.keyEncryptionAlgorithm
+    });
+    this.recipientEncryptedKeys = new RecipientEncryptedKeys({
+      schema: asn1.result.recipientEncryptedKeys
+    });
   }
   toSchema() {
     const outputArray = [];
@@ -23160,11 +23462,7 @@ KeyAgreeRecipientInfo.CLASS_NAME = "KeyAgreeRecipientInfo";
 var KEY_IDENTIFIER = "keyIdentifier";
 var DATE2 = "date";
 var OTHER = "other";
-var CLEAR_PROPS$r = [
-  KEY_IDENTIFIER,
-  DATE2,
-  OTHER
-];
+var CLEAR_PROPS$r = [KEY_IDENTIFIER, DATE2, OTHER];
 var KEKIdentifier = class _KEKIdentifier extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -23269,12 +23567,7 @@ var KEK_ID = "kekid";
 var KEY_ENCRYPTION_ALGORITHM$1 = "keyEncryptionAlgorithm";
 var ENCRYPTED_KEY$1 = "encryptedKey";
 var PER_DEFINED_KEK = "preDefinedKEK";
-var CLEAR_PROPS$q = [
-  VERSION$a,
-  KEK_ID,
-  KEY_ENCRYPTION_ALGORITHM$1,
-  ENCRYPTED_KEY$1
-];
+var CLEAR_PROPS$q = [VERSION$a, KEK_ID, KEY_ENCRYPTION_ALGORITHM$1, ENCRYPTED_KEY$1];
 var KEKRecipientInfo = class _KEKRecipientInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -23352,17 +23645,14 @@ var KEKRecipientInfo = class _KEKRecipientInfo extends PkiObject {
     AsnError.assertSchema(asn1, this.className);
     this.version = asn1.result.version.valueBlock.valueDec;
     this.kekid = new KEKIdentifier({ schema: asn1.result.kekid });
-    this.keyEncryptionAlgorithm = new AlgorithmIdentifier({ schema: asn1.result.keyEncryptionAlgorithm });
+    this.keyEncryptionAlgorithm = new AlgorithmIdentifier({
+      schema: asn1.result.keyEncryptionAlgorithm
+    });
     this.encryptedKey = asn1.result.encryptedKey;
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new Integer({ value: this.version }),
-        this.kekid.toSchema(),
-        this.keyEncryptionAlgorithm.toSchema(),
-        this.encryptedKey
-      ]
+      value: [new Integer({ value: this.version }), this.kekid.toSchema(), this.keyEncryptionAlgorithm.toSchema(), this.encryptedKey]
     });
   }
   toJSON() {
@@ -23380,12 +23670,7 @@ var KEY_DERIVATION_ALGORITHM = "keyDerivationAlgorithm";
 var KEY_ENCRYPTION_ALGORITHM = "keyEncryptionAlgorithm";
 var ENCRYPTED_KEY = "encryptedKey";
 var PASSWORD = "password";
-var CLEAR_PROPS$p = [
-  VERSION$9,
-  KEY_DERIVATION_ALGORITHM,
-  KEY_ENCRYPTION_ALGORITHM,
-  ENCRYPTED_KEY
-];
+var CLEAR_PROPS$p = [VERSION$9, KEY_DERIVATION_ALGORITHM, KEY_ENCRYPTION_ALGORITHM, ENCRYPTED_KEY];
 var PasswordRecipientinfo = class _PasswordRecipientinfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -23474,7 +23759,9 @@ var PasswordRecipientinfo = class _PasswordRecipientinfo extends PkiObject {
         })
       });
     }
-    this.keyEncryptionAlgorithm = new AlgorithmIdentifier({ schema: asn1.result.keyEncryptionAlgorithm });
+    this.keyEncryptionAlgorithm = new AlgorithmIdentifier({
+      schema: asn1.result.keyEncryptionAlgorithm
+    });
     this.encryptedKey = asn1.result.encryptedKey;
   }
   toSchema() {
@@ -23510,10 +23797,7 @@ var PasswordRecipientinfo = class _PasswordRecipientinfo extends PkiObject {
 PasswordRecipientinfo.CLASS_NAME = "PasswordRecipientInfo";
 var ORI_TYPE = "oriType";
 var ORI_VALUE = "oriValue";
-var CLEAR_PROPS$o = [
-  ORI_TYPE,
-  ORI_VALUE
-];
+var CLEAR_PROPS$o = [ORI_TYPE, ORI_VALUE];
 var OtherRecipientInfo = class _OtherRecipientInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -23547,10 +23831,7 @@ var OtherRecipientInfo = class _OtherRecipientInfo extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new ObjectIdentifier({ name: names.oriType || EMPTY_STRING2 }),
-        new Any({ name: names.oriValue || EMPTY_STRING2 })
-      ]
+      value: [new ObjectIdentifier({ name: names.oriType || EMPTY_STRING2 }), new Any({ name: names.oriValue || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -23567,10 +23848,7 @@ var OtherRecipientInfo = class _OtherRecipientInfo extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new ObjectIdentifier({ value: this.oriType }),
-        this.oriValue
-      ]
+      value: [new ObjectIdentifier({ value: this.oriType }), this.oriValue]
     });
   }
   toJSON() {
@@ -23586,9 +23864,7 @@ var OtherRecipientInfo = class _OtherRecipientInfo extends PkiObject {
 OtherRecipientInfo.CLASS_NAME = "OtherRecipientInfo";
 var VARIANT = "variant";
 var VALUE = "value";
-var CLEAR_PROPS$n = [
-  "blockName"
-];
+var CLEAR_PROPS$n = ["blockName"];
 var RecipientInfo = class _RecipientInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -23731,11 +24007,7 @@ RecipientInfo.CLASS_NAME = "RecipientInfo";
 var HASH_ALGORITHM$2 = "hashAlgorithm";
 var MASK_GEN_ALGORITHM = "maskGenAlgorithm";
 var P_SOURCE_ALGORITHM = "pSourceAlgorithm";
-var CLEAR_PROPS$m = [
-  HASH_ALGORITHM$2,
-  MASK_GEN_ALGORITHM,
-  P_SOURCE_ALGORITHM
-];
+var CLEAR_PROPS$m = [HASH_ALGORITHM$2, MASK_GEN_ALGORITHM, P_SOURCE_ALGORITHM];
 var RSAESOAEPParams = class _RSAESOAEPParams extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -23764,7 +24036,9 @@ var RSAESOAEPParams = class _RSAESOAEPParams extends PkiObject {
       case P_SOURCE_ALGORITHM:
         return new AlgorithmIdentifier({
           algorithmId: "1.2.840.113549.1.1.9",
-          algorithmParams: new OctetString({ valueHex: new Uint8Array([218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9]).buffer })
+          algorithmParams: new OctetString({
+            valueHex: new Uint8Array([218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9]).buffer
+          })
         });
       default:
         return super.defaultValues(memberName);
@@ -23882,11 +24156,7 @@ RSAESOAEPParams.CLASS_NAME = "RSAESOAEPParams";
 var KEY_INFO = "keyInfo";
 var ENTITY_U_INFO = "entityUInfo";
 var SUPP_PUB_INFO = "suppPubInfo";
-var CLEAR_PROPS$l = [
-  KEY_INFO,
-  ENTITY_U_INFO,
-  SUPP_PUB_INFO
-];
+var CLEAR_PROPS$l = [KEY_INFO, ENTITY_U_INFO, SUPP_PUB_INFO];
 var ECCCMSSharedInfo = class _ECCCMSSharedInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -24006,13 +24276,7 @@ var ORIGINATOR_INFO = "originatorInfo";
 var RECIPIENT_INFOS = "recipientInfos";
 var ENCRYPTED_CONTENT_INFO = "encryptedContentInfo";
 var UNPROTECTED_ATTRS = "unprotectedAttrs";
-var CLEAR_PROPS$k = [
-  VERSION$8,
-  ORIGINATOR_INFO,
-  RECIPIENT_INFOS,
-  ENCRYPTED_CONTENT_INFO,
-  UNPROTECTED_ATTRS
-];
+var CLEAR_PROPS$k = [VERSION$8, ORIGINATOR_INFO, RECIPIENT_INFOS, ENCRYPTED_CONTENT_INFO, UNPROTECTED_ATTRS];
 var defaultEncryptionParams = {
   kdfAlgorithm: "SHA-512",
   kekEncryptionLength: 256
@@ -24067,7 +24331,7 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
       case UNPROTECTED_ATTRS:
         return memberValue.length === 0;
       case ENCRYPTED_CONTENT_INFO:
-        return EncryptedContentInfo.compareWithDefault("contentType", memberValue.contentType) && (EncryptedContentInfo.compareWithDefault("contentEncryptionAlgorithm", memberValue.contentEncryptionAlgorithm) && EncryptedContentInfo.compareWithDefault("encryptedContent", memberValue.encryptedContent));
+        return EncryptedContentInfo.compareWithDefault("contentType", memberValue.contentType) && EncryptedContentInfo.compareWithDefault("contentEncryptionAlgorithm", memberValue.contentEncryptionAlgorithm) && EncryptedContentInfo.compareWithDefault("encryptedContent", memberValue.encryptedContent);
       default:
         return super.defaultValues(memberName);
     }
@@ -24137,7 +24401,9 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
       });
     }
     this.recipientInfos = Array.from(asn1.result.recipientInfos, (o) => new RecipientInfo({ schema: o }));
-    this.encryptedContentInfo = new EncryptedContentInfo({ schema: asn1.result.encryptedContentInfo });
+    this.encryptedContentInfo = new EncryptedContentInfo({
+      schema: asn1.result.encryptedContentInfo
+    });
     if (UNPROTECTED_ATTRS in asn1.result)
       this.unprotectedAttrs = Array.from(asn1.result.unprotectedAttrs, (o) => new Attribute({ schema: o }));
   }
@@ -24460,7 +24726,9 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
         name: "ECDH",
         public: recipientPublicKey
       }, ecdhKeys.privateKey, recipientCurveLength);
-      const aesKWAlgorithm = new AlgorithmIdentifier({ schema: recipientInfo.keyEncryptionAlgorithm.algorithmParams });
+      const aesKWAlgorithm = new AlgorithmIdentifier({
+        schema: recipientInfo.keyEncryptionAlgorithm.algorithmParams
+      });
       const kwAlgorithm = crypto2.getAlgorithmByOID(aesKWAlgorithm.algorithmId, true, "aesKWAlgorithm");
       let kwLength = kwAlgorithm.length;
       const kwLengthBuffer = new ArrayBuffer(4);
@@ -24485,7 +24753,9 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
       originator.variant = 3;
       originator.value = OriginatorPublicKey.fromBER(exportedECDHPublicKey);
       recipientInfo.originator = originator;
-      recipientInfo.recipientEncryptedKeys.encryptedKeys[0].encryptedKey = new OctetString({ valueHex: wrappedKey });
+      recipientInfo.recipientEncryptedKeys.encryptedKeys[0].encryptedKey = new OctetString({
+        valueHex: wrappedKey
+      });
       return { ecdhPrivateKey: ecdhKeys.privateKey };
     };
     const SubKeyTransRecipientInfo = async (index) => {
@@ -24498,17 +24768,14 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
         if ("name" in algorithmParameters.hash === false)
           throw new Error(`Incorrect OID for hash algorithm: ${rsaOAEPParams.hashAlgorithm.algorithmId}`);
       }
-      try {
-        const publicKey = await recipientInfo.recipientCertificate.getPublicKey({
-          algorithm: {
-            algorithm: algorithmParameters,
-            usages: ["encrypt", "wrapKey"]
-          }
-        }, crypto2);
-        const encryptedKey = await crypto2.encrypt(publicKey.algorithm, publicKey, exportedSessionKey);
-        recipientInfo.encryptedKey = new OctetString({ valueHex: encryptedKey });
-      } catch {
-      }
+      const publicKey = await recipientInfo.recipientCertificate.getPublicKey({
+        algorithm: {
+          algorithm: algorithmParameters,
+          usages: ["encrypt", "wrapKey"]
+        }
+      }, crypto2);
+      const encryptedKey = await crypto2.encrypt(publicKey.algorithm, publicKey, exportedSessionKey);
+      recipientInfo.encryptedKey = new OctetString({ valueHex: encryptedKey });
     };
     const SubKEKRecipientInfo = async (index) => {
       const recipientInfo = this.recipientInfos[index].value;
@@ -24525,7 +24792,9 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
       if (!recipientInfo.keyDerivationAlgorithm.algorithmParams)
         throw new Error('Incorrectly encoded "keyDerivationAlgorithm"');
       try {
-        pbkdf2Params = new PBKDF2Params({ schema: recipientInfo.keyDerivationAlgorithm.algorithmParams });
+        pbkdf2Params = new PBKDF2Params({
+          schema: recipientInfo.keyDerivationAlgorithm.algorithmParams
+        });
       } catch {
         throw new Error('Incorrectly encoded "keyDerivationAlgorithm"');
       }
@@ -24629,7 +24898,9 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
         }
       }
       if ("algorithmParams" in originator.value.algorithm === false)
-        originator.value.algorithm.algorithmParams = new ObjectIdentifier({ value: curveOID });
+        originator.value.algorithm.algorithmParams = new ObjectIdentifier({
+          value: curveOID
+        });
       const buffer = originator.value.toSchema().toBER(false);
       const ecdhPublicKey = await crypto2.importKey("spki", buffer, {
         name: "ECDH",
@@ -24641,7 +24912,9 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
       }, ecdhPrivateKey, recipientCurveLength);
       async function applyKDF(includeAlgorithmParams) {
         includeAlgorithmParams = includeAlgorithmParams || false;
-        const aesKWAlgorithm = new AlgorithmIdentifier({ schema: recipientInfo.keyEncryptionAlgorithm.algorithmParams });
+        const aesKWAlgorithm = new AlgorithmIdentifier({
+          schema: recipientInfo.keyEncryptionAlgorithm.algorithmParams
+        });
         const kwAlgorithm = crypto2.getAlgorithmByOID(aesKWAlgorithm.algorithmId, true, "kwAlgorithm");
         let kwLength = kwAlgorithm.length;
         const kwLengthBuffer = new ArrayBuffer(4);
@@ -24742,7 +25015,9 @@ var EnvelopedData = class _EnvelopedData extends PkiObject {
         throw new Error('Incorrectly encoded "keyDerivationAlgorithm"');
       }
       try {
-        pbkdf2Params = new PBKDF2Params({ schema: recipientInfo.keyDerivationAlgorithm.algorithmParams });
+        pbkdf2Params = new PBKDF2Params({
+          schema: recipientInfo.keyDerivationAlgorithm.algorithmParams
+        });
       } catch {
         throw new Error('Incorrectly encoded "keyDerivationAlgorithm"');
       }
@@ -24842,9 +25117,7 @@ var AuthenticatedSafe = class _AuthenticatedSafe extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      CONTENT_INFOS
-    ]);
+    clearProps(schema, [CONTENT_INFOS]);
     const asn1 = compareSchema(schema, schema, _AuthenticatedSafe.schema({
       names: {
         contentInfos: CONTENT_INFOS
@@ -25002,12 +25275,7 @@ var HASH_ALGORITHM$1 = "hashAlgorithm";
 var ISSUER_NAME_HASH = "issuerNameHash";
 var ISSUER_KEY_HASH = "issuerKeyHash";
 var SERIAL_NUMBER$1 = "serialNumber";
-var CLEAR_PROPS$j = [
-  HASH_ALGORITHM$1,
-  ISSUER_NAME_HASH,
-  ISSUER_KEY_HASH,
-  SERIAL_NUMBER$1
-];
+var CLEAR_PROPS$j = [HASH_ALGORITHM$1, ISSUER_NAME_HASH, ISSUER_KEY_HASH, SERIAL_NUMBER$1];
 var CertID = class _CertID extends PkiObject {
   static async create(certificate, parameters, crypto2 = getCrypto(true)) {
     const certID = new _CertID();
@@ -25083,12 +25351,7 @@ var CertID = class _CertID extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.hashAlgorithm.toSchema(),
-        this.issuerNameHash,
-        this.issuerKeyHash,
-        this.serialNumber
-      ]
+      value: [this.hashAlgorithm.toSchema(), this.issuerNameHash, this.issuerKeyHash, this.serialNumber]
     });
   }
   toJSON() {
@@ -25136,13 +25399,7 @@ var CERT_STATUS = "certStatus";
 var THIS_UPDATE = "thisUpdate";
 var NEXT_UPDATE = "nextUpdate";
 var SINGLE_EXTENSIONS = "singleExtensions";
-var CLEAR_PROPS$i = [
-  CERT_ID,
-  CERT_STATUS,
-  THIS_UPDATE,
-  NEXT_UPDATE,
-  SINGLE_EXTENSIONS
-];
+var CLEAR_PROPS$i = [CERT_ID, CERT_STATUS, THIS_UPDATE, NEXT_UPDATE, SINGLE_EXTENSIONS];
 var SingleResponse = class _SingleResponse extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -25333,14 +25590,7 @@ var RESPONSE_DATA_RESPONDER_ID = `${RESPONSE_DATA}.${RESPONDER_ID}`;
 var RESPONSE_DATA_PRODUCED_AT = `${RESPONSE_DATA}.${PRODUCED_AT}`;
 var RESPONSE_DATA_RESPONSES = `${RESPONSE_DATA}.${RESPONSES}`;
 var RESPONSE_DATA_RESPONSE_EXTENSIONS = `${RESPONSE_DATA}.${RESPONSE_EXTENSIONS}`;
-var CLEAR_PROPS$h = [
-  RESPONSE_DATA,
-  RESPONSE_DATA_VERSION,
-  RESPONSE_DATA_RESPONDER_ID,
-  RESPONSE_DATA_PRODUCED_AT,
-  RESPONSE_DATA_RESPONSES,
-  RESPONSE_DATA_RESPONSE_EXTENSIONS
-];
+var CLEAR_PROPS$h = [RESPONSE_DATA, RESPONSE_DATA_VERSION, RESPONSE_DATA_RESPONDER_ID, RESPONSE_DATA_PRODUCED_AT, RESPONSE_DATA_RESPONSES, RESPONSE_DATA_RESPONSE_EXTENSIONS];
 var ResponseData = class _ResponseData extends PkiObject {
   get tbs() {
     return pvtsutils2.BufferSourceConverter.toArrayBuffer(this.tbsView);
@@ -25417,11 +25667,13 @@ var ResponseData = class _ResponseData extends PkiObject {
                 tagClass: 3,
                 tagNumber: 1
               },
-              value: [RelativeDistinguishedNames.schema(names.ResponseDataByName || {
-                names: {
-                  blockName: "ResponseData.byName"
-                }
-              })]
+              value: [
+                RelativeDistinguishedNames.schema(names.ResponseDataByName || {
+                  names: {
+                    blockName: "ResponseData.byName"
+                  }
+                })
+              ]
             }),
             new Constructed({
               name: names.responderID || RESPONSE_DATA_RESPONDER_ID,
@@ -25448,11 +25700,13 @@ var ResponseData = class _ResponseData extends PkiObject {
             tagClass: 3,
             tagNumber: 1
           },
-          value: [Extensions.schema(names.extensions || {
-            names: {
-              blockName: RESPONSE_DATA_RESPONSE_EXTENSIONS
-            }
-          })]
+          value: [
+            Extensions.schema(names.extensions || {
+              names: {
+                blockName: RESPONSE_DATA_RESPONSE_EXTENSIONS
+              }
+            })
+          ]
         })
       ]
     });
@@ -25465,7 +25719,9 @@ var ResponseData = class _ResponseData extends PkiObject {
     if (RESPONSE_DATA_VERSION in asn1.result)
       this.version = asn1.result[RESPONSE_DATA_VERSION].valueBlock.valueDec;
     if (asn1.result[RESPONSE_DATA_RESPONDER_ID].idBlock.tagNumber === 1)
-      this.responderID = new RelativeDistinguishedNames({ schema: asn1.result[RESPONSE_DATA_RESPONDER_ID].valueBlock.value[0] });
+      this.responderID = new RelativeDistinguishedNames({
+        schema: asn1.result[RESPONSE_DATA_RESPONDER_ID].valueBlock.value[0]
+      });
     else
       this.responderID = asn1.result[RESPONSE_DATA_RESPONDER_ID].valueBlock.value[0];
     this.producedAt = asn1.result[RESPONSE_DATA_PRODUCED_AT].toDate();
@@ -25520,9 +25776,11 @@ var ResponseData = class _ResponseData extends PkiObject {
             tagClass: 3,
             tagNumber: 1
           },
-          value: [new Sequence({
-            value: Array.from(this.responseExtensions, (o) => o.toSchema())
-          })]
+          value: [
+            new Sequence({
+              value: Array.from(this.responseExtensions, (o) => o.toSchema())
+            })
+          ]
         }));
       }
       tbsSchema = new Sequence({
@@ -25868,7 +26126,7 @@ var CertificateChainValidationEngine = class _CertificateChainValidationEngine {
             resultMessage: 'Unable to build certificate chain - "keyCertSign" flag was not set'
           };
         }
-        if (isCA === true && keyUsagePresent === true && (needToCheckCRL && cRLSign === false)) {
+        if (isCA === true && keyUsagePresent === true && needToCheckCRL && cRLSign === false) {
           return {
             result: false,
             resultCode: 5,
@@ -26685,12 +26943,10 @@ var BASIC_OCSP_RESPONSE_TBS_RESPONSE_DATA = `${BASIC_OCSP_RESPONSE}.${TBS_RESPON
 var BASIC_OCSP_RESPONSE_SIGNATURE_ALGORITHM = `${BASIC_OCSP_RESPONSE}.${SIGNATURE_ALGORITHM$3}`;
 var BASIC_OCSP_RESPONSE_SIGNATURE = `${BASIC_OCSP_RESPONSE}.${SIGNATURE$2}`;
 var BASIC_OCSP_RESPONSE_CERTS = `${BASIC_OCSP_RESPONSE}.${CERTS$1}`;
-var CLEAR_PROPS$g = [
-  BASIC_OCSP_RESPONSE_TBS_RESPONSE_DATA,
-  BASIC_OCSP_RESPONSE_SIGNATURE_ALGORITHM,
-  BASIC_OCSP_RESPONSE_SIGNATURE,
-  BASIC_OCSP_RESPONSE_CERTS
-];
+var CLEAR_PROPS$g = [BASIC_OCSP_RESPONSE_TBS_RESPONSE_DATA, BASIC_OCSP_RESPONSE_SIGNATURE_ALGORITHM, BASIC_OCSP_RESPONSE_SIGNATURE, BASIC_OCSP_RESPONSE_CERTS];
+var ID_KP_OCSP_SIGNING = "1.3.6.1.5.5.7.3.9";
+var ID_CE_KEY_USAGE = "2.5.29.15";
+var ID_CE_EXT_KEY_USAGE = "2.5.29.37";
 var BasicOCSPResponse = class _BasicOCSPResponse extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -26760,10 +27016,12 @@ var BasicOCSPResponse = class _BasicOCSPResponse extends PkiObject {
           },
           value: [
             new Sequence({
-              value: [new Repeated({
-                name: BASIC_OCSP_RESPONSE_CERTS,
-                value: Certificate.schema(names.certs || {})
-              })]
+              value: [
+                new Repeated({
+                  name: BASIC_OCSP_RESPONSE_CERTS,
+                  value: Certificate.schema(names.certs || {})
+                })
+              ]
             })
           ]
         })
@@ -26774,8 +27032,12 @@ var BasicOCSPResponse = class _BasicOCSPResponse extends PkiObject {
     clearProps(schema, CLEAR_PROPS$g);
     const asn1 = compareSchema(schema, schema, _BasicOCSPResponse.schema());
     AsnError.assertSchema(asn1, this.className);
-    this.tbsResponseData = new ResponseData({ schema: asn1.result[BASIC_OCSP_RESPONSE_TBS_RESPONSE_DATA] });
-    this.signatureAlgorithm = new AlgorithmIdentifier({ schema: asn1.result[BASIC_OCSP_RESPONSE_SIGNATURE_ALGORITHM] });
+    this.tbsResponseData = new ResponseData({
+      schema: asn1.result[BASIC_OCSP_RESPONSE_TBS_RESPONSE_DATA]
+    });
+    this.signatureAlgorithm = new AlgorithmIdentifier({
+      schema: asn1.result[BASIC_OCSP_RESPONSE_SIGNATURE_ALGORITHM]
+    });
     this.signature = asn1.result[BASIC_OCSP_RESPONSE_SIGNATURE];
     if (BASIC_OCSP_RESPONSE_CERTS in asn1.result) {
       this.certs = Array.from(asn1.result[BASIC_OCSP_RESPONSE_CERTS], (element) => new Certificate({ schema: element }));
@@ -26879,52 +27141,258 @@ var BasicOCSPResponse = class _BasicOCSPResponse extends PkiObject {
     this.signature = new BitString({ valueHex: signature });
   }
   async verify(params = {}, crypto2 = getCrypto(true)) {
-    let signerCert = null;
-    let certIndex = -1;
-    const trustedCerts = params.trustedCerts || [];
-    if (!this.certs) {
+    if (!this.certs || this.certs.length === 0) {
       throw new Error("No certificates attached to the BasicOCSPResponse");
     }
-    switch (true) {
-      case this.tbsResponseData.responderID instanceof RelativeDistinguishedNames:
-        for (const [index, certificate] of this.certs.entries()) {
-          if (certificate.subject.isEqual(this.tbsResponseData.responderID)) {
-            certIndex = index;
-            break;
-          }
-        }
-        break;
-      case this.tbsResponseData.responderID instanceof OctetString:
-        for (const [index, cert] of this.certs.entries()) {
-          const hash = await crypto2.digest({ name: "sha-1" }, cert.subjectPublicKeyInfo.subjectPublicKey.valueBlock.valueHexView);
-          if (isEqualBuffer(hash, this.tbsResponseData.responderID.valueBlock.valueHex)) {
-            certIndex = index;
-            break;
-          }
-        }
-        break;
-      default:
-        throw new Error("Wrong value for responderID");
+    const embeddedCerts = this.certs;
+    const trustedCerts = params.trustedCerts || [];
+    const issuerCerts = params.issuerCerts || [];
+    const trustedResponders = params.trustedResponders || [];
+    const candidateIndices = await _BasicOCSPResponse.collectResponderCandidates(embeddedCerts, this.tbsResponseData.responderID, crypto2);
+    if (candidateIndices.length === 0) {
+      throw new Error("No certificate matching the OCSP responderID was found in the response");
     }
-    if (certIndex === -1)
-      throw new Error("Correct certificate was not found in OCSP response");
-    signerCert = this.certs[certIndex];
-    const additionalCerts = [signerCert];
-    for (const cert of this.certs) {
-      const caCert = await checkCA(cert, signerCert);
-      if (caCert) {
-        additionalCerts.push(caCert);
+    const errors = [];
+    let firstCryptoError = null;
+    let signatureMismatch = false;
+    let hadValidSignature = false;
+    for (const idx of candidateIndices) {
+      const signerCert = embeddedCerts[idx];
+      let signatureOk;
+      try {
+        signatureOk = await this.verifyResponseSignature(signerCert, crypto2);
+      } catch (err2) {
+        if (firstCryptoError === null) {
+          firstCryptoError = err2;
+        }
+        errors.push(`candidate #${idx} signature error: ${err2.message}`);
+        continue;
+      }
+      if (!signatureOk) {
+        signatureMismatch = true;
+        continue;
+      }
+      hadValidSignature = true;
+      try {
+        const isTrustedResponder = trustedResponders.length > 0 && _BasicOCSPResponse.containsCertificateByDer(trustedResponders, signerCert);
+        let validatedPathCerts = [];
+        if (!isTrustedResponder) {
+          validatedPathCerts = await _BasicOCSPResponse.validateSignerChain(signerCert, embeddedCerts, issuerCerts, trustedCerts, crypto2);
+        }
+        const authIssuerCandidates = [];
+        for (const cert of [...issuerCerts, ...embeddedCerts, ...trustedCerts, ...validatedPathCerts]) {
+          if (!_BasicOCSPResponse.containsCertificateByDer(authIssuerCandidates, cert)) {
+            authIssuerCandidates.push(cert);
+          }
+        }
+        let allAuthorized = true;
+        for (const singleResponse of this.tbsResponseData.responses) {
+          const authorized = await _BasicOCSPResponse.isAuthorizedResponderForCertID(signerCert, singleResponse.certID, authIssuerCandidates, trustedResponders, crypto2);
+          if (!authorized) {
+            allAuthorized = false;
+            break;
+          }
+        }
+        if (allAuthorized) {
+          return true;
+        } else {
+          errors.push(`candidate #${idx}: responder is not authorized for all SingleResponses`);
+        }
+      } catch (err2) {
+        errors.push(`candidate #${idx}: ${err2.message}`);
       }
     }
-    const certChain = new CertificateChainValidationEngine({
+    if (signatureMismatch && errors.length === 0 && firstCryptoError === null) {
+      return false;
+    }
+    if (hadValidSignature) {
+      throw new Error(`OCSP responder verification failed. Reasons: ${errors.join("; ")}`);
+    }
+    if (firstCryptoError) {
+      throw firstCryptoError;
+    }
+    throw new Error(`OCSP responder verification failed. Reasons: ${errors.join("; ")}`);
+  }
+  static containsCertificateByDer(certs, cert) {
+    const certDer = cert.toSchema(true).toBER(false);
+    return certs.some((c) => pvtsutils2.BufferSourceConverter.isEqual(c.toSchema(true).toBER(false), certDer));
+  }
+  static async collectResponderCandidates(certs, responderID, crypto2 = getCrypto(true)) {
+    var _a3;
+    const indices = [];
+    if (responderID instanceof RelativeDistinguishedNames) {
+      for (const [index, certificate] of certs.entries()) {
+        if (certificate.subject.isEqual(responderID)) {
+          indices.push(index);
+        }
+      }
+    } else if (responderID instanceof OctetString) {
+      for (const [index, certificate] of certs.entries()) {
+        const spk = certificate.subjectPublicKeyInfo.subjectPublicKey;
+        if (!((_a3 = spk.valueBlock) === null || _a3 === void 0 ? void 0 : _a3.valueHexView)) {
+          continue;
+        }
+        const hash = await crypto2.digest({ name: "sha-1" }, spk.valueBlock.valueHexView);
+        if (isEqualBuffer(hash, responderID.valueBlock.valueHex)) {
+          indices.push(index);
+        }
+      }
+    } else {
+      throw new Error("Unsupported OCSP responderID type");
+    }
+    return indices;
+  }
+  async verifyResponseSignature(candidateCert, crypto2 = getCrypto(true)) {
+    return crypto2.verifyWithPublicKey(this.tbsResponseData.tbsView, this.signature, candidateCert.subjectPublicKeyInfo, this.signatureAlgorithm);
+  }
+  static async validateSignerChain(signerCert, embeddedCerts, issuerCerts, trustedCerts, crypto2 = getCrypto(true)) {
+    const additionalCerts = [];
+    const addIfCa = (cert) => {
+      const caCert = checkCA(cert, signerCert);
+      if (caCert && !_BasicOCSPResponse.containsCertificateByDer(additionalCerts, caCert)) {
+        additionalCerts.push(caCert);
+      }
+    };
+    for (const cert of issuerCerts) {
+      addIfCa(cert);
+    }
+    for (const cert of embeddedCerts) {
+      addIfCa(cert);
+    }
+    additionalCerts.push(signerCert);
+    const engine2 = new CertificateChainValidationEngine({
       certs: additionalCerts,
       trustedCerts
     });
-    const verificationResult = await certChain.verify({}, crypto2);
-    if (!verificationResult.result) {
-      throw new Error("Validation of signer's certificate failed");
+    const result = await engine2.verify({}, crypto2);
+    if (!result.result || !result.certificatePath) {
+      throw new Error(`Validation of signer's certificate chain failed${result.resultMessage ? `: ${result.resultMessage}` : ""}`);
     }
-    return crypto2.verifyWithPublicKey(this.tbsResponseData.tbsView, this.signature, this.certs[certIndex].subjectPublicKeyInfo, this.signatureAlgorithm);
+    return result.certificatePath.slice(1);
+  }
+  static async findIssuersForCertID(certID, issuerCandidates, crypto2 = getCrypto(true)) {
+    const responseHashAlg = crypto2.getAlgorithmByOID(certID.hashAlgorithm.algorithmId, false);
+    if (!responseHashAlg || !("name" in responseHashAlg)) {
+      return [];
+    }
+    const hashAlgName = responseHashAlg.name;
+    const uniqueByDer = [];
+    for (const candidate of issuerCandidates) {
+      if (!_BasicOCSPResponse.containsCertificateByDer(uniqueByDer, candidate)) {
+        uniqueByDer.push(candidate);
+      }
+    }
+    const matched = [];
+    for (const candidate of uniqueByDer) {
+      const candidateID = new CertID();
+      try {
+        await candidateID.createForCertificate(candidate, {
+          hashAlgorithm: hashAlgName,
+          issuerCertificate: candidate
+        }, crypto2);
+      } catch {
+        continue;
+      }
+      if (candidateID.hashAlgorithm.algorithmId !== certID.hashAlgorithm.algorithmId) {
+        continue;
+      }
+      if (!pvtsutils2.BufferSourceConverter.isEqual(candidateID.issuerNameHash.valueBlock.valueHexView, certID.issuerNameHash.valueBlock.valueHexView)) {
+        continue;
+      }
+      if (!pvtsutils2.BufferSourceConverter.isEqual(candidateID.issuerKeyHash.valueBlock.valueHexView, certID.issuerKeyHash.valueBlock.valueHexView)) {
+        continue;
+      }
+      matched.push(candidate);
+    }
+    return matched;
+  }
+  static async certificateMatchesIssuerID(certificate, certID, crypto2 = getCrypto(true)) {
+    const responseHashAlg = crypto2.getAlgorithmByOID(certID.hashAlgorithm.algorithmId, false);
+    if (!responseHashAlg || !("name" in responseHashAlg)) {
+      return false;
+    }
+    const hashAlgName = responseHashAlg.name;
+    try {
+      const nameHash = await crypto2.digest({ name: hashAlgName }, certificate.subject.toSchema().toBER(false));
+      if (!pvtsutils2.BufferSourceConverter.isEqual(new Uint8Array(nameHash), certID.issuerNameHash.valueBlock.valueHexView)) {
+        return false;
+      }
+      const keyBytes = certificate.subjectPublicKeyInfo.subjectPublicKey.valueBlock.valueHexView;
+      const keyHash = await crypto2.digest({ name: hashAlgName }, keyBytes);
+      return pvtsutils2.BufferSourceConverter.isEqual(new Uint8Array(keyHash), certID.issuerKeyHash.valueBlock.valueHexView);
+    } catch {
+      return false;
+    }
+  }
+  static async isAuthorizedResponderForCertID(signerCert, certID, issuerCandidates, trustedResponders, crypto2 = getCrypto(true)) {
+    if (trustedResponders.length > 0 && _BasicOCSPResponse.containsCertificateByDer(trustedResponders, signerCert)) {
+      return true;
+    }
+    if (await _BasicOCSPResponse.certificateMatchesIssuerID(signerCert, certID, crypto2)) {
+      return true;
+    }
+    if (!_BasicOCSPResponse.certHasOCSPSigningEKU(signerCert)) {
+      return false;
+    }
+    if (!_BasicOCSPResponse.certKeyUsagePermitsDigitalSignature(signerCert)) {
+      return false;
+    }
+    const issuers = await _BasicOCSPResponse.findIssuersForCertID(certID, issuerCandidates, crypto2);
+    for (const issuerCert of issuers) {
+      if (!signerCert.issuer.isEqual(issuerCert.subject)) {
+        continue;
+      }
+      try {
+        const issued = await signerCert.verify(issuerCert, crypto2);
+        if (issued) {
+          return true;
+        }
+      } catch {
+      }
+    }
+    return false;
+  }
+  static certHasOCSPSigningEKU(cert) {
+    var _a3;
+    const ext = (_a3 = cert.extensions) === null || _a3 === void 0 ? void 0 : _a3.find((e) => e.extnID === ID_CE_EXT_KEY_USAGE);
+    if (!ext) {
+      return false;
+    }
+    const parsed = ext.parsedValue;
+    if (parsed instanceof ExtKeyUsage) {
+      return parsed.keyPurposes.includes(ID_KP_OCSP_SIGNING);
+    }
+    try {
+      const asn1 = fromBER(ext.extnValue.valueBlock.valueHexView);
+      if (asn1.offset === -1)
+        return false;
+      if (!(asn1.result instanceof Sequence))
+        return false;
+      const eku = new ExtKeyUsage({ schema: asn1.result });
+      return eku.keyPurposes.includes(ID_KP_OCSP_SIGNING);
+    } catch {
+      return false;
+    }
+  }
+  static certKeyUsagePermitsDigitalSignature(cert) {
+    var _a3;
+    const ext = (_a3 = cert.extensions) === null || _a3 === void 0 ? void 0 : _a3.find((e) => e.extnID === ID_CE_KEY_USAGE);
+    if (!ext) {
+      return true;
+    }
+    try {
+      const asn1 = fromBER(ext.extnValue.valueBlock.valueHexView);
+      if (asn1.offset === -1)
+        return false;
+      if (!(asn1.result instanceof BitString))
+        return false;
+      const bits = new Uint8Array(asn1.result.valueBlock.valueHexView);
+      if (bits.length === 0)
+        return false;
+      return (bits[0] & 128) !== 0;
+    } catch {
+      return false;
+    }
   }
 };
 BasicOCSPResponse.CLASS_NAME = "BasicOCSPResponse";
@@ -26940,15 +27408,7 @@ var CSR_INFO_VERSION = `${CSR_INFO}.version`;
 var CSR_INFO_SUBJECT = `${CSR_INFO}.subject`;
 var CSR_INFO_SPKI = `${CSR_INFO}.subjectPublicKeyInfo`;
 var CSR_INFO_ATTRS = `${CSR_INFO}.attributes`;
-var CLEAR_PROPS$f = [
-  CSR_INFO,
-  CSR_INFO_VERSION,
-  CSR_INFO_SUBJECT,
-  CSR_INFO_SPKI,
-  CSR_INFO_ATTRS,
-  SIGNATURE_ALGORITHM$2,
-  SIGNATURE_VALUE
-];
+var CLEAR_PROPS$f = [CSR_INFO, CSR_INFO_VERSION, CSR_INFO_SUBJECT, CSR_INFO_SPKI, CSR_INFO_ATTRS, SIGNATURE_ALGORITHM$2, SIGNATURE_VALUE];
 function CertificationRequestInfo(parameters = {}) {
   const names = getParametersValue(parameters, "names", {});
   return new Sequence({
@@ -27031,10 +27491,7 @@ var CertificationRequest = class _CertificationRequest extends PkiObject {
         CertificationRequestInfo(names.certificationRequestInfo || {}),
         new Sequence({
           name: names.signatureAlgorithm || SIGNATURE_ALGORITHM$2,
-          value: [
-            new ObjectIdentifier(),
-            new Any({ optional: true })
-          ]
+          value: [new ObjectIdentifier(), new Any({ optional: true })]
         }),
         new BitString({ name: names.signatureValue || SIGNATURE_VALUE })
       ]
@@ -27055,11 +27512,7 @@ var CertificationRequest = class _CertificationRequest extends PkiObject {
     this.signatureValue = asn1.result.signatureValue;
   }
   encodeTBS() {
-    const outputArray = [
-      new Integer({ value: this.version }),
-      this.subject.toSchema(),
-      this.subjectPublicKeyInfo.toSchema()
-    ];
+    const outputArray = [new Integer({ value: this.version }), this.subject.toSchema(), this.subjectPublicKeyInfo.toSchema()];
     if (ATTRIBUTES$1 in this) {
       outputArray.push(new Constructed({
         idBlock: {
@@ -27086,11 +27539,7 @@ var CertificationRequest = class _CertificationRequest extends PkiObject {
       tbsSchema = this.encodeTBS();
     }
     return new Sequence({
-      value: [
-        tbsSchema,
-        this.signatureAlgorithm.toSchema(),
-        this.signatureValue
-      ]
+      value: [tbsSchema, this.signatureAlgorithm.toSchema(), this.signatureValue]
     });
   }
   toJSON() {
@@ -27128,10 +27577,7 @@ var CertificationRequest = class _CertificationRequest extends PkiObject {
 CertificationRequest.CLASS_NAME = "CertificationRequest";
 var DIGEST_ALGORITHM$1 = "digestAlgorithm";
 var DIGEST = "digest";
-var CLEAR_PROPS$e = [
-  DIGEST_ALGORITHM$1,
-  DIGEST
-];
+var CLEAR_PROPS$e = [DIGEST_ALGORITHM$1, DIGEST];
 var DigestInfo = class _DigestInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -27193,10 +27639,7 @@ var DigestInfo = class _DigestInfo extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.digestAlgorithm.toSchema(),
-        this.digest
-      ]
+      value: [this.digestAlgorithm.toSchema(), this.digest]
     });
   }
   toJSON() {
@@ -27209,10 +27652,7 @@ var DigestInfo = class _DigestInfo extends PkiObject {
 DigestInfo.CLASS_NAME = "DigestInfo";
 var E_CONTENT_TYPE = "eContentType";
 var E_CONTENT = "eContent";
-var CLEAR_PROPS$d = [
-  E_CONTENT_TYPE,
-  E_CONTENT
-];
+var CLEAR_PROPS$d = [E_CONTENT_TYPE, E_CONTENT];
 var EncapsulatedContentInfo = class _EncapsulatedContentInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -27335,11 +27775,7 @@ EncapsulatedContentInfo.CLASS_NAME = "EncapsulatedContentInfo";
 var MAC = "mac";
 var MAC_SALT = "macSalt";
 var ITERATIONS = "iterations";
-var CLEAR_PROPS$c = [
-  MAC,
-  MAC_SALT,
-  ITERATIONS
-];
+var CLEAR_PROPS$c = [MAC, MAC_SALT, ITERATIONS];
 var MacData = class _MacData extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -27415,10 +27851,7 @@ var MacData = class _MacData extends PkiObject {
       this.iterations = asn1.result.iterations.valueBlock.valueDec;
   }
   toSchema() {
-    const outputArray = [
-      this.mac.toSchema(),
-      this.macSalt
-    ];
+    const outputArray = [this.mac.toSchema(), this.macSalt];
     if (this.iterations !== void 0) {
       outputArray.push(new Integer({ value: this.iterations }));
     }
@@ -27440,10 +27873,7 @@ var MacData = class _MacData extends PkiObject {
 MacData.CLASS_NAME = "MacData";
 var HASH_ALGORITHM = "hashAlgorithm";
 var HASHED_MESSAGE = "hashedMessage";
-var CLEAR_PROPS$b = [
-  HASH_ALGORITHM,
-  HASHED_MESSAGE
-];
+var CLEAR_PROPS$b = [HASH_ALGORITHM, HASHED_MESSAGE];
 var MessageImprint = class _MessageImprint extends PkiObject {
   static async create(hashAlgorithm, message, crypto2 = getCrypto(true)) {
     const hashAlgorithmOID = crypto2.getOIDByAlgorithm({ name: hashAlgorithm }, true, "hashAlgorithm");
@@ -27489,10 +27919,7 @@ var MessageImprint = class _MessageImprint extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        AlgorithmIdentifier.schema(names.hashAlgorithm || {}),
-        new OctetString({ name: names.hashedMessage || EMPTY_STRING2 })
-      ]
+      value: [AlgorithmIdentifier.schema(names.hashAlgorithm || {}), new OctetString({ name: names.hashedMessage || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -27513,10 +27940,7 @@ var MessageImprint = class _MessageImprint extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        this.hashAlgorithm.toSchema(),
-        this.hashedMessage
-      ]
+      value: [this.hashAlgorithm.toSchema(), this.hashedMessage]
     });
   }
   toJSON() {
@@ -27529,10 +27953,7 @@ var MessageImprint = class _MessageImprint extends PkiObject {
 MessageImprint.CLASS_NAME = "MessageImprint";
 var REQ_CERT = "reqCert";
 var SINGLE_REQUEST_EXTENSIONS = "singleRequestExtensions";
-var CLEAR_PROPS$a = [
-  REQ_CERT,
-  SINGLE_REQUEST_EXTENSIONS
-];
+var CLEAR_PROPS$a = [REQ_CERT, SINGLE_REQUEST_EXTENSIONS];
 var Request = class _Request extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -27576,11 +27997,13 @@ var Request = class _Request extends PkiObject {
             tagClass: 3,
             tagNumber: 0
           },
-          value: [Extensions.schema(names.extensions || {
-            names: {
-              blockName: names.singleRequestExtensions || EMPTY_STRING2
-            }
-          })]
+          value: [
+            Extensions.schema(names.extensions || {
+              names: {
+                blockName: names.singleRequestExtensions || EMPTY_STRING2
+              }
+            })
+          ]
         })
       ]
     });
@@ -27649,13 +28072,7 @@ var TBS_REQUEST_VERSION = `${TBS_REQUEST$1}.${VERSION$5}`;
 var TBS_REQUEST_REQUESTOR_NAME = `${TBS_REQUEST$1}.${REQUESTOR_NAME}`;
 var TBS_REQUEST_REQUESTS = `${TBS_REQUEST$1}.requests`;
 var TBS_REQUEST_REQUEST_EXTENSIONS = `${TBS_REQUEST$1}.${REQUEST_EXTENSIONS}`;
-var CLEAR_PROPS$9 = [
-  TBS_REQUEST$1,
-  TBS_REQUEST_VERSION,
-  TBS_REQUEST_REQUESTOR_NAME,
-  TBS_REQUEST_REQUESTS,
-  TBS_REQUEST_REQUEST_EXTENSIONS
-];
+var CLEAR_PROPS$9 = [TBS_REQUEST$1, TBS_REQUEST_VERSION, TBS_REQUEST_REQUESTOR_NAME, TBS_REQUEST_REQUESTS, TBS_REQUEST_REQUEST_EXTENSIONS];
 var TBSRequest = class _TBSRequest extends PkiObject {
   get tbs() {
     return pvtsutils2.BufferSourceConverter.toArrayBuffer(this.tbsView);
@@ -27729,11 +28146,13 @@ var TBSRequest = class _TBSRequest extends PkiObject {
             tagClass: 3,
             tagNumber: 1
           },
-          value: [GeneralName.schema(names.requestorName || {
-            names: {
-              blockName: TBS_REQUEST_REQUESTOR_NAME
-            }
-          })]
+          value: [
+            GeneralName.schema(names.requestorName || {
+              names: {
+                blockName: TBS_REQUEST_REQUESTOR_NAME
+              }
+            })
+          ]
         }),
         new Sequence({
           name: names.requestList || "TBSRequest.requestList",
@@ -27750,11 +28169,13 @@ var TBSRequest = class _TBSRequest extends PkiObject {
             tagClass: 3,
             tagNumber: 2
           },
-          value: [Extensions.schema(names.extensions || {
-            names: {
-              blockName: names.requestExtensions || TBS_REQUEST_REQUEST_EXTENSIONS
-            }
-          })]
+          value: [
+            Extensions.schema(names.extensions || {
+              names: {
+                blockName: names.requestExtensions || TBS_REQUEST_REQUEST_EXTENSIONS
+              }
+            })
+          ]
         })
       ]
     });
@@ -27894,10 +28315,12 @@ var Signature = class _Signature extends PkiObject {
           },
           value: [
             new Sequence({
-              value: [new Repeated({
-                name: names.certs || EMPTY_STRING2,
-                value: Certificate.schema({})
-              })]
+              value: [
+                new Repeated({
+                  name: names.certs || EMPTY_STRING2,
+                  value: Certificate.schema({})
+                })
+              ]
             })
           ]
         })
@@ -27905,11 +28328,7 @@ var Signature = class _Signature extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      SIGNATURE_ALGORITHM$1,
-      SIGNATURE$1,
-      CERTS
-    ]);
+    clearProps(schema, [SIGNATURE_ALGORITHM$1, SIGNATURE$1, CERTS]);
     const asn1 = compareSchema(schema, schema, _Signature.schema({
       names: {
         signatureAlgorithm: {
@@ -27963,10 +28382,7 @@ var Signature = class _Signature extends PkiObject {
 Signature.CLASS_NAME = "Signature";
 var TBS_REQUEST = "tbsRequest";
 var OPTIONAL_SIGNATURE = "optionalSignature";
-var CLEAR_PROPS$8 = [
-  TBS_REQUEST,
-  OPTIONAL_SIGNATURE
-];
+var CLEAR_PROPS$8 = [TBS_REQUEST, OPTIONAL_SIGNATURE];
 var OCSPRequest = class _OCSPRequest extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -28043,9 +28459,7 @@ var OCSPRequest = class _OCSPRequest extends PkiObject {
           tagClass: 3,
           tagNumber: 0
         },
-        value: [
-          this.optionalSignature.toSchema()
-        ]
+        value: [this.optionalSignature.toSchema()]
       }));
     return new Sequence({
       value: outputArray
@@ -28085,10 +28499,7 @@ var OCSPRequest = class _OCSPRequest extends PkiObject {
 OCSPRequest.CLASS_NAME = "OCSPRequest";
 var RESPONSE_TYPE = "responseType";
 var RESPONSE = "response";
-var CLEAR_PROPS$7 = [
-  RESPONSE_TYPE,
-  RESPONSE
-];
+var CLEAR_PROPS$7 = [RESPONSE_TYPE, RESPONSE];
 var ResponseBytes = class _ResponseBytes extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -28122,10 +28533,7 @@ var ResponseBytes = class _ResponseBytes extends PkiObject {
     const names = getParametersValue(parameters, "names", {});
     return new Sequence({
       name: names.blockName || EMPTY_STRING2,
-      value: [
-        new ObjectIdentifier({ name: names.responseType || EMPTY_STRING2 }),
-        new OctetString({ name: names.response || EMPTY_STRING2 })
-      ]
+      value: [new ObjectIdentifier({ name: names.responseType || EMPTY_STRING2 }), new OctetString({ name: names.response || EMPTY_STRING2 })]
     });
   }
   fromSchema(schema) {
@@ -28142,10 +28550,7 @@ var ResponseBytes = class _ResponseBytes extends PkiObject {
   }
   toSchema() {
     return new Sequence({
-      value: [
-        new ObjectIdentifier({ value: this.responseType }),
-        this.response
-      ]
+      value: [new ObjectIdentifier({ value: this.responseType }), this.response]
     });
   }
   toJSON() {
@@ -28213,10 +28618,7 @@ var OCSPResponse = class _OCSPResponse extends PkiObject {
     });
   }
   fromSchema(schema) {
-    clearProps(schema, [
-      RESPONSE_STATUS,
-      RESPONSE_BYTES
-    ]);
+    clearProps(schema, [RESPONSE_STATUS, RESPONSE_BYTES]);
     const asn1 = compareSchema(schema, schema, _OCSPResponse.schema());
     AsnError.assertSchema(asn1, this.className);
     this.responseStatus = asn1.result.responseStatus;
@@ -28296,9 +28698,7 @@ OCSPResponse.CLASS_NAME = "OCSPResponse";
 var TYPE2 = "type";
 var ATTRIBUTES = "attributes";
 var ENCODED_VALUE = "encodedValue";
-var CLEAR_PROPS$6 = [
-  ATTRIBUTES
-];
+var CLEAR_PROPS$6 = [ATTRIBUTES];
 var SignedAndUnsignedAttributes = class _SignedAndUnsignedAttributes extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -28408,15 +28808,7 @@ var SIGNER_INFO_SIGNED_ATTRS = `${SIGNER_INFO}.${SIGNED_ATTRS}`;
 var SIGNER_INFO_SIGNATURE_ALGORITHM = `${SIGNER_INFO}.${SIGNATURE_ALGORITHM}`;
 var SIGNER_INFO_SIGNATURE = `${SIGNER_INFO}.${SIGNATURE}`;
 var SIGNER_INFO_UNSIGNED_ATTRS = `${SIGNER_INFO}.${UNSIGNED_ATTRS}`;
-var CLEAR_PROPS$5 = [
-  SIGNER_INFO_VERSION,
-  SIGNER_INFO_SID,
-  SIGNER_INFO_DIGEST_ALGORITHM,
-  SIGNER_INFO_SIGNED_ATTRS,
-  SIGNER_INFO_SIGNATURE_ALGORITHM,
-  SIGNER_INFO_SIGNATURE,
-  SIGNER_INFO_UNSIGNED_ATTRS
-];
+var CLEAR_PROPS$5 = [SIGNER_INFO_VERSION, SIGNER_INFO_SID, SIGNER_INFO_DIGEST_ALGORITHM, SIGNER_INFO_SIGNED_ATTRS, SIGNER_INFO_SIGNATURE_ALGORITHM, SIGNER_INFO_SIGNATURE, SIGNER_INFO_UNSIGNED_ATTRS];
 var SignerInfo = class _SignerInfo extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -28550,13 +28942,23 @@ var SignerInfo = class _SignerInfo extends PkiObject {
       this.sid = new IssuerAndSerialNumber({ schema: currentSid });
     else
       this.sid = currentSid;
-    this.digestAlgorithm = new AlgorithmIdentifier({ schema: asn1.result[SIGNER_INFO_DIGEST_ALGORITHM] });
+    this.digestAlgorithm = new AlgorithmIdentifier({
+      schema: asn1.result[SIGNER_INFO_DIGEST_ALGORITHM]
+    });
     if (SIGNER_INFO_SIGNED_ATTRS in asn1.result)
-      this.signedAttrs = new SignedAndUnsignedAttributes({ type: 0, schema: asn1.result[SIGNER_INFO_SIGNED_ATTRS] });
-    this.signatureAlgorithm = new AlgorithmIdentifier({ schema: asn1.result[SIGNER_INFO_SIGNATURE_ALGORITHM] });
+      this.signedAttrs = new SignedAndUnsignedAttributes({
+        type: 0,
+        schema: asn1.result[SIGNER_INFO_SIGNED_ATTRS]
+      });
+    this.signatureAlgorithm = new AlgorithmIdentifier({
+      schema: asn1.result[SIGNER_INFO_SIGNATURE_ALGORITHM]
+    });
     this.signature = asn1.result[SIGNER_INFO_SIGNATURE];
     if (SIGNER_INFO_UNSIGNED_ATTRS in asn1.result)
-      this.unsignedAttrs = new SignedAndUnsignedAttributes({ type: 1, schema: asn1.result[SIGNER_INFO_UNSIGNED_ATTRS] });
+      this.unsignedAttrs = new SignedAndUnsignedAttributes({
+        type: 1,
+        schema: asn1.result[SIGNER_INFO_UNSIGNED_ATTRS]
+      });
   }
   toSchema() {
     if (_SignerInfo.compareWithDefault(SID, this.sid))
@@ -28745,11 +29147,13 @@ var TSTInfo = class _TSTInfo extends PkiObject {
             tagClass: 3,
             tagNumber: 0
           },
-          value: [GeneralName.schema(names.tsa || {
-            names: {
-              blockName: TST_INFO_TSA
-            }
-          })]
+          value: [
+            GeneralName.schema(names.tsa || {
+              names: {
+                blockName: TST_INFO_TSA
+              }
+            })
+          ]
         }),
         new Constructed({
           optional: true,
@@ -28877,14 +29281,7 @@ var SIGNED_DATA_ENCAP_CONTENT_INFO = `${SIGNED_DATA}.${ENCAP_CONTENT_INFO}`;
 var SIGNED_DATA_CERTIFICATES = `${SIGNED_DATA}.${CERTIFICATES}`;
 var SIGNED_DATA_CRLS = `${SIGNED_DATA}.${CRLS}`;
 var SIGNED_DATA_SIGNER_INFOS = `${SIGNED_DATA}.${SIGNER_INFOS}`;
-var CLEAR_PROPS$3 = [
-  SIGNED_DATA_VERSION,
-  SIGNED_DATA_DIGEST_ALGORITHMS,
-  SIGNED_DATA_ENCAP_CONTENT_INFO,
-  SIGNED_DATA_CERTIFICATES,
-  SIGNED_DATA_CRLS,
-  SIGNED_DATA_SIGNER_INFOS
-];
+var CLEAR_PROPS$3 = [SIGNED_DATA_VERSION, SIGNED_DATA_DIGEST_ALGORITHMS, SIGNED_DATA_ENCAP_CONTENT_INFO, SIGNED_DATA_CERTIFICATES, SIGNED_DATA_CRLS, SIGNED_DATA_SIGNER_INFOS];
 var SignedDataVerifyError = class extends Error {
   constructor({ message, code = 0, date = /* @__PURE__ */ new Date(), signatureVerified = null, signerCertificate = null, signerCertificateVerified = null, timestampSerial = null, certificatePath = [] }) {
     super(message);
@@ -29016,7 +29413,9 @@ var SignedData = class _SignedData extends PkiObject {
     this.version = asn1.result[SIGNED_DATA_VERSION].valueBlock.valueDec;
     if (SIGNED_DATA_DIGEST_ALGORITHMS in asn1.result)
       this.digestAlgorithms = Array.from(asn1.result[SIGNED_DATA_DIGEST_ALGORITHMS], (algorithm) => new AlgorithmIdentifier({ schema: algorithm }));
-    this.encapContentInfo = new EncapsulatedContentInfo({ schema: asn1.result[SIGNED_DATA_ENCAP_CONTENT_INFO] });
+    this.encapContentInfo = new EncapsulatedContentInfo({
+      schema: asn1.result[SIGNED_DATA_ENCAP_CONTENT_INFO]
+    });
     if (SIGNED_DATA_CERTIFICATES in asn1.result) {
       const certificateSet = new CertificateSet({
         schema: new Set2({
@@ -29412,11 +29811,7 @@ var VERSION$1 = "version";
 var AUTH_SAFE = "authSafe";
 var MAC_DATA = "macData";
 var PARSED_VALUE = "parsedValue";
-var CLERA_PROPS = [
-  VERSION$1,
-  AUTH_SAFE,
-  MAC_DATA
-];
+var CLERA_PROPS = [VERSION$1, AUTH_SAFE, MAC_DATA];
 var PFX = class _PFX extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -29504,10 +29899,7 @@ var PFX = class _PFX extends PkiObject {
       this.macData = new MacData({ schema: asn1.result.macData });
   }
   toSchema() {
-    const outputArray = [
-      new Integer({ value: this.version }),
-      this.authSafe.toSchema()
-    ];
+    const outputArray = [new Integer({ value: this.version }), this.authSafe.toSchema()];
     if (this.macData) {
       outputArray.push(this.macData.toSchema());
     }
@@ -29516,14 +29908,14 @@ var PFX = class _PFX extends PkiObject {
     });
   }
   toJSON() {
-    const output2 = {
+    const output = {
       version: this.version,
       authSafe: this.authSafe.toJSON()
     };
     if (this.macData) {
-      output2.macData = this.macData.toJSON();
+      output.macData = this.macData.toJSON();
     }
-    return output2;
+    return output;
   }
   async makeInternalValues(parameters = {}, crypto2 = getCrypto(true)) {
     ArgumentError.assert(parameters, "parameters", "object");
@@ -29587,21 +29979,15 @@ var PFX = class _PFX extends PkiObject {
           const signedAttr = [];
           signedAttr.push(new Attribute({
             type: "1.2.840.113549.1.9.3",
-            values: [
-              new ObjectIdentifier({ value: "1.2.840.113549.1.7.1" })
-            ]
+            values: [new ObjectIdentifier({ value: "1.2.840.113549.1.7.1" })]
           }));
           signedAttr.push(new Attribute({
             type: "1.2.840.113549.1.9.5",
-            values: [
-              new UTCTime({ valueDate: /* @__PURE__ */ new Date() })
-            ]
+            values: [new UTCTime({ valueDate: /* @__PURE__ */ new Date() })]
           }));
           signedAttr.push(new Attribute({
             type: "1.2.840.113549.1.9.4",
-            values: [
-              new OctetString({ valueHex: result })
-            ]
+            values: [new OctetString({ valueHex: result })]
           }));
           cmsSigned.signerInfos.push(new SignerInfo({
             version: 1,
@@ -29682,11 +30068,7 @@ PFX.CLASS_NAME = "PFX";
 var STATUS$1 = "status";
 var STATUS_STRINGS = "statusStrings";
 var FAIL_INFO = "failInfo";
-var CLEAR_PROPS$2 = [
-  STATUS$1,
-  STATUS_STRINGS,
-  FAIL_INFO
-];
+var CLEAR_PROPS$2 = [STATUS$1, STATUS_STRINGS, FAIL_INFO];
 var PKIStatus;
 (function(PKIStatus2) {
   PKIStatus2[PKIStatus2["granted"] = 0] = "granted";
@@ -29818,14 +30200,7 @@ var TIME_STAMP_REQ_POLICY = `${TIME_STAMP_REQ}.${REQ_POLICY}`;
 var TIME_STAMP_REQ_NONCE = `${TIME_STAMP_REQ}.${NONCE}`;
 var TIME_STAMP_REQ_CERT_REQ = `${TIME_STAMP_REQ}.${CERT_REQ}`;
 var TIME_STAMP_REQ_EXTENSIONS = `${TIME_STAMP_REQ}.${EXTENSIONS}`;
-var CLEAR_PROPS$1 = [
-  TIME_STAMP_REQ_VERSION,
-  TIME_STAMP_REQ_MESSAGE_IMPRINT,
-  TIME_STAMP_REQ_POLICY,
-  TIME_STAMP_REQ_NONCE,
-  TIME_STAMP_REQ_CERT_REQ,
-  TIME_STAMP_REQ_EXTENSIONS
-];
+var CLEAR_PROPS$1 = [TIME_STAMP_REQ_VERSION, TIME_STAMP_REQ_MESSAGE_IMPRINT, TIME_STAMP_REQ_POLICY, TIME_STAMP_REQ_NONCE, TIME_STAMP_REQ_CERT_REQ, TIME_STAMP_REQ_EXTENSIONS];
 var TimeStampReq = class _TimeStampReq extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -29910,10 +30285,12 @@ var TimeStampReq = class _TimeStampReq extends PkiObject {
             tagClass: 3,
             tagNumber: 0
           },
-          value: [new Repeated({
-            name: names.extensions || TIME_STAMP_REQ_EXTENSIONS,
-            value: Extension.schema()
-          })]
+          value: [
+            new Repeated({
+              name: names.extensions || TIME_STAMP_REQ_EXTENSIONS,
+              value: Extension.schema()
+            })
+          ]
         })
       ]
     });
@@ -29923,7 +30300,9 @@ var TimeStampReq = class _TimeStampReq extends PkiObject {
     const asn1 = compareSchema(schema, schema, _TimeStampReq.schema());
     AsnError.assertSchema(asn1, this.className);
     this.version = asn1.result[TIME_STAMP_REQ_VERSION].valueBlock.valueDec;
-    this.messageImprint = new MessageImprint({ schema: asn1.result[TIME_STAMP_REQ_MESSAGE_IMPRINT] });
+    this.messageImprint = new MessageImprint({
+      schema: asn1.result[TIME_STAMP_REQ_MESSAGE_IMPRINT]
+    });
     if (TIME_STAMP_REQ_POLICY in asn1.result)
       this.reqPolicy = asn1.result[TIME_STAMP_REQ_POLICY].valueBlock.toString();
     if (TIME_STAMP_REQ_NONCE in asn1.result)
@@ -29979,10 +30358,7 @@ var TIME_STAMP_TOKEN = "timeStampToken";
 var TIME_STAMP_RESP = "TimeStampResp";
 var TIME_STAMP_RESP_STATUS = `${TIME_STAMP_RESP}.${STATUS}`;
 var TIME_STAMP_RESP_TOKEN = `${TIME_STAMP_RESP}.${TIME_STAMP_TOKEN}`;
-var CLEAR_PROPS = [
-  TIME_STAMP_RESP_STATUS,
-  TIME_STAMP_RESP_TOKEN
-];
+var CLEAR_PROPS = [TIME_STAMP_RESP_STATUS, TIME_STAMP_RESP_TOKEN];
 var TimeStampResp = class _TimeStampResp extends PkiObject {
   constructor(parameters = {}) {
     super();
@@ -30065,7 +30441,11 @@ var TimeStampResp = class _TimeStampResp extends PkiObject {
     const signed = new SignedData({ schema: this.timeStampToken.content });
     return signed.sign(privateKey, 0, hashAlgorithm, void 0, crypto2);
   }
-  async verify(verificationParameters = { signer: 0, trustedCerts: [], data: EMPTY_BUFFER2 }, crypto2 = getCrypto(true)) {
+  async verify(verificationParameters = {
+    signer: 0,
+    trustedCerts: [],
+    data: EMPTY_BUFFER2
+  }, crypto2 = getCrypto(true)) {
     this.assertContentType();
     const signed = new SignedData({ schema: this.timeStampToken.content });
     return signed.verify(verificationParameters, crypto2);
@@ -30096,184 +30476,183 @@ function initCryptoEngine() {
 initCryptoEngine();
 
 // node_modules/@scure/base/index.js
+/*! scure-base - MIT License (c) 2022 Paul Miller (paulmillr.com) */
+var freeze = (fn) => Object.freeze(fn());
 function isBytes4(a) {
   return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array" && "BYTES_PER_ELEMENT" in a && a.BYTES_PER_ELEMENT === 1;
 }
-function abytes3(b) {
+function abytes4(b) {
   if (!isBytes4(b))
     throw new TypeError("Uint8Array expected");
-}
-function isArrayOf(isString, arr) {
-  if (!Array.isArray(arr))
-    return false;
-  if (arr.length === 0)
-    return true;
-  if (isString) {
-    return arr.every((item) => typeof item === "string");
-  } else {
-    return arr.every((item) => Number.isSafeInteger(item));
-  }
 }
 function astr(label, input) {
   if (typeof input !== "string")
     throw new TypeError(`${label}: string expected`);
   return true;
 }
-function anumber2(n) {
+function anumber3(n, title = "number") {
   if (typeof n !== "number")
-    throw new TypeError(`number expected, got ${typeof n}`);
+    throw new TypeError(`${title}: expected number, got ${typeof n}`);
   if (!Number.isSafeInteger(n))
-    throw new RangeError(`invalid integer: ${n}`);
+    throw new RangeError(`${title}: expected safe integer, got ${n}`);
 }
-function aArr(input) {
-  if (!Array.isArray(input))
-    throw new TypeError("array expected");
-}
-function astrArr(label, input) {
-  if (!isArrayOf(true, input))
-    throw new TypeError(`${label}: array of strings expected`);
-}
-function anumArr(label, input) {
-  if (!isArrayOf(false, input))
-    throw new TypeError(`${label}: array of numbers expected`);
-}
-// @__NO_SIDE_EFFECTS__
 function chain(...args) {
   const id = (a) => a;
   const wrap = (a, b) => (c) => a(b(c));
-  const encode = args.map((x) => x.encode).reduceRight(wrap, id);
-  const decode = args.map((x) => x.decode).reduce(wrap, id);
+  const encode = args.map((x2) => x2.encode).reduceRight(wrap, id);
+  const decode = args.map((x2) => x2.decode).reduce(wrap, id);
   return { encode, decode };
 }
-// @__NO_SIDE_EFFECTS__
-function alphabet(letters) {
-  const lettersA = typeof letters === "string" ? letters.split("") : letters;
-  const len = lettersA.length;
-  astrArr("alphabet", lettersA);
-  const indexes = new Map(lettersA.map((l, i) => [l, i]));
-  return {
-    encode: (digits) => {
-      aArr(digits);
-      return digits.map((i) => {
-        if (!Number.isSafeInteger(i) || i < 0 || i >= len)
-          throw new Error(`alphabet.encode: digit index outside alphabet "${i}". Allowed: ${letters}`);
-        return lettersA[i];
-      });
-    },
-    decode: (input) => {
-      aArr(input);
-      return input.map((letter) => {
-        astr("alphabet.decode", letter);
-        const i = indexes.get(letter);
-        if (i === void 0)
-          throw new Error(`Unknown letter: "${letter}". Allowed: ${letters}`);
-        return i;
-      });
-    }
-  };
-}
-// @__NO_SIDE_EFFECTS__
-function join(separator = "") {
-  astr("join", separator);
-  return {
-    encode: (from) => {
-      astrArr("join.decode", from);
-      return from.join(separator);
-    },
-    decode: (to) => {
-      astr("join.decode", to);
-      return to.split(separator);
-    }
-  };
-}
-// @__NO_SIDE_EFFECTS__
-function padding(bits, chr = "=") {
-  anumber2(bits);
-  astr("padding", chr);
-  return {
-    encode(data) {
-      astrArr("padding.encode", data);
-      while (data.length * bits % 8)
-        data.push(chr);
-      return data;
-    },
-    decode(input) {
-      astrArr("padding.decode", input);
-      let end = input.length;
-      if (end * bits % 8)
-        throw new Error("padding: invalid, string should have whole number of bytes");
-      for (; end > 0 && input[end - 1] === chr; end--) {
-        const last = end - 1;
-        const byte = last * bits;
-        if (byte % 8 === 0)
-          throw new Error("padding: invalid, string has too much padding");
-      }
-      return input.slice(0, end);
-    }
-  };
-}
-var gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
-var radix2carry = /* @__NO_SIDE_EFFECTS__ */ (from, to) => from + (to - gcd(from, to));
 var powers = /* @__PURE__ */ (() => {
   let res = [];
   for (let i = 0; i < 40; i++)
     res.push(2 ** i);
   return res;
 })();
-function convertRadix2(data, from, to, padding2) {
-  aArr(data);
-  if (from <= 0 || from > 32)
-    throw new RangeError(`convertRadix2: wrong from=${from}`);
-  if (to <= 0 || to > 32)
-    throw new RangeError(`convertRadix2: wrong to=${to}`);
-  if (/* @__PURE__ */ radix2carry(from, to) > 32) {
-    throw new Error(`convertRadix2: carry overflow from=${from} to=${to} carryBits=${/* @__PURE__ */ radix2carry(from, to)}`);
+var asciiDecoder = /* @__PURE__ */ (() => {
+  try {
+    const decoder = new TextDecoder();
+    return decoder.decode(Uint8Array.of(65, 48, 43, 127)) === "A0+\x7F" ? decoder : void 0;
+  } catch (e) {
+    return void 0;
   }
-  let carry = 0;
-  let pos = 0;
-  const max2 = powers[from];
-  const mask = powers[to] - 1;
-  const res = [];
-  for (const n of data) {
-    anumber2(n);
-    if (n >= max2)
-      throw new Error(`convertRadix2: invalid data word=${n} from=${from}`);
-    carry = carry << from | n;
-    if (pos + from > 32)
-      throw new Error(`convertRadix2: carry overflow pos=${pos} from=${from}`);
-    pos += from;
-    for (; pos >= to; pos -= to)
-      res.push((carry >> pos - to & mask) >>> 0);
-    const pow = powers[pos];
-    if (pow === void 0)
-      throw new Error("invalid carry");
-    carry &= pow - 1;
-  }
-  carry = carry << to - pos & mask;
-  if (!padding2 && pos >= from)
-    throw new Error("Excess padding");
-  if (!padding2 && carry > 0)
-    throw new Error(`Non-zero padding: ${carry}`);
-  if (padding2 && pos > 0)
-    res.push(carry >>> 0);
+})();
+var B2S_CHUNK = 8192;
+function charcodesToString(codes) {
+  const len = codes.length;
+  if (asciiDecoder !== void 0 && len >= 12)
+    return asciiDecoder.decode(codes);
+  if (len <= B2S_CHUNK)
+    return String.fromCharCode.apply(null, codes);
+  let res = "";
+  for (let i = 0; i < len; i += B2S_CHUNK)
+    res += String.fromCharCode.apply(null, codes.subarray(i, i + B2S_CHUNK));
   return res;
 }
-// @__NO_SIDE_EFFECTS__
-function radix2(bits, revPadding = false) {
-  anumber2(bits);
-  if (bits <= 0 || bits > 32)
-    throw new RangeError("radix2: bits should be in (0..32]");
-  if (/* @__PURE__ */ radix2carry(8, bits) > 32 || /* @__PURE__ */ radix2carry(bits, 8) > 32)
-    throw new RangeError("radix2: carry overflow");
+function radix2(bits) {
+  anumber3(bits);
+  if (bits <= 0 || bits > 8)
+    throw new RangeError("radix2: bits should be in (0..8]");
+  const mask = powers[bits] - 1;
   return {
-    encode: (bytes2) => {
-      if (!isBytes4(bytes2))
-        throw new TypeError("radix2.encode input should be Uint8Array");
-      return convertRadix2(Array.from(bytes2), 8, bits, !revPadding);
+    encode: (bytes) => {
+      abytes4(bytes);
+      const len = bytes.length;
+      const res = new Uint8Array(Math.ceil(len * 8 / bits));
+      let carry = 0;
+      let pos = 0;
+      let j2 = 0;
+      for (let i = 0; i < len; ) {
+        if (i + 2 < len) {
+          carry = carry << 24 | bytes[i] << 16 | bytes[i + 1] << 8 | bytes[i + 2];
+          pos += 24;
+          i += 3;
+        } else {
+          carry = (carry << 8 | bytes[i]) & 65535;
+          pos += 8;
+          i++;
+        }
+        for (; ; ) {
+          pos -= bits;
+          res[j2++] = carry >> pos & mask;
+          if (pos < bits)
+            break;
+        }
+      }
+      if (pos > 0)
+        res[j2] = carry << bits - pos & mask;
+      return res;
     },
     decode: (digits) => {
-      anumArr("radix2.decode", digits);
-      return Uint8Array.from(convertRadix2(digits, bits, 8, revPadding));
+      const len = digits.length;
+      const res = new Uint8Array(Math.floor(len * bits / 8));
+      let carry = 0;
+      let pos = 0;
+      let j2 = 0;
+      for (let i = 0; i < len; i++) {
+        carry = (carry << bits | digits[i]) & 65535;
+        pos += bits;
+        for (; pos >= 8; pos -= 8)
+          res[j2++] = carry >> pos - 8 & 255;
+      }
+      carry = carry << 8 - pos & 255;
+      if (pos >= bits)
+        throw new Error("Excess padding");
+      if (carry > 0)
+        throw new Error(`Non-zero padding: ${carry}`);
+      return res;
+    }
+  };
+}
+function alphabet(letters, aliases) {
+  const len = letters.length;
+  if (len > 128)
+    throw new Error("alphabet: max 128 letters");
+  const encTable = new Uint8Array(len);
+  const decTable = new Int8Array(128).fill(-1);
+  for (let i = 0; i < len; i++) {
+    const code = letters.charCodeAt(i);
+    if (letters.codePointAt(i) !== code || code > 127)
+      throw new Error("alphabet: single-char ASCII letters only");
+    encTable[i] = code;
+    decTable[code] = i;
+  }
+  if (aliases !== void 0) {
+    for (const alias of Object.keys(aliases)) {
+      const code = alias.charCodeAt(0);
+      const target = decTable[aliases[alias].charCodeAt(0)];
+      if (alias.length !== 1 || code > 127 || target === void 0 || target === -1)
+        throw new Error(`alphabet: invalid alias ${alias}`);
+      decTable[code] = target;
+    }
+  }
+  return {
+    encode: (digits) => {
+      const codes = new Uint8Array(digits.length);
+      for (let i = 0; i < digits.length; i++) {
+        const d3 = digits[i];
+        const code = encTable[d3];
+        if (code === void 0)
+          throw new Error(`alphabet.encode: invalid digit ${d3}`);
+        codes[i] = code;
+      }
+      return charcodesToString(codes);
+    },
+    decode: (input) => {
+      astr("decode", input);
+      const slen = input.length;
+      const digits = new Uint8Array(slen);
+      for (let i = 0; i < slen; i++) {
+        const code = input.charCodeAt(i);
+        const digit = code < 128 ? decTable[code] : -1;
+        if (digit === -1)
+          throw new Error(`Unknown letter "${input[i]}". Allowed: ${letters}`);
+        digits[i] = digit;
+      }
+      return digits;
+    }
+  };
+}
+function padding(bits, chr = "=") {
+  anumber3(bits);
+  astr("padding", chr);
+  return {
+    encode(data) {
+      while (data.length * bits % 8)
+        data += chr;
+      return data;
+    },
+    decode(input) {
+      astr("decode", input);
+      let end = input.length;
+      if (end * bits % 8)
+        throw new Error("padding: invalid length");
+      for (; end > 0 && input[end - 1] === chr; end--) {
+        const byte = (end - 1) * bits;
+        if (byte % 8 === 0)
+          throw new Error("padding: excess padding");
+      }
+      return input.slice(0, end);
     }
   };
 }
@@ -30286,18 +30665,19 @@ var decodeBase64Builtin = (s, isUrl) => {
     throw new Error("invalid base64");
   return Uint8Array.fromBase64(s, { alphabet: alphabet2, lastChunkHandling: "strict" });
 };
-var base64 = /* @__PURE__ */ Object.freeze(hasBase64Builtin ? {
+var base64Fallback = /* @__PURE__ */ freeze(() => chain(radix2(6), alphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"), padding(6)));
+var base64 = /* @__PURE__ */ freeze(() => hasBase64Builtin ? {
   encode(b) {
-    abytes3(b);
+    abytes4(b);
     return b.toBase64();
   },
   decode(s) {
     return decodeBase64Builtin(s, false);
   }
-} : /* @__PURE__ */ chain(/* @__PURE__ */ radix2(6), /* @__PURE__ */ alphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"), /* @__PURE__ */ padding(6), /* @__PURE__ */ join("")));
+} : base64Fallback);
 
 // node_modules/@libpdf/core/dist/index.mjs
-var version = "0.3.6";
+var version = "0.5.3";
 var PdfArray = class PdfArray2 {
   get type() {
     return "array";
@@ -30404,17 +30784,17 @@ function concatBytes2(arrays) {
 }
 var HEX_TABLE = new Array(256);
 for (let i = 0; i < 256; i++) HEX_TABLE[i] = i.toString(16).toUpperCase().padStart(2, "0");
-function bytesToHex(bytes2) {
+function bytesToHex(bytes) {
   let hex = "";
-  for (const byte of bytes2) hex += HEX_TABLE[byte];
+  for (const byte of bytes) hex += HEX_TABLE[byte];
   return hex;
 }
 function hexToBytes(hex) {
-  const clean3 = hex.replace(/\s/g, "");
-  const padded = clean3.length % 2 === 1 ? `${clean3}0` : clean3;
-  const bytes2 = new Uint8Array(padded.length / 2);
-  for (let i = 0; i < bytes2.length; i++) bytes2[i] = Number.parseInt(padded.slice(i * 2, i * 2 + 2), 16);
-  return bytes2;
+  const clean4 = hex.replace(/\s/g, "");
+  const padded = clean4.length % 2 === 1 ? `${clean4}0` : clean4;
+  const bytes = new Uint8Array(padded.length / 2);
+  for (let i = 0; i < bytes.length; i++) bytes[i] = Number.parseInt(padded.slice(i * 2, i * 2 + 2), 16);
+  return bytes;
 }
 var WHITESPACE = /* @__PURE__ */ new Set([
   0,
@@ -30436,16 +30816,16 @@ var DELIMITERS = /* @__PURE__ */ new Set([
   47,
   37
 ]);
-function isWhitespace$1(byte) {
+function isWhitespace$3(byte) {
   return WHITESPACE.has(byte);
 }
-function isDelimiter(byte) {
+function isDelimiter$1(byte) {
   return DELIMITERS.has(byte);
 }
 function isRegularChar(byte) {
   return byte !== -1 && !WHITESPACE.has(byte) && !DELIMITERS.has(byte);
 }
-function isDigit$1(byte) {
+function isDigit$2(byte) {
   return byte >= 48 && byte <= 57;
 }
 function isHexDigit(byte) {
@@ -30472,9 +30852,9 @@ function isSimpleAsciiName(name) {
 }
 function escapeName$1(name) {
   if (isSimpleAsciiName(name)) return name;
-  const bytes2 = textEncoder.encode(name);
+  const bytes = textEncoder.encode(name);
   let result = "";
-  for (const byte of bytes2) if (byte < 33 || byte > 126 || NAME_NEEDS_ESCAPE.has(byte)) result += `#${HEX_TABLE[byte]}`;
+  for (const byte of bytes) if (byte < 33 || byte > 126 || NAME_NEEDS_ESCAPE.has(byte)) result += `#${HEX_TABLE[byte]}`;
   else result += String.fromCharCode(byte);
   return result;
 }
@@ -30564,13 +30944,13 @@ var PdfName = class PdfName2 {
     return PdfName2.cache.size;
   }
   toBytes(writer) {
-    let bytes2 = this.cachedBytes;
-    if (bytes2 === null) {
+    let bytes = this.cachedBytes;
+    if (bytes === null) {
       const escaped = escapeName$1(this.value);
-      bytes2 = textEncoder.encode(`/${escaped}`);
-      this.cachedBytes = bytes2;
+      bytes = textEncoder.encode(`/${escaped}`);
+      this.cachedBytes = bytes;
     }
-    writer.writeBytes(bytes2);
+    writer.writeBytes(bytes);
   }
   /**
   * Create a permanent (non-evictable) name.
@@ -30906,7 +31286,7 @@ var ASCIIHexFilter = class ASCIIHexFilter2 {
   static END_MARKER = 62;
   static NIBBLE_MASK = 15;
   decode(data, _params) {
-    const output2 = new ByteWriter(void 0, { initialSize: Math.ceil(data.length / 2) });
+    const output = new ByteWriter(void 0, { initialSize: Math.ceil(data.length / 2) });
     let high = null;
     for (const byte of data) {
       if (byte === 32 || byte === 9 || byte === 10 || byte === 13) continue;
@@ -30915,12 +31295,12 @@ var ASCIIHexFilter = class ASCIIHexFilter2 {
       if (nibble === -1) continue;
       if (high === null) high = nibble;
       else {
-        output2.writeByte(high << 4 | nibble);
+        output.writeByte(high << 4 | nibble);
         high = null;
       }
     }
-    if (high !== null) output2.writeByte(high << 4);
-    return output2.toBytes();
+    if (high !== null) output.writeByte(high << 4);
+    return output.toBytes();
   }
   encode(data, _params) {
     const hexChars = "0123456789ABCDEF";
@@ -30941,7 +31321,7 @@ var ASCII85Filter = class ASCII85Filter2 {
   static END_MARKER_FOLLOWING = 62;
   static ZERO_SHORTCUT = 122;
   decode(data, _params) {
-    const output2 = new ByteWriter(void 0, { initialSize: Math.ceil(data.length * 4 / 5) });
+    const output = new ByteWriter(void 0, { initialSize: Math.ceil(data.length * 4 / 5) });
     let buffer = 0;
     let count = 0;
     for (let i = 0; i < data.length; i++) {
@@ -30953,20 +31333,20 @@ var ASCII85Filter = class ASCII85Filter2 {
       }
       if (byte === ASCII85Filter2.ZERO_SHORTCUT) {
         if (count !== 0) continue;
-        output2.writeByte(0);
-        output2.writeByte(0);
-        output2.writeByte(0);
-        output2.writeByte(0);
+        output.writeByte(0);
+        output.writeByte(0);
+        output.writeByte(0);
+        output.writeByte(0);
         continue;
       }
       if (byte < 33 || byte > 117) continue;
       buffer = buffer * 85 + (byte - 33);
       count++;
       if (count === 5) {
-        output2.writeByte(buffer >> 24 & 255);
-        output2.writeByte(buffer >> 16 & 255);
-        output2.writeByte(buffer >> 8 & 255);
-        output2.writeByte(buffer & 255);
+        output.writeByte(buffer >> 24 & 255);
+        output.writeByte(buffer >> 16 & 255);
+        output.writeByte(buffer >> 8 & 255);
+        output.writeByte(buffer & 255);
         buffer = 0;
         count = 0;
       }
@@ -30974,39 +31354,39 @@ var ASCII85Filter = class ASCII85Filter2 {
     if (count > 1) {
       for (let i = count; i < 5; i++) buffer = buffer * 85 + 84;
       const outputBytes = count - 1;
-      for (let i = 0; i < outputBytes; i++) output2.writeByte(buffer >> 24 - i * 8 & 255);
+      for (let i = 0; i < outputBytes; i++) output.writeByte(buffer >> 24 - i * 8 & 255);
     }
-    return output2.toBytes();
+    return output.toBytes();
   }
   encode(data, _params) {
-    const output2 = new ByteWriter(void 0, { initialSize: Math.ceil(data.length * 5 / 4) + 2 });
+    const output = new ByteWriter(void 0, { initialSize: Math.ceil(data.length * 5 / 4) + 2 });
     let i = 0;
     while (i < data.length) {
       const remaining = data.length - i;
       if (remaining >= 4) {
         const value = data[i] << 24 | data[i + 1] << 16 | data[i + 2] << 8 | data[i + 3];
-        if (value === 0) output2.writeByte(ASCII85Filter2.ZERO_SHORTCUT);
-        else this.encodeGroup(value, 5, output2);
+        if (value === 0) output.writeByte(ASCII85Filter2.ZERO_SHORTCUT);
+        else this.encodeGroup(value, 5, output);
         i += 4;
       } else {
         let value = 0;
         for (let j2 = 0; j2 < remaining; j2++) value |= data[i + j2] << 24 - j2 * 8;
-        this.encodeGroup(value, remaining + 1, output2);
+        this.encodeGroup(value, remaining + 1, output);
         i += remaining;
       }
     }
-    output2.writeByte(ASCII85Filter2.END_MARKER);
-    output2.writeByte(ASCII85Filter2.END_MARKER_FOLLOWING);
-    return output2.toBytes();
+    output.writeByte(ASCII85Filter2.END_MARKER);
+    output.writeByte(ASCII85Filter2.END_MARKER_FOLLOWING);
+    return output.toBytes();
   }
-  encodeGroup(value, numChars, output2) {
+  encodeGroup(value, numChars, output) {
     let v = value >>> 0;
     const digits = new Array(5);
     for (let i = 4; i >= 0; i--) {
       digits[i] = v % 85 + 33;
       v = Math.floor(v / 85);
     }
-    for (let i = 0; i < numChars; i++) output2.writeByte(digits[i]);
+    for (let i = 0; i < numChars; i++) output.writeByte(digits[i]);
   }
 };
 var CCITTFaxFilter = class {
@@ -31033,7 +31413,7 @@ var CCITTFaxFilter = class {
   */
   decodeGroup4(data, columns, rows, _encodedByteAlign, _endOfBlock) {
     const bytesPerRow = Math.ceil(columns / 8);
-    const output2 = new ByteWriter();
+    const output = new ByteWriter();
     let bitPos = 0;
     let refRow = new Uint8Array(columns);
     let curRow = new Uint8Array(columns);
@@ -31147,12 +31527,12 @@ var CCITTFaxFilter = class {
           if (col < columns) value = value << 1 | curRow[col];
           else value = value << 1;
         }
-        output2.writeByte(value);
+        output.writeByte(value);
       }
       [refRow, curRow] = [curRow, refRow];
       rowCount++;
     }
-    return output2.toBytes();
+    return output.toBytes();
   }
   /**
   * Find b1 in reference row (first changing element of opposite color after a0).
@@ -31335,13 +31715,13 @@ function applyPredictor(data, params) {
 }
 function decodeTiffPredictor(data, bytesPerRow, bytesPerPixel, bpc) {
   const rows = Math.floor(data.length / bytesPerRow);
-  const output2 = new Uint8Array(data.length);
+  const output = new Uint8Array(data.length);
   if (bpc === 8) for (let row = 0; row < rows; row++) {
     const rowStart = row * bytesPerRow;
     for (let col = 0; col < bytesPerRow; col++) {
       const pos = rowStart + col;
-      if (col < bytesPerPixel) output2[pos] = data[pos];
-      else output2[pos] = data[pos] + output2[pos - bytesPerPixel] & 255;
+      if (col < bytesPerPixel) output[pos] = data[pos];
+      else output[pos] = data[pos] + output[pos - bytesPerPixel] & 255;
     }
   }
   else if (bpc === 16) for (let row = 0; row < rows; row++) {
@@ -31349,12 +31729,12 @@ function decodeTiffPredictor(data, bytesPerRow, bytesPerPixel, bpc) {
     for (let col = 0; col < bytesPerRow; col += 2) {
       const pos = rowStart + col;
       if (col < bytesPerPixel) {
-        output2[pos] = data[pos];
-        output2[pos + 1] = data[pos + 1];
+        output[pos] = data[pos];
+        output[pos + 1] = data[pos + 1];
       } else {
-        const sum = (output2[pos - bytesPerPixel] << 8 | output2[pos - bytesPerPixel + 1]) + (data[pos] << 8 | data[pos + 1]) & 65535;
-        output2[pos] = sum >> 8 & 255;
-        output2[pos + 1] = sum & 255;
+        const sum = (output[pos - bytesPerPixel] << 8 | output[pos - bytesPerPixel + 1]) + (data[pos] << 8 | data[pos + 1]) & 65535;
+        output[pos] = sum >> 8 & 255;
+        output[pos + 1] = sum & 255;
       }
     }
   }
@@ -31362,23 +31742,23 @@ function decodeTiffPredictor(data, bytesPerRow, bytesPerPixel, bpc) {
     const rowStart = row * bytesPerRow;
     for (let col = 0; col < bytesPerRow; col++) {
       const pos = rowStart + col;
-      if (col < bytesPerPixel) output2[pos] = data[pos];
-      else output2[pos] = data[pos] + output2[pos - bytesPerPixel] & 255;
+      if (col < bytesPerPixel) output[pos] = data[pos];
+      else output[pos] = data[pos] + output[pos - bytesPerPixel] & 255;
     }
   }
-  return output2;
+  return output;
 }
 function decodePngPredictor(data, bytesPerRow, bytesPerPixel) {
   const inputRowSize = bytesPerRow + 1;
   const rows = Math.floor(data.length / inputRowSize);
-  const output2 = new Uint8Array(rows * bytesPerRow);
+  const output = new Uint8Array(rows * bytesPerRow);
   let prevRow = new Uint8Array(bytesPerRow);
   for (let row = 0; row < rows; row++) {
     const inputOffset = row * inputRowSize;
     const outputOffset = row * bytesPerRow;
     const filterByte = data[inputOffset];
     const rowData = data.subarray(inputOffset + 1, inputOffset + 1 + bytesPerRow);
-    const outRow = output2.subarray(outputOffset, outputOffset + bytesPerRow);
+    const outRow = output.subarray(outputOffset, outputOffset + bytesPerRow);
     switch (filterByte) {
       case 0:
         outRow.set(rowData);
@@ -31400,30 +31780,30 @@ function decodePngPredictor(data, bytesPerRow, bytesPerPixel) {
     }
     prevRow = outRow.slice();
   }
-  return output2;
+  return output;
 }
-function decodeSubRow(input, output2, bytesPerPixel) {
-  for (let i = 0; i < output2.length; i++) {
-    const left = i >= bytesPerPixel ? output2[i - bytesPerPixel] : 0;
-    output2[i] = input[i] + left & 255;
+function decodeSubRow(input, output, bytesPerPixel) {
+  for (let i = 0; i < output.length; i++) {
+    const left = i >= bytesPerPixel ? output[i - bytesPerPixel] : 0;
+    output[i] = input[i] + left & 255;
   }
 }
-function decodeUpRow(input, output2, prevRow) {
-  for (let i = 0; i < output2.length; i++) output2[i] = input[i] + prevRow[i] & 255;
+function decodeUpRow(input, output, prevRow) {
+  for (let i = 0; i < output.length; i++) output[i] = input[i] + prevRow[i] & 255;
 }
-function decodeAverageRow(input, output2, prevRow, bytesPerPixel) {
-  for (let i = 0; i < output2.length; i++) {
-    const left = i >= bytesPerPixel ? output2[i - bytesPerPixel] : 0;
+function decodeAverageRow(input, output, prevRow, bytesPerPixel) {
+  for (let i = 0; i < output.length; i++) {
+    const left = i >= bytesPerPixel ? output[i - bytesPerPixel] : 0;
     const up = prevRow[i];
-    output2[i] = input[i] + Math.floor((left + up) / 2) & 255;
+    output[i] = input[i] + Math.floor((left + up) / 2) & 255;
   }
 }
-function decodePaethRow(input, output2, prevRow, bytesPerPixel) {
-  for (let i = 0; i < output2.length; i++) {
-    const left = i >= bytesPerPixel ? output2[i - bytesPerPixel] : 0;
+function decodePaethRow(input, output, prevRow, bytesPerPixel) {
+  for (let i = 0; i < output.length; i++) {
+    const left = i >= bytesPerPixel ? output[i - bytesPerPixel] : 0;
     const up = prevRow[i];
     const upLeft = i >= bytesPerPixel ? prevRow[i - bytesPerPixel] : 0;
-    output2[i] = input[i] + paethPredictor$1(left, up, upLeft) & 255;
+    output[i] = input[i] + paethPredictor$1(left, up, upLeft) & 255;
   }
 }
 function paethPredictor$1(a, b, c) {
@@ -31552,7 +31932,7 @@ var LZWFilter = class LZWFilter2 {
     throw new Error("LZW encoding not implemented");
   }
   lzwDecode(data, earlyChange) {
-    const output2 = new ByteWriter(void 0, { initialSize: data.length * 4 });
+    const output = new ByteWriter(void 0, { initialSize: data.length * 4 });
     let bitPos = 0;
     let codeLength = 9;
     let nextCode = 258;
@@ -31595,7 +31975,7 @@ var LZWFilter = class LZWFilter2 {
         entry.set(prevEntry);
         entry[prevEntry.length] = prevEntry[0];
       } else throw new Error(`Invalid LZW code: ${code}`);
-      for (const byte of entry) output2.writeByte(byte);
+      for (const byte of entry) output.writeByte(byte);
       if (prevEntry !== null && nextCode < 4096) {
         const newEntry = new Uint8Array(prevEntry.length + 1);
         newEntry.set(prevEntry);
@@ -31609,38 +31989,38 @@ var LZWFilter = class LZWFilter2 {
       }
       prevEntry = entry;
     }
-    return output2.toBytes();
+    return output.toBytes();
   }
 };
 var RunLengthFilter = class {
   name = "RunLengthDecode";
   decode(data, _params) {
-    const output2 = new ByteWriter(void 0, { initialSize: data.length * 4 });
+    const output = new ByteWriter(void 0, { initialSize: data.length * 4 });
     let i = 0;
     while (i < data.length) {
       const length = data[i++];
       if (length === 128) break;
       if (length < 128) {
         const count = length + 1;
-        for (let j2 = 0; j2 < count && i < data.length; j2++) output2.writeByte(data[i++]);
+        for (let j2 = 0; j2 < count && i < data.length; j2++) output.writeByte(data[i++]);
       } else {
         const count = 257 - length;
         const value = data[i++];
-        for (let j2 = 0; j2 < count; j2++) output2.writeByte(value);
+        for (let j2 = 0; j2 < count; j2++) output.writeByte(value);
       }
     }
-    return output2.toBytes();
+    return output.toBytes();
   }
   encode(data, _params) {
-    const output2 = new ByteWriter(void 0, { initialSize: data.length * 2 });
+    const output = new ByteWriter(void 0, { initialSize: data.length * 2 });
     let i = 0;
     while (i < data.length) {
       let runLength = 1;
       const runValue = data[i];
       while (i + runLength < data.length && data[i + runLength] === runValue && runLength < 128) runLength++;
       if (runLength >= 2) {
-        output2.writeByte(257 - runLength);
-        output2.writeByte(runValue);
+        output.writeByte(257 - runLength);
+        output.writeByte(runValue);
         i += runLength;
       } else {
         const literalStart = i;
@@ -31654,13 +32034,13 @@ var RunLengthFilter = class {
           if (nextRunLength >= 3) break;
         }
         if (literalLength > 0) {
-          output2.writeByte(literalLength - 1);
-          for (let j2 = 0; j2 < literalLength; j2++) output2.writeByte(data[literalStart + j2]);
+          output.writeByte(literalLength - 1);
+          for (let j2 = 0; j2 < literalLength; j2++) output.writeByte(data[literalStart + j2]);
         }
       }
     }
-    output2.writeByte(128);
-    return output2.toBytes();
+    output.writeByte(128);
+    return output.toBytes();
   }
 };
 var FilterPipeline = class FilterPipeline2 {
@@ -32194,10 +32574,10 @@ var ContentStreamBuilder = class ContentStreamBuilder2 {
   * Optionally provide a dict to merge (e.g., for Form XObjects).
   */
   toStream(baseDict) {
-    const bytes2 = this.toBytes();
+    const bytes = this.toBytes();
     const dict = baseDict?.clone() ?? new PdfDict();
-    dict.set("Length", PdfNumber.of(bytes2.length));
-    return new PdfStream(dict, bytes2);
+    dict.set("Length", PdfNumber.of(bytes.length));
+    return new PdfStream(dict, bytes);
   }
   /**
   * Create a Form XObject stream.
@@ -32224,11 +32604,11 @@ var Matrix = class Matrix2 {
   d;
   e;
   f;
-  constructor(a, b, c, d, e, f) {
+  constructor(a, b, c, d3, e, f) {
     this.a = a;
     this.b = b;
     this.c = c;
-    this.d = d;
+    this.d = d3;
     this.e = e;
     this.f = f;
   }
@@ -32302,10 +32682,10 @@ var Matrix = class Matrix2 {
   * x' = a*x + c*y + e
   * y' = b*x + d*y + f
   */
-  transformPoint(x, y) {
+  transformPoint(x2, y) {
     return {
-      x: this.a * x + this.c * y + this.e,
-      y: this.b * x + this.d * y + this.f
+      x: this.a * x2 + this.c * y + this.e,
+      y: this.b * x2 + this.d * y + this.f
     };
   }
   /**
@@ -32421,16 +32801,16 @@ function buildReverseMap() {
   return map;
 }
 var UNICODE_TO_PDF_DOC = buildReverseMap();
-function hasUtf16BOM(bytes2) {
-  return bytes2.length >= 2 && bytes2[0] === 254 && bytes2[1] === 255;
+function hasUtf16BOM(bytes) {
+  return bytes.length >= 2 && bytes[0] === 254 && bytes[1] === 255;
 }
-function decodeUtf16BE(bytes2) {
-  const start = hasUtf16BOM(bytes2) ? 2 : 0;
+function decodeUtf16BE(bytes) {
+  const start = hasUtf16BOM(bytes) ? 2 : 0;
   const chars = [];
-  for (let i = start; i < bytes2.length - 1; i += 2) {
-    const code = bytes2[i] << 8 | bytes2[i + 1];
-    if (code >= 55296 && code <= 56319 && i + 3 < bytes2.length) {
-      const low = bytes2[i + 2] << 8 | bytes2[i + 3];
+  for (let i = start; i < bytes.length - 1; i += 2) {
+    const code = bytes[i] << 8 | bytes[i + 1];
+    if (code >= 55296 && code <= 56319 && i + 3 < bytes.length) {
+      const low = bytes[i + 2] << 8 | bytes[i + 3];
       if (low >= 56320 && low <= 57343) {
         const codePoint = 65536 + (code - 55296 << 10) + (low - 56320);
         chars.push(String.fromCodePoint(codePoint));
@@ -32442,9 +32822,9 @@ function decodeUtf16BE(bytes2) {
   }
   return chars.join("");
 }
-function decodePdfDocEncoding(bytes2) {
+function decodePdfDocEncoding(bytes) {
   const chars = [];
-  for (const byte of bytes2) if (byte < 24) {
+  for (const byte of bytes) if (byte < 24) {
     if (byte === 9 || byte === 10 || byte === 13) chars.push(String.fromCharCode(byte));
   } else if (byte <= 31) {
     const code = PDF_DOC_LOW[byte];
@@ -32456,9 +32836,9 @@ function decodePdfDocEncoding(bytes2) {
   } else if (byte !== 173) chars.push(String.fromCharCode(byte));
   return chars.join("");
 }
-function decodeTextString(bytes2) {
-  if (hasUtf16BOM(bytes2)) return decodeUtf16BE(bytes2);
-  return decodePdfDocEncoding(bytes2);
+function decodeTextString(bytes) {
+  if (hasUtf16BOM(bytes)) return decodeUtf16BE(bytes);
+  return decodePdfDocEncoding(bytes);
 }
 function canEncodePdfDoc(text) {
   for (const char of text) {
@@ -32472,56 +32852,56 @@ function canEncodePdfDoc(text) {
   return true;
 }
 function encodePdfDocEncoding(text) {
-  const bytes2 = [];
+  const bytes = [];
   for (const char of text) {
     const code = char.codePointAt(0);
     const mapped = UNICODE_TO_PDF_DOC.get(code);
     if (mapped !== void 0) {
-      bytes2.push(mapped);
+      bytes.push(mapped);
       continue;
     }
     if (code === 9 || code === 10 || code === 13) {
-      bytes2.push(code);
+      bytes.push(code);
       continue;
     }
     if (code >= 32 && code <= 127) {
-      bytes2.push(code);
+      bytes.push(code);
       continue;
     }
     if (code >= 161 && code <= 255 && code !== 173) {
-      bytes2.push(code);
+      bytes.push(code);
       continue;
     }
     return null;
   }
-  return new Uint8Array(bytes2);
+  return new Uint8Array(bytes);
 }
 function encodeUtf16BE(text) {
-  const bytes2 = [254, 255];
+  const bytes = [254, 255];
   for (const char of text) {
     const code = char.codePointAt(0);
     if (code > 65535) {
       const adjusted = code - 65536;
       const high = 55296 + (adjusted >> 10);
       const low = 56320 + (adjusted & 1023);
-      bytes2.push(high >> 8, high & 255);
-      bytes2.push(low >> 8, low & 255);
-    } else bytes2.push(code >> 8, code & 255);
+      bytes.push(high >> 8, high & 255);
+      bytes.push(low >> 8, low & 255);
+    } else bytes.push(code >> 8, code & 255);
   }
-  return new Uint8Array(bytes2);
+  return new Uint8Array(bytes);
 }
 function encodeTextString(text) {
   const pdfDoc = encodePdfDocEncoding(text);
   if (pdfDoc !== null) return pdfDoc;
   return encodeUtf16BE(text);
 }
-function escapeLiteralString(bytes2) {
+function escapeLiteralString(bytes) {
   let escapeCount = 0;
-  for (const byte of bytes2) if (byte === 92 || byte === 40 || byte === 41) escapeCount++;
-  if (escapeCount === 0) return bytes2;
-  const result = new Uint8Array(bytes2.length + escapeCount);
+  for (const byte of bytes) if (byte === 92 || byte === 40 || byte === 41) escapeCount++;
+  if (escapeCount === 0) return bytes;
+  const result = new Uint8Array(bytes.length + escapeCount);
   let j2 = 0;
-  for (const byte of bytes2) if (byte === 92) {
+  for (const byte of bytes) if (byte === 92) {
     result[j2++] = 92;
     result[j2++] = 92;
   } else if (byte === 40) {
@@ -32544,8 +32924,8 @@ var PdfString = class PdfString2 {
   get type() {
     return "string";
   }
-  constructor(bytes2, format = "literal") {
-    this.bytes = bytes2;
+  constructor(bytes, format = "literal") {
+    this.bytes = bytes;
     this.format = format;
   }
   /**
@@ -32578,8 +32958,8 @@ var PdfString = class PdfString2 {
   * Create a PdfString from raw bytes.
   * Uses hex format for cleaner output.
   */
-  static fromBytes(bytes2) {
-    return new PdfString2(bytes2, "hex");
+  static fromBytes(bytes) {
+    return new PdfString2(bytes, "hex");
   }
   toBytes(writer) {
     if (this.format === "hex") writer.writeAscii(`<${bytesToHex(this.bytes)}>`);
@@ -32663,26 +33043,26 @@ function normalizeName(name) {
 }
 var pushGraphicsState = () => Operator.of(Op.PushGraphicsState);
 var popGraphicsState = () => Operator.of(Op.PopGraphicsState);
-function concatMatrix(aOrMatrix, b, c, d, e, f) {
+function concatMatrix(aOrMatrix, b, c, d3, e, f) {
   if (aOrMatrix instanceof Matrix) {
     const matrix = aOrMatrix;
     return Operator.of(Op.ConcatMatrix, matrix.a, matrix.b, matrix.c, matrix.d, matrix.e, matrix.f);
   }
-  return Operator.of(Op.ConcatMatrix, aOrMatrix, b, c, d, e, f);
+  return Operator.of(Op.ConcatMatrix, aOrMatrix, b, c, d3, e, f);
 }
 var setLineWidth = (width) => Operator.of(Op.SetLineWidth, width);
 var setLineCap = (cap) => Operator.of(Op.SetLineCap, cap);
-var setLineJoin = (join2) => Operator.of(Op.SetLineJoin, join2);
+var setLineJoin = (join) => Operator.of(Op.SetLineJoin, join);
 var setMiterLimit = (limit) => Operator.of(Op.SetMiterLimit, limit);
 var setDashPattern = (array, phase) => Operator.of(Op.SetDashPattern, array, phase);
 var setGraphicsState = (name) => Operator.of(Op.SetGraphicsState, normalizeName(name));
-var moveTo = (x, y) => Operator.of(Op.MoveTo, x, y);
-var lineTo = (x, y) => Operator.of(Op.LineTo, x, y);
+var moveTo = (x2, y) => Operator.of(Op.MoveTo, x2, y);
+var lineTo = (x2, y) => Operator.of(Op.LineTo, x2, y);
 var curveTo = (x1, y1, x2, y2, x3, y3) => Operator.of(Op.CurveTo, x1, y1, x2, y2, x3, y3);
 var curveToInitial = (x2, y2, x3, y3) => Operator.of(Op.CurveToInitial, x2, y2, x3, y3);
 var curveToFinal = (x1, y1, x3, y3) => Operator.of(Op.CurveToFinal, x1, y1, x3, y3);
 var closePath = () => Operator.of(Op.ClosePath);
-var rectangle = (x, y, width, height) => Operator.of(Op.Rectangle, x, y, width, height);
+var rectangle = (x2, y, width, height) => Operator.of(Op.Rectangle, x2, y, width, height);
 var stroke = () => Operator.of(Op.Stroke);
 var closeAndStroke = () => Operator.of(Op.CloseAndStroke);
 var fill = () => Operator.of(Op.Fill);
@@ -32706,7 +33086,7 @@ var beginText = () => Operator.of(Op.BeginText);
 var endText = () => Operator.of(Op.EndText);
 var moveText = (tx, ty) => Operator.of(Op.MoveText, tx, ty);
 var moveTextSetLeading = (tx, ty) => Operator.of(Op.MoveTextSetLeading, tx, ty);
-var setTextMatrix = (a, b, c, d, e, f) => Operator.of(Op.SetTextMatrix, a, b, c, d, e, f);
+var setTextMatrix = (a, b, c, d3, e, f) => Operator.of(Op.SetTextMatrix, a, b, c, d3, e, f);
 var nextLine = () => Operator.of(Op.NextLine);
 var showText = (text) => {
   const pdfString = typeof text === "string" ? PdfString.fromString(text) : text;
@@ -33717,10 +34097,10 @@ var PDFInkAnnotation = class extends PDFMarkupAnnotation {
         const pathArr = pathEntry;
         const points = [];
         for (let j2 = 0; j2 < pathArr.length; j2 += 2) {
-          const x = pathArr.at(j2);
+          const x2 = pathArr.at(j2);
           const y = pathArr.at(j2 + 1);
-          if (x instanceof PdfNumber && y instanceof PdfNumber) points.push({
-            x: x.value,
+          if (x2 instanceof PdfNumber && y instanceof PdfNumber) points.push({
+            x: x2.value,
             y: y.value
           });
         }
@@ -34192,11 +34572,11 @@ var PDFTextMarkupAnnotation = class extends PDFMarkupAnnotation {
     let maxX = Number.NEGATIVE_INFINITY;
     let maxY = Number.NEGATIVE_INFINITY;
     for (const quad of quads) for (let i = 0; i < quad.length; i += 2) {
-      const x = quad[i];
+      const x2 = quad[i];
       const y = quad[i + 1];
-      minX = Math.min(minX, x);
+      minX = Math.min(minX, x2);
       minY = Math.min(minY, y);
-      maxX = Math.max(maxX, x);
+      maxX = Math.max(maxX, x2);
       maxY = Math.max(maxY, y);
     }
     return {
@@ -34216,11 +34596,11 @@ var PDFTextMarkupAnnotation = class extends PDFMarkupAnnotation {
     let maxX = Number.NEGATIVE_INFINITY;
     let maxY = Number.NEGATIVE_INFINITY;
     for (const quad of quads) for (let i = 0; i < quad.length; i += 2) {
-      const x = quad[i];
+      const x2 = quad[i];
       const y = quad[i + 1];
-      minX = Math.min(minX, x);
+      minX = Math.min(minX, x2);
       minY = Math.min(minY, y);
-      maxX = Math.max(maxX, x);
+      maxX = Math.max(maxX, x2);
       maxY = Math.max(maxY, y);
     }
     const arr = this.dict.getArray("Rect");
@@ -34302,15 +34682,15 @@ function createTextMarkupDict(subtype, options) {
   return annotDict;
 }
 function rectToQuadPoints(rect) {
-  const { x, y, width, height } = rect;
+  const { x: x2, y, width, height } = rect;
   return [
-    x,
+    x2,
     y + height,
-    x + width,
+    x2 + width,
     y + height,
-    x,
+    x2,
     y,
-    x + width,
+    x2 + width,
     y
   ];
 }
@@ -34324,9 +34704,9 @@ var Scanner = class {
   length;
   /** Internal position tracking */
   _position = 0;
-  constructor(bytes2) {
-    this.bytes = bytes2;
-    this.length = bytes2.length;
+  constructor(bytes) {
+    this.bytes = bytes;
+    this.length = bytes.length;
   }
   /**
   * Current byte offset.
@@ -34511,7 +34891,7 @@ var TokenReader = class {
     }
     while (true) {
       const byte = this.scanner.peek();
-      if (isDigit$1(byte)) {
+      if (isDigit$2(byte)) {
         hasDigit = true;
         this.scanner.advance();
         continue;
@@ -34523,7 +34903,7 @@ var TokenReader = class {
       }
       break;
     }
-    if (hasDecimal) while (isDigit$1(this.scanner.peek())) {
+    if (hasDecimal) while (isDigit$2(this.scanner.peek())) {
       hasDigit = true;
       this.scanner.advance();
     }
@@ -34573,7 +34953,7 @@ var TokenReader = class {
       };
     }
     this.scanner.moveTo(start);
-    const bytes2 = [];
+    const bytes = [];
     while (true) {
       const byte = this.scanner.peek();
       if (!isRegularChar(byte)) break;
@@ -34586,27 +34966,27 @@ var TokenReader = class {
           if (isHexDigit(hex2)) {
             this.scanner.advance();
             const value = hexValue(hex1) << 4 | hexValue(hex2);
-            bytes2.push(value);
+            bytes.push(value);
             continue;
           }
-          bytes2.push(35);
-          bytes2.push(hex1);
+          bytes.push(35);
+          bytes.push(hex1);
           continue;
         }
-        bytes2.push(35);
+        bytes.push(35);
         continue;
       }
-      bytes2.push(byte);
+      bytes.push(byte);
     }
     return {
       type: "name",
-      value: sharedTextDecoder.decode(new Uint8Array(bytes2)),
+      value: sharedTextDecoder.decode(new Uint8Array(bytes)),
       position
     };
   }
   readLiteralString(position) {
     this.scanner.advance();
-    const bytes2 = [];
+    const bytes = [];
     let parenDepth = 1;
     while (parenDepth > 0) {
       const byte = this.scanner.peek();
@@ -34614,30 +34994,30 @@ var TokenReader = class {
       this.scanner.advance();
       if (byte === 40) {
         parenDepth++;
-        bytes2.push(byte);
+        bytes.push(byte);
         continue;
       }
       if (byte === 41) {
         parenDepth--;
-        if (parenDepth > 0) bytes2.push(byte);
+        if (parenDepth > 0) bytes.push(byte);
         continue;
       }
       if (byte === 92) {
         const escaped = this.readEscapeSequence();
-        if (escaped !== null) if (Array.isArray(escaped)) bytes2.push(...escaped);
-        else bytes2.push(escaped);
+        if (escaped !== null) if (Array.isArray(escaped)) bytes.push(...escaped);
+        else bytes.push(escaped);
         continue;
       }
       if (byte === 13) {
         if (this.scanner.peek() === 10) this.scanner.advance();
-        bytes2.push(10);
+        bytes.push(10);
         continue;
       }
-      bytes2.push(byte);
+      bytes.push(byte);
     }
     return {
       type: "string",
-      value: new Uint8Array(bytes2),
+      value: new Uint8Array(bytes),
       format: "literal",
       position
     };
@@ -34698,7 +35078,7 @@ var TokenReader = class {
     return this.readHexString(position);
   }
   readHexString(position) {
-    const bytes2 = [];
+    const bytes = [];
     let pendingNibble = null;
     while (true) {
       const byte = this.scanner.peek();
@@ -34712,15 +35092,15 @@ var TokenReader = class {
         const nibble = hexValue(byte);
         if (pendingNibble === null) pendingNibble = nibble;
         else {
-          bytes2.push(pendingNibble << 4 | nibble);
+          bytes.push(pendingNibble << 4 | nibble);
           pendingNibble = null;
         }
       }
     }
-    if (pendingNibble !== null) bytes2.push(pendingNibble << 4);
+    if (pendingNibble !== null) bytes.push(pendingNibble << 4);
     return {
       type: "string",
-      value: new Uint8Array(bytes2),
+      value: new Uint8Array(bytes),
       format: "hex",
       position
     };
@@ -34744,6 +35124,7 @@ var TokenReader = class {
   readKeyword(position) {
     const start = this.scanner.position;
     while (isRegularChar(this.scanner.peek())) this.scanner.advance();
+    if (this.scanner.position === start) this.scanner.advance();
     return {
       type: "keyword",
       value: this.extractText(start, this.scanner.position),
@@ -34751,16 +35132,18 @@ var TokenReader = class {
     };
   }
   extractText(start, end) {
-    const bytes2 = this.scanner.bytes.subarray(start, end);
-    return sharedTextDecoder.decode(bytes2);
+    const bytes = this.scanner.bytes.subarray(start, end);
+    return sharedTextDecoder.decode(bytes);
   }
 };
 var ContentTokenizer = class {
   scanner;
   reader;
   peeked = null;
-  constructor(bytes2) {
-    this.scanner = new Scanner(bytes2);
+  /** An operator found inside an unterminated array or dict, emitted next */
+  pushedBack = null;
+  constructor(bytes) {
+    this.scanner = new Scanner(bytes);
     this.reader = new TokenReader(this.scanner);
   }
   /**
@@ -34808,6 +35191,11 @@ var ContentTokenizer = class {
     this.peeked = null;
   }
   readNext() {
+    if (this.pushedBack !== null) {
+      const token = this.pushedBack;
+      this.pushedBack = null;
+      return token;
+    }
     while (true) {
       const token = this.reader.nextToken();
       if (token.type === "eof") return null;
@@ -34873,7 +35261,10 @@ var ContentTokenizer = class {
       }
       const item = this.nextToken();
       if (item === null) break;
-      if (item.type === "operator") throw new Error(`Unexpected operator in array: ${item.name}`);
+      if (item.type === "operator") {
+        this.pushedBack = item;
+        break;
+      }
       items.push(item);
     }
     return {
@@ -34892,10 +35283,17 @@ var ContentTokenizer = class {
       }
       const key2 = this.nextToken();
       if (key2 === null) break;
-      if (key2.type !== "name") throw new Error(`Expected name as dict key, got ${key2.type}`);
+      if (key2.type === "operator") {
+        this.pushedBack = key2;
+        break;
+      }
+      if (key2.type !== "name") continue;
       const value = this.nextToken();
       if (value === null) break;
-      if (value.type === "operator") throw new Error(`Unexpected operator as dict value: ${value.name}`);
+      if (value.type === "operator") {
+        this.pushedBack = value;
+        break;
+      }
       entries.set(key2.value, value);
     }
     return {
@@ -35319,7 +35717,7 @@ function findDCTDecodeEnd(scanner, startPos) {
 function findASCII85DecodeEnd(scanner, startPos) {
   while (!scanner.isAtEnd) if (scanner.advance() === TILDE) {
     const tildePos = scanner.position;
-    while (isWhitespace$1(scanner.peek())) scanner.advance();
+    while (isWhitespace$3(scanner.peek())) scanner.advance();
     if (scanner.peek() === GT) {
       scanner.advance();
       return scanner.bytes.subarray(startPos, scanner.position);
@@ -35391,7 +35789,7 @@ function validateFollowingOperator(scanner) {
     while (i < lookahead) {
       const ch = scanner.peekAt(pos + i);
       if (ch === -1) return false;
-      if (!isWhitespace$1(ch)) break;
+      if (!isWhitespace$3(ch)) break;
       i++;
     }
     if (i >= lookahead) return false;
@@ -35402,7 +35800,7 @@ function validateFollowingOperator(scanner) {
       i++;
       while (i < lookahead) {
         const ch = scanner.peekAt(pos + i);
-        if (ch === -1 || isWhitespace$1(ch) || isDelimiter(ch)) break;
+        if (ch === -1 || isWhitespace$3(ch) || isDelimiter$1(ch)) break;
         i++;
       }
       numArgs++;
@@ -35412,7 +35810,7 @@ function validateFollowingOperator(scanner) {
       i++;
       while (i < lookahead) {
         const ch = scanner.peekAt(pos + i);
-        if (ch === -1 || isWhitespace$1(ch) || isDelimiter(ch)) break;
+        if (ch === -1 || isWhitespace$3(ch) || isDelimiter$1(ch)) break;
         i++;
       }
       numArgs++;
@@ -35431,7 +35829,7 @@ function validateFollowingOperator(scanner) {
     const wordStart = i;
     while (i < lookahead) {
       const ch = scanner.peekAt(pos + i);
-      if (ch === -1 || isWhitespace$1(ch) || isDelimiter(ch)) break;
+      if (ch === -1 || isWhitespace$3(ch) || isDelimiter$1(ch)) break;
       i++;
     }
     const wordBytes = [];
@@ -35474,8 +35872,8 @@ function skipToEI(scanner) {
 var ContentStreamParser = class {
   tokenizer;
   warnings = [];
-  constructor(bytes2) {
-    this.tokenizer = new ContentTokenizer(bytes2);
+  constructor(bytes) {
+    this.tokenizer = new ContentTokenizer(bytes);
   }
   /**
   * Parse all operations from the content stream.
@@ -35567,9 +35965,9 @@ var ContentStreamParser = class {
 var BinaryScanner = class BinaryScanner2 extends Scanner {
   static _asciiTextDecoder = new TextDecoder("utf-8");
   view;
-  constructor(bytes2) {
-    super(bytes2);
-    this.view = new DataView(bytes2.buffer, bytes2.byteOffset, bytes2.byteLength);
+  constructor(bytes) {
+    super(bytes);
+    this.view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   }
   /** Bytes remaining from current position */
   get remaining() {
@@ -35659,16 +36057,16 @@ var BinaryScanner = class BinaryScanner2 extends Scanner {
     const a = this.view.getUint8(this.position);
     const b = this.view.getUint8(this.position + 1);
     const c = this.view.getUint8(this.position + 2);
-    const d = this.view.getUint8(this.position + 3);
+    const d3 = this.view.getUint8(this.position + 3);
     this.moveTo(this.position + 4);
-    return String.fromCharCode(a, b, c, d);
+    return String.fromCharCode(a, b, c, d3);
   }
   /** Read n bytes as Uint8Array view (not a copy) and advance */
   readBytes(n) {
     this.ensureAvailable(n);
-    const bytes2 = this.bytes.subarray(this.position, this.position + n);
+    const bytes = this.bytes.subarray(this.position, this.position + n);
     this.moveTo(this.position + n);
-    return bytes2;
+    return bytes;
   }
   /** Read n bytes as a copy and advance */
   readBytesCopy(n) {
@@ -35676,14 +36074,14 @@ var BinaryScanner = class BinaryScanner2 extends Scanner {
   }
   /** Read ASCII string of given length and advance */
   readAscii(length) {
-    const bytes2 = this.readBytes(length);
-    return BinaryScanner2._asciiTextDecoder.decode(bytes2);
+    const bytes = this.readBytes(length);
+    return BinaryScanner2._asciiTextDecoder.decode(bytes);
   }
   /** Read UTF-16BE string of given byte length and advance */
   readUtf16BE(byteLength) {
-    const bytes2 = this.readBytes(byteLength);
+    const bytes = this.readBytes(byteLength);
     let result = "";
-    for (let i = 0; i < bytes2.length; i += 2) result += String.fromCharCode(bytes2[i] << 8 | bytes2[i + 1]);
+    for (let i = 0; i < bytes.length; i += 2) result += String.fromCharCode(bytes[i] << 8 | bytes[i + 1]);
     return result;
   }
   /** Read null-terminated ASCII string and advance past the null */
@@ -37139,11 +37537,11 @@ var CFFParser = class {
     return result;
   }
   readStringIndex() {
-    return this.readIndex().map((bytes2) => this.decodeLatin1(bytes2));
+    return this.readIndex().map((bytes) => this.decodeLatin1(bytes));
   }
-  decodeLatin1(bytes2) {
+  decodeLatin1(bytes) {
     let result = "";
-    for (let i = 0; i < bytes2.length; i++) result += String.fromCharCode(bytes2[i]);
+    for (let i = 0; i < bytes.length; i++) result += String.fromCharCode(bytes[i]);
     return result;
   }
   readOffset(offSize) {
@@ -37887,9 +38285,9 @@ function createEmptyDescription() {
     yCoordinates: new Int16Array(0)
   };
 }
-function parseGlyphData(bytes2, glyphId, level, maxLevel, leftSideBearing, getGlyph) {
+function parseGlyphData(bytes, glyphId, level, maxLevel, leftSideBearing, getGlyph) {
   if (level > maxLevel) throw new Error(`Composite glyph maximum level (${maxLevel}) reached`);
-  const view = new DataView(bytes2.buffer, bytes2.byteOffset, bytes2.byteLength);
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   let offset = 0;
   const numberOfContours = view.getInt16(offset);
   offset += 2;
@@ -37943,22 +38341,22 @@ function parseSimpleGlyph(view, offset, numberOfContours, xMin, leftSideBearing)
     }
   }
   const xCoordinates = new Int16Array(pointCount);
-  let x = leftSideBearing - xMin;
+  let x2 = leftSideBearing - xMin;
   for (let i = 0; i < pointCount; i++) {
     const flag = flags[i];
     if ((flag & 16) !== 0) {
       if ((flag & 2) !== 0) {
-        x += view.getUint8(offset);
+        x2 += view.getUint8(offset);
         offset += 1;
       }
     } else if ((flag & 2) !== 0) {
-      x -= view.getUint8(offset);
+      x2 -= view.getUint8(offset);
       offset += 1;
     } else {
-      x += view.getInt16(offset);
+      x2 += view.getInt16(offset);
       offset += 2;
     }
-    xCoordinates[i] = x;
+    xCoordinates[i] = x2;
   }
   const yCoordinates = new Int16Array(pointCount);
   let y = 0;
@@ -38310,22 +38708,22 @@ function parseNameTable(ctx) {
     version: version2
   };
 }
-function decodeString(bytes2, platformId, encodingId) {
+function decodeString(bytes, platformId, encodingId) {
   if (platformId === 3) {
-    if (encodingId === 0 || encodingId === 1) return decodeUTF16BE(bytes2);
-  } else if (platformId === 0) return decodeUTF16BE(bytes2);
+    if (encodingId === 0 || encodingId === 1) return decodeUTF16BE(bytes);
+  } else if (platformId === 0) return decodeUTF16BE(bytes);
   else if (platformId === 2) {
-    if (encodingId === 0) return decodeASCII(bytes2);
-    else if (encodingId === 1) return decodeUTF16BE(bytes2);
+    if (encodingId === 0) return decodeASCII(bytes);
+    else if (encodingId === 1) return decodeUTF16BE(bytes);
   }
-  return decodeLatin1(bytes2);
+  return decodeLatin1(bytes);
 }
-function decodeUTF16BE(bytes2) {
+function decodeUTF16BE(bytes) {
   const chars = [];
-  for (let i = 0; i < bytes2.length - 1; i += 2) {
-    const code = bytes2[i] << 8 | bytes2[i + 1];
-    if (code >= 55296 && code <= 56319 && i + 3 < bytes2.length) {
-      const low = bytes2[i + 2] << 8 | bytes2[i + 3];
+  for (let i = 0; i < bytes.length - 1; i += 2) {
+    const code = bytes[i] << 8 | bytes[i + 1];
+    if (code >= 55296 && code <= 56319 && i + 3 < bytes.length) {
+      const low = bytes[i + 2] << 8 | bytes[i + 3];
       if (low >= 56320 && low <= 57343) {
         chars.push(65536 + (code - 55296 << 10) + (low - 56320));
         i += 2;
@@ -38336,11 +38734,11 @@ function decodeUTF16BE(bytes2) {
   }
   return String.fromCodePoint(...chars);
 }
-function decodeASCII(bytes2) {
-  return String.fromCharCode(...bytes2.filter((b) => b < 128));
+function decodeASCII(bytes) {
+  return String.fromCharCode(...bytes.filter((b) => b < 128));
 }
-function decodeLatin1(bytes2) {
-  return String.fromCharCode(...bytes2);
+function decodeLatin1(bytes) {
+  return String.fromCharCode(...bytes);
 }
 function parseOS2Table(ctx) {
   const { data, record } = ctx;
@@ -38738,9 +39136,9 @@ function parsePostTable(ctx) {
       customNames = new Array(numCustomNames);
       for (let i = 0; i < numCustomNames; i++) try {
         const length = data.readUint8();
-        const bytes2 = new Uint8Array(length);
-        for (let j2 = 0; j2 < length; j2++) bytes2[j2] = data.readUint8();
-        customNames[i] = String.fromCharCode(...bytes2);
+        const bytes = new Uint8Array(length);
+        for (let j2 = 0; j2 < length; j2++) bytes[j2] = data.readUint8();
+        customNames[i] = String.fromCharCode(...bytes);
       } catch {
         for (let j2 = i; j2 < numCustomNames; j2++) customNames[j2] = ".notdef";
         break;
@@ -39478,8 +39876,8 @@ var Type1Lexer = class {
   * Constructs a new Type1Lexer given a header-less .pfb segment.
   * @param bytes Header-less .pfb segment
   */
-  constructor(bytes2) {
-    this.data = bytes2;
+  constructor(bytes) {
+    this.data = bytes;
     this.aheadToken = this.readToken(null);
   }
   /**
@@ -39557,7 +39955,7 @@ var Type1Lexer = class {
             return new Token(">", "NAME");
           }
           return new Token(">", "NAME");
-        } else if (isWhitespace(c)) skip = true;
+        } else if (isWhitespace$2(c)) skip = true;
         else if (c === 0) skip = true;
         else {
           this.position--;
@@ -39596,7 +39994,7 @@ var Type1Lexer = class {
         return null;
       }
     }
-    while (c !== -1 && isDigit(c)) {
+    while (c !== -1 && isDigit$1(c)) {
       sb += String.fromCharCode(c);
       hasDigit = true;
       c = this.getChar();
@@ -39629,14 +40027,14 @@ var Type1Lexer = class {
       this.position--;
       return new Token(sb, "INTEGER");
     }
-    if (c !== -1 && isDigit(c)) {
+    if (c !== -1 && isDigit$1(c)) {
       sb += String.fromCharCode(c);
       c = this.getChar();
     } else if (c !== 101 && c !== 69) {
       this.position = startPos;
       return null;
     }
-    while (c !== -1 && isDigit(c)) {
+    while (c !== -1 && isDigit$1(c)) {
       sb += String.fromCharCode(c);
       c = this.getChar();
     }
@@ -39655,14 +40053,14 @@ var Type1Lexer = class {
           return null;
         }
       }
-      if (isDigit(c)) {
+      if (isDigit$1(c)) {
         sb += String.fromCharCode(c);
         c = this.getChar();
       } else {
         this.position = startPos;
         return null;
       }
-      while (c !== -1 && isDigit(c)) {
+      while (c !== -1 && isDigit$1(c)) {
         sb += String.fromCharCode(c);
         c = this.getChar();
       }
@@ -39684,7 +40082,7 @@ var Type1Lexer = class {
     while (this.hasRemaining()) {
       const startPos = this.position;
       const c = this.getChar();
-      if (isWhitespace(c) || c === 40 || c === 41 || c === 60 || c === 62 || c === 91 || c === 93 || c === 123 || c === 125 || c === 47 || c === 37) {
+      if (isWhitespace$2(c) || c === 40 || c === 41 || c === 60 || c === 62 || c === 91 || c === 93 || c === 123 || c === 125 || c === 47 || c === 37) {
         this.position = startPos;
         break;
       }
@@ -39748,10 +40146,10 @@ var Type1Lexer = class {
               sb += ")";
               break;
             default:
-              if (isDigit(c1)) {
+              if (isDigit$1(c1)) {
                 const d1 = this.getChar();
-                const d2 = this.getChar();
-                const num2 = String.fromCharCode(c1) + String.fromCharCode(d1) + String.fromCharCode(d2);
+                const d22 = this.getChar();
+                const num2 = String.fromCharCode(c1) + String.fromCharCode(d1) + String.fromCharCode(d22);
                 const code = Number.parseInt(num2, 8);
                 if (Number.isNaN(code)) throw new Error(`Invalid octal escape: ${num2}`);
                 sb += String.fromCharCode(code);
@@ -39784,10 +40182,10 @@ var Type1Lexer = class {
     return new Token(data, "CHARSTRING");
   }
 };
-function isWhitespace(c) {
+function isWhitespace$2(c) {
   return c === 32 || c === 9 || c === 10 || c === 13 || c === 12;
 }
-function isDigit(c) {
+function isDigit$1(c) {
   return c >= 48 && c <= 57;
 }
 var EEXEC_KEY = 55665;
@@ -39812,10 +40210,10 @@ var Type1Parser = class {
   /**
   * Parses the ASCII portion of a Type 1 font.
   */
-  parseASCII(bytes2) {
-    if (bytes2.length === 0) throw new Error("ASCII segment of type 1 font is empty");
-    if (bytes2.length < 2 || bytes2[0] !== 37 && bytes2[1] !== 33) throw new Error("Invalid start of ASCII segment of type 1 font");
-    this.lexer = new Type1Lexer(bytes2);
+  parseASCII(bytes) {
+    if (bytes.length === 0) throw new Error("ASCII segment of type 1 font is empty");
+    if (bytes.length < 2 || bytes[0] !== 37 && bytes[1] !== 33) throw new Error("Invalid start of ASCII segment of type 1 font");
+    this.lexer = new Type1Lexer(bytes);
     if (this.lexer.peekToken()?.text === "FontDirectory") {
       this.read("NAME", "FontDirectory");
       this.read("LITERAL");
@@ -40085,10 +40483,10 @@ var Type1Parser = class {
   /**
   * Parses the binary portion of a Type 1 font.
   */
-  parseBinary(bytes2) {
+  parseBinary(bytes) {
     let decrypted;
-    if (this.isBinary(bytes2)) decrypted = this.decrypt(bytes2, EEXEC_KEY, 4);
-    else decrypted = this.decrypt(this.hexToBinary(bytes2), EEXEC_KEY, 4);
+    if (this.isBinary(bytes)) decrypted = this.decrypt(bytes, EEXEC_KEY, 4);
+    else decrypted = this.decrypt(this.hexToBinary(bytes), EEXEC_KEY, 4);
     this.lexer = new Type1Lexer(decrypted);
     let peekToken = this.lexer.peekToken();
     while (peekToken !== null && peekToken.text !== "Private") {
@@ -40344,23 +40742,23 @@ var Type1Parser = class {
   * Check whether binary or hex encoded.
   * See Adobe Type 1 Font Format specification 7.2 eexec encryption
   */
-  isBinary(bytes2) {
-    if (bytes2.length < 4) return true;
+  isBinary(bytes) {
+    if (bytes.length < 4) return true;
     for (let i = 0; i < 4; i++) {
-      const by = bytes2[i];
+      const by = bytes[i];
       if (by !== 10 && by !== 13 && by !== 32 && by !== 9) {
         if (this.hexDigitValue(by) === -1) return true;
       }
     }
     return false;
   }
-  hexToBinary(bytes2) {
+  hexToBinary(bytes) {
     let len = 0;
-    for (const by of bytes2) if (this.hexDigitValue(by) !== -1) len++;
+    for (const by of bytes) if (this.hexDigitValue(by) !== -1) len++;
     const res = new Uint8Array(Math.floor(len / 2));
     let r = 0;
     let prev = -1;
-    for (const by of bytes2) {
+    for (const by of bytes) {
       const digit = this.hexDigitValue(by);
       if (digit !== -1) if (prev === -1) prev = digit;
       else {
@@ -40382,8 +40780,8 @@ var ASCII_MARKER = 1;
 var BINARY_MARKER = 2;
 var EOF_MARKER = 3;
 var PFB_HEADER_LENGTH = 18;
-function parsePfb(bytes2) {
-  const parser = new PfbParser(bytes2);
+function parsePfb(bytes) {
+  const parser = new PfbParser(bytes);
   return parseType1(parser.segment1, parser.segment2);
 }
 var PfbParser = class {
@@ -40397,9 +40795,9 @@ var PfbParser = class {
   * Create a new PFB parser.
   * @param bytes PFB file bytes
   */
-  constructor(bytes2) {
-    if (bytes2.length < PFB_HEADER_LENGTH) throw new Error("PFB header missing");
-    const segments = this.parseSegments(bytes2);
+  constructor(bytes) {
+    if (bytes.length < PFB_HEADER_LENGTH) throw new Error("PFB header missing");
+    const segments = this.parseSegments(bytes);
     const result = this.arrangeSegments(segments);
     this._pfbdata = result.data;
     this._lengths = result.lengths;
@@ -40407,25 +40805,25 @@ var PfbParser = class {
   /**
   * Parse all segments from PFB data.
   */
-  parseSegments(bytes2) {
+  parseSegments(bytes) {
     const segments = [];
     let position = 0;
-    while (position < bytes2.length) {
-      if (bytes2[position] !== START_MARKER) {
+    while (position < bytes.length) {
+      if (bytes[position] !== START_MARKER) {
         if (segments.length > 0) break;
         throw new Error("Start marker missing");
       }
       position++;
-      const recordType = bytes2[position++];
+      const recordType = bytes[position++];
       if (recordType === EOF_MARKER) break;
       if (recordType !== ASCII_MARKER && recordType !== BINARY_MARKER) throw new Error(`Incorrect record type: ${recordType}`);
-      const size = bytes2[position] | bytes2[position + 1] << 8 | bytes2[position + 2] << 16 | bytes2[position + 3] << 24;
+      const size = bytes[position] | bytes[position + 1] << 8 | bytes[position + 2] << 16 | bytes[position + 3] << 24;
       position += 4;
-      if (size > bytes2.length) throw new Error(`Record size ${size} would be larger than the input`);
-      if (position + size > bytes2.length) throw new Error("EOF while reading PFB font");
+      if (size > bytes.length) throw new Error(`Record size ${size} would be larger than the input`);
+      if (position + size > bytes.length) throw new Error("EOF while reading PFB font");
       segments.push({
         type: recordType,
-        data: bytes2.slice(position, position + size)
+        data: bytes.slice(position, position + size)
       });
       position += size;
     }
@@ -41126,8 +41524,6 @@ var CIDFont = class {
   embeddedProgram;
   /** ToUnicode map from the parent Type0 font, if available */
   toUnicodeMap;
-  /** Reverse ToUnicode map: Unicode code point -> character code */
-  unicodeToCharCodeMap = null;
   constructor(options) {
     this.subtype = options.subtype;
     this.baseFontName = options.baseFontName;
@@ -41235,19 +41631,7 @@ var CIDFont = class {
         if (cid !== null) return cid;
       }
     }
-    if (!this.toUnicodeMap) return null;
-    if (!this.unicodeToCharCodeMap) {
-      this.unicodeToCharCodeMap = /* @__PURE__ */ new Map();
-      const unicodeToCharCodeMap = this.unicodeToCharCodeMap;
-      this.toUnicodeMap.forEach((unicodeValue, charCode) => {
-        const chars = Array.from(unicodeValue);
-        if (chars.length !== 1) return;
-        const codePoint = chars[0].codePointAt(0);
-        if (codePoint === void 0 || unicodeToCharCodeMap.has(codePoint)) return;
-        unicodeToCharCodeMap.set(codePoint, charCode);
-      });
-    }
-    return this.unicodeToCharCodeMap.get(unicode) ?? null;
+    return this.toUnicodeMap?.getCodeForUnicode(String.fromCodePoint(unicode)) ?? null;
   }
   getCharCodeForGid(gid) {
     if (!this.gidToCidMap) {
@@ -41375,6 +41759,16 @@ function parseCIDFont(dict, options = {}) {
   });
 }
 var PdfFont = class {
+  /**
+  * Split string operand bytes into character codes. One byte per code
+  * unless overridden.
+  */
+  decode(bytes) {
+    return Array.from(bytes, (code) => ({
+      code,
+      length: 1
+    }));
+  }
   /**
   * Get width of text in points at a given font size.
   *
@@ -41527,6 +41921,15 @@ var EmbeddedFont = class EmbeddedFont2 extends PdfFont {
   */
   encodeText(text) {
     return this.trackAndEncode(text).map((e) => e.codePoint);
+  }
+  /** Identity-H: two bytes per code. */
+  decode(bytes) {
+    const codes = [];
+    for (let offset = 0; offset + 1 < bytes.length; offset += 2) codes.push({
+      code: bytes[offset] << 8 | bytes[offset + 1],
+      length: 2
+    });
+    return codes;
   }
   /**
   * Encode text to glyph IDs for PDF content stream.
@@ -47616,123 +48019,916 @@ var ENCODING_MAP = {
 function getEncodingByName(name) {
   return ENCODING_MAP[name] ?? WinAnsiEncoding.instance;
 }
-var ToUnicodeMap = class {
-  map;
-  constructor(map) {
-    this.map = map ?? /* @__PURE__ */ new Map();
+function bytesToInt$1(data) {
+  return bytesToIntN(data, data.length);
+}
+function bytesToIntN(data, length) {
+  let code = 0;
+  for (let i = 0; i < length; i++) code = code << 8 | data[i];
+  return code;
+}
+function intToBytes(value, length) {
+  const bytes = new Uint8Array(length);
+  for (let i = length - 1; i >= 0; i--) {
+    bytes[i] = value & 255;
+    value >>>= 8;
+  }
+  return bytes;
+}
+function incrementBytes(data, position, strictMode) {
+  if (position > 0 && data[position] === 255) {
+    if (strictMode) return false;
+    data[position] = 0;
+    return incrementBytes(data, position - 1, strictMode);
+  } else {
+    data[position] = data[position] + 1;
+    return true;
+  }
+}
+function createStringFromBytes(bytes) {
+  if (bytes.length <= 2) {
+    let code = 0;
+    for (let i = 0; i < bytes.length; i++) code = code << 8 | bytes[i];
+    return String.fromCharCode(code);
+  }
+  let result = "";
+  for (let i = 0; i + 1 < bytes.length; i += 2) result += String.fromCharCode(bytes[i] << 8 | bytes[i + 1]);
+  return result;
+}
+var CIDRange = class {
+  /** Start of the character code range */
+  from;
+  /** End of the character code range (mutable for extension) */
+  to;
+  /** Starting CID value */
+  cid;
+  /** Byte length of character codes in this range */
+  codeLength;
+  /**
+  * Create a CID range.
+  * @param from Start value of code range
+  * @param to End value of code range
+  * @param cid Starting CID value
+  * @param codeLength Byte length of codes
+  */
+  constructor(from, to, cid, codeLength) {
+    this.from = from;
+    this.to = to;
+    this.cid = cid;
+    this.codeLength = codeLength;
+  }
+  /**
+  * Get the byte length of codes in this range.
+  */
+  getCodeLength() {
+    return this.codeLength;
+  }
+  /**
+  * Map a character code (as bytes) to a CID.
+  * @param bytes Character code bytes
+  * @returns CID, or -1 if the code is out of range
+  */
+  mapBytes(bytes) {
+    if (bytes.length === this.codeLength) {
+      const code = bytesToInt$1(bytes);
+      if (code >= this.from && code <= this.to) return this.cid + (code - this.from);
+    }
+    return -1;
+  }
+  /**
+  * Map a character code to a CID.
+  * @param code Character code value
+  * @param length Original byte length of the code
+  * @returns CID, or -1 if the code is out of range
+  */
+  map(code, length) {
+    if (length === this.codeLength && code >= this.from && code <= this.to) return this.cid + (code - this.from);
+    return -1;
+  }
+  /**
+  * Reverse map a CID to a character code.
+  * @param cidValue CID to look up
+  * @returns Character code, or -1 if the CID is out of range
+  */
+  unmap(cidValue) {
+    const maxCid = this.cid + (this.to - this.from);
+    if (cidValue >= this.cid && cidValue <= maxCid) return this.from + (cidValue - this.cid);
+    return -1;
+  }
+  /**
+  * Try to extend this range with consecutive values.
+  *
+  * If the new range is consecutive with this range (same code length,
+  * next code value, next CID value), extends this range instead of
+  * requiring a new range object.
+  *
+  * @param newFrom Start of new range
+  * @param newTo End of new range
+  * @param newCid Starting CID of new range
+  * @param length Byte length of new codes
+  * @returns true if this range was extended
+  */
+  extend(newFrom, newTo, newCid, length) {
+    const expectedCid = this.cid + (this.to - this.from) + 1;
+    if (this.codeLength === length && newFrom === this.to + 1 && newCid === expectedCid) {
+      this.to = newTo;
+      return true;
+    }
+    return false;
+  }
+};
+var CMap$1 = class {
+  _wmode = 0;
+  _name;
+  _version;
+  _type = -1;
+  _registry;
+  _ordering;
+  _supplement = 0;
+  _minCodeLength = 4;
+  _maxCodeLength = 0;
+  _minCidLength = 4;
+  _maxCidLength = 0;
+  codespaceRanges = [];
+  charToUnicodeOneByte = /* @__PURE__ */ new Map();
+  charToUnicodeTwoBytes = /* @__PURE__ */ new Map();
+  charToUnicodeMoreBytes = /* @__PURE__ */ new Map();
+  codeToCid = /* @__PURE__ */ new Map();
+  codeToCidRanges = [];
+  unicodeToByteCodes = /* @__PURE__ */ new Map();
+  _spaceMapping = -1;
+  /**
+  * Check if this CMap has any CID mappings.
+  */
+  hasCIDMappings() {
+    return this.codeToCid.size > 0 || this.codeToCidRanges.length > 0;
+  }
+  /**
+  * Check if this CMap has any Unicode mappings.
+  */
+  hasUnicodeMappings() {
+    return this.charToUnicodeOneByte.size > 0 || this.charToUnicodeTwoBytes.size > 0 || this.charToUnicodeMoreBytes.size > 0;
+  }
+  /**
+  * Map a character code to Unicode.
+  *
+  * This convenience method tries to determine the code length automatically.
+  * For more accurate results, use toUnicodeWithLength.
+  *
+  * @param code Character code value
+  * @returns Unicode string, or undefined if not mapped
+  */
+  toUnicode(code) {
+    if (code < 256) {
+      const result = this.toUnicodeWithLength(code, 1);
+      if (result !== void 0) return result;
+    }
+    if (code <= 65535) return this.toUnicodeWithLength(code, 2);
+    if (code <= 16777215) return this.toUnicodeWithLength(code, 3);
+    return this.toUnicodeWithLength(code, 4);
+  }
+  /**
+  * Map a character code to Unicode with explicit length.
+  * @param code Character code value
+  * @param length Original byte length of the code
+  * @returns Unicode string, or undefined if not mapped
+  */
+  toUnicodeWithLength(code, length) {
+    switch (length) {
+      case 1:
+        return this.charToUnicodeOneByte.get(code);
+      case 2:
+        return this.charToUnicodeTwoBytes.get(code);
+      default:
+        return this.charToUnicodeMoreBytes.get(code);
+    }
+  }
+  /**
+  * Map character code bytes to Unicode.
+  * @param code Character code bytes
+  * @returns Unicode string, or undefined if not mapped
+  */
+  toUnicodeBytes(code) {
+    return this.toUnicodeWithLength(bytesToInt$1(code), code.length);
+  }
+  /**
+  * Map a character code to a CID.
+  *
+  * This convenience method tries to determine the code length automatically.
+  * For more accurate results, use toCIDWithLength.
+  *
+  * @param code Character code value
+  * @returns CID, or 0 if not mapped
+  */
+  toCID(code) {
+    if (!this.hasCIDMappings()) return 0;
+    let cid = 0;
+    let length = this._minCidLength;
+    while (cid === 0 && length <= this._maxCidLength) {
+      cid = this.toCIDWithLength(code, length);
+      length++;
+    }
+    return cid;
+  }
+  /**
+  * Map a character code to a CID with explicit length.
+  * @param code Character code value
+  * @param length Original byte length of the code
+  * @returns CID, or 0 if not mapped
+  */
+  toCIDWithLength(code, length) {
+    if (!this.hasCIDMappings() || length < this._minCidLength || length > this._maxCidLength) return 0;
+    const codeToCidMap = this.codeToCid.get(length);
+    if (codeToCidMap) {
+      const cid = codeToCidMap.get(code);
+      if (cid !== void 0) return cid;
+    }
+    return this.toCIDFromRanges(code, length);
+  }
+  /**
+  * Map character code bytes to a CID.
+  * @param code Character code bytes
+  * @returns CID, or 0 if not mapped
+  */
+  toCIDBytes(code) {
+    if (!this.hasCIDMappings() || code.length < this._minCidLength || code.length > this._maxCidLength) return 0;
+    const codeInt = bytesToInt$1(code);
+    const codeToCidMap = this.codeToCid.get(code.length);
+    if (codeToCidMap) {
+      const cid = codeToCidMap.get(codeInt);
+      if (cid !== void 0) return cid;
+    }
+    return this.toCIDFromRangesBytes(code);
+  }
+  /**
+  * Get the byte codes for a Unicode string.
+  * @param unicode Unicode string
+  * @returns Code bytes, or undefined if not mapped
+  */
+  getCodesFromUnicode(unicode) {
+    return this.unicodeToByteCodes.get(unicode);
+  }
+  /**
+  * Read a character code from a byte stream.
+  *
+  * Reads the minimum number of bytes needed to match a codespace range,
+  * up to the maximum code length.
+  *
+  * @param bytes Byte array to read from
+  * @param offset Starting offset
+  * @returns [code, bytesConsumed] tuple
+  */
+  readCode(bytes, offset) {
+    const maxLen = Math.min(this._maxCodeLength, bytes.length - offset);
+    const buffer = new Uint8Array(this._maxCodeLength);
+    for (let i = 0; i < this._minCodeLength && offset + i < bytes.length; i++) buffer[i] = bytes[offset + i];
+    for (let i = this._minCodeLength - 1; i < maxLen; i++) {
+      const byteCount = i + 1;
+      for (const range of this.codespaceRanges) if (range.isFullMatch(buffer, byteCount)) return [bytesToIntN(buffer, byteCount), byteCount];
+      if (byteCount < maxLen) buffer[byteCount] = bytes[offset + byteCount];
+    }
+    return [bytesToIntN(buffer, this._minCodeLength), this._minCodeLength];
+  }
+  /** Writing mode: 0 = horizontal, 1 = vertical */
+  get wmode() {
+    return this._wmode;
+  }
+  set wmode(value) {
+    this._wmode = value;
+  }
+  /** CMap name */
+  get name() {
+    return this._name;
+  }
+  set name(value) {
+    this._name = value;
+  }
+  /** CMap version */
+  get version() {
+    return this._version;
+  }
+  set version(value) {
+    this._version = value;
+  }
+  /** CMap type */
+  get type() {
+    return this._type;
+  }
+  set type(value) {
+    this._type = value;
+  }
+  /** CIDSystemInfo registry */
+  get registry() {
+    return this._registry;
+  }
+  set registry(value) {
+    this._registry = value;
+  }
+  /** CIDSystemInfo ordering */
+  get ordering() {
+    return this._ordering;
+  }
+  set ordering(value) {
+    this._ordering = value;
+  }
+  /** CIDSystemInfo supplement */
+  get supplement() {
+    return this._supplement;
+  }
+  set supplement(value) {
+    this._supplement = value;
+  }
+  /** Character code for space character, or -1 if unknown */
+  get spaceMapping() {
+    return this._spaceMapping;
+  }
+  /**
+  * Add a codespace range.
+  */
+  addCodespaceRange(range) {
+    this.codespaceRanges.push(range);
+    this._maxCodeLength = Math.max(this._maxCodeLength, range.codeLength);
+    this._minCodeLength = Math.min(this._minCodeLength, range.codeLength);
+  }
+  /**
+  * Add a character code to Unicode mapping.
+  */
+  addCharMapping(codes, unicode) {
+    const codeInt = bytesToInt$1(codes);
+    switch (codes.length) {
+      case 1:
+        this.charToUnicodeOneByte.set(codeInt, unicode);
+        break;
+      case 2:
+        this.charToUnicodeTwoBytes.set(codeInt, unicode);
+        break;
+      default:
+        this.charToUnicodeMoreBytes.set(codeInt, unicode);
+        break;
+    }
+    this.unicodeToByteCodes.set(unicode, codes.slice());
+    if (unicode === " ") this._spaceMapping = codeInt;
+  }
+  /**
+  * Add a CID mapping.
+  */
+  addCIDMapping(code, cid) {
+    let codeToCidMap = this.codeToCid.get(code.length);
+    if (!codeToCidMap) {
+      codeToCidMap = /* @__PURE__ */ new Map();
+      this.codeToCid.set(code.length, codeToCidMap);
+      this._minCidLength = Math.min(this._minCidLength, code.length);
+      this._maxCidLength = Math.max(this._maxCidLength, code.length);
+    }
+    codeToCidMap.set(bytesToInt$1(code), cid);
+  }
+  /**
+  * Add a CID range mapping.
+  */
+  addCIDRange(from, to, cid) {
+    const fromInt = bytesToInt$1(from);
+    const toInt = bytesToInt$1(to);
+    const length = from.length;
+    if (this.codeToCidRanges.length > 0) {
+      if (this.codeToCidRanges[this.codeToCidRanges.length - 1].extend(fromInt, toInt, cid, length)) return;
+    }
+    this.codeToCidRanges.push(new CIDRange(fromInt, toInt, cid, length));
+    this._minCidLength = Math.min(this._minCidLength, length);
+    this._maxCidLength = Math.max(this._maxCidLength, length);
+  }
+  /**
+  * Copy all mappings from another CMap (usecmap operator).
+  */
+  useCmap(cmap) {
+    for (const range of cmap.codespaceRanges) this.addCodespaceRange(range);
+    for (const [code, unicode] of cmap.charToUnicodeOneByte) {
+      this.charToUnicodeOneByte.set(code, unicode);
+      this.unicodeToByteCodes.set(unicode, new Uint8Array([code]));
+    }
+    for (const [code, unicode] of cmap.charToUnicodeTwoBytes) {
+      this.charToUnicodeTwoBytes.set(code, unicode);
+      this.unicodeToByteCodes.set(unicode, new Uint8Array([code >>> 8 & 255, code & 255]));
+    }
+    for (const [code, unicode] of cmap.charToUnicodeMoreBytes) {
+      this.charToUnicodeMoreBytes.set(code, unicode);
+      const bytes = code <= 16777215 ? new Uint8Array([
+        code >>> 16 & 255,
+        code >>> 8 & 255,
+        code & 255
+      ]) : new Uint8Array([
+        code >>> 24 & 255,
+        code >>> 16 & 255,
+        code >>> 8 & 255,
+        code & 255
+      ]);
+      this.unicodeToByteCodes.set(unicode, bytes);
+    }
+    for (const [length, srcMap] of cmap.codeToCid) {
+      let dstMap = this.codeToCid.get(length);
+      if (!dstMap) {
+        dstMap = /* @__PURE__ */ new Map();
+        this.codeToCid.set(length, dstMap);
+      }
+      for (const [code, cid] of srcMap) dstMap.set(code, cid);
+    }
+    this.codeToCidRanges.push(...cmap.codeToCidRanges);
+    this._maxCodeLength = Math.max(this._maxCodeLength, cmap._maxCodeLength);
+    this._minCodeLength = Math.min(this._minCodeLength, cmap._minCodeLength);
+    this._maxCidLength = Math.max(this._maxCidLength, cmap._maxCidLength);
+    this._minCidLength = Math.min(this._minCidLength, cmap._minCidLength);
+  }
+  toCIDFromRanges(code, length) {
+    for (const range of this.codeToCidRanges) {
+      const cid = range.map(code, length);
+      if (cid !== -1) return cid;
+    }
+    return 0;
+  }
+  toCIDFromRangesBytes(code) {
+    for (const range of this.codeToCidRanges) {
+      const cid = range.mapBytes(code);
+      if (cid !== -1) return cid;
+    }
+    return 0;
+  }
+  toString() {
+    return this._name ?? "CMap";
+  }
+};
+var CodespaceRange = class {
+  /** Start values for each byte position */
+  start;
+  /** End values for each byte position */
+  end;
+  /** Number of bytes in codes in this range */
+  codeLength;
+  /**
+  * Create a codespace range.
+  * @param startBytes Start of the range
+  * @param endBytes End of the range
+  */
+  constructor(startBytes, endBytes) {
+    let correctedStart = startBytes;
+    if (startBytes.length !== endBytes.length && startBytes.length === 1 && startBytes[0] === 0) correctedStart = new Uint8Array(endBytes.length);
+    else if (startBytes.length !== endBytes.length) throw new Error("The start and the end values must not have different lengths.");
+    const start = [];
+    const end = [];
+    for (let i = 0; i < correctedStart.length; i++) {
+      start.push(correctedStart[i]);
+      end.push(endBytes[i]);
+    }
+    this.start = start;
+    this.end = end;
+    this.codeLength = endBytes.length;
+  }
+  /**
+  * Check if the given code bytes match this codespace range.
+  * @param code The code bytes to check
+  * @returns true if the code matches this range
+  */
+  matches(code) {
+    return this.isFullMatch(code, code.length);
+  }
+  /**
+  * Check if the given number of code bytes match this codespace range.
+  * @param code The code bytes to check
+  * @param codeLen Number of bytes to check
+  * @returns true if the bytes match this range
+  */
+  isFullMatch(code, codeLen) {
+    if (this.codeLength !== codeLen) return false;
+    for (let i = 0; i < this.codeLength; i++) {
+      const byte = code[i];
+      if (byte < this.start[i] || byte > this.end[i]) return false;
+    }
+    return true;
+  }
+};
+function parseCMap$1(data, strictMode = false) {
+  return new CMapParser(data, strictMode).parse();
+}
+var CMapParser = class {
+  data;
+  strictMode;
+  position = 0;
+  constructor(data, strictMode) {
+    this.data = data;
+    this.strictMode = strictMode;
+  }
+  parse() {
+    const result = new CMap$1();
+    let previousToken = null;
+    let token = this.parseNextToken();
+    while (token !== null) {
+      if (isOperator(token)) {
+        if (token.op === "endcmap") break;
+        if (token.op === "usecmap" && isName(previousToken)) {
+        } else if (typeof previousToken === "number") switch (token.op) {
+          case "begincodespacerange":
+            this.parseCodespaceRange(previousToken, result);
+            break;
+          case "beginbfchar":
+            this.parseBfChar(previousToken, result);
+            break;
+          case "beginbfrange":
+            this.parseBfRange(previousToken, result);
+            break;
+          case "begincidchar":
+            this.parseCidChar(previousToken, result);
+            break;
+          case "begincidrange":
+            this.parseCidRange(previousToken, result);
+            break;
+        }
+      } else if (isName(token)) this.parseLiteralName(token, result);
+      previousToken = token;
+      token = this.parseNextToken();
+    }
+    return result;
+  }
+  parseLiteralName(literal, result) {
+    switch (literal.name) {
+      case "WMode": {
+        const next = this.parseNextToken();
+        if (typeof next === "number") result.wmode = next;
+        break;
+      }
+      case "CMapName": {
+        const next = this.parseNextToken();
+        if (isName(next)) result.name = next.name;
+        break;
+      }
+      case "CMapVersion": {
+        const next = this.parseNextToken();
+        if (typeof next === "number" || typeof next === "string") result.version = String(next);
+        break;
+      }
+      case "CMapType": {
+        const next = this.parseNextToken();
+        if (typeof next === "number") result.type = next;
+        break;
+      }
+      case "CIDSystemInfo": {
+        const next = this.parseNextToken();
+        if (next instanceof Map) {
+          const registry = next.get("Registry");
+          if (typeof registry === "string") result.registry = registry;
+          const ordering = next.get("Ordering");
+          if (typeof ordering === "string") result.ordering = ordering;
+          const supplement = next.get("Supplement");
+          if (typeof supplement === "number") result.supplement = supplement;
+        }
+        break;
+      }
+      case "Registry": {
+        const next = this.parseNextToken();
+        if (typeof next === "string") result.registry = next;
+        break;
+      }
+      case "Ordering": {
+        const next = this.parseNextToken();
+        if (typeof next === "string") result.ordering = next;
+        break;
+      }
+      case "Supplement": {
+        const next = this.parseNextToken();
+        if (typeof next === "number") result.supplement = next;
+        break;
+      }
+    }
+  }
+  parseCodespaceRange(count, result) {
+    for (let i = 0; i < count; i++) {
+      const startToken = this.parseNextToken();
+      if (isOperator(startToken)) break;
+      if (!(startToken instanceof Uint8Array)) throw new Error("Expected hex string for codespace range start");
+      const endToken = this.parseNextToken();
+      if (!(endToken instanceof Uint8Array)) throw new Error("Expected hex string for codespace range end");
+      result.addCodespaceRange(new CodespaceRange(startToken, endToken));
+    }
+  }
+  parseBfChar(count, result) {
+    for (let i = 0; i < count; i++) {
+      const inputToken = this.parseNextToken();
+      if (isOperator(inputToken)) break;
+      if (!(inputToken instanceof Uint8Array)) throw new Error("Expected hex string for bfchar input code");
+      const outputToken = this.parseNextToken();
+      if (outputToken instanceof Uint8Array) result.addCharMapping(inputToken, createStringFromBytes(outputToken));
+      else if (isName(outputToken)) result.addCharMapping(inputToken, outputToken.name);
+      else throw new Error("Expected hex string or name for bfchar output");
+    }
+  }
+  parseBfRange(count, result) {
+    for (let i = 0; i < count; i++) {
+      const startToken = this.parseNextToken();
+      if (isOperator(startToken)) break;
+      if (!(startToken instanceof Uint8Array)) throw new Error("Expected hex string for bfrange start");
+      const endToken = this.parseNextToken();
+      if (isOperator(endToken)) break;
+      if (!(endToken instanceof Uint8Array)) throw new Error("Expected hex string for bfrange end");
+      const start = bytesToInt(startToken);
+      const end = bytesToInt(endToken);
+      if (end < start) break;
+      const mappingToken = this.parseNextToken();
+      if (Array.isArray(mappingToken)) this.addBfRangeFromArray(result, startToken, mappingToken);
+      else if (mappingToken instanceof Uint8Array) {
+        if (mappingToken.length > 0) if (mappingToken.length === 2 && start === 0 && end === 65535 && mappingToken[0] === 0 && mappingToken[1] === 0) this.addIdentityBfRange(result, startToken);
+        else this.addBfRangeFromBytes(result, startToken, end - start + 1, mappingToken);
+      }
+    }
+  }
+  /**
+  * Handle identity bfrange <0000> <ffff> <0000> by breaking into 256 chunks.
+  * This avoids the strict mode overflow issue when incrementing across byte boundaries.
+  */
+  addIdentityBfRange(result, startCode) {
+    const code = startCode.slice();
+    const mapping = new Uint8Array(2);
+    for (let highByte = 0; highByte < 256; highByte++) {
+      code[0] = highByte;
+      code[1] = 0;
+      mapping[0] = highByte;
+      mapping[1] = 0;
+      this.addBfRangeFromBytes(result, code, 256, mapping);
+    }
+  }
+  addBfRangeFromArray(result, startCode, mappings) {
+    const code = startCode.slice();
+    for (const mapping of mappings) if (mapping instanceof Uint8Array) {
+      result.addCharMapping(code, createStringFromBytes(mapping));
+      incrementBytes(code, code.length - 1, false);
+    }
+  }
+  addBfRangeFromBytes(result, startCode, count, tokenBytes) {
+    const code = startCode.slice();
+    const mapping = tokenBytes.slice();
+    for (let i = 0; i < count; i++) {
+      result.addCharMapping(code, createStringFromBytes(mapping));
+      if (!incrementBytes(mapping, mapping.length - 1, this.strictMode)) break;
+      incrementBytes(code, code.length - 1, false);
+    }
+  }
+  parseCidChar(count, result) {
+    for (let i = 0; i < count; i++) {
+      const inputToken = this.parseNextToken();
+      if (isOperator(inputToken)) break;
+      if (!(inputToken instanceof Uint8Array)) throw new Error("Expected hex string for cidchar input code");
+      const cidToken = this.parseNextToken();
+      if (typeof cidToken !== "number") throw new Error("Expected integer for cidchar CID");
+      result.addCIDMapping(inputToken, cidToken);
+    }
+  }
+  parseCidRange(count, result) {
+    for (let i = 0; i < count; i++) {
+      const startToken = this.parseNextToken();
+      if (isOperator(startToken)) break;
+      if (!(startToken instanceof Uint8Array)) throw new Error("Expected hex string for cidrange start");
+      const endToken = this.parseNextToken();
+      if (!(endToken instanceof Uint8Array)) throw new Error("Expected hex string for cidrange end");
+      const cidToken = this.parseNextToken();
+      if (typeof cidToken !== "number") throw new Error("Expected integer for cidrange CID");
+      if (startToken.length !== endToken.length) throw new Error("cidrange start and end must have same length");
+      if (arraysEqual(startToken, endToken)) result.addCIDMapping(startToken, cidToken);
+      else result.addCIDRange(startToken, endToken, cidToken);
+    }
+  }
+  parseNextToken() {
+    this.skipWhitespace();
+    if (this.position >= this.data.length) return null;
+    const byte = this.data[this.position];
+    switch (byte) {
+      case 37:
+        return this.readComment();
+      case 40:
+        return this.readString();
+      case 62:
+        return this.readEndDictOrHex();
+      case 93:
+        this.position++;
+        return {
+          type: "operator",
+          op: "]"
+        };
+      case 91:
+        return this.readArray();
+      case 60:
+        return this.readHexOrDict();
+      case 47:
+        return this.readLiteralName();
+      default:
+        if (isDigit(byte)) return this.readNumber();
+        return this.readOperator();
+    }
+  }
+  skipWhitespace() {
+    while (this.position < this.data.length) {
+      const byte = this.data[this.position];
+      if (byte === 9 || byte === 10 || byte === 13 || byte === 32) this.position++;
+      else break;
+    }
+  }
+  readComment() {
+    const start = this.position;
+    while (this.position < this.data.length && this.data[this.position] !== 10 && this.data[this.position] !== 13) this.position++;
+    return String.fromCharCode(...this.data.subarray(start, this.position));
+  }
+  readString() {
+    this.position++;
+    let result = "";
+    while (this.position < this.data.length && this.data[this.position] !== 41) {
+      result += String.fromCharCode(this.data[this.position]);
+      this.position++;
+    }
+    this.position++;
+    return result;
+  }
+  readEndDictOrHex() {
+    if (this.position + 1 < this.data.length && this.data[this.position + 1] === 62) {
+      this.position += 2;
+      return {
+        type: "operator",
+        op: ">>"
+      };
+    }
+    throw new Error("Expected >> for end of dictionary");
+  }
+  readArray() {
+    this.position++;
+    const list = [];
+    let token = this.parseNextToken();
+    while (token !== null && !(isOperator(token) && token.op === "]")) {
+      list.push(token);
+      token = this.parseNextToken();
+    }
+    return list;
+  }
+  readHexOrDict() {
+    this.position++;
+    if (this.position < this.data.length && this.data[this.position] === 60) {
+      this.position++;
+      const dict = /* @__PURE__ */ new Map();
+      let key2 = this.parseNextToken();
+      while (isName(key2)) {
+        dict.set(key2.name, this.parseNextToken());
+        key2 = this.parseNextToken();
+      }
+      return dict;
+    }
+    const bytes = [];
+    let highNibble = true;
+    let currentByte = 0;
+    while (this.position < this.data.length) {
+      const ch = this.data[this.position];
+      if (ch === 62) {
+        this.position++;
+        break;
+      }
+      if (isWhitespace$1(ch)) {
+        this.position++;
+        continue;
+      }
+      const nibble = hexDigitValue(ch);
+      if (nibble < 0) throw new Error(`Invalid hex character: ${String.fromCharCode(ch)}`);
+      if (highNibble) {
+        currentByte = nibble << 4;
+        highNibble = false;
+      } else {
+        currentByte |= nibble;
+        bytes.push(currentByte);
+        highNibble = true;
+      }
+      this.position++;
+    }
+    if (!highNibble) bytes.push(currentByte);
+    return new Uint8Array(bytes);
+  }
+  readLiteralName() {
+    this.position++;
+    let name = "";
+    while (this.position < this.data.length) {
+      const ch = this.data[this.position];
+      if (isWhitespace$1(ch) || isDelimiter(ch)) break;
+      name += String.fromCharCode(ch);
+      this.position++;
+    }
+    return {
+      type: "name",
+      name
+    };
+  }
+  readNumber() {
+    let str = "";
+    while (this.position < this.data.length) {
+      const ch = this.data[this.position];
+      if (!isDigit(ch) && ch !== 46) break;
+      str += String.fromCharCode(ch);
+      this.position++;
+    }
+    if (str.includes(".")) return parseFloat(str);
+    return parseInt(str, 10);
+  }
+  readOperator() {
+    let op = "";
+    while (this.position < this.data.length) {
+      const ch = this.data[this.position];
+      if (isWhitespace$1(ch) || isDelimiter(ch) || isDigit(ch)) break;
+      op += String.fromCharCode(ch);
+      this.position++;
+    }
+    return {
+      type: "operator",
+      op
+    };
+  }
+};
+function isOperator(token) {
+  return token !== null && typeof token === "object" && "type" in token && token.type === "operator";
+}
+function isName(token) {
+  return token !== null && typeof token === "object" && "type" in token && token.type === "name";
+}
+function isWhitespace$1(ch) {
+  return ch === 9 || ch === 10 || ch === 13 || ch === 32;
+}
+function isDigit(ch) {
+  return ch >= 48 && ch <= 57;
+}
+function isDelimiter(ch) {
+  switch (ch) {
+    case 40:
+    case 41:
+    case 60:
+    case 62:
+    case 91:
+    case 93:
+    case 123:
+    case 125:
+    case 47:
+    case 37:
+      return true;
+    default:
+      return false;
+  }
+}
+function hexDigitValue(ch) {
+  if (ch >= 48 && ch <= 57) return ch - 48;
+  if (ch >= 65 && ch <= 70) return ch - 65 + 10;
+  if (ch >= 97 && ch <= 102) return ch - 97 + 10;
+  return -1;
+}
+function bytesToInt(bytes) {
+  let value = 0;
+  for (let i = 0; i < bytes.length; i++) value = value << 8 | bytes[i];
+  return value;
+}
+function arraysEqual(a, b) {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+  return true;
+}
+var ToUnicodeMap = class ToUnicodeMap2 {
+  cmap;
+  constructor(cmap = new CMap$1()) {
+    this.cmap = cmap;
+  }
+  static fromEntries(entries) {
+    const map = new ToUnicodeMap2();
+    for (const [code, unicode] of entries) map.set(code, unicode);
+    return map;
   }
   /**
   * Get the Unicode string for a character code.
   */
   get(code) {
-    return this.map.get(code);
+    return this.cmap.toUnicode(code);
   }
-  /**
-  * Check if a character code has a mapping.
-  */
   has(code) {
-    return this.map.has(code);
+    return this.get(code) !== void 0;
+  }
+  get isEmpty() {
+    return !this.cmap.hasUnicodeMappings();
   }
   /**
-  * Set a mapping from character code to Unicode string.
+  * Add a mapping. The code is stored at its minimal byte width.
   */
   set(code, unicode) {
-    this.map.set(code, unicode);
+    this.cmap.addCharMapping(intToBytes(code, byteWidth(code)), unicode);
   }
   /**
-  * Get the number of mappings.
+  * Reverse lookup: the character code that maps to a Unicode string.
   */
-  get size() {
-    return this.map.size;
-  }
-  /**
-  * Iterate over all mappings.
-  */
-  forEach(callback) {
-    this.map.forEach(callback);
-  }
-  /**
-  * Get the underlying map (for advanced use).
-  */
-  getMap() {
-    return this.map;
+  getCodeForUnicode(unicode) {
+    const bytes = this.cmap.getCodesFromUnicode(unicode);
+    return bytes ? bytesToInt$1(bytes) : void 0;
   }
 };
+function byteWidth(code) {
+  if (code <= 255) return 1;
+  if (code <= 65535) return 2;
+  return code <= 16777215 ? 3 : 4;
+}
 function parseToUnicode(data) {
-  const map = new ToUnicodeMap();
-  const text = bytesToLatin1$1(data);
-  parseBfCharSections(text, map);
-  parseBfRangeSections(text, map);
-  return map;
-}
-function bytesToLatin1$1(data) {
-  let result = "";
-  for (let i = 0; i < data.length; i++) result += String.fromCharCode(data[i]);
-  return result;
-}
-function parseBfCharSections(text, map) {
-  for (const match of text.matchAll(/beginbfchar\s*([\s\S]*?)\s*endbfchar/g)) parseBfCharContent(match[1], map);
-}
-function parseBfCharContent(content, map) {
-  for (const match of content.matchAll(/<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>/g)) {
-    const srcCode = parseInt(match[1], 16);
-    const dstUnicode = hexToUnicode(match[2]);
-    map.set(srcCode, dstUnicode);
-  }
-}
-function parseBfRangeSections(text, map) {
-  for (const match of text.matchAll(/beginbfrange\s*([\s\S]*?)\s*endbfrange/g)) parseBfRangeContent(match[1], map);
-}
-function parseBfRangeContent(content, map) {
-  const lines = content.trim().split(/\n/);
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed) continue;
-    const arrayMatch = trimmed.match(/^<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>\s*\[([\s\S]*)\]$/);
-    if (arrayMatch) {
-      const lo = parseInt(arrayMatch[1], 16);
-      const hi = parseInt(arrayMatch[2], 16);
-      const hexMatches = arrayMatch[3].match(/<([0-9A-Fa-f]+)>/g);
-      if (hexMatches) {
-        const destinations = hexMatches.map((h) => hexToUnicode(h.slice(1, -1)));
-        for (let code = lo; code <= hi && code - lo < destinations.length; code++) map.set(code, destinations[code - lo]);
-      }
-      continue;
-    }
-    const rangeMatch = trimmed.match(/^<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>$/);
-    if (rangeMatch) {
-      const lo = parseInt(rangeMatch[1], 16);
-      const hi = parseInt(rangeMatch[2], 16);
-      const dstHex = rangeMatch[3];
-      mapBfRange(lo, hi, dstHex, map);
-    }
-  }
-}
-function mapBfRange(lo, hi, dstHex, map) {
-  if (hi - lo > 16777215) return;
-  const codeUnits = hexToCodeUnits(dstHex);
-  if (codeUnits.length === 0) return;
-  for (let code = lo; code <= hi; code++) {
-    map.set(code, String.fromCharCode(...codeUnits));
-    incrementCodeUnits(codeUnits);
-  }
-}
-function hexToCodeUnits(hex) {
-  const codeUnits = [];
-  const padded = hex.length % 4 !== 0 ? hex.padStart(Math.ceil(hex.length / 4) * 4, "0") : hex;
-  for (let i = 0; i < padded.length; i += 4) codeUnits.push(parseInt(padded.slice(i, i + 4), 16));
-  return codeUnits;
-}
-function incrementCodeUnits(codeUnits) {
-  for (let i = codeUnits.length - 1; i >= 0; i--) {
-    codeUnits[i]++;
-    if (codeUnits[i] <= 65535) break;
-    codeUnits[i] = 0;
-  }
-}
-function hexToUnicode(hex) {
-  const codeUnits = hexToCodeUnits(hex);
-  return String.fromCharCode(...codeUnits);
+  return new ToUnicodeMap(parseCMap$1(data));
 }
 var ExistingFont = class {
   /** Font name as it appears in the PDF (e.g., "Helv", "ZaDb", "F0") */
@@ -47827,13 +49023,13 @@ var ExistingFont = class {
   encodeTextToBytes(text) {
     if (this.isCIDFont) {
       const codePoints = Array.from(text, (char) => char.codePointAt(0));
-      const bytes2 = new Uint8Array(codePoints.length * 2);
+      const bytes = new Uint8Array(codePoints.length * 2);
       for (let i = 0; i < codePoints.length; i++) {
         const charCode = this.cidFont ? this.cidFont.getCharCodeForUnicode(codePoints[i]) : codePoints[i];
-        bytes2[i * 2] = charCode >> 8 & 255;
-        bytes2[i * 2 + 1] = charCode & 255;
+        bytes[i * 2] = charCode >> 8 & 255;
+        bytes[i * 2 + 1] = charCode & 255;
       }
-      return bytes2;
+      return bytes;
     }
     const codes = this.encodeText(text);
     return new Uint8Array(codes);
@@ -48299,12 +49495,12 @@ function encodeTextForFont(text, font) {
       throw new Error(`Font cannot encode character '${firstBad}' (U+${firstBad.codePointAt(0)?.toString(16).toUpperCase().padStart(4, "0")})`);
     }
     const gids = font.encodeTextToGids(text);
-    const bytes2 = new Uint8Array(gids.length * 2);
+    const bytes = new Uint8Array(gids.length * 2);
     for (let i = 0; i < gids.length; i++) {
-      bytes2[i * 2] = gids[i] >> 8 & 255;
-      bytes2[i * 2 + 1] = gids[i] & 255;
+      bytes[i * 2] = gids[i] >> 8 & 255;
+      bytes[i * 2 + 1] = gids[i] & 255;
     }
-    return PdfString.fromBytes(bytes2);
+    return PdfString.fromBytes(bytes);
   }
   if (isExistingFont(font) && font.isCIDFont) return PdfString.fromBytes(font.encodeTextToBytes(text));
   return PdfString.fromString(text);
@@ -48349,7 +49545,7 @@ function generateCheckboxAppearance(_ctx, _field, widget, _onValue) {
   const bgBorderOps = generateBackgroundAndBorder(width, height, mk?.backgroundColor, borderColor, borderWidth);
   const size = Math.min(width, height) * 0.7;
   const fontSize = size;
-  const x = (width - size) / 2;
+  const x2 = (width - size) / 2;
   const y = (height - size) / 2 + size * 0.15;
   const onContent = ContentStreamBuilder.from([
     ...bgBorderOps,
@@ -48357,7 +49553,7 @@ function generateCheckboxAppearance(_ctx, _field, widget, _onValue) {
     beginText(),
     setFont("/ZaDb", fontSize),
     setNonStrokingGray(0),
-    moveText(x, y),
+    moveText(x2, y),
     showText(PdfString.fromString(ZAPF_CHECKMARK)),
     endText(),
     popGraphicsState()
@@ -48388,7 +49584,7 @@ function generateRadioAppearance(_ctx, _field, widget, _value) {
   const bgBorderOps = generateBackgroundAndBorder(width, height, mk?.backgroundColor, borderColor, borderWidth);
   const size = Math.min(width, height) * 0.6;
   const fontSize = size;
-  const x = (width - size) / 2;
+  const x2 = (width - size) / 2;
   const y = (height - size) / 2 + size * 0.15;
   const selectedContent = ContentStreamBuilder.from([
     ...bgBorderOps,
@@ -48396,7 +49592,7 @@ function generateRadioAppearance(_ctx, _field, widget, _value) {
     beginText(),
     setFont("/ZaDb", fontSize),
     setNonStrokingGray(0),
-    moveText(x, y),
+    moveText(x2, y),
     showText(PdfString.fromString(ZAPF_CIRCLE)),
     endText(),
     popGraphicsState()
@@ -48449,7 +49645,7 @@ function generateButtonAppearance(ctx, field, widget) {
   if (fontSize === 0) fontSize = calculateAutoFontSize(caption, width, height, font);
   const textColor = field.getTextColor();
   const metrics = getFontMetrics(font);
-  const x = (width - metrics.getTextWidth(caption, fontSize)) / 2;
+  const x2 = (width - metrics.getTextWidth(caption, fontSize)) / 2;
   const y = (height - metrics.capHeight * fontSize) / 2 + Math.abs(metrics.descent * fontSize);
   const content = ContentStreamBuilder.from([pushGraphicsState()]);
   if (mk?.backgroundColor) {
@@ -48459,7 +49655,7 @@ function generateButtonAppearance(ctx, field, widget) {
     content.add(rectangle(0, 0, width, height));
     content.add(fill());
   }
-  content.add(beginText()).add(setFont(fontName, fontSize)).add(...getColorOperators(textColor, daInfo)).add(moveText(x, y)).add(showText(encodeTextForFont(caption, font))).add(endText()).add(popGraphicsState());
+  content.add(beginText()).add(setFont(fontName, fontSize)).add(...getColorOperators(textColor, daInfo)).add(moveText(x2, y)).add(showText(encodeTextForFont(caption, font))).add(endText()).add(popGraphicsState());
   const resources = buildFontResources(font, fontName);
   return {
     stream: content.toFormXObject([
@@ -48484,7 +49680,7 @@ function generateDropdownAppearance(ctx, field, widget) {
   const textColor = field.getTextColor();
   const metrics = getFontMetrics(font);
   const y = (height - metrics.capHeight * fontSize) / 2 + Math.abs(metrics.descent * fontSize);
-  const x = 2;
+  const x2 = 2;
   const clipWidth = width - 20;
   const content = ContentStreamBuilder.from([
     beginMarkedContent("/Tx"),
@@ -48495,7 +49691,7 @@ function generateDropdownAppearance(ctx, field, widget) {
     beginText(),
     setFont(fontName, fontSize),
     ...getColorOperators(textColor, daInfo),
-    moveText(x, y),
+    moveText(x2, y),
     showText(encodeTextForFont(displayText, font)),
     endText(),
     popGraphicsState(),
@@ -48622,7 +49818,7 @@ function generateSingleLineAppearance(ctx, value, width, height, font, fontName,
   const contentX = clipX + contentPadding;
   const contentWidth = clipWidth - 2 * contentPadding;
   const bgBorderOps = generateBackgroundAndBorder(width, height, bgColor, borderColor, borderWidth);
-  const x = calculateXPosition(metrics.getTextWidth(value, fontSize), contentWidth, alignment, contentX);
+  const x2 = calculateXPosition(metrics.getTextWidth(value, fontSize), contentWidth, alignment, contentX);
   const y = clipY + (clipHeight - metrics.capHeight * fontSize) / 2;
   const encodedText = encodeTextForFont(value, font);
   return buildFormXObject(ctx, ContentStreamBuilder.from([
@@ -48635,7 +49831,7 @@ function generateSingleLineAppearance(ctx, value, width, height, font, fontName,
     beginText(),
     setFont(fontName, fontSize),
     ...getColorOperators(textColor, daInfo),
-    moveText(x, y),
+    moveText(x2, y),
     showText(encodedText),
     endText(),
     popGraphicsState(),
@@ -48676,11 +49872,11 @@ function generateMultilineAppearance(ctx, value, width, height, font, fontName, 
   let currentY = startY;
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const x = calculateXPosition(metrics.getTextWidth(line, fontSize), contentWidth, alignment, contentX);
-    if (i === 0) content.add(moveText(x, currentY));
+    const x2 = calculateXPosition(metrics.getTextWidth(line, fontSize), contentWidth, alignment, contentX);
+    if (i === 0) content.add(moveText(x2, currentY));
     else {
       const prevX = calculateXPosition(metrics.getTextWidth(lines[i - 1], fontSize), contentWidth, alignment, contentX);
-      content.add(moveText(x - prevX, -lineHeight));
+      content.add(moveText(x2 - prevX, -lineHeight));
     }
     content.add(showText(encodeTextForFont(line, font)));
     currentY -= lineHeight;
@@ -48704,9 +49900,9 @@ function generateCombAppearance(ctx, value, width, height, font, fontName, fontS
   if (mk?.borderColor || bs) {
     content.add(setStrokingGray(0.5));
     for (let i = 1; i < maxLength; i++) {
-      const x = i * cellWidth;
-      content.add(moveTo(x, 0));
-      content.add(lineTo(x, height));
+      const x2 = i * cellWidth;
+      content.add(moveTo(x2, 0));
+      content.add(lineTo(x2, height));
     }
     content.add(stroke());
   }
@@ -49087,12 +50283,12 @@ var WidgetAnnotation = class {
     const ap = this.dict.getDict("AP", this.registry.resolve.bind(this.registry));
     if (!ap) return null;
     const resolve = this.registry.resolve.bind(this.registry);
-    const d = ap.get("D", resolve);
-    if (!d) return null;
-    if (d instanceof PdfStream) return d;
-    if (d instanceof PdfDict) {
+    const d3 = ap.get("D", resolve);
+    if (!d3) return null;
+    if (d3 instanceof PdfStream) return d3;
+    if (d3 instanceof PdfDict) {
       const stateKey = state ?? this.appearanceState ?? "Off";
-      const stateEntry = d.get(stateKey, resolve);
+      const stateEntry = d3.get(stateKey, resolve);
       if (stateEntry instanceof PdfStream) return stateEntry;
       return null;
     }
@@ -49108,11 +50304,11 @@ var WidgetAnnotation = class {
       width: bs.getNumber("W")?.value ?? 1,
       style: bs.getName("S")?.value ?? "S"
     };
-    const d = bs.getArray("D");
-    if (d) {
+    const d3 = bs.getArray("D");
+    if (d3) {
       result.dashArray = [];
-      for (let i = 0; i < d.length; i++) {
-        const val = d.at(i);
+      for (let i = 0; i < d3.length; i++) {
+        const val = d3.at(i);
         if (val?.type === "number") result.dashArray.push(val.value);
       }
     }
@@ -50141,14 +51337,98 @@ function checkIsTerminalField(dict, registry) {
   if (!firstKidDict) return true;
   return !firstKidDict.has("T");
 }
+function removeAnnotationsFromStructTree(catalog, registry, removedAnnotations) {
+  if (removedAnnotations.size === 0) return;
+  const resolve = registry.resolve.bind(registry);
+  const structTreeRoot = catalog.getDict("StructTreeRoot", resolve);
+  if (!structTreeRoot) return;
+  const removedKeys = /* @__PURE__ */ new Set();
+  for (const ref of removedAnnotations) {
+    const annot = resolve(ref);
+    if (annot instanceof PdfDict) {
+      const structParent = annot.getNumber("StructParent")?.value;
+      if (structParent !== void 0) removedKeys.add(structParent);
+    }
+  }
+  pruneObjrKids(structTreeRoot, registry, removedAnnotations);
+  if (removedKeys.size > 0) {
+    const parentTree = structTreeRoot.getDict("ParentTree", resolve);
+    if (parentTree) pruneNumberTree(parentTree, registry, removedKeys, /* @__PURE__ */ new Set());
+  }
+}
+function isRemovedObjr(dict, removed) {
+  if (dict.getName("Type")?.value !== "OBJR") return false;
+  const obj = dict.get("Obj");
+  return obj instanceof PdfRef && removed.has(obj);
+}
+function isStructElement(dict) {
+  const type = dict.getName("Type")?.value;
+  return type === void 0 || type === "StructElem";
+}
+function pruneObjrKids(root, registry, removed) {
+  const resolve = registry.resolve.bind(registry);
+  const visited = /* @__PURE__ */ new Set();
+  const stack = [root];
+  while (stack.length > 0) {
+    const elem = stack.pop();
+    if (visited.has(elem)) continue;
+    visited.add(elem);
+    const k2 = elem.get("K");
+    const kResolved = k2 instanceof PdfRef ? resolve(k2) : k2;
+    if (kResolved instanceof PdfArray) {
+      for (let i = kResolved.length - 1; i >= 0; i--) {
+        const item = kResolved.at(i);
+        const itemResolved = item instanceof PdfRef ? resolve(item) : item;
+        if (!(itemResolved instanceof PdfDict)) continue;
+        if (isRemovedObjr(itemResolved, removed)) kResolved.remove(i);
+        else if (isStructElement(itemResolved)) stack.push(itemResolved);
+      }
+      if (kResolved.length === 0) elem.delete("K");
+    } else if (kResolved instanceof PdfDict) {
+      if (isRemovedObjr(kResolved, removed)) elem.delete("K");
+      else if (isStructElement(kResolved)) stack.push(kResolved);
+    }
+  }
+}
+function pruneNumberTree(node, registry, keys, visited) {
+  if (visited.has(node)) return;
+  visited.add(node);
+  const resolve = registry.resolve.bind(registry);
+  const kids = node.getArray("Kids", resolve);
+  if (kids) for (let i = 0; i < kids.length; i++) {
+    const kid = kids.at(i, resolve);
+    if (kid instanceof PdfDict) pruneNumberTree(kid, registry, keys, visited);
+  }
+  const nums = node.getArray("Nums", resolve);
+  if (!nums) return;
+  const remaining = [];
+  const remainingKeys = [];
+  let changed = false;
+  for (let i = 0; i + 1 < nums.length; i += 2) {
+    const keyObj = nums.at(i, resolve);
+    const key2 = keyObj instanceof PdfNumber ? keyObj.value : void 0;
+    if (key2 !== void 0 && keys.has(key2)) {
+      changed = true;
+      continue;
+    }
+    remaining.push(nums.at(i), nums.at(i + 1));
+    if (key2 !== void 0) remainingKeys.push(key2);
+  }
+  if (!changed) return;
+  node.set("Nums", new PdfArray(remaining));
+  if (node.has("Limits")) if (remainingKeys.length > 0) node.set("Limits", PdfArray.of(new PdfNumber(Math.min(...remainingKeys)), new PdfNumber(Math.max(...remainingKeys))));
+  else node.delete("Limits");
+}
 var FormFlattener = class {
   form;
   registry;
   pageTree;
-  constructor(form, registry, pageTree) {
+  catalog;
+  constructor(form, registry, pageTree, catalog = null) {
     this.form = form;
     this.registry = registry;
     this.pageTree = pageTree;
+    this.catalog = catalog;
   }
   /**
   * Flatten all form fields into static page content.
@@ -50166,6 +51446,11 @@ var FormFlattener = class {
     if (!options.skipAppearanceUpdate) this.form.updateAppearances({ forceRegenerate: options.regenerateAppearances });
     const pageWidgets = this.collectWidgetsByPage(fieldsToFlatten);
     for (const { pageRef, widgets } of pageWidgets.values()) this.flattenWidgetsOnPage(pageRef, widgets);
+    if (this.catalog) {
+      const removedWidgetRefs = /* @__PURE__ */ new Set();
+      for (const field of fieldsToFlatten) for (const widget of field.getWidgets()) if (widget.ref) removedWidgetRefs.add(widget.ref);
+      removeAnnotationsFromStructTree(this.catalog, this.registry, removedWidgetRefs);
+    }
     const dict = this.form.getDict();
     if (signatureFields.length > 0) {
       const sigRefs = signatureFields.map((f) => f.getRef()).filter((ref) => ref !== null);
@@ -50388,8 +51673,8 @@ var FormFlattener = class {
   getAppearanceMatrix(appearance) {
     const matrixArray = appearance.getArray("Matrix", this.registry.resolve.bind(this.registry));
     if (!matrixArray || matrixArray.length < 6) return Matrix.identity();
-    const [a, b, c, d, e, f] = matrixArray.toArray().map((item) => item instanceof PdfNumber ? item.value : 0);
-    return new Matrix(a ?? 0, b ?? 0, c ?? 0, d ?? 0, e ?? 0, f ?? 0);
+    const [a, b, c, d3, e, f] = matrixArray.toArray().map((item) => item instanceof PdfNumber ? item.value : 0);
+    return new Matrix(a ?? 0, b ?? 0, c ?? 0, d3 ?? 0, e ?? 0, f ?? 0);
   }
   /**
   * Get appearance BBox, with fallback.
@@ -50421,7 +51706,9 @@ var FormFlattener = class {
       const item = annots.at(i);
       if (item instanceof PdfRef) {
         const key2 = `${item.objectNumber} ${item.generation}`;
-        if (!toRemove.has(key2)) remaining.push(item);
+        if (toRemove.has(key2)) continue;
+        if (this.registry.resolve(item) === null) continue;
+        remaining.push(item);
       }
     }
     if (remaining.length === 0) page.delete("Annots");
@@ -50453,6 +51740,7 @@ var AcroForm = class AcroForm2 {
   dict;
   registry;
   pageTree;
+  catalog;
   fieldsCache = null;
   /** Default font for all fields */
   _defaultFont = null;
@@ -50460,10 +51748,11 @@ var AcroForm = class AcroForm2 {
   _defaultFontSize = 0;
   /** Cache of existing fonts from /DR */
   existingFontsCache = null;
-  constructor(dict, registry, pageTree) {
+  constructor(dict, registry, pageTree, catalog) {
     this.dict = dict;
     this.registry = registry;
     this.pageTree = pageTree;
+    this.catalog = catalog;
   }
   /**
   * Load AcroForm from catalog.
@@ -50477,7 +51766,7 @@ var AcroForm = class AcroForm2 {
     const resolve = registry.resolve.bind(registry);
     const dict = catalog.getDict("AcroForm", resolve);
     if (!dict) return null;
-    return new AcroForm2(dict, registry, pageTree ?? null);
+    return new AcroForm2(dict, registry, pageTree ?? null, catalog);
   }
   /**
   * Default resources dictionary (fonts, etc.).
@@ -50912,7 +52201,7 @@ var AcroForm = class AcroForm2 {
   * @param options Flattening options
   */
   flatten(options = {}) {
-    new FormFlattener(this, this.registry, this.pageTree).flatten(options);
+    new FormFlattener(this, this.registry, this.pageTree, this.catalog).flatten(options);
     this.fieldsCache = null;
   }
 };
@@ -50930,51 +52219,51 @@ var KAPPA = 0.5522847498307936;
 function resolveRotationOrigin(origin, bounds, defaultOrigin) {
   if (origin === void 0) return defaultOrigin;
   if (typeof origin === "object") return origin;
-  const { x, y, width, height } = bounds;
+  const { x: x2, y, width, height } = bounds;
   switch (origin) {
     case "top-left":
       return {
-        x,
+        x: x2,
         y: y + height
       };
     case "top-center":
       return {
-        x: x + width / 2,
+        x: x2 + width / 2,
         y: y + height
       };
     case "top-right":
       return {
-        x: x + width,
+        x: x2 + width,
         y: y + height
       };
     case "center-left":
       return {
-        x,
+        x: x2,
         y: y + height / 2
       };
     case "center":
       return {
-        x: x + width / 2,
+        x: x2 + width / 2,
         y: y + height / 2
       };
     case "center-right":
       return {
-        x: x + width,
+        x: x2 + width,
         y: y + height / 2
       };
     case "bottom-left":
       return {
-        x,
+        x: x2,
         y
       };
     case "bottom-center":
       return {
-        x: x + width / 2,
+        x: x2 + width / 2,
         y
       };
     case "bottom-right":
       return {
-        x: x + width,
+        x: x2 + width,
         y
       };
   }
@@ -50989,8 +52278,8 @@ function lineCapToNumber(cap) {
       return 2;
   }
 }
-function lineJoinToNumber(join2) {
-  switch (join2) {
+function lineJoinToNumber(join) {
+  switch (join) {
     case "miter":
       return 0;
     case "round":
@@ -51056,28 +52345,28 @@ function drawRectangleOps(options) {
   ops.push(popGraphicsState());
   return ops;
 }
-function rectPathOps(x, y, w, h) {
+function rectPathOps(x2, y, w, h) {
   return [
-    moveTo(x, y),
-    lineTo(x + w, y),
-    lineTo(x + w, y + h),
-    lineTo(x, y + h),
+    moveTo(x2, y),
+    lineTo(x2 + w, y),
+    lineTo(x2 + w, y + h),
+    lineTo(x2, y + h),
     closePath()
   ];
 }
-function roundedRectPathOps(x, y, w, h, r) {
+function roundedRectPathOps(x2, y, w, h, r) {
   r = Math.min(r, w / 2, h / 2);
   const k2 = r * KAPPA;
   return [
-    moveTo(x + r, y),
-    lineTo(x + w - r, y),
-    curveTo(x + w - r + k2, y, x + w, y + r - k2, x + w, y + r),
-    lineTo(x + w, y + h - r),
-    curveTo(x + w, y + h - r + k2, x + w - r + k2, y + h, x + w - r, y + h),
-    lineTo(x + r, y + h),
-    curveTo(x + r - k2, y + h, x, y + h - r + k2, x, y + h - r),
-    lineTo(x, y + r),
-    curveTo(x, y + r - k2, x + r - k2, y, x + r, y),
+    moveTo(x2 + r, y),
+    lineTo(x2 + w - r, y),
+    curveTo(x2 + w - r + k2, y, x2 + w, y + r - k2, x2 + w, y + r),
+    lineTo(x2 + w, y + h - r),
+    curveTo(x2 + w, y + h - r + k2, x2 + w - r + k2, y + h, x2 + w - r, y + h),
+    lineTo(x2 + r, y + h),
+    curveTo(x2 + r - k2, y + h, x2, y + h - r + k2, x2, y + h - r),
+    lineTo(x2, y + r),
+    curveTo(x2, y + r - k2, x2 + r - k2, y, x2 + r, y),
     closePath()
   ];
 }
@@ -51560,8 +52849,8 @@ function executeSvgPath(options) {
     y: state.currentY
   };
 }
-function transformX(x, state) {
-  return x * state.scale + state.translateX;
+function transformX(x2, state) {
+  return x2 * state.scale + state.translateX;
 }
 function transformY(y, state) {
   return y * state.yFlip * state.scale + state.translateY;
@@ -51763,8 +53052,8 @@ function executeCommand(cmd, state, sink) {
   state.lastCommand = cmd.type;
 }
 function executeMoveTo(options) {
-  const { x, y, relative, state, sink } = options;
-  const outX = relative ? state.currentX + x * state.scale : transformX(x, state);
+  const { x: x2, y, relative, state, sink } = options;
+  const outX = relative ? state.currentX + x2 * state.scale : transformX(x2, state);
   const outY = relative ? state.currentY + y * state.yFlip * state.scale : transformY(y, state);
   sink.moveTo(outX, outY);
   state.currentX = outX;
@@ -51775,8 +53064,8 @@ function executeMoveTo(options) {
   state.lastControlY = outY;
 }
 function executeLineTo(options) {
-  const { x, y, relative, state, sink } = options;
-  const outX = relative ? state.currentX + x * state.scale : transformX(x, state);
+  const { x: x2, y, relative, state, sink } = options;
+  const outX = relative ? state.currentX + x2 * state.scale : transformX(x2, state);
   const outY = relative ? state.currentY + y * state.yFlip * state.scale : transformY(y, state);
   sink.lineTo(outX, outY);
   state.currentX = outX;
@@ -51785,8 +53074,8 @@ function executeLineTo(options) {
   state.lastControlY = outY;
 }
 function executeHorizontalLine(options) {
-  const { x, relative, state, sink } = options;
-  const outX = relative ? state.currentX + x * state.scale : transformX(x, state);
+  const { x: x2, relative, state, sink } = options;
+  const outX = relative ? state.currentX + x2 * state.scale : transformX(x2, state);
   sink.lineTo(outX, state.currentY);
   state.currentX = outX;
   state.lastControlX = outX;
@@ -51801,12 +53090,12 @@ function executeVerticalLine(options) {
   state.lastControlY = outY;
 }
 function executeCubicCurve(options) {
-  const { x1, y1, x2, y2, x, y, relative, state, sink } = options;
+  const { x1, y1, x2, y2, x: x3, y, relative, state, sink } = options;
   const outX1 = relative ? state.currentX + x1 * state.scale : transformX(x1, state);
   const outY1 = relative ? state.currentY + y1 * state.yFlip * state.scale : transformY(y1, state);
   const outX2 = relative ? state.currentX + x2 * state.scale : transformX(x2, state);
   const outY2 = relative ? state.currentY + y2 * state.yFlip * state.scale : transformY(y2, state);
-  const outX = relative ? state.currentX + x * state.scale : transformX(x, state);
+  const outX = relative ? state.currentX + x3 * state.scale : transformX(x3, state);
   const outY = relative ? state.currentY + y * state.yFlip * state.scale : transformY(y, state);
   sink.curveTo(outX1, outY1, outX2, outY2, outX, outY);
   state.currentX = outX;
@@ -51815,7 +53104,7 @@ function executeCubicCurve(options) {
   state.lastControlY = outY2;
 }
 function executeSmoothCubic(options) {
-  const { x2, y2, x, y, relative, state, sink } = options;
+  const { x2, y2, x: x3, y, relative, state, sink } = options;
   let cp1x;
   let cp1y;
   if (state.lastCommand === "C" || state.lastCommand === "c" || state.lastCommand === "S" || state.lastCommand === "s") {
@@ -51827,7 +53116,7 @@ function executeSmoothCubic(options) {
   }
   const outX2 = relative ? state.currentX + x2 * state.scale : transformX(x2, state);
   const outY2 = relative ? state.currentY + y2 * state.yFlip * state.scale : transformY(y2, state);
-  const outX = relative ? state.currentX + x * state.scale : transformX(x, state);
+  const outX = relative ? state.currentX + x3 * state.scale : transformX(x3, state);
   const outY = relative ? state.currentY + y * state.yFlip * state.scale : transformY(y, state);
   sink.curveTo(cp1x, cp1y, outX2, outY2, outX, outY);
   state.currentX = outX;
@@ -51836,10 +53125,10 @@ function executeSmoothCubic(options) {
   state.lastControlY = outY2;
 }
 function executeQuadratic(options) {
-  const { x1, y1, x, y, relative, state, sink } = options;
+  const { x1, y1, x: x2, y, relative, state, sink } = options;
   const outCpX = relative ? state.currentX + x1 * state.scale : transformX(x1, state);
   const outCpY = relative ? state.currentY + y1 * state.yFlip * state.scale : transformY(y1, state);
-  const outX = relative ? state.currentX + x * state.scale : transformX(x, state);
+  const outX = relative ? state.currentX + x2 * state.scale : transformX(x2, state);
   const outY = relative ? state.currentY + y * state.yFlip * state.scale : transformY(y, state);
   sink.quadraticCurveTo(outCpX, outCpY, outX, outY);
   state.currentX = outX;
@@ -51848,7 +53137,7 @@ function executeQuadratic(options) {
   state.lastControlY = outCpY;
 }
 function executeSmoothQuadratic(options) {
-  const { x, y, relative, state, sink } = options;
+  const { x: x2, y, relative, state, sink } = options;
   let cpx;
   let cpy;
   if (state.lastCommand === "Q" || state.lastCommand === "q" || state.lastCommand === "T" || state.lastCommand === "t") {
@@ -51858,7 +53147,7 @@ function executeSmoothQuadratic(options) {
     cpx = state.currentX;
     cpy = state.currentY;
   }
-  const outX = relative ? state.currentX + x * state.scale : transformX(x, state);
+  const outX = relative ? state.currentX + x2 * state.scale : transformX(x2, state);
   const outY = relative ? state.currentY + y * state.yFlip * state.scale : transformY(y, state);
   sink.quadraticCurveTo(cpx, cpy, outX, outY);
   state.currentX = outX;
@@ -51867,8 +53156,8 @@ function executeSmoothQuadratic(options) {
   state.lastControlY = cpy;
 }
 function executeArc(options) {
-  const { rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y, relative, state, sink } = options;
-  const outX = relative ? state.currentX + x * state.scale : transformX(x, state);
+  const { rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x: x2, y, relative, state, sink } = options;
+  const outX = relative ? state.currentX + x2 * state.scale : transformX(x2, state);
   const outY = relative ? state.currentY + y * state.yFlip * state.scale : transformY(y, state);
   const scaledRx = rx * state.scale;
   const scaledRy = ry * state.scale;
@@ -51939,20 +53228,20 @@ var PathBuilder = class {
   /**
   * Move to a point (start a new subpath).
   */
-  moveTo(x, y) {
-    this.pathOps.push(moveTo(x, y));
-    this.currentX = x;
+  moveTo(x2, y) {
+    this.pathOps.push(moveTo(x2, y));
+    this.currentX = x2;
     this.currentY = y;
-    this.subpathStartX = x;
+    this.subpathStartX = x2;
     this.subpathStartY = y;
     return this;
   }
   /**
   * Draw a line from the current point to (x, y).
   */
-  lineTo(x, y) {
-    this.pathOps.push(lineTo(x, y));
-    this.currentX = x;
+  lineTo(x2, y) {
+    this.pathOps.push(lineTo(x2, y));
+    this.currentX = x2;
     this.currentY = y;
     return this;
   }
@@ -51966,9 +53255,9 @@ var PathBuilder = class {
   * @param x - End point X
   * @param y - End point Y
   */
-  curveTo(cp1x, cp1y, cp2x, cp2y, x, y) {
-    this.pathOps.push(curveTo(cp1x, cp1y, cp2x, cp2y, x, y));
-    this.currentX = x;
+  curveTo(cp1x, cp1y, cp2x, cp2y, x2, y) {
+    this.pathOps.push(curveTo(cp1x, cp1y, cp2x, cp2y, x2, y));
+    this.currentX = x2;
     this.currentY = y;
     return this;
   }
@@ -51988,13 +53277,13 @@ var PathBuilder = class {
   * @param x - End point X
   * @param y - End point Y
   */
-  quadraticCurveTo(cpx, cpy, x, y) {
+  quadraticCurveTo(cpx, cpy, x2, y) {
     const cp1x = this.currentX + 2 / 3 * (cpx - this.currentX);
     const cp1y = this.currentY + 2 / 3 * (cpy - this.currentY);
-    const cp2x = x + 2 / 3 * (cpx - x);
+    const cp2x = x2 + 2 / 3 * (cpx - x2);
     const cp2y = y + 2 / 3 * (cpy - y);
-    this.pathOps.push(curveTo(cp1x, cp1y, cp2x, cp2y, x, y));
-    this.currentX = x;
+    this.pathOps.push(curveTo(cp1x, cp1y, cp2x, cp2y, x2, y));
+    this.currentX = x2;
     this.currentY = y;
     return this;
   }
@@ -52010,14 +53299,14 @@ var PathBuilder = class {
   /**
   * Add a rectangle to the current path.
   */
-  rectangle(x, y, width, height) {
-    return this.moveTo(x, y).lineTo(x + width, y).lineTo(x + width, y + height).lineTo(x, y + height).close();
+  rectangle(x2, y, width, height) {
+    return this.moveTo(x2, y).lineTo(x2 + width, y).lineTo(x2 + width, y + height).lineTo(x2, y + height).close();
   }
   /**
   * Add a circle to the current path.
   */
-  circle(x, y, radius) {
-    return this.ellipse(x, y, radius, radius);
+  circle(x2, y, radius) {
+    return this.ellipse(x2, y, radius, radius);
   }
   /**
   * Add an ellipse to the current path.
@@ -52308,16 +53597,16 @@ var PDFTilingPattern = class {
   * Create the PDF stream for a tiling pattern.
   */
   static createStream(options, contentBytes) {
-    const { x, y, width, height } = options.bbox;
+    const { x: x2, y, width, height } = options.bbox;
     return new PdfStream(PdfDict.of({
       Type: PdfName.of("Pattern"),
       PatternType: PdfNumber.of(1),
       PaintType: PdfNumber.of(1),
       TilingType: PdfNumber.of(1),
       BBox: new PdfArray([
-        PdfNumber.of(x),
+        PdfNumber.of(x2),
         PdfNumber.of(y),
-        PdfNumber.of(x + width),
+        PdfNumber.of(x2 + width),
         PdfNumber.of(y + height)
       ]),
       XStep: PdfNumber.of(options.xStep),
@@ -52369,12 +53658,12 @@ var PDFShadingPattern = class {
       Shading: options.shading.ref
     });
     if (options.matrix) {
-      const [a, b, c, d, e, f] = options.matrix;
+      const [a, b, c, d3, e, f] = options.matrix;
       dict.set("Matrix", new PdfArray([
         PdfNumber.of(a),
         PdfNumber.of(b),
         PdfNumber.of(c),
-        PdfNumber.of(d),
+        PdfNumber.of(d3),
         PdfNumber.of(e),
         PdfNumber.of(f)
       ]));
@@ -52413,15 +53702,15 @@ var PDFFormXObject = class {
   * Create the PDF stream for a Form XObject.
   */
   static createStream(options, contentBytes) {
-    const { x, y, width, height } = options.bbox;
+    const { x: x2, y, width, height } = options.bbox;
     return new PdfStream(PdfDict.of({
       Type: PdfName.of("XObject"),
       Subtype: PdfName.of("Form"),
       FormType: PdfNumber.of(1),
       BBox: new PdfArray([
-        PdfNumber.of(x),
+        PdfNumber.of(x2),
         PdfNumber.of(y),
-        PdfNumber.of(x + width),
+        PdfNumber.of(x2 + width),
         PdfNumber.of(y + height)
       ])
     }), contentBytes);
@@ -52502,238 +53791,741 @@ function layoutJustifiedLine(words, font, fontSize, targetWidth) {
   for (const word of words) totalWordWidth += measureText(word, font, fontSize);
   const spacePerGap = (targetWidth - totalWordWidth) / (words.length - 1);
   const result = [];
-  let x = 0;
+  let x2 = 0;
   for (let i = 0; i < words.length; i++) {
     result.push({
       word: words[i],
-      x
+      x: x2
     });
-    x += measureText(words[i], font, fontSize);
-    if (i < words.length - 1) x += spacePerGap;
+    x2 += measureText(words[i], font, fontSize);
+    if (i < words.length - 1) x2 += spacePerGap;
   }
   return result;
 }
-var CMap = class CMap2 {
-  /** CMap name (e.g., "Identity-H") */
-  name;
-  /** Whether this is a vertical writing mode CMap */
-  vertical;
-  /** Whether this is an identity CMap */
-  isIdentity;
-  /** Codespace ranges */
-  codespaceRanges;
-  /** Direct character code to CID mappings */
-  charMappings;
-  /** Range mappings: [start, end, baseCID] */
-  rangeMappings;
-  constructor(options) {
-    this.name = options.name;
-    this.vertical = options.vertical ?? false;
-    this.isIdentity = options.isIdentity ?? false;
-    this.codespaceRanges = options.codespaceRanges ?? [];
-    this.charMappings = options.charMappings ?? /* @__PURE__ */ new Map();
-    this.rangeMappings = options.rangeMappings ?? [];
+function max(values, fallback = 0) {
+  let result = Number.NEGATIVE_INFINITY;
+  for (const v of values) if (v > result) result = v;
+  return result === Number.NEGATIVE_INFINITY ? fallback : result;
+}
+function min(values, fallback = 0) {
+  let result = Number.POSITIVE_INFINITY;
+  for (const v of values) if (v < result) result = v;
+  return result === Number.POSITIVE_INFINITY ? fallback : result;
+}
+function mergeBboxes(boxes) {
+  if (boxes.length === 0) return {
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0
+  };
+  const minX = min(boxes.map((b) => b.x));
+  const minY = min(boxes.map((b) => b.y));
+  const maxX = max(boxes.map((b) => b.x + b.width));
+  const maxY = max(boxes.map((b) => b.y + b.height));
+  return {
+    x: minX,
+    y: minY,
+    width: maxX - minX,
+    height: maxY - minY
+  };
+}
+var RUN_BACKWARD_FACTOR = 0.6;
+var RUN_FORWARD_FACTOR = 0.6;
+var GLYPH_COVER_EM_FACTOR = 0.25;
+var GLYPH_COVER_WIDTH_FACTOR = 0.3;
+var REPEAT_POSITION_FACTOR = 0.1;
+var OVERLAY_CHARS = /^[\p{Mn}\p{Mc}\p{Me}\p{Sk}]+$/u;
+var RTL_PLACED_THRESHOLD = 0.8;
+function groupCharsIntoLines(chars, options = {}) {
+  if (chars.length === 0) return [];
+  const baselineTolerance = options.baselineTolerance ?? 2;
+  const spaceThreshold = options.spaceThreshold ?? 0.3;
+  const builders = placeRunsOnLines(splitIntoRuns(chars, baselineTolerance), baselineTolerance);
+  const lines = [];
+  for (const builder of builders) {
+    const { chars: ordered, rtlPlaced } = orderRuns(builder.runs);
+    const spans = groupIntoSpans(ordered, spaceThreshold, rtlPlaced);
+    if (spans.length === 0) continue;
+    lines.push({
+      text: spans.map((s) => s.text).join(""),
+      bbox: mergeBboxes(spans.map((s) => s.bbox)),
+      spans,
+      baseline: averageBaseline(ordered)
+    });
+  }
+  lines.sort((a, b) => b.baseline - a.baseline);
+  return lines;
+}
+function splitIntoRuns(chars, baselineTolerance) {
+  const groups = [];
+  let current = [];
+  for (const char of chars) {
+    const prev = current[current.length - 1];
+    if (prev && !continuesRun(prev, char, baselineTolerance)) {
+      groups.push(current);
+      current = [];
+    }
+    current.push(char);
+  }
+  if (current.length > 0) groups.push(current);
+  return groups.map(createRun);
+}
+function createRun(chars) {
+  const run = {
+    chars,
+    baseline: chars[0].baseline,
+    inkLeft: Infinity,
+    inkRight: -Infinity
+  };
+  for (const char of chars) if (occupiesSpace(char)) {
+    if (!hasInk(run)) run.baseline = char.baseline;
+    run.inkLeft = Math.min(run.inkLeft, char.bbox.x);
+    run.inkRight = Math.max(run.inkRight, char.bbox.x + char.bbox.width);
+  }
+  return run;
+}
+function hasInk(run) {
+  return run.inkLeft <= run.inkRight;
+}
+function isWhitespace(char) {
+  return char.char.trim() === "";
+}
+function occupiesSpace(char) {
+  return !isWhitespace(char) && !OVERLAY_CHARS.test(char.char);
+}
+function continuesRun(prev, char, baselineTolerance) {
+  if (Math.abs(char.baseline - prev.baseline) > baselineTolerance) return false;
+  const fontSize = (prev.fontSize + char.fontSize) / 2;
+  const advanced = char.bbox.x - prev.bbox.x > fontSize * REPEAT_POSITION_FACTOR;
+  const gap = char.bbox.x - (prev.bbox.x + prev.bbox.width);
+  return advanced && gap >= -fontSize * RUN_BACKWARD_FACTOR && gap <= fontSize * RUN_FORWARD_FACTOR;
+}
+function placeRunsOnLines(runs, baselineTolerance) {
+  const lines = [];
+  let previous = null;
+  for (const run of runs) previous = hasInk(run) ? placeInkRun(run, lines, baselineTolerance) : placeInklessRun(run, lines, previous, baselineTolerance);
+  return lines;
+}
+function placeInkRun(run, lines, baselineTolerance) {
+  for (const line2 of lines) {
+    if (Math.abs(run.baseline - line2.baseline) > baselineTolerance) continue;
+    const fresh = withoutRepeatedGlyphs(run, line2);
+    if (!fresh || !hasInk(fresh)) return line2;
+    if (!line2.runs.some((other) => runsConflict(fresh, other))) {
+      line2.runs.push(fresh);
+      return line2;
+    }
+  }
+  const line = {
+    baseline: run.baseline,
+    runs: [run]
+  };
+  lines.push(line);
+  return line;
+}
+function placeInklessRun(run, lines, previous, baselineTolerance) {
+  const sameBaseline = (line2) => Math.abs(run.baseline - line2.baseline) <= baselineTolerance;
+  let line = previous && sameBaseline(previous) ? previous : lines.find(sameBaseline);
+  if (!line) {
+    line = {
+      baseline: run.baseline,
+      runs: []
+    };
+    lines.push(line);
+  }
+  line.runs.push(run);
+  return line;
+}
+function withoutRepeatedGlyphs(run, line) {
+  const existing = line.runs.flatMap((r) => r.chars);
+  const kept = run.chars.filter((glyph) => !existing.some((other) => isRepeatedGlyph(glyph, other)));
+  if (kept.length === run.chars.length) return run;
+  return kept.length > 0 ? createRun(kept) : null;
+}
+function isRepeatedGlyph(glyph, other) {
+  return glyph.char === other.char && Math.abs(glyph.bbox.x - other.bbox.x) <= glyph.fontSize * REPEAT_POSITION_FACTOR;
+}
+function runsConflict(a, b) {
+  if (overlapOf(a.inkLeft, a.inkRight, b.inkLeft, b.inkRight) <= 0) return false;
+  return hasCoveredGlyph(a, b) || hasCoveredGlyph(b, a);
+}
+function hasCoveredGlyph(run, other) {
+  for (const glyph of run.chars) {
+    if (!occupiesSpace(glyph)) continue;
+    const left = glyph.bbox.x;
+    const right = left + glyph.bbox.width;
+    const tolerance = Math.min(glyph.fontSize * GLYPH_COVER_EM_FACTOR, glyph.bbox.width * GLYPH_COVER_WIDTH_FACTOR);
+    let covered = 0;
+    for (const ink of other.chars) {
+      if (!occupiesSpace(ink)) continue;
+      covered += Math.max(0, overlapOf(left, right, ink.bbox.x, ink.bbox.x + ink.bbox.width));
+      if (covered > tolerance) return true;
+    }
+  }
+  return false;
+}
+function overlapOf(aLeft, aRight, bLeft, bRight) {
+  return Math.min(aRight, bRight) - Math.max(aLeft, bLeft);
+}
+function orderRuns(runs) {
+  const streamOrder = runs.flatMap((run) => run.chars);
+  if (isRtlPlaced(streamOrder)) return {
+    chars: streamOrder,
+    rtlPlaced: true
+  };
+  return {
+    chars: mergeRunsByPosition(runs),
+    rtlPlaced: false
+  };
+}
+function mergeRunsByPosition(runs) {
+  const cursors = runs.map((run) => ({
+    chars: run.chars,
+    index: 0
+  }));
+  const merged = [];
+  for (; ; ) {
+    let next = null;
+    for (const cursor of cursors) {
+      if (cursor.index >= cursor.chars.length) continue;
+      if (!next || cursor.chars[cursor.index].bbox.x < next.chars[next.index].bbox.x) next = cursor;
+    }
+    if (!next) return merged;
+    merged.push(next.chars[next.index]);
+    next.index++;
+  }
+}
+function isRtlPlaced(streamOrder) {
+  if (streamOrder.length < 2) return false;
+  let decreasingCount = 0;
+  for (let i = 1; i < streamOrder.length; i++) if (streamOrder[i].bbox.x < streamOrder[i - 1].bbox.x) decreasingCount++;
+  return decreasingCount / (streamOrder.length - 1) >= RTL_PLACED_THRESHOLD;
+}
+function groupIntoSpans(chars, spaceThreshold, rtlPlaced) {
+  if (chars.length === 0) return [];
+  const spans = [];
+  let currentSpan = [chars[0]];
+  let currentFontName = chars[0].fontName;
+  let currentFontSize = chars[0].fontSize;
+  for (let i = 1; i < chars.length; i++) {
+    const prevChar = chars[i - 1];
+    const char = chars[i];
+    const fontChanged = char.fontName !== currentFontName || Math.abs(char.fontSize - currentFontSize) > 0.5;
+    if ((rtlPlaced ? prevChar.bbox.x - (char.bbox.x + char.bbox.width) : char.bbox.x - (prevChar.bbox.x + prevChar.bbox.width)) > (prevChar.fontSize + char.fontSize) / 2 * spaceThreshold && !isWhitespace(prevChar) && !isWhitespace(char)) currentSpan.push(createSpaceChar(prevChar, char, rtlPlaced));
+    if (fontChanged) {
+      spans.push(buildSpan(currentSpan));
+      currentSpan = [char];
+      currentFontName = char.fontName;
+      currentFontSize = char.fontSize;
+    } else currentSpan.push(char);
+  }
+  if (currentSpan.length > 0) spans.push(buildSpan(currentSpan));
+  return spans;
+}
+function buildSpan(chars) {
+  const text = chars.map((c) => c.char).join("");
+  const bbox = mergeBboxes(chars.map((c) => c.bbox));
+  const fontChar = chars.find((c) => c.char !== " ") ?? chars[0];
+  return {
+    text,
+    bbox,
+    chars,
+    fontSize: fontChar.fontSize,
+    fontName: fontChar.fontName
+  };
+}
+function createSpaceChar(before, after, rtlPlaced) {
+  const x2 = rtlPlaced ? after.bbox.x + after.bbox.width : before.bbox.x + before.bbox.width;
+  const width = rtlPlaced ? before.bbox.x - x2 : after.bbox.x - x2;
+  return {
+    char: " ",
+    bbox: {
+      x: x2,
+      y: before.bbox.y,
+      width: Math.max(width, 0),
+      height: before.bbox.height
+    },
+    fontSize: (before.fontSize + after.fontSize) / 2,
+    fontName: before.fontName,
+    baseline: (before.baseline + after.baseline) / 2,
+    sequenceIndex: before.sequenceIndex != null ? before.sequenceIndex + 0.5 : void 0
+  };
+}
+function averageBaseline(chars) {
+  if (chars.length === 0) return 0;
+  return chars.reduce((acc, c) => acc + c.baseline, 0) / chars.length;
+}
+function getPlainText(lines) {
+  return lines.map((line) => line.text).join("\n");
+}
+var TextState = class {
+  /** Current transformation matrix (graphics state) */
+  ctm = Matrix.identity();
+  /** Text matrix (Tm) - set by Tm operator, updated by text operations */
+  tm = Matrix.identity();
+  /** Text line matrix (Tlm) - set at start of each line */
+  tlm = Matrix.identity();
+  /** Current font (set by Tf operator) */
+  font = null;
+  /** Current font size in points (set by Tf operator) */
+  fontSize = 0;
+  /** Character spacing (Tc) */
+  charSpacing = 0;
+  /** Word spacing (Tw) */
+  wordSpacing = 0;
+  /** Horizontal scaling percentage (Tz) - 100 = normal */
+  horizontalScale = 100;
+  /** Leading (TL) - vertical distance between baselines */
+  leading = 0;
+  /** Text rise (Ts) - superscript/subscript offset */
+  rise = 0;
+  /** Text rendering mode (Tr) */
+  renderMode = 0;
+  /** Graphics state stack for q/Q operators */
+  graphicsStateStack = [];
+  /** Tm × CTM: maps scaled text space (after Tfs, Tz, Ts) to user space. */
+  get textRenderingMatrix() {
+    return this.tm.multiply(this.ctm);
+  }
+  /** Font size in user space. */
+  get effectiveFontSize() {
+    return Math.abs(this.fontSize * this.textRenderingMatrix.getScaleY());
   }
   /**
-  * Look up CID for a character code.
+  * Begin text object (BT operator).
+  * Resets text matrix and line matrix to identity.
   */
-  lookup(code) {
-    if (this.isIdentity) return code;
-    const direct = this.charMappings.get(code);
-    if (direct !== void 0) return direct;
-    for (const range of this.rangeMappings) if (code >= range.start && code <= range.end) return range.baseCID + (code - range.start);
+  beginText() {
+    this.tm = Matrix.identity();
+    this.tlm = Matrix.identity();
+  }
+  /**
+  * End text object (ET operator).
+  */
+  endText() {
+  }
+  /**
+  * Set text matrix (Tm operator).
+  * Sets both tm and tlm to the specified matrix.
+  */
+  setTextMatrix(a, b, c, d3, e, f) {
+    this.tm = new Matrix(a, b, c, d3, e, f);
+    this.tlm = this.tm.clone();
+  }
+  /**
+  * Move to start of next line (Td operator).
+  * Translates the text line matrix and sets text matrix to it.
+  */
+  moveTextPosition(tx, ty) {
+    this.tlm = this.tlm.translate(tx, ty);
+    this.tm = this.tlm.clone();
+  }
+  /**
+  * Move to start of next line and set leading (TD operator).
+  * Same as: -ty TL tx ty Td
+  */
+  moveTextPositionAndSetLeading(tx, ty) {
+    this.leading = -ty;
+    this.moveTextPosition(tx, ty);
+  }
+  /**
+  * Move to start of next line (T* operator).
+  * Uses the current leading value.
+  */
+  moveToNextLine() {
+    this.moveTextPosition(0, -this.leading);
+  }
+  /**
+  * Advance the text position after showing a character.
+  *
+  * @param width - Character width in glyph units (1000 = 1 em)
+  * @param isSpace - Whether this is a space character (for word spacing)
+  */
+  advanceChar(width, isSpace) {
+    const tx = (width / 1e3 * this.fontSize + this.charSpacing + (isSpace ? this.wordSpacing : 0)) * (this.horizontalScale / 100);
+    this.tm = this.tm.translate(tx, 0);
+  }
+  /**
+  * Apply a TJ position adjustment.
+  *
+  * @param adjustment - Adjustment in thousandths of an em
+  *                     Negative = move right, Positive = move left
+  */
+  applyTjAdjustment(adjustment) {
+    const tx = -adjustment / 1e3 * this.fontSize * (this.horizontalScale / 100);
+    this.tm = this.tm.translate(tx, 0);
+  }
+  /**
+  * Save graphics state (q operator).
+  */
+  saveGraphicsState() {
+    this.graphicsStateStack.push({
+      ctm: this.ctm.clone(),
+      textState: {
+        font: this.font,
+        fontSize: this.fontSize,
+        charSpacing: this.charSpacing,
+        wordSpacing: this.wordSpacing,
+        horizontalScale: this.horizontalScale,
+        leading: this.leading,
+        rise: this.rise,
+        renderMode: this.renderMode
+      }
+    });
+  }
+  /**
+  * Restore graphics state (Q operator).
+  */
+  restoreGraphicsState() {
+    const saved = this.graphicsStateStack.pop();
+    if (saved) {
+      this.ctm = saved.ctm;
+      this.font = saved.textState.font;
+      this.fontSize = saved.textState.fontSize;
+      this.charSpacing = saved.textState.charSpacing;
+      this.wordSpacing = saved.textState.wordSpacing;
+      this.horizontalScale = saved.textState.horizontalScale;
+      this.leading = saved.textState.leading;
+      this.rise = saved.textState.rise;
+      this.renderMode = saved.textState.renderMode;
+    }
+  }
+  /**
+  * Number of saved graphics states.
+  */
+  get stackDepth() {
+    return this.graphicsStateStack.length;
+  }
+  /** Pop saved states until the stack is back at `depth`. */
+  restoreGraphicsStateTo(depth) {
+    while (this.graphicsStateStack.length > depth) this.restoreGraphicsState();
+  }
+  /**
+  * Modify current transformation matrix (cm operator).
+  * Prepends the given matrix to the CTM.
+  */
+  concatMatrix(a, b, c, d3, e, f) {
+    const newMatrix = new Matrix(a, b, c, d3, e, f);
+    this.ctm = newMatrix.multiply(this.ctm);
+  }
+  /**
+  * Bounding box for a glyph at the current position: laid out in scaled
+  * text space, rise included, and mapped through Tm × CTM.
+  *
+  * @param width - Glyph width in glyph units (1000 = 1 em)
+  * @returns Axis-aligned bounding box and baseline in user space
+  */
+  getCharBbox(width) {
+    const { ascent, descent } = this.fontMetrics();
+    const trm = this.textRenderingMatrix;
+    const glyphWidth = width / 1e3 * this.fontSize * (this.horizontalScale / 100);
+    const bottom = descent / 1e3 * this.fontSize + this.rise;
+    const top = ascent / 1e3 * this.fontSize + this.rise;
+    const corners = [
+      trm.transformPoint(0, bottom),
+      trm.transformPoint(glyphWidth, bottom),
+      trm.transformPoint(glyphWidth, top),
+      trm.transformPoint(0, top)
+    ];
+    const xs = corners.map((c) => c.x);
+    const ys = corners.map((c) => c.y);
+    const minX = Math.min(...xs);
+    const minY = Math.min(...ys);
+    return {
+      x: minX,
+      y: minY,
+      width: Math.max(...xs) - minX,
+      height: Math.max(...ys) - minY,
+      baseline: trm.transformPoint(0, this.rise).y
+    };
+  }
+  /** Ascent/descent in glyph units, falling back to FontBBox (Type3) then defaults. */
+  fontMetrics() {
+    const descriptor = this.font?.descriptor;
+    let ascent = descriptor?.ascent;
+    let descent = descriptor?.descent;
+    if (!ascent && !descent && descriptor?.fontBBox) {
+      ascent = descriptor.fontBBox[3];
+      descent = descriptor.fontBBox[1];
+    }
+    return {
+      ascent: ascent || 800,
+      descent: descent ?? -200
+    };
+  }
+};
+var MAX_FORM_DEPTH = 32;
+var TextExtractor = class {
+  resources;
+  state = new TextState();
+  chars = [];
+  activeForms = /* @__PURE__ */ new Set();
+  constructor(resources) {
+    this.resources = resources;
+  }
+  /**
+  * Extract all text from a content stream and the form XObjects it invokes.
+  *
+  * @param contentBytes - The raw content stream bytes
+  * @returns Extracted characters with positions, in stream order
+  */
+  extract(contentBytes) {
+    this.run(contentBytes, this.resources);
+    return this.chars;
+  }
+  run(contentBytes, resources) {
+    const { operations } = new ContentStreamParser(contentBytes).parse();
+    for (const op of operations) this.processOperation(op, resources);
+  }
+  /**
+  * Process a single content stream operation.
+  */
+  processOperation(op, resources) {
+    if (isInlineImageOperation(op)) return;
+    const { operator, operands } = op;
+    switch (operator) {
+      case "q":
+        this.state.saveGraphicsState();
+        break;
+      case "Q":
+        this.state.restoreGraphicsState();
+        break;
+      case "cm":
+        this.handleCm(operands);
+        break;
+      case "BT":
+        this.state.beginText();
+        break;
+      case "ET":
+        this.state.endText();
+        break;
+      case "Tc":
+        this.state.charSpacing = this.getNumber(operands[0]);
+        break;
+      case "Tw":
+        this.state.wordSpacing = this.getNumber(operands[0]);
+        break;
+      case "Tz":
+        this.state.horizontalScale = this.getNumber(operands[0]);
+        break;
+      case "TL":
+        this.state.leading = this.getNumber(operands[0]);
+        break;
+      case "Tf":
+        this.handleTf(operands, resources);
+        break;
+      case "Tr":
+        this.state.renderMode = this.getNumber(operands[0]);
+        break;
+      case "Ts":
+        this.state.rise = this.getNumber(operands[0]);
+        break;
+      case "Td":
+        this.state.moveTextPosition(this.getNumber(operands[0]), this.getNumber(operands[1]));
+        break;
+      case "TD":
+        this.state.moveTextPositionAndSetLeading(this.getNumber(operands[0]), this.getNumber(operands[1]));
+        break;
+      case "Tm":
+        this.state.setTextMatrix(this.getNumber(operands[0]), this.getNumber(operands[1]), this.getNumber(operands[2]), this.getNumber(operands[3]), this.getNumber(operands[4]), this.getNumber(operands[5]));
+        break;
+      case "T*":
+        this.state.moveToNextLine();
+        break;
+      case "Tj":
+        this.handleTj(operands);
+        break;
+      case "TJ":
+        this.handleTJ(operands);
+        break;
+      case "'":
+        this.state.moveToNextLine();
+        this.handleTj(operands);
+        break;
+      case '"':
+        this.state.wordSpacing = this.getNumber(operands[0]);
+        this.state.charSpacing = this.getNumber(operands[1]);
+        this.state.moveToNextLine();
+        this.handleTj([operands[2]]);
+        break;
+      case "Do":
+        this.handleDo(operands, resources);
+        break;
+    }
+  }
+  /**
+  * Interpret a form XObject as if wrapped in q/Q with its /Matrix applied
+  * (8.10.1). The state stack is restored to its prior depth even if the
+  * form's own q/Q are unbalanced.
+  */
+  handleDo(operands, resources) {
+    const name = this.getName(operands[0]);
+    const form = name ? resources.getForm(name) : null;
+    if (!form || this.activeForms.has(form.stream) || this.activeForms.size >= MAX_FORM_DEPTH) return;
+    const depth = this.state.stackDepth;
+    this.activeForms.add(form.stream);
+    this.state.saveGraphicsState();
+    this.state.concatMatrix(...form.matrix.toArray());
+    try {
+      this.run(form.content, form.resources);
+    } catch {
+    } finally {
+      this.state.restoreGraphicsStateTo(depth);
+      this.activeForms.delete(form.stream);
+    }
+  }
+  /**
+  * Handle cm (concat matrix) operator.
+  */
+  handleCm(operands) {
+    this.state.concatMatrix(this.getNumber(operands[0]), this.getNumber(operands[1]), this.getNumber(operands[2]), this.getNumber(operands[3]), this.getNumber(operands[4]), this.getNumber(operands[5]));
+  }
+  /**
+  * Handle Tf (set font and size) operator.
+  */
+  handleTf(operands, resources) {
+    const fontName = this.getName(operands[0]);
+    const fontSize = this.getNumber(operands[1]);
+    if (fontName) this.state.font = resources.getFont(fontName);
+    this.state.fontSize = fontSize;
+  }
+  /**
+  * Handle Tj (show string) operator.
+  */
+  handleTj(operands) {
+    const stringToken = operands[0];
+    if (stringToken?.type !== "string") return;
+    this.showString(stringToken.value);
+  }
+  /**
+  * Handle TJ (show strings with positioning) operator.
+  */
+  handleTJ(operands) {
+    const array = operands[0];
+    if (array?.type !== "array") return;
+    for (const item of array.items) if (item.type === "string") this.showString(item.value);
+    else if (item.type === "number") this.state.applyTjAdjustment(item.value);
+  }
+  /**
+  * Show a string and extract characters.
+  */
+  showString(bytes) {
+    const font = this.state.font;
+    if (!font) return;
+    for (const { code, length } of font.decode(bytes)) {
+      const width = font.getWidth(code);
+      const char = font.toUnicode(code);
+      const applyWordSpacing = length === 1 && code === 32;
+      if (char) {
+        const bbox = this.state.getCharBbox(width);
+        this.chars.push({
+          char,
+          bbox: {
+            x: bbox.x,
+            y: bbox.y,
+            width: bbox.width,
+            height: bbox.height
+          },
+          fontSize: this.state.effectiveFontSize,
+          fontName: font.baseFontName,
+          baseline: bbox.baseline,
+          sequenceIndex: this.chars.length
+        });
+      }
+      this.state.advanceChar(width, applyWordSpacing);
+    }
+  }
+  /**
+  * Get a number from a content token.
+  */
+  getNumber(token) {
+    if (token?.type === "number") return token.value;
     return 0;
   }
   /**
-  * Check if a character code is valid in this CMap's codespace.
+  * Get a name from a content token (strips leading /).
   */
-  isValidCode(code) {
-    for (const range of this.codespaceRanges) if (code >= range.low && code <= range.high) return true;
-    return this.codespaceRanges.length === 0;
+  getName(token) {
+    if (token?.type === "name") return token.value;
+    return null;
+  }
+};
+var IDENTITY_NAMES = /* @__PURE__ */ new Set(["Identity-H", "Identity-V"]);
+var CMap = class CMap2 {
+  name;
+  vertical;
+  isIdentity;
+  inner;
+  constructor(inner, name) {
+    this.inner = inner;
+    this.name = inner.name ?? name ?? "";
+    this.vertical = inner.wmode === 1;
+    this.isIdentity = IDENTITY_NAMES.has(this.name);
   }
   /**
-  * Get the codespace ranges.
+  * Look up the CID for a character code. Returns 0 (.notdef) if unmapped.
   */
-  getCodespaceRanges() {
-    return this.codespaceRanges;
+  lookup(code, length) {
+    return length === void 0 ? this.inner.toCID(code) : this.inner.toCIDWithLength(code, length);
   }
   /**
   * Encode text to character codes.
-  * For Identity-H encoding, codes are Unicode code points.
+  * Only Identity CMaps are supported, where codes are Unicode code points.
   */
   encode(text) {
-    if (this.isIdentity) {
-      const codes = [];
-      for (const char of text) {
-        const cp = char.codePointAt(0);
-        if (cp !== void 0) codes.push(cp);
-      }
-      return codes;
-    }
-    throw new Error(`Encoding not supported for CMap: ${this.name}`);
+    if (!this.isIdentity) throw new Error(`Encoding not supported for CMap: ${this.name}`);
+    return Array.from(text, (char) => char.codePointAt(0) ?? 0);
   }
   /**
   * Check if text can be encoded with this CMap.
   */
   canEncode(text) {
     if (this.isIdentity) return true;
-    for (let i = 0; i < text.length; i++) {
-      const code = text.charCodeAt(i);
-      if (!this.isValidCode(code)) return false;
-      if (!this.charMappings.has(code)) {
-        let found = false;
-        for (const range of this.rangeMappings) if (code >= range.start && code <= range.end) {
-          found = true;
-          break;
-        }
-        if (!found) return false;
-      }
-    }
+    for (let i = 0; i < text.length; i++) if (this.inner.toCID(text.charCodeAt(i)) === 0) return false;
     return true;
   }
   /**
-  * Read a character code from a byte string.
-  * Returns the code and how many bytes were consumed.
+  * Read one character code from a byte string, following the CMap's
+  * codespace ranges.
   */
-  readCharCode(bytes2, offset) {
-    if (this.isIdentity) {
-      if (offset + 1 >= bytes2.length) return {
-        code: bytes2[offset] ?? 0,
-        length: 1
-      };
-      return {
-        code: bytes2[offset] << 8 | bytes2[offset + 1],
-        length: 2
-      };
-    }
-    let code = 0;
-    for (let numBytes = 1; numBytes <= 4 && offset + numBytes <= bytes2.length; numBytes++) {
-      code = 0;
-      for (let i = 0; i < numBytes; i++) code = code << 8 | bytes2[offset + i];
-      for (const range of this.codespaceRanges) if (range.numBytes === numBytes && code >= range.low && code <= range.high) return {
-        code,
-        length: numBytes
-      };
-    }
+  readCharCode(bytes, offset) {
+    const [code, length] = this.inner.readCode(bytes, offset);
     return {
-      code: bytes2[offset] ?? 0,
-      length: 1
+      code,
+      length
     };
   }
   /**
   * Get a predefined CMap by name.
   *
-  * Currently only Identity-H and Identity-V are supported.
-  * Other predefined CMaps (UniGB-UCS2-H, UniJIS-UCS2-H, etc.) return null.
-  *
-  * Note: Legacy CJK PDFs using predefined CMaps without ToUnicode maps
-  * may not extract text correctly. Modern PDFs include ToUnicode maps
-  * which take precedence for text extraction.
+  * Only Identity-H and Identity-V are available. The Adobe CJK CMaps
+  * (UniGB-UCS2-H, 90ms-RKSJ-H, ...) are not bundled and return null.
   */
   static getPredefined(name) {
     if (name === "Identity-H") return CMap2.identityH();
     if (name === "Identity-V") return CMap2.identityV();
     return null;
   }
-  /**
-  * Create Identity-H CMap.
-  */
   static identityH() {
-    return new CMap2({
-      name: "Identity-H",
-      vertical: false,
-      isIdentity: true,
-      codespaceRanges: [{
-        low: 0,
-        high: 65535,
-        numBytes: 2
-      }]
-    });
+    return identity("Identity-H", 0);
   }
-  /**
-  * Create Identity-V CMap.
-  */
   static identityV() {
-    return new CMap2({
-      name: "Identity-V",
-      vertical: true,
-      isIdentity: true,
-      codespaceRanges: [{
-        low: 0,
-        high: 65535,
-        numBytes: 2
-      }]
-    });
+    return identity("Identity-V", 1);
   }
 };
+function identity(name, wmode) {
+  const inner = new CMap$1();
+  const low = new Uint8Array([0, 0]);
+  const high = new Uint8Array([255, 255]);
+  inner.name = name;
+  inner.wmode = wmode;
+  inner.addCodespaceRange(new CodespaceRange(low, high));
+  inner.addCIDRange(low, high, 0);
+  return new CMap(inner);
+}
 function parseCMap(data, name) {
-  const text = bytesToLatin1(data);
-  const codespaceRanges = [];
-  const charMappings = /* @__PURE__ */ new Map();
-  const rangeMappings = [];
-  let cmapName = name ?? "";
-  let vertical = false;
-  const nameMatch = text.match(/\/CMapName\s+\/(\S+)/);
-  if (nameMatch) cmapName = nameMatch[1];
-  const wmodeMatch = text.match(/\/WMode\s+(\d)/);
-  if (wmodeMatch) vertical = wmodeMatch[1] === "1";
-  const isIdentity = cmapName === "Identity-H" || cmapName === "Identity-V";
-  parseCodespaceRanges(text, codespaceRanges);
-  parseCidCharSections(text, charMappings);
-  parseCidRangeSections(text, rangeMappings);
-  return new CMap({
-    name: cmapName,
-    vertical,
-    isIdentity,
-    codespaceRanges,
-    charMappings,
-    rangeMappings
-  });
-}
-function parseCodespaceRanges(text, ranges) {
-  for (const match of text.matchAll(/begincodespacerange\s*([\s\S]*?)\s*endcodespacerange/g)) parseCodespaceContent(match[1], ranges);
-}
-function parseCodespaceContent(content, ranges) {
-  for (const match of content.matchAll(/<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>/g)) {
-    const low = parseInt(match[1], 16);
-    const high = parseInt(match[2], 16);
-    const numBytes = Math.max(match[1].length, match[2].length) / 2;
-    ranges.push({
-      low,
-      high,
-      numBytes: Math.ceil(numBytes)
-    });
-  }
-}
-function parseCidCharSections(text, mappings) {
-  for (const match of text.matchAll(/begincidchar\s*([\s\S]*?)\s*endcidchar/g)) parseCidCharContent(match[1], mappings);
-}
-function parseCidCharContent(content, mappings) {
-  for (const match of content.matchAll(/<([0-9A-Fa-f]+)>\s+(\d+)/g)) {
-    const code = parseInt(match[1], 16);
-    const cid = parseInt(match[2], 10);
-    mappings.set(code, cid);
-  }
-}
-function parseCidRangeSections(text, ranges) {
-  for (const match of text.matchAll(/begincidrange\s*([\s\S]*?)\s*endcidrange/g)) parseCidRangeContent(match[1], ranges);
-}
-function parseCidRangeContent(content, ranges) {
-  for (const match of content.matchAll(/<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>\s+(\d+)/g)) {
-    const start = parseInt(match[1], 16);
-    const end = parseInt(match[2], 16);
-    const baseCID = parseInt(match[3], 10);
-    ranges.push({
-      start,
-      end,
-      baseCID
-    });
-  }
-}
-function bytesToLatin1(data) {
-  let result = "";
-  for (let i = 0; i < data.length; i++) result += String.fromCharCode(data[i]);
-  return result;
+  return new CMap(parseCMap$1(data), name);
 }
 var CompositeFont = class extends PdfFont {
   /** Font subtype is always "Type0" */
@@ -52783,6 +54575,16 @@ var CompositeFont = class extends PdfFont {
   */
   encodeText(text) {
     return this.cmap.encode(text);
+  }
+  /** Codes are one to four bytes, per the CMap's codespace ranges. */
+  decode(bytes) {
+    const codes = [];
+    for (let offset = 0; offset < bytes.length; ) {
+      const next = this.cmap.readCharCode(bytes, offset);
+      codes.push(next);
+      offset += next.length;
+    }
+    return codes;
   }
   /**
   * Decode character code to Unicode string (for text extraction).
@@ -52855,584 +54657,79 @@ function parseFont(dict, options = {}) {
       return parseSimpleFont(dict, options);
   }
 }
-function max(values, fallback = 0) {
-  let result = Number.NEGATIVE_INFINITY;
-  for (const v of values) if (v > result) result = v;
-  return result === Number.NEGATIVE_INFINITY ? fallback : result;
-}
-function min(values, fallback = 0) {
-  let result = Number.POSITIVE_INFINITY;
-  for (const v of values) if (v < result) result = v;
-  return result === Number.POSITIVE_INFINITY ? fallback : result;
-}
-function mergeBboxes(boxes) {
-  if (boxes.length === 0) return {
-    x: 0,
-    y: 0,
-    width: 0,
-    height: 0
-  };
-  const minX = min(boxes.map((b) => b.x));
-  const minY = min(boxes.map((b) => b.y));
-  const maxX = max(boxes.map((b) => b.x + b.width));
-  const maxY = max(boxes.map((b) => b.y + b.height));
-  return {
-    x: minX,
-    y: minY,
-    width: maxX - minX,
-    height: maxY - minY
-  };
-}
-var RTL_PLACED_THRESHOLD = 0.8;
-function groupCharsIntoLines(chars, options = {}) {
-  if (chars.length === 0) return [];
-  const baselineTolerance = options.baselineTolerance ?? 2;
-  const spaceThreshold = options.spaceThreshold ?? 0.3;
-  const lineGroups = groupByBaseline(chars, baselineTolerance);
-  const lines = [];
-  for (const group of lineGroups) {
-    const { chars: sorted, rtlPlaced } = orderLineChars(group);
-    const spans = groupIntoSpans(sorted, spaceThreshold, rtlPlaced);
-    if (spans.length === 0) continue;
-    const lineText = spans.map((s) => s.text).join("");
-    const lineBbox = mergeBboxes(spans.map((s) => s.bbox));
-    const baseline = calculateAverageBaseline(sorted);
-    lines.push({
-      text: lineText,
-      bbox: lineBbox,
-      spans,
-      baseline
-    });
+var TextResources = class TextResources2 {
+  dict;
+  resolve;
+  fontCache;
+  forms = /* @__PURE__ */ new Map();
+  constructor(dict, resolve, fontCache = /* @__PURE__ */ new Map()) {
+    this.dict = dict;
+    this.resolve = resolve;
+    this.fontCache = fontCache;
   }
-  lines.sort((a, b) => b.baseline - a.baseline);
-  return lines;
-}
-function orderLineChars(group) {
-  if (group.length <= 1) return {
-    chars: [...group],
-    rtlPlaced: false
-  };
-  if (!group.every((c) => c.sequenceIndex != null)) return {
-    chars: [...group].sort((a, b) => a.bbox.x - b.bbox.x),
-    rtlPlaced: false
-  };
-  const streamOrder = [...group].sort((a, b) => a.sequenceIndex - b.sequenceIndex);
-  if (isRtlPlaced(streamOrder)) return {
-    chars: streamOrder,
-    rtlPlaced: true
-  };
-  return {
-    chars: [...group].sort((a, b) => a.bbox.x - b.bbox.x),
-    rtlPlaced: false
-  };
-}
-function isRtlPlaced(streamOrder) {
-  if (streamOrder.length < 2) return false;
-  let decreasingCount = 0;
-  for (let i = 1; i < streamOrder.length; i++) if (streamOrder[i].bbox.x < streamOrder[i - 1].bbox.x) decreasingCount++;
-  const totalPairs = streamOrder.length - 1;
-  return decreasingCount / totalPairs >= RTL_PLACED_THRESHOLD;
-}
-function groupByBaseline(chars, tolerance) {
-  const groups = [];
-  for (const char of chars) {
-    let foundGroup = false;
-    for (const group of groups) {
-      const avgBaseline = calculateAverageBaseline(group);
-      if (Math.abs(char.baseline - avgBaseline) <= tolerance) {
-        group.push(char);
-        foundGroup = true;
-        break;
-      }
+  getFont(name) {
+    const entry = this.lookup("Font", name);
+    if (!(entry instanceof PdfDict)) return null;
+    let font = this.fontCache.get(entry);
+    if (!font) {
+      font = parseFont(entry, {
+        resolver: this.resolve,
+        toUnicodeMap: this.parseToUnicode(entry)
+      });
+      this.fontCache.set(entry, font);
     }
-    if (!foundGroup) groups.push([char]);
+    return font;
   }
-  return groups;
-}
-function groupIntoSpans(chars, spaceThreshold, rtlPlaced) {
-  if (chars.length === 0) return [];
-  const spans = [];
-  let currentSpan = [chars[0]];
-  let currentFontName = chars[0].fontName;
-  let currentFontSize = chars[0].fontSize;
-  for (let i = 1; i < chars.length; i++) {
-    const prevChar = chars[i - 1];
-    const char = chars[i];
-    const fontChanged = char.fontName !== currentFontName || Math.abs(char.fontSize - currentFontSize) > 0.5;
-    const needsSpace = (rtlPlaced ? prevChar.bbox.x - (char.bbox.x + char.bbox.width) : char.bbox.x - (prevChar.bbox.x + prevChar.bbox.width)) > (prevChar.fontSize + char.fontSize) / 2 * spaceThreshold;
-    if (fontChanged) {
-      spans.push(buildSpan(currentSpan));
-      currentSpan = [char];
-      currentFontName = char.fontName;
-      currentFontSize = char.fontSize;
-    } else if (needsSpace) {
-      currentSpan.push(createSpaceChar(prevChar, char, rtlPlaced));
-      currentSpan.push(char);
-    } else currentSpan.push(char);
-  }
-  if (currentSpan.length > 0) spans.push(buildSpan(currentSpan));
-  return spans;
-}
-function buildSpan(chars) {
-  const text = chars.map((c) => c.char).join("");
-  const bbox = mergeBboxes(chars.map((c) => c.bbox));
-  const fontChar = chars.find((c) => c.char !== " ") ?? chars[0];
-  return {
-    text,
-    bbox,
-    chars,
-    fontSize: fontChar.fontSize,
-    fontName: fontChar.fontName
-  };
-}
-function createSpaceChar(before, after, rtlPlaced) {
-  const x = rtlPlaced ? after.bbox.x + after.bbox.width : before.bbox.x + before.bbox.width;
-  const width = rtlPlaced ? before.bbox.x - x : after.bbox.x - x;
-  return {
-    char: " ",
-    bbox: {
-      x,
-      y: before.bbox.y,
-      width: Math.max(width, 0),
-      height: before.bbox.height
-    },
-    fontSize: (before.fontSize + after.fontSize) / 2,
-    fontName: before.fontName,
-    baseline: (before.baseline + after.baseline) / 2,
-    sequenceIndex: before.sequenceIndex != null ? before.sequenceIndex + 0.5 : void 0
-  };
-}
-function calculateAverageBaseline(chars) {
-  if (chars.length === 0) return 0;
-  return chars.reduce((acc, c) => acc + c.baseline, 0) / chars.length;
-}
-function getPlainText(lines) {
-  return lines.map((line) => line.text).join("\n");
-}
-var TextState = class TextState2 {
-  /** Current transformation matrix (graphics state) */
-  ctm = Matrix.identity();
-  /** Text matrix (Tm) - set by Tm operator, updated by text operations */
-  tm = Matrix.identity();
-  /** Text line matrix (Tlm) - set at start of each line */
-  tlm = Matrix.identity();
-  /** Current font (set by Tf operator) */
-  font = null;
-  /** Current font size in points (set by Tf operator) */
-  fontSize = 0;
-  /** Character spacing (Tc) */
-  charSpacing = 0;
-  /** Word spacing (Tw) */
-  wordSpacing = 0;
-  /** Horizontal scaling percentage (Tz) - 100 = normal */
-  horizontalScale = 100;
-  /** Leading (TL) - vertical distance between baselines */
-  leading = 0;
-  /** Text rise (Ts) - superscript/subscript offset */
-  rise = 0;
-  /** Text rendering mode (Tr) */
-  renderMode = 0;
-  /** Graphics state stack for q/Q operators */
-  graphicsStateStack = [];
-  /**
-  * Get the current position in user space.
-  * This applies the CTM to the text matrix position.
-  */
-  get position() {
-    return this.ctm.transformPoint(this.tm.e, this.tm.f + this.rise);
-  }
-  /**
-  * Get the effective font size accounting for text matrix and CTM scaling.
-  */
-  get effectiveFontSize() {
-    const tmScale = this.tm.getScaleY();
-    const ctmScale = this.ctm.getScaleY();
-    return Math.abs(this.fontSize * tmScale * ctmScale);
-  }
-  /**
-  * Get the horizontal scale factor in user space.
-  */
-  get effectiveHorizontalScale() {
-    return this.horizontalScale / 100 * this.tm.getScaleX() * this.ctm.getScaleX();
-  }
-  /**
-  * Begin text object (BT operator).
-  * Resets text matrix and line matrix to identity.
-  */
-  beginText() {
-    this.tm = Matrix.identity();
-    this.tlm = Matrix.identity();
-  }
-  /**
-  * End text object (ET operator).
-  */
-  endText() {
-  }
-  /**
-  * Set text matrix (Tm operator).
-  * Sets both tm and tlm to the specified matrix.
-  */
-  setTextMatrix(a, b, c, d, e, f) {
-    this.tm = new Matrix(a, b, c, d, e, f);
-    this.tlm = this.tm.clone();
-  }
-  /**
-  * Move to start of next line (Td operator).
-  * Translates the text line matrix and sets text matrix to it.
-  */
-  moveTextPosition(tx, ty) {
-    this.tlm = this.tlm.translate(tx, ty);
-    this.tm = this.tlm.clone();
-  }
-  /**
-  * Move to start of next line and set leading (TD operator).
-  * Same as: -ty TL tx ty Td
-  */
-  moveTextPositionAndSetLeading(tx, ty) {
-    this.leading = -ty;
-    this.moveTextPosition(tx, ty);
-  }
-  /**
-  * Move to start of next line (T* operator).
-  * Uses the current leading value.
-  */
-  moveToNextLine() {
-    this.moveTextPosition(0, -this.leading);
-  }
-  /**
-  * Advance the text position after showing a character.
-  *
-  * @param width - Character width in glyph units (1000 = 1 em)
-  * @param isSpace - Whether this is a space character (for word spacing)
-  */
-  advanceChar(width, isSpace) {
-    const tx = (width / 1e3 * this.fontSize + this.charSpacing + (isSpace ? this.wordSpacing : 0)) * (this.horizontalScale / 100);
-    this.tm = this.tm.translate(tx, 0);
-  }
-  /**
-  * Apply a TJ position adjustment.
-  *
-  * @param adjustment - Adjustment in thousandths of an em
-  *                     Negative = move right, Positive = move left
-  */
-  applyTjAdjustment(adjustment) {
-    const tx = -adjustment / 1e3 * this.fontSize * (this.horizontalScale / 100);
-    this.tm = this.tm.translate(tx, 0);
-  }
-  /**
-  * Save graphics state (q operator).
-  */
-  saveGraphicsState() {
-    this.graphicsStateStack.push({
-      ctm: this.ctm.clone(),
-      textState: {
-        charSpacing: this.charSpacing,
-        wordSpacing: this.wordSpacing,
-        horizontalScale: this.horizontalScale,
-        leading: this.leading,
-        rise: this.rise,
-        renderMode: this.renderMode
-      }
-    });
-  }
-  /**
-  * Restore graphics state (Q operator).
-  */
-  restoreGraphicsState() {
-    const saved = this.graphicsStateStack.pop();
-    if (saved) {
-      this.ctm = saved.ctm;
-      this.charSpacing = saved.textState.charSpacing;
-      this.wordSpacing = saved.textState.wordSpacing;
-      this.horizontalScale = saved.textState.horizontalScale;
-      this.leading = saved.textState.leading;
-      this.rise = saved.textState.rise;
-      this.renderMode = saved.textState.renderMode;
+  /** Null for image XObjects and unknown names. */
+  getForm(name) {
+    let form = this.forms.get(name);
+    if (form === void 0) {
+      form = this.loadForm(name);
+      this.forms.set(name, form);
     }
+    return form;
   }
-  /**
-  * Modify current transformation matrix (cm operator).
-  * Prepends the given matrix to the CTM.
-  */
-  concatMatrix(a, b, c, d, e, f) {
-    const newMatrix = new Matrix(a, b, c, d, e, f);
-    this.ctm = newMatrix.multiply(this.ctm);
-  }
-  /**
-  * Calculate the bounding box for a character at the current position.
-  *
-  * @param width - Character width in glyph units (1000 = 1 em)
-  * @returns Bounding box in user space
-  */
-  getCharBbox(width) {
-    let ascender = this.font?.descriptor?.ascent;
-    let descender = this.font?.descriptor?.descent;
-    if (!ascender && !descender && this.font?.descriptor?.fontBBox) {
-      const bbox = this.font.descriptor.fontBBox;
-      ascender = bbox[3];
-      descender = bbox[1];
+  loadForm(name) {
+    const stream = this.lookup("XObject", name);
+    if (!(stream instanceof PdfStream)) return null;
+    if (stream.getName("Subtype", this.resolve)?.value !== "Form") return null;
+    let content;
+    try {
+      content = stream.getDecodedData();
+    } catch {
+      return null;
     }
-    if (!ascender) ascender = 800;
-    if (descender === void 0 || descender === null) descender = -200;
-    const glyphWidthScaled = width / 1e3 * this.fontSize * (this.horizontalScale / 100);
-    const glyphHeightScaled = (ascender - descender) / 1e3 * this.fontSize;
-    const descenderScaled = descender / 1e3 * this.fontSize;
-    const textX = this.tm.e;
-    const textY = this.tm.f + this.rise;
-    this.ctm.multiply(this.tm);
-    const baselinePoint = this.ctm.transformPoint(textX, textY);
-    const transformedCorners = [
-      {
-        x: 0,
-        y: descenderScaled
-      },
-      {
-        x: glyphWidthScaled,
-        y: descenderScaled
-      },
-      {
-        x: glyphWidthScaled,
-        y: descenderScaled + glyphHeightScaled
-      },
-      {
-        x: 0,
-        y: descenderScaled + glyphHeightScaled
-      }
-    ].map((corner) => {
-      const tmRotated = {
-        x: this.tm.a * corner.x + this.tm.c * corner.y,
-        y: this.tm.b * corner.x + this.tm.d * corner.y
-      };
-      return {
-        x: baselinePoint.x + (this.ctm.a * tmRotated.x + this.ctm.c * tmRotated.y),
-        y: baselinePoint.y + (this.ctm.b * tmRotated.x + this.ctm.d * tmRotated.y)
-      };
-    });
-    const xs = transformedCorners.map((c) => c.x);
-    const ys = transformedCorners.map((c) => c.y);
-    const minX = Math.min(...xs);
-    const maxX = Math.max(...xs);
-    const minY = Math.min(...ys);
-    const maxY = Math.max(...ys);
+    const ownResources = stream.getDict("Resources", this.resolve);
     return {
-      x: minX,
-      y: minY,
-      width: maxX - minX,
-      height: maxY - minY,
-      baseline: baselinePoint.y
+      stream,
+      content,
+      matrix: readMatrix(stream.getArray("Matrix", this.resolve), this.resolve),
+      resources: ownResources ? new TextResources2(ownResources, this.resolve, this.fontCache) : this
     };
   }
-  /**
-  * Clone the current text state.
-  */
-  clone() {
-    const copy = new TextState2();
-    copy.ctm = this.ctm.clone();
-    copy.tm = this.tm.clone();
-    copy.tlm = this.tlm.clone();
-    copy.font = this.font;
-    copy.fontSize = this.fontSize;
-    copy.charSpacing = this.charSpacing;
-    copy.wordSpacing = this.wordSpacing;
-    copy.horizontalScale = this.horizontalScale;
-    copy.leading = this.leading;
-    copy.rise = this.rise;
-    copy.renderMode = this.renderMode;
-    return copy;
+  lookup(category, name) {
+    return this.dict?.getDict(category, this.resolve)?.get(name, this.resolve);
+  }
+  parseToUnicode(fontDict) {
+    const stream = fontDict.get("ToUnicode", this.resolve);
+    if (!(stream instanceof PdfStream)) return null;
+    try {
+      return parseToUnicode(stream.getDecodedData());
+    } catch {
+      return null;
+    }
   }
 };
-var TextExtractor = class {
-  resolveFont;
-  state;
-  chars = [];
-  constructor(options) {
-    this.resolveFont = options.resolveFont;
-    this.state = new TextState();
+function readMatrix(array, resolve) {
+  if (!(array instanceof PdfArray) || array.length !== 6) return Matrix.identity();
+  const values = [];
+  for (let i = 0; i < 6; i++) {
+    const item = array.at(i, resolve);
+    if (!(item instanceof PdfNumber)) return Matrix.identity();
+    values.push(item.value);
   }
-  /**
-  * Extract all text from a content stream.
-  *
-  * @param contentBytes - The raw content stream bytes
-  * @returns Array of extracted characters with positions
-  */
-  extract(contentBytes) {
-    const { operations } = new ContentStreamParser(contentBytes).parse();
-    for (const op of operations) this.processOperation(op);
-    return this.chars;
-  }
-  /**
-  * Process a single content stream operation.
-  */
-  processOperation(op) {
-    if (isInlineImageOperation(op)) return;
-    const { operator, operands } = op;
-    switch (operator) {
-      case "q":
-        this.state.saveGraphicsState();
-        break;
-      case "Q":
-        this.state.restoreGraphicsState();
-        break;
-      case "cm":
-        this.handleCm(operands);
-        break;
-      case "BT":
-        this.state.beginText();
-        break;
-      case "ET":
-        this.state.endText();
-        break;
-      case "Tc":
-        this.state.charSpacing = this.getNumber(operands[0]);
-        break;
-      case "Tw":
-        this.state.wordSpacing = this.getNumber(operands[0]);
-        break;
-      case "Tz":
-        this.state.horizontalScale = this.getNumber(operands[0]);
-        break;
-      case "TL":
-        this.state.leading = this.getNumber(operands[0]);
-        break;
-      case "Tf":
-        this.handleTf(operands);
-        break;
-      case "Tr":
-        this.state.renderMode = this.getNumber(operands[0]);
-        break;
-      case "Ts":
-        this.state.rise = this.getNumber(operands[0]);
-        break;
-      case "Td":
-        this.state.moveTextPosition(this.getNumber(operands[0]), this.getNumber(operands[1]));
-        break;
-      case "TD":
-        this.state.moveTextPositionAndSetLeading(this.getNumber(operands[0]), this.getNumber(operands[1]));
-        break;
-      case "Tm":
-        this.state.setTextMatrix(this.getNumber(operands[0]), this.getNumber(operands[1]), this.getNumber(operands[2]), this.getNumber(operands[3]), this.getNumber(operands[4]), this.getNumber(operands[5]));
-        break;
-      case "T*":
-        this.state.moveToNextLine();
-        break;
-      case "Tj":
-        this.handleTj(operands);
-        break;
-      case "TJ":
-        this.handleTJ(operands);
-        break;
-      case "'":
-        this.state.moveToNextLine();
-        this.handleTj(operands);
-        break;
-      case '"':
-        this.state.wordSpacing = this.getNumber(operands[0]);
-        this.state.charSpacing = this.getNumber(operands[1]);
-        this.state.moveToNextLine();
-        this.handleTj([operands[2]]);
-        break;
-    }
-  }
-  /**
-  * Handle cm (concat matrix) operator.
-  */
-  handleCm(operands) {
-    this.state.concatMatrix(this.getNumber(operands[0]), this.getNumber(operands[1]), this.getNumber(operands[2]), this.getNumber(operands[3]), this.getNumber(operands[4]), this.getNumber(operands[5]));
-  }
-  /**
-  * Handle Tf (set font and size) operator.
-  */
-  handleTf(operands) {
-    const fontName = this.getName(operands[0]);
-    const fontSize = this.getNumber(operands[1]);
-    if (fontName) {
-      const font = this.resolveFont(fontName);
-      this.state.font = font;
-    }
-    this.state.fontSize = fontSize;
-  }
-  /**
-  * Handle Tj (show string) operator.
-  */
-  handleTj(operands) {
-    const stringToken = operands[0];
-    if (stringToken?.type !== "string") return;
-    this.showString(stringToken.value);
-  }
-  /**
-  * Handle TJ (show strings with positioning) operator.
-  */
-  handleTJ(operands) {
-    const array = operands[0];
-    if (array?.type !== "array") return;
-    for (const item of array.items) if (item.type === "string") this.showString(item.value);
-    else if (item.type === "number") this.state.applyTjAdjustment(item.value);
-  }
-  /**
-  * Show a string and extract characters.
-  */
-  showString(bytes2) {
-    const font = this.state.font;
-    if (!font) return;
-    const codes = this.decodeStringToCodes(bytes2, font);
-    for (const code of codes) {
-      const char = font.toUnicode(code);
-      if (!char) {
-        const width2 = font.getWidth(code);
-        this.state.advanceChar(width2, false);
-        continue;
-      }
-      const width = font.getWidth(code);
-      const bbox = this.state.getCharBbox(width);
-      this.chars.push({
-        char,
-        bbox: {
-          x: bbox.x,
-          y: bbox.y,
-          width: bbox.width,
-          height: bbox.height
-        },
-        fontSize: this.state.effectiveFontSize,
-        fontName: font.baseFontName,
-        baseline: bbox.baseline,
-        sequenceIndex: this.chars.length
-      });
-      const isSpace = char === " " || char === "\xA0";
-      this.state.advanceChar(width, isSpace);
-    }
-  }
-  /**
-  * Decode string bytes to character codes.
-  *
-  * For simple fonts (TrueType, Type1), each byte is a character code.
-  * For composite fonts (Type0/CID), bytes are decoded as 2-byte codes.
-  */
-  decodeStringToCodes(bytes2, font) {
-    const codes = [];
-    if (font.subtype === "Type0") {
-      for (let i = 0; i < bytes2.length - 1; i += 2) {
-        const code = bytes2[i] << 8 | bytes2[i + 1];
-        codes.push(code);
-      }
-      if (bytes2.length % 2 === 1) codes.push(bytes2[bytes2.length - 1]);
-    } else for (const byte of bytes2) codes.push(byte);
-    return codes;
-  }
-  /**
-  * Get a number from a content token.
-  */
-  getNumber(token) {
-    if (token?.type === "number") return token.value;
-    return 0;
-  }
-  /**
-  * Get a name from a content token (strips leading /).
-  */
-  getName(token) {
-    if (token?.type === "name") return token.value;
-    return null;
-  }
-};
+  return Matrix.fromArray(values);
+}
 function searchPage(pageText, query, options = {}) {
   const matches = [];
   const allChars = flattenChars(pageText);
@@ -53709,7 +55006,7 @@ var PDFPage = class PDFPage2 {
   * ```
   */
   drawPage(embedded, options = {}) {
-    const x = options.x ?? 0;
+    const x2 = options.x ?? 0;
     const y = options.y ?? 0;
     let scaleX = options.scale ?? 1;
     let scaleY = options.scale ?? 1;
@@ -53728,19 +55025,19 @@ var PDFPage = class PDFPage2 {
       ops.push(setGraphicsState(`/${gsName}`));
     }
     let rotateDegrees = 0;
-    let rotateOriginX = x;
+    let rotateOriginX = x2;
     let rotateOriginY = y;
     if (options.rotate !== void 0) if (typeof options.rotate === "number") rotateDegrees = options.rotate;
     else {
       rotateDegrees = options.rotate.angle;
       const bounds = {
-        x,
+        x: x2,
         y,
         width: embedded.width * scaleX,
         height: embedded.height * scaleY
       };
       const defaultOrigin = {
-        x,
+        x: x2,
         y
       };
       const origin = resolveRotationOrigin(options.rotate.origin, bounds, defaultOrigin);
@@ -53753,11 +55050,11 @@ var PDFPage = class PDFPage2 {
       const sin = Math.sin(radians);
       ops.push(concatMatrix(1, 0, 0, 1, rotateOriginX, rotateOriginY));
       ops.push(concatMatrix(cos, sin, -sin, cos, 0, 0));
-      const offsetX = x - rotateOriginX - embedded.box.x * scaleX;
+      const offsetX = x2 - rotateOriginX - embedded.box.x * scaleX;
       const offsetY = y - rotateOriginY - embedded.box.y * scaleY;
       ops.push(concatMatrix(scaleX, 0, 0, scaleY, offsetX, offsetY));
     } else {
-      const translateX = x - embedded.box.x * scaleX;
+      const translateX = x2 - embedded.box.x * scaleX;
       const translateY = y - embedded.box.y * scaleY;
       ops.push(concatMatrix(scaleX, 0, 0, scaleY, translateX, translateY));
     }
@@ -53823,16 +55120,16 @@ var PDFPage = class PDFPage2 {
   * Build a widget annotation dictionary for a field.
   */
   buildWidgetDict(field, options) {
-    const { x, y, width, height } = options;
+    const { x: x2, y, width, height } = options;
     const fieldRef = field.getRef();
     if (!fieldRef) throw new Error("Field must be registered before adding widgets");
     const widgetDict = PdfDict.of({
       Type: PdfName.of("Annot"),
       Subtype: PdfName.of("Widget"),
       Rect: new PdfArray([
-        PdfNumber.of(x),
+        PdfNumber.of(x2),
         PdfNumber.of(y),
-        PdfNumber.of(x + width),
+        PdfNumber.of(x2 + width),
         PdfNumber.of(y + height)
       ]),
       P: this.ref,
@@ -54141,7 +55438,7 @@ var PDFPage = class PDFPage2 {
   * ```
   */
   drawText(text, options = {}) {
-    const x = options.x ?? 0;
+    const x2 = options.x ?? 0;
     const y = options.y ?? 0;
     const font = options.font ?? "Helvetica";
     const fontSize = options.size ?? 12;
@@ -54175,13 +55472,13 @@ var PDFPage = class PDFPage2 {
       const firstLineTop = y + ascent;
       const lastLineBottom = y - (lines.length - 1) * lineHeight - descent;
       const bounds = {
-        x,
+        x: x2,
         y: lastLineBottom,
         width: textWidth,
         height: firstLineTop - lastLineBottom
       };
       const defaultOrigin = {
-        x,
+        x: x2,
         y
       };
       const origin = resolveRotationOrigin(options.rotate.origin, bounds, defaultOrigin);
@@ -54199,15 +55496,15 @@ var PDFPage = class PDFPage2 {
       const line = lines[i];
       const lineY = y - i * lineHeight;
       if (line.text === "") continue;
-      let lineX = x;
-      if (alignment === "center" && options.maxWidth !== void 0) lineX = x + (options.maxWidth - line.width) / 2;
-      else if (alignment === "right" && options.maxWidth !== void 0) lineX = x + options.maxWidth - line.width;
+      let lineX = x2;
+      if (alignment === "center" && options.maxWidth !== void 0) lineX = x2 + (options.maxWidth - line.width) / 2;
+      else if (alignment === "right" && options.maxWidth !== void 0) lineX = x2 + options.maxWidth - line.width;
       if (alignment === "justify" && options.maxWidth !== void 0 && i < lines.length - 1) {
         const words = line.text.split(/\s+/).filter((w) => w.length > 0);
         if (words.length > 1) {
           const positioned = layoutJustifiedLine(words, font, fontSize, options.maxWidth);
           for (const pw of positioned) {
-            ops.push(setTextMatrix(1, 0, 0, 1, x + pw.x, lineY));
+            ops.push(setTextMatrix(1, 0, 0, 1, x2 + pw.x, lineY));
             ops.push(showText(this.encodeTextForFont(pw.word, font)));
           }
           continue;
@@ -54245,7 +55542,7 @@ var PDFPage = class PDFPage2 {
   * ```
   */
   drawImage(image, options = {}) {
-    const x = options.x ?? 0;
+    const x2 = options.x ?? 0;
     const y = options.y ?? 0;
     const { width, height } = this.computeImageDimensions(image, options);
     const imageName = this.addXObjectResource(image.ref);
@@ -54259,13 +55556,13 @@ var PDFPage = class PDFPage2 {
     }
     if (options.rotate) {
       const bounds = {
-        x,
+        x: x2,
         y,
         width,
         height
       };
       const defaultOrigin = {
-        x: x + width / 2,
+        x: x2 + width / 2,
         y: y + height / 2
       };
       const origin = resolveRotationOrigin(options.rotate.origin, bounds, defaultOrigin);
@@ -54276,7 +55573,7 @@ var PDFPage = class PDFPage2 {
       ops.push(concatMatrix(cos, sin, -sin, cos, 0, 0));
       ops.push(concatMatrix(1, 0, 0, 1, -origin.x, -origin.y));
     }
-    ops.push(concatMatrix(width, 0, 0, height, x, y));
+    ops.push(concatMatrix(width, 0, 0, height, x2, y));
     ops.push(paintXObject(imageName));
     ops.push(popGraphicsState());
     this.appendOperators(ops);
@@ -55337,17 +56634,17 @@ ${content}` : concatBytes2([new Uint8Array([10]), content]);
       const codes = [];
       for (const char of text) if (encoding.canEncode(char)) codes.push(encoding.getCode(char.codePointAt(0)));
       else codes.push(0);
-      const bytes3 = new Uint8Array(codes);
-      return PdfString.fromBytes(bytes3);
+      const bytes2 = new Uint8Array(codes);
+      return PdfString.fromBytes(bytes2);
     }
     const gids = font.encodeTextToGids(text);
-    const bytes2 = new Uint8Array(gids.length * 2);
+    const bytes = new Uint8Array(gids.length * 2);
     for (let i = 0; i < gids.length; i++) {
       const gid = gids[i];
-      bytes2[i * 2] = gid >> 8 & 255;
-      bytes2[i * 2 + 1] = gid & 255;
+      bytes[i * 2] = gid >> 8 & 255;
+      bytes[i * 2 + 1] = gid & 255;
     }
-    return PdfString.fromBytes(bytes2);
+    return PdfString.fromBytes(bytes);
   }
   /**
   * Extract all text content from this page.
@@ -55371,7 +56668,7 @@ ${content}` : concatBytes2([new Uint8Array([10]), content]);
   */
   extractText(_options = {}) {
     const contentBytes = this.getContentBytes();
-    const lines = groupCharsIntoLines(new TextExtractor({ resolveFont: this.createFontResolver() }).extract(contentBytes));
+    const lines = groupCharsIntoLines(new TextExtractor(new TextResources(this.resolveInheritedResources(), this.ctx.resolve.bind(this.ctx))).extract(contentBytes));
     const text = getPlainText(lines);
     return {
       pageIndex: this.index,
@@ -55444,7 +56741,9 @@ ${content}` : concatBytes2([new Uint8Array([10]), content]);
   */
   resolveInheritedResources() {
     let currentDict = this.dict;
-    while (currentDict) {
+    const visited = /* @__PURE__ */ new Set();
+    while (currentDict && !visited.has(currentDict)) {
+      visited.add(currentDict);
       const resources = currentDict.get("Resources", this.ctx.resolve.bind(this.ctx));
       if (resources instanceof PdfDict) return resources;
       const parent = currentDict.get("Parent", this.ctx.resolve.bind(this.ctx));
@@ -55452,37 +56751,6 @@ ${content}` : concatBytes2([new Uint8Array([10]), content]);
       else break;
     }
     return null;
-  }
-  /**
-  * Create a font resolver function for text extraction.
-  */
-  createFontResolver() {
-    const resourcesDict = this.resolveInheritedResources();
-    if (!resourcesDict) return () => null;
-    const font = resourcesDict.getDict("Font", this.ctx.resolve.bind(this.ctx));
-    if (!font) return () => null;
-    const fontCache = /* @__PURE__ */ new Map();
-    for (const [key2, entry] of font) {
-      const name = key2.value;
-      const resolved = entry instanceof PdfRef ? this.ctx.resolve(entry) : entry;
-      let entryDict = resolved instanceof PdfDict ? resolved : null;
-      if (!entryDict) continue;
-      let toUnicodeMap = null;
-      const toUnicode = entryDict.get("ToUnicode", this.ctx.resolve.bind(this.ctx));
-      const toUnicodeStream = toUnicode instanceof PdfStream ? toUnicode : null;
-      if (toUnicodeStream) try {
-        toUnicodeMap = parseToUnicode(toUnicodeStream.getDecodedData());
-      } catch {
-      }
-      const pdfFont = parseFont(entryDict, {
-        resolver: this.ctx.resolve.bind(this.ctx),
-        toUnicodeMap
-      });
-      fontCache.set(name, pdfFont);
-    }
-    return (name) => {
-      return fontCache.get(name) ?? null;
-    };
   }
 };
 var PdfNull = class PdfNull2 {
@@ -55567,8 +56835,8 @@ var PDFLinkAnnotation = class extends PDFAnnotation {
     const action = this.dict.getDict("A", this.registry.resolve.bind(this.registry));
     if (action) {
       if (action.getName("S", this.registry.resolve.bind(this.registry))?.value === "GoTo") {
-        const d = action.get("D", this.registry.resolve.bind(this.registry));
-        if (d) return this.parseDestination(d);
+        const d3 = action.get("D", this.registry.resolve.bind(this.registry));
+        if (d3) return this.parseDestination(d3);
       }
     }
     return null;
@@ -55592,11 +56860,11 @@ var PDFLinkAnnotation = class extends PDFAnnotation {
       const actionType = action.getName("S", this.registry.resolve.bind(this.registry))?.value;
       if (actionType === "GoToR") {
         const file = action.getString("F", this.registry.resolve.bind(this.registry))?.asString() ?? "";
-        const d = action.get("D", this.registry.resolve.bind(this.registry));
+        const d3 = action.get("D", this.registry.resolve.bind(this.registry));
         return {
           type: "gotoRemote",
           file,
-          destination: d ? this.parseDestination(d) : null
+          destination: d3 ? this.parseDestination(d3) : null
         };
       }
       if (actionType === "JavaScript" || actionType === "Launch" || actionType === "ImportData") console.warn(`Ignoring potentially dangerous action type: ${actionType}`);
@@ -55689,10 +56957,10 @@ var PDFPolyAnnotation = class extends PDFMarkupAnnotation {
     if (!verts) return [];
     const points = [];
     for (let i = 0; i < verts.length; i += 2) {
-      const x = verts.at(i);
+      const x2 = verts.at(i);
       const y = verts.at(i + 1);
-      if (x instanceof PdfNumber && y instanceof PdfNumber) points.push({
-        x: x.value,
+      if (x2 instanceof PdfNumber && y instanceof PdfNumber) points.push({
+        x: x2.value,
         y: y.value
       });
     }
@@ -55860,7 +57128,10 @@ var AnnotationFlattener = class {
         entry = this.registry.resolve(entry) ?? void 0;
       }
       if (entry instanceof PdfDict) annotDict = entry;
-      if (!annotDict) continue;
+      if (!annotDict) {
+        if (annotRef) refsToRemove.add(`${annotRef.objectNumber} ${annotRef.generation}`);
+        continue;
+      }
       if (isWidgetAnnotation(annotDict)) continue;
       if (isPopupAnnotation(annotDict)) continue;
       const subtypeName = annotDict.getName("Subtype")?.value;
@@ -56056,8 +57327,8 @@ var AnnotationFlattener = class {
   getAppearanceMatrix(appearance) {
     const matrixArray = appearance.getArray("Matrix", this.registry.resolve.bind(this.registry));
     if (!matrixArray || matrixArray.length < 6) return Matrix.identity();
-    const [a, b, c, d, e, f] = matrixArray.toArray().map((item) => item instanceof PdfNumber ? item.value : 0);
-    return new Matrix(a ?? 0, b ?? 0, c ?? 0, d ?? 0, e ?? 0, f ?? 0);
+    const [a, b, c, d3, e, f] = matrixArray.toArray().map((item) => item instanceof PdfNumber ? item.value : 0);
+    return new Matrix(a ?? 0, b ?? 0, c ?? 0, d3 ?? 0, e ?? 0, f ?? 0);
   }
   /**
   * Check if appearance stream has valid dimensions.
@@ -56555,6 +57826,7 @@ var ObjectRegistry = class {
   * @returns The object, or null if not found
   */
   resolve(ref) {
+    if (ref.objectNumber >= this._nextObjNum) this._nextObjNum = ref.objectNumber + 1;
     const existing = this.getObject(ref);
     if (existing !== null) return existing;
     if (this.resolver) {
@@ -56672,22 +57944,22 @@ var MARKER_SOF15 = 207;
 function isSOFMarker(marker) {
   return marker === MARKER_SOF0 || marker === MARKER_SOF1 || marker === MARKER_SOF2 || marker === MARKER_SOF3 || marker === MARKER_SOF5 || marker === MARKER_SOF6 || marker === MARKER_SOF7 || marker === MARKER_SOF9 || marker === MARKER_SOF10 || marker === MARKER_SOF11 || marker === MARKER_SOF13 || marker === MARKER_SOF14 || marker === MARKER_SOF15;
 }
-function parseJpegHeader(bytes2) {
-  if (bytes2.length < 2) throw new Error("Invalid JPEG: too short");
-  if (bytes2[0] !== 255 || bytes2[1] !== MARKER_SOI) throw new Error("Invalid JPEG: missing SOI marker");
+function parseJpegHeader(bytes) {
+  if (bytes.length < 2) throw new Error("Invalid JPEG: too short");
+  if (bytes[0] !== 255 || bytes[1] !== MARKER_SOI) throw new Error("Invalid JPEG: missing SOI marker");
   let offset = 2;
-  while (offset < bytes2.length - 1) {
-    if (bytes2[offset] !== 255) throw new Error(`Invalid JPEG: expected marker at offset ${offset}`);
-    while (offset < bytes2.length && bytes2[offset] === 255) offset++;
-    if (offset >= bytes2.length) throw new Error("Invalid JPEG: unexpected end of file");
-    const marker = bytes2[offset];
+  while (offset < bytes.length - 1) {
+    if (bytes[offset] !== 255) throw new Error(`Invalid JPEG: expected marker at offset ${offset}`);
+    while (offset < bytes.length && bytes[offset] === 255) offset++;
+    if (offset >= bytes.length) throw new Error("Invalid JPEG: unexpected end of file");
+    const marker = bytes[offset];
     offset++;
     if (isSOFMarker(marker)) {
-      if (offset + 7 > bytes2.length) throw new Error("Invalid JPEG: SOF segment too short");
-      const bitsPerComponent = bytes2[offset + 2];
-      const height = bytes2[offset + 3] << 8 | bytes2[offset + 4];
-      const width = bytes2[offset + 5] << 8 | bytes2[offset + 6];
-      const numComponents = bytes2[offset + 7];
+      if (offset + 7 > bytes.length) throw new Error("Invalid JPEG: SOF segment too short");
+      const bitsPerComponent = bytes[offset + 2];
+      const height = bytes[offset + 3] << 8 | bytes[offset + 4];
+      const width = bytes[offset + 5] << 8 | bytes[offset + 6];
+      const numComponents = bytes[offset + 7];
       let colorSpace;
       switch (numComponents) {
         case 1:
@@ -56710,15 +57982,15 @@ function parseJpegHeader(bytes2) {
       };
     }
     if (marker >= 208 && marker <= 217) continue;
-    if (offset + 1 >= bytes2.length) throw new Error("Invalid JPEG: unexpected end of file");
-    const segmentLength = bytes2[offset] << 8 | bytes2[offset + 1];
+    if (offset + 1 >= bytes.length) throw new Error("Invalid JPEG: unexpected end of file");
+    const segmentLength = bytes[offset] << 8 | bytes[offset + 1];
     if (segmentLength < 2) throw new Error(`Invalid JPEG: segment length ${segmentLength} is too small at offset ${offset}`);
     offset += segmentLength;
   }
   throw new Error("Invalid JPEG: no SOF marker found");
 }
-function isJpeg(bytes2) {
-  return bytes2.length >= 2 && bytes2[0] === 255 && bytes2[1] === MARKER_SOI;
+function isJpeg(bytes) {
+  return bytes.length >= 2 && bytes[0] === 255 && bytes[1] === MARKER_SOI;
 }
 var PDFImage = class {
   /** Image width in pixels */
@@ -56774,19 +58046,19 @@ var tRNS = 1951551059;
 var IDAT = 1229209940;
 var IEND = 1229278788;
 var MAX_PIXELS = 1e8;
-function parsePng(bytes2) {
-  if (!isPng(bytes2)) throw new Error("Invalid PNG: missing signature");
+function parsePng(bytes) {
+  if (!isPng(bytes)) throw new Error("Invalid PNG: missing signature");
   let offset = 8;
   let info = null;
   let palette = null;
   let transparency = null;
   const idatChunks = [];
-  while (offset < bytes2.length) {
-    if (offset + 8 > bytes2.length) throw new Error("Invalid PNG: unexpected end of file");
-    const length = readUint32BE(bytes2, offset);
-    const type = readUint32BE(bytes2, offset + 4);
-    if (offset + 12 + length > bytes2.length) throw new Error("Invalid PNG: chunk extends beyond file");
-    const data = bytes2.subarray(offset + 8, offset + 8 + length);
+  while (offset < bytes.length) {
+    if (offset + 8 > bytes.length) throw new Error("Invalid PNG: unexpected end of file");
+    const length = readUint32BE(bytes, offset);
+    const type = readUint32BE(bytes, offset + 4);
+    if (offset + 12 + length > bytes.length) throw new Error("Invalid PNG: chunk extends beyond file");
+    const data = bytes.subarray(offset + 8, offset + 8 + length);
     if (type === IHDR) info = parseIHDR(data);
     else if (type === PLTE) palette = data;
     else if (type === tRNS) transparency = data;
@@ -56902,34 +58174,34 @@ function unfilterAndExtract(data, info, palette, transparency) {
   }
   return { pixels: unfiltered };
 }
-function unfilterRow(filterType, current, prev, output2, bpp) {
+function unfilterRow(filterType, current, prev, output, bpp) {
   const len = current.length;
   switch (filterType) {
     case 0:
-      output2.set(current);
+      output.set(current);
       break;
     case 1:
       for (let i = 0; i < len; i++) {
-        const left = i >= bpp ? output2[i - bpp] : 0;
-        output2[i] = current[i] + left & 255;
+        const left = i >= bpp ? output[i - bpp] : 0;
+        output[i] = current[i] + left & 255;
       }
       break;
     case 2:
-      for (let i = 0; i < len; i++) output2[i] = current[i] + prev[i] & 255;
+      for (let i = 0; i < len; i++) output[i] = current[i] + prev[i] & 255;
       break;
     case 3:
       for (let i = 0; i < len; i++) {
-        const left = i >= bpp ? output2[i - bpp] : 0;
+        const left = i >= bpp ? output[i - bpp] : 0;
         const up = prev[i];
-        output2[i] = current[i] + Math.floor((left + up) / 2) & 255;
+        output[i] = current[i] + Math.floor((left + up) / 2) & 255;
       }
       break;
     case 4:
       for (let i = 0; i < len; i++) {
-        const left = i >= bpp ? output2[i - bpp] : 0;
+        const left = i >= bpp ? output[i - bpp] : 0;
         const up = prev[i];
         const upLeft = i >= bpp ? prev[i - bpp] : 0;
-        output2[i] = current[i] + paethPredictor(left, up, upLeft) & 255;
+        output[i] = current[i] + paethPredictor(left, up, upLeft) & 255;
       }
       break;
     default:
@@ -57048,9 +58320,9 @@ function concatenateChunks(chunks) {
   }
   return result;
 }
-function isPng(bytes2) {
-  if (bytes2.length < 8) return false;
-  for (let i = 0; i < 8; i++) if (bytes2[i] !== PNG_SIGNATURE[i]) return false;
+function isPng(bytes) {
+  if (bytes.length < 8) return false;
+  for (let i = 0; i < 8; i++) if (bytes[i] !== PNG_SIGNATURE[i]) return false;
   return true;
 }
 function refKey(ref) {
@@ -57337,7 +58609,7 @@ function parseEncryptionDict(dict) {
   const permissionsRaw = dict.getNumber("P")?.value;
   if (permissionsRaw === void 0) throw new EncryptionDictError("Missing /P (permissions) in encryption dictionary");
   const permissions = parsePermissions(permissionsRaw);
-  const encryptMetadata = dict.getBool("EncryptMetadata")?.value ?? true;
+  const encryptMetadata = parseEncryptMetadata(dict);
   let ownerEncryptionKey;
   let userEncryptionKey;
   let permsValue;
@@ -57386,6 +58658,12 @@ function parseEncryptionDict(dict) {
 }
 function validateVersionRevision(version2, revision) {
   if (!(version2 === 1 && revision === 2 || version2 === 2 && revision === 3 || version2 === 3 && revision === 3 || version2 === 4 && revision === 4 || version2 === 5 && (revision === 5 || revision === 6))) console.warn(`Unusual V/R combination: V=${version2}, R=${revision}`);
+}
+function parseEncryptMetadata(dict) {
+  const bool = dict.getBool("EncryptMetadata");
+  if (bool) return bool.value;
+  if (dict.getName("EncryptMetadata")?.value === "false") return false;
+  return true;
 }
 function isEncryptedTrailer(trailerDict) {
   return trailerDict.has("Encrypt");
@@ -57470,6 +58748,7 @@ function aesEcbDecrypt(key2, block) {
 function validateAesKey(key2) {
   if (key2.length !== 16 && key2.length !== 32) throw new Error(`AES key must be 16 (AES-128) or 32 (AES-256) bytes, got ${key2.length}`);
 }
+new Uint8Array(16);
 var RC4Cipher = class {
   /** Permutation table (256 bytes) */
   s;
@@ -57506,7 +58785,7 @@ var RC4Cipher = class {
   * @returns Processed bytes (same length as input)
   */
   process(data) {
-    const output2 = new Uint8Array(data.length);
+    const output = new Uint8Array(data.length);
     for (let k2 = 0; k2 < data.length; k2++) {
       this.i = this.i + 1 & 255;
       this.j = this.j + this.s[this.i] & 255;
@@ -57514,9 +58793,9 @@ var RC4Cipher = class {
       this.s[this.i] = this.s[this.j];
       this.s[this.j] = tmp;
       const keystreamByte = this.s[this.s[this.i] + this.s[this.j] & 255];
-      output2[k2] = data[k2] ^ keystreamByte;
+      output[k2] = data[k2] ^ keystreamByte;
     }
-    return output2;
+    return output;
   }
   /**
   * Reset the cipher to its initial state (after KSA).
@@ -57851,12 +59130,12 @@ function generateUserEntries(password, fileEncryptionKey, revision) {
   const validationSalt = randomBytes(8);
   const keySalt = randomBytes(8);
   const hash = computeHashForRevision(password, validationSalt, void 0, revision);
-  const u3 = new Uint8Array(48);
-  u3.set(hash, 0);
-  u3.set(validationSalt, 32);
-  u3.set(keySalt, 40);
+  const u = new Uint8Array(48);
+  u.set(hash, 0);
+  u.set(validationSalt, 32);
+  u.set(keySalt, 40);
   return {
-    u: u3,
+    u,
     ue: aesEncryptWithIv(computeHashForRevision(password, keySalt, void 0, revision), new Uint8Array(16), fileEncryptionKey, true)
   };
 }
@@ -58341,6 +59620,13 @@ var ObjectParser = class ObjectParser2 {
           hasStream: false
         };
       default:
+        if (this.recoveryMode) {
+          this.warn(`Unexpected keyword: ${value}, treating as null`);
+          return {
+            object: PdfNull.instance,
+            hasStream: false
+          };
+        }
         throw new ObjectParseError(`Unexpected keyword: ${value}`);
     }
   }
@@ -58500,9 +59786,14 @@ var ObjectParser = class ObjectParser2 {
 var IndirectObjectParser = class {
   scanner;
   lengthResolver;
-  constructor(scanner, lengthResolver) {
+  options;
+  constructor(scanner, lengthResolver, options = {}) {
     this.scanner = scanner;
     this.lengthResolver = lengthResolver;
+    this.options = options;
+  }
+  warn(message, position) {
+    this.options.onWarning?.(message, position);
   }
   /**
   * Parse indirect object at current scanner position.
@@ -58517,7 +59808,10 @@ var IndirectObjectParser = class {
     const genNum = genNumToken.value;
     const objKeyword = reader.nextToken();
     if (objKeyword.type !== "keyword" || objKeyword.value !== "obj") throw new ObjectParseError(`Expected 'obj' keyword, got ${objKeyword.type}`);
-    const result = new ObjectParser(reader).parseObject();
+    const objectParser = new ObjectParser(reader);
+    objectParser.recoveryMode = this.options.recoveryMode ?? false;
+    objectParser.onWarning = this.options.onWarning ?? null;
+    const result = objectParser.parseObject();
     if (result === null) throw new ObjectParseError("Expected object value");
     let value;
     if (result.hasStream) {
@@ -58554,18 +59848,37 @@ var IndirectObjectParser = class {
   readStream(dict) {
     this.skipStreamEOL();
     const startPos = this.scanner.position;
-    let length;
+    let length = -1;
     try {
       length = this.resolveLength(dict);
     } catch {
-      length = this.findEndStream(startPos);
-      if (length < 0) throw new ObjectParseError("Stream missing /Length and no endstream found");
+      length = -1;
     }
+    if (length >= 0 && !this.isEndstreamAt(startPos + length)) {
+      this.warn(`Stream /Length ${length} does not point at endstream, scanning for actual end`, startPos);
+      length = -1;
+    }
+    length = length < 0 ? this.findEndStream(startPos) : length;
+    if (length < 0) throw new ObjectParseError("Stream has no valid /Length and no endstream found");
     const data = this.scanner.bytes.subarray(startPos, startPos + length);
     this.scanner.moveTo(startPos + length);
     this.skipOptionalEOL();
     this.expectKeyword("endstream");
     return new PdfStream(dict, data);
+  }
+  /**
+  * Check whether the "endstream" keyword appears at the given position,
+  * allowing optional whitespace before it.
+  */
+  isEndstreamAt(pos) {
+    const bytes = this.scanner.bytes;
+    if (pos > bytes.length) return false;
+    let i = pos;
+    while (i < bytes.length && isWhitespace$3(bytes[i])) i++;
+    const keyword = "endstream";
+    if (i + 9 > bytes.length) return false;
+    for (let j2 = 0; j2 < 9; j2++) if (bytes[i + j2] !== keyword.charCodeAt(j2)) return false;
+    return true;
   }
   /**
   * Expect and consume a keyword at current scanner position.
@@ -58584,7 +59897,7 @@ var IndirectObjectParser = class {
     while (true) {
       const byte = this.scanner.peek();
       if (byte === -1) break;
-      if (byte === 32 || byte === 9 || byte === 10 || byte === 13) this.scanner.advance();
+      if (isWhitespace$3(byte)) this.scanner.advance();
       else break;
     }
   }
@@ -58615,8 +59928,8 @@ var IndirectObjectParser = class {
   * or -1 if not found.
   */
   findEndStream(startPos) {
-    const bytes2 = this.scanner.bytes;
-    const len = bytes2.length;
+    const bytes = this.scanner.bytes;
+    const len = bytes.length;
     const sig = [
       101,
       110,
@@ -58631,16 +59944,16 @@ var IndirectObjectParser = class {
     const sigLen = sig.length;
     for (let i = startPos; i <= len - sigLen; i++) {
       let match = true;
-      for (let j2 = 0; j2 < sigLen; j2++) if (bytes2[i + j2] !== sig[j2]) {
+      for (let j2 = 0; j2 < sigLen; j2++) if (bytes[i + j2] !== sig[j2]) {
         match = false;
         break;
       }
       if (match) {
         let end = i;
-        if (end > startPos && bytes2[end - 1] === 10) {
+        if (end > startPos && bytes[end - 1] === 10) {
           end--;
-          if (end > startPos && bytes2[end - 1] === 13) end--;
-        } else if (end > startPos && bytes2[end - 1] === 13) end--;
+          if (end > startPos && bytes[end - 1] === 13) end--;
+        } else if (end > startPos && bytes[end - 1] === 13) end--;
         return end - startPos;
       }
     }
@@ -58666,12 +59979,14 @@ var IndirectObjectParser = class {
 };
 var ObjectStreamParser = class {
   stream;
+  options;
   index = null;
   decodedData = null;
   first;
   n;
-  constructor(stream) {
+  constructor(stream, options = {}) {
     this.stream = stream;
+    this.options = options;
     const type = stream.getName("Type");
     if (type?.value !== "ObjStm") throw new ObjectParseError(`Expected /Type /ObjStm, got ${type?.value ?? "none"}`);
     const n = stream.getNumber("N");
@@ -58724,7 +60039,10 @@ var ObjectStreamParser = class {
     if (this.decodedData === null) throw new ObjectParseError("Decoded data not parsed");
     const scanner = new Scanner(this.decodedData.subarray(this.first));
     scanner.moveTo(entry.offset);
-    return new ObjectParser(new TokenReader(scanner)).parseObject()?.object ?? null;
+    const parser = new ObjectParser(new TokenReader(scanner));
+    parser.recoveryMode = this.options.recoveryMode ?? false;
+    parser.onWarning = this.options.onWarning ?? null;
+    return parser.parseObject()?.object ?? null;
   }
   /**
   * Get all objects in this stream.
@@ -58858,7 +60176,7 @@ var BruteForceParser = class {
   */
   tryReadObjectMarker() {
     const startPos = this.pos;
-    if (startPos > 0 && !isWhitespace$1(this.data[startPos - 1])) return null;
+    if (startPos > 0 && !isWhitespace$3(this.data[startPos - 1])) return null;
     const objNum = this.tryReadInteger();
     if (objNum === null) return null;
     if (!this.skipWhitespace()) return null;
@@ -58885,7 +60203,7 @@ var BruteForceParser = class {
     }
     if (this.pos < this.data.length) {
       const next = this.data[this.pos];
-      if (!isWhitespace$1(next) && !isDelimiter(next)) {
+      if (!isWhitespace$3(next) && !isDelimiter$1(next)) {
         this.pos = startPos;
         return null;
       }
@@ -58916,7 +60234,7 @@ var BruteForceParser = class {
   }
   skipWhitespace() {
     let skipped = false;
-    while (this.pos < this.data.length && isWhitespace$1(this.data[this.pos])) {
+    while (this.pos < this.data.length && isWhitespace$3(this.data[this.pos])) {
       this.pos++;
       skipped = true;
     }
@@ -59050,9 +60368,9 @@ var XRefParser = class {
   * Returns the byte offset where xref starts.
   */
   findStartXRef() {
-    const bytes2 = this.scanner.bytes;
-    let effectiveEnd = bytes2.length;
-    while (effectiveEnd > 0 && isWhitespace$1(bytes2[effectiveEnd - 1])) effectiveEnd--;
+    const bytes = this.scanner.bytes;
+    let effectiveEnd = bytes.length;
+    while (effectiveEnd > 0 && isWhitespace$3(bytes[effectiveEnd - 1])) effectiveEnd--;
     const searchStart = Math.max(0, effectiveEnd - 1024);
     let startxrefPos = -1;
     for (let i = effectiveEnd - 9; i >= searchStart; i--) if (this.matchesAt(i, "startxref")) {
@@ -59303,17 +60621,17 @@ var XRefParser = class {
   * Check if bytes at position match a string.
   */
   matchesAt(pos, str) {
-    const bytes2 = this.scanner.bytes;
-    for (let i = 0; i < str.length; i++) if (pos + i >= bytes2.length || bytes2[pos + i] !== str.charCodeAt(i)) return false;
+    const bytes = this.scanner.bytes;
+    for (let i = 0; i < str.length; i++) if (pos + i >= bytes.length || bytes[pos + i] !== str.charCodeAt(i)) return false;
     return true;
   }
   /**
   * Skip whitespace at given position, return new position.
   */
   skipWhitespace(pos) {
-    const bytes2 = this.scanner.bytes;
-    while (pos < bytes2.length) {
-      const byte = bytes2[pos];
+    const bytes = this.scanner.bytes;
+    while (pos < bytes.length) {
+      const byte = bytes[pos];
       if (byte === 32 || byte === 10 || byte === 13 || byte === 9) pos++;
       else break;
     }
@@ -59323,11 +60641,11 @@ var XRefParser = class {
   * Read an integer at given position.
   */
   readIntegerAt(pos) {
-    const bytes2 = this.scanner.bytes;
+    const bytes = this.scanner.bytes;
     let value = 0;
     let hasDigits = false;
-    while (pos < bytes2.length) {
-      const byte = bytes2[pos];
+    while (pos < bytes.length) {
+      const byte = bytes[pos];
       if (byte >= 48 && byte <= 57) {
         value = value * 10 + (byte - 48);
         hasDigits = true;
@@ -59456,8 +60774,8 @@ var DocumentParser = class {
   * - Default to 1.4 if version unparseable
   */
   parseHeader() {
-    const bytes2 = this.scanner.bytes;
-    const searchLimit = Math.min(bytes2.length, HEADER_SEARCH_LIMIT);
+    const bytes = this.scanner.bytes;
+    const searchLimit = Math.min(bytes.length, HEADER_SEARCH_LIMIT);
     let headerPos = -1;
     for (let i = 0; i <= searchLimit - PDF_HEADER.length; i++) if (this.matchesAt(i, PDF_HEADER)) {
       headerPos = i;
@@ -59473,8 +60791,8 @@ var DocumentParser = class {
     if (headerPos > 0) this.warnings.push(`PDF header found at offset ${headerPos} (expected 0)`);
     const versionStart = headerPos + PDF_HEADER.length;
     let version2 = "";
-    for (let i = 0; i < 7 && versionStart + i < bytes2.length; i++) {
-      const byte = bytes2[versionStart + i];
+    for (let i = 0; i < 7 && versionStart + i < bytes.length; i++) {
+      const byte = bytes[versionStart + i];
       if (byte <= 32) break;
       version2 += String.fromCharCode(byte);
     }
@@ -59553,6 +60871,13 @@ var DocumentParser = class {
   */
   buildDocument(version2, xref, trailer, recoveredViaBruteForce) {
     const cache = /* @__PURE__ */ new Map();
+    const lenient = this.options.lenient ?? true;
+    const recoveryOptions = {
+      recoveryMode: lenient,
+      onWarning: (message, position) => {
+        this.warnings.push(`Object parse warning at offset ${position}: ${message}`);
+      }
+    };
     const objectStreamCache = /* @__PURE__ */ new Map();
     let securityHandler = null;
     let encryptionDict = null;
@@ -59648,34 +60973,42 @@ var DocumentParser = class {
     };
     const getObject = (ref) => {
       const key2 = `${ref.objectNumber} ${ref.generation}`;
-      if (cache.has(key2)) return cache.get(key2);
+      if (cache.has(key2)) return cache.get(key2) ?? null;
       const entry = xref.get(ref.objectNumber);
       if (!entry) return null;
       let obj = null;
-      switch (entry.type) {
-        case "free":
-          return null;
-        case "uncompressed": {
-          const result = new IndirectObjectParser(this.scanner, lengthResolver).parseObjectAt(entry.offset);
-          if (result.genNum !== ref.generation) this.warnings.push(`Generation mismatch for object ${ref.objectNumber}: expected ${ref.generation}, got ${result.genNum}`);
-          obj = result.value;
-          if (securityHandler?.isAuthenticated) obj = decryptObject(obj, ref.objectNumber, ref.generation);
-          break;
-        }
-        case "compressed": {
-          let streamParser = objectStreamCache.get(entry.streamObjNum);
-          if (!streamParser) {
-            const streamObj = getObject(PdfRef.of(entry.streamObjNum, 0));
-            if (!streamObj || !(streamObj instanceof PdfStream)) {
-              this.warnings.push(`Object stream ${entry.streamObjNum} not found or invalid`);
-              return null;
-            }
-            streamParser = new ObjectStreamParser(streamObj);
-            objectStreamCache.set(entry.streamObjNum, streamParser);
+      try {
+        switch (entry.type) {
+          case "free":
+            return null;
+          case "uncompressed": {
+            const result = new IndirectObjectParser(this.scanner, lengthResolver, recoveryOptions).parseObjectAt(entry.offset);
+            if (result.genNum !== ref.generation) this.warnings.push(`Generation mismatch for object ${ref.objectNumber}: expected ${ref.generation}, got ${result.genNum}`);
+            obj = result.value;
+            if (securityHandler?.isAuthenticated) obj = decryptObject(obj, ref.objectNumber, ref.generation);
+            break;
           }
-          obj = streamParser.getObject(entry.indexInStream);
-          break;
+          case "compressed": {
+            let streamParser = objectStreamCache.get(entry.streamObjNum);
+            if (!streamParser) {
+              const streamObj = getObject(PdfRef.of(entry.streamObjNum, 0));
+              if (!streamObj || !(streamObj instanceof PdfStream)) {
+                this.warnings.push(`Object stream ${entry.streamObjNum} not found or invalid`);
+                return null;
+              }
+              streamParser = new ObjectStreamParser(streamObj, recoveryOptions);
+              objectStreamCache.set(entry.streamObjNum, streamParser);
+            }
+            obj = streamParser.getObject(entry.indexInStream);
+            break;
+          }
         }
+      } catch (error) {
+        if (!lenient) throw error;
+        const message = error instanceof Error ? error.message : String(error);
+        this.warnings.push(`Failed to parse object ${key2}: ${message}`);
+        cache.set(key2, null);
+        return null;
       }
       if (obj !== null) cache.set(key2, obj);
       return obj;
@@ -59760,8 +61093,8 @@ var DocumentParser = class {
   * Check if bytes at position match a pattern.
   */
   matchesAt(pos, pattern) {
-    const bytes2 = this.scanner.bytes;
-    for (let i = 0; i < pattern.length; i++) if (pos + i >= bytes2.length || bytes2[pos + i] !== pattern[i]) return false;
+    const bytes = this.scanner.bytes;
+    for (let i = 0; i < pattern.length; i++) if (pos + i >= bytes.length || bytes[pos + i] !== pattern[i]) return false;
     return true;
   }
 };
@@ -59777,8 +61110,8 @@ function generateEncryption(options) {
   const permissionsRaw = encodePermissions(permissions);
   const encryptMetadata = options.encryptMetadata ?? true;
   const fileEncryptionKey = randomBytes(32);
-  const { u: u3, ue } = generateUserEntries(userPassword, fileEncryptionKey, 6);
-  const { o, oe } = generateOwnerEntries(ownerPassword, fileEncryptionKey, u3, 6);
+  const { u, ue } = generateUserEntries(userPassword, fileEncryptionKey, 6);
+  const { o, oe } = generateOwnerEntries(ownerPassword, fileEncryptionKey, u, 6);
   const perms = generatePermsEntry(fileEncryptionKey, permissionsRaw, encryptMetadata);
   const id1 = randomBytes(16);
   const fileId = [id1, randomBytes(16)];
@@ -59788,7 +61121,7 @@ function generateEncryption(options) {
     R: PdfNumber.of(6),
     Length: PdfNumber.of(256),
     O: PdfString.fromBytes(o),
-    U: PdfString.fromBytes(u3),
+    U: PdfString.fromBytes(u),
     OE: PdfString.fromBytes(oe),
     UE: PdfString.fromBytes(ue),
     P: PdfNumber.of(permissionsRaw),
@@ -59801,14 +61134,14 @@ function generateEncryption(options) {
     StmF: PdfName.of("StdCF"),
     StrF: PdfName.of("StdCF")
   });
-  if (!encryptMetadata) encryptDict.set("EncryptMetadata", PdfName.of("false"));
+  if (!encryptMetadata) encryptDict.set("EncryptMetadata", PdfBool.FALSE);
   const securityHandler = new StandardSecurityHandler({
     filter: "Standard",
     version: 5,
     revision: 6,
     keyLengthBits: 256,
     ownerHash: o,
-    userHash: u3,
+    userHash: u,
     permissions,
     permissionsRaw,
     encryptMetadata,
@@ -59832,8 +61165,8 @@ function generateEncryption(options) {
   };
 }
 function generateRandomPassword() {
-  const bytes2 = randomBytes(32);
-  return Array.from(bytes2).map((b) => b.toString(16).padStart(2, "0")).join("");
+  const bytes = randomBytes(32);
+  return Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 function reconstructEncryptDict(encryption) {
   const dict = PdfDict.of({
@@ -59860,7 +61193,7 @@ function reconstructEncryptDict(encryption) {
   }
   if (encryption.streamFilter) dict.set("StmF", PdfName.of(encryption.streamFilter));
   if (encryption.stringFilter) dict.set("StrF", PdfName.of(encryption.stringFilter));
-  if (!encryption.encryptMetadata) dict.set("EncryptMetadata", PdfName.of("false"));
+  if (!encryption.encryptMetadata) dict.set("EncryptMetadata", PdfBool.FALSE);
   return dict;
 }
 function groupIntoSubsections(entries) {
@@ -59935,12 +61268,12 @@ function calculateFieldWidths(entries) {
   ];
 }
 function encodeNumber(value, width) {
-  const bytes2 = new Uint8Array(width);
+  const bytes = new Uint8Array(width);
   for (let i = width - 1; i >= 0; i--) {
-    bytes2[i] = value & 255;
+    bytes[i] = value & 255;
     value = Math.floor(value / 256);
   }
-  return bytes2;
+  return bytes;
 }
 function encodeXRefStreamData(entries, widths) {
   const [w1, w2, w3] = widths;
@@ -60057,7 +61390,11 @@ function renumberRef(ref, renumberMap) {
   return PdfRef.of(newNum, ref.generation);
 }
 function renumberRefs(obj, renumberMap) {
-  if (obj instanceof PdfRef) return renumberRef(obj, renumberMap);
+  if (obj instanceof PdfRef) {
+    const newNum = renumberMap.get(obj.objectNumber);
+    if (newNum === void 0) return PdfNull.instance;
+    return PdfRef.of(newNum, obj.generation);
+  }
   if (obj instanceof PdfStream) {
     const renumbered = new PdfStream([], obj.data);
     for (const [key2, value] of obj) renumbered.set(key2.value, renumberRefs(value, renumberMap));
@@ -61472,8 +62809,8 @@ var TTFSubsetter = class {
     if (name) tables.set("name", name);
     if (post) tables.set("post", post);
     for (const tag of this.font.getTableTags()) if (!tables.has(tag) && (!this.keepTables || this.keepTables.includes(tag))) {
-      const bytes2 = this.font.getTableBytes(tag);
-      if (bytes2) tables.set(tag, bytes2);
+      const bytes = this.font.getTableBytes(tag);
+      if (bytes) tables.set(tag, bytes);
     }
     const sortedTables = new Map([...tables.entries()].sort((a, b) => a[0].localeCompare(b[0])));
     const numTables = sortedTables.size;
@@ -61919,10 +63256,10 @@ var TTFSubsetter = class {
     for (const record of filteredRecords) {
       let value = record.string;
       if (record.nameId === 6 && this.prefix) value = this.prefix + value;
-      const bytes2 = new Uint8Array(value.length * 2);
-      const view2 = new DataView(bytes2.buffer);
+      const bytes = new Uint8Array(value.length * 2);
+      const view2 = new DataView(bytes.buffer);
       for (let i = 0; i < value.length; i++) view2.setUint16(i * 2, value.charCodeAt(i));
-      encodedStrings.push(bytes2);
+      encodedStrings.push(bytes);
     }
     const numRecords = filteredRecords.length;
     const headerSize = 6 + numRecords * 12;
@@ -63404,7 +64741,7 @@ var PDFPageTree = class PDFPageTree2 {
         pages.push(ref);
         loadedPages.set(key2, node);
       } else if (type === "Pages") {
-        const kids = node.getArray("Kids");
+        const kids = node.getArray("Kids", getObject);
         if (kids) for (let i = 0; i < kids.length; i++) {
           const kid = kids.at(i);
           if (kid instanceof PdfRef) walk(kid);
@@ -63632,10 +64969,10 @@ var CAdESDetachedBuilder = class {
   * being serialized to DER.
   */
   async create(options) {
-    const { signer, documentHash, digestAlgorithm, signingTime } = options;
+    const { signer, documentHash, digestAlgorithm } = options;
     const signerCert = parseCertificate$1(signer.certificate);
     const allCerts = [signerCert, ...(signer.certificateChain ?? []).map(parseCertificate$1)];
-    const signedAttrs = await this.buildSignedAttributes(documentHash, digestAlgorithm, signer, signerCert, signingTime);
+    const signedAttrs = await this.buildSignedAttributes(documentHash, digestAlgorithm, signerCert);
     const signedAttrsForSigning = encodeSignedAttributesForSigning(signedAttrs);
     this.signatureValue = await signer.sign(new Uint8Array(signedAttrsForSigning), digestAlgorithm);
     this.signerInfo = new SignerInfo({
@@ -63685,18 +65022,18 @@ var CAdESDetachedBuilder = class {
   }
   /**
   * Build the signed attributes for CAdES signature.
+  *
+  * Deliberately omitted, per ETSI EN 319 142-1 Table 1 / clause 6.3:
+  * - signing-time: "shall not be present" at every level; /M carries it.
+  * - cms-algorithm-protection: defined in EN 319 122-1 §5.2.13 but not
+  *   listed in Table 1, and 6.3 forbids any such 122-1 attribute.
   */
-  async buildSignedAttributes(documentHash, digestAlgorithm, signer, signerCert, signingTime) {
+  async buildSignedAttributes(documentHash, digestAlgorithm, signerCert) {
     const attrs = [];
     attrs.push(new Attribute({
       type: OID_CONTENT_TYPE,
       values: [new ObjectIdentifier({ value: OID_DATA })]
     }));
-    if (signingTime) attrs.push(new Attribute({
-      type: OID_SIGNING_TIME,
-      values: [new UTCTime({ valueDate: signingTime })]
-    }));
-    attrs.push(buildCMSAlgorithmProtection(digestAlgorithm, signer));
     attrs.push(new Attribute({
       type: OID_MESSAGE_DIGEST,
       values: [new OctetString({ valueHex: toArrayBuffer(documentHash) })]
@@ -63900,7 +65237,8 @@ var DSSBuilder = class DSSBuilder2 {
         const ocspHashes = await builder.extractRefHashes(entry, "OCSP", builder.ocspMap);
         const crlHashes = await builder.extractRefHashes(entry, "CRL", builder.crlMap);
         let timestamp;
-        if (entry.getString("TU", resolve)) timestamp = /* @__PURE__ */ new Date();
+        const tuVal = entry.getString("TU", resolve);
+        if (tuVal) timestamp = parsePdfDate(tuVal.asString());
         builder.vriEntries.set(key2.value.toUpperCase(), {
           certHashes,
           ocspHashes,
@@ -64229,7 +65567,7 @@ var PKCS12KDF = class PKCS12KDF2 {
   * @returns Derived key material
   */
   static derive(password, salt, iterations, purpose, length) {
-    const D2 = new Uint8Array(PKCS12KDF2.BLOCK_SIZE).fill(purpose);
+    const D = new Uint8Array(PKCS12KDF2.BLOCK_SIZE).fill(purpose);
     const S2 = new Uint8Array(PKCS12KDF2.BLOCK_SIZE * Math.ceil(salt.length / PKCS12KDF2.BLOCK_SIZE));
     for (let i = 0; i < S2.length; i++) S2[i] = salt[i % salt.length];
     const P3 = new Uint8Array(PKCS12KDF2.BLOCK_SIZE * Math.ceil(password.length / PKCS12KDF2.BLOCK_SIZE));
@@ -64238,7 +65576,7 @@ var PKCS12KDF = class PKCS12KDF2 {
     const result = new Uint8Array(length);
     let offset = 0;
     while (offset < length) {
-      let A = sha1(concatBytes2([D2, I3]));
+      let A = sha1(concatBytes2([D, I3]));
       for (let i = 1; i < iterations; i++) A = sha1(A);
       const toCopy = Math.min(PKCS12KDF2.HASH_SIZE, length - offset);
       result.set(A.subarray(0, toCopy), offset);
@@ -65552,19 +66890,19 @@ function rotateLeft28(val, shifts) {
 function generateSubkeys(key2) {
   const pc1 = permute(key2, PC1);
   let C = (pc1[0] << 20 | pc1[1] << 12 | pc1[2] << 4 | pc1[3] >> 4) & 268435455;
-  let D2 = ((pc1[3] & 15) << 24 | pc1[4] << 16 | pc1[5] << 8 | pc1[6]) & 268435455;
+  let D = ((pc1[3] & 15) << 24 | pc1[4] << 16 | pc1[5] << 8 | pc1[6]) & 268435455;
   const subkeys = [];
   for (let i = 0; i < 16; i++) {
     C = rotateLeft28(C, SHIFTS[i]);
-    D2 = rotateLeft28(D2, SHIFTS[i]);
+    D = rotateLeft28(D, SHIFTS[i]);
     const CD = new Uint8Array(7);
     CD[0] = C >> 20 & 255;
     CD[1] = C >> 12 & 255;
     CD[2] = C >> 4 & 255;
-    CD[3] = (C << 4 | D2 >> 24) & 255;
-    CD[4] = D2 >> 16 & 255;
-    CD[5] = D2 >> 8 & 255;
-    CD[6] = D2 & 255;
+    CD[3] = (C << 4 | D >> 24) & 255;
+    CD[4] = D >> 16 & 255;
+    CD[5] = D >> 8 & 255;
+    CD[6] = D & 255;
     subkeys.push(permute(CD, PC2));
   }
   return subkeys;
@@ -65712,9 +67050,10 @@ var CryptoEngine2 = class extends CryptoEngine {
   /**
   * Override digest to normalize algorithm names.
   * Web Crypto expects "SHA-256" but some code passes "SHA256".
+  * `algorithm` might be passed either as string or { name: string } by pkijs
   */
   async digest(algorithm, data) {
-    const normalizedAlgorithm = { ...algorithm };
+    const normalizedAlgorithm = typeof algorithm === "string" ? { name: algorithm } : { ...algorithm };
     if (normalizedAlgorithm.name && !normalizedAlgorithm.name.includes("-")) {
       const match = normalizedAlgorithm.name.match(/^(SHA|MD)(\d+)$/i);
       if (match) normalizedAlgorithm.name = `${match[1].toUpperCase()}-${match[2]}`;
@@ -66103,19 +67442,19 @@ var LtvDataGatherer = class {
   * Instead of blindly removing trailing zeros (which could be valid DER data),
   * we parse the DER length prefix to determine the actual content length.
   */
-  stripZeroPadding(bytes2) {
-    if (bytes2.length < 2) return bytes2;
-    const lengthByte = bytes2[1];
+  stripZeroPadding(bytes) {
+    if (bytes.length < 2) return bytes;
+    const lengthByte = bytes[1];
     if (lengthByte < 128) {
       const totalLength2 = 2 + lengthByte;
-      return bytes2.subarray(0, Math.min(totalLength2, bytes2.length));
+      return bytes.subarray(0, Math.min(totalLength2, bytes.length));
     }
     const numLengthBytes = lengthByte & 127;
-    if (numLengthBytes === 0 || numLengthBytes > 4 || 2 + numLengthBytes > bytes2.length) return bytes2;
+    if (numLengthBytes === 0 || numLengthBytes > 4 || 2 + numLengthBytes > bytes.length) return bytes;
     let contentLength = 0;
-    for (let i = 0; i < numLengthBytes; i++) contentLength = contentLength << 8 | bytes2[2 + i];
+    for (let i = 0; i < numLengthBytes; i++) contentLength = contentLength << 8 | bytes[2 + i];
     const totalLength = 2 + numLengthBytes + contentLength;
-    return bytes2.subarray(0, Math.min(totalLength, bytes2.length));
+    return bytes.subarray(0, Math.min(totalLength, bytes.length));
   }
   /**
   * Parse CMS SignedData and extract embedded certificates.
@@ -66267,9 +67606,9 @@ var PdfRaw = class PdfRaw2 {
   type = "raw";
   /** The raw bytes to write */
   bytes;
-  constructor(bytes2) {
-    if (typeof bytes2 === "string") this.bytes = new TextEncoder().encode(bytes2);
-    else this.bytes = bytes2;
+  constructor(bytes) {
+    if (typeof bytes === "string") this.bytes = new TextEncoder().encode(bytes);
+    else this.bytes = bytes;
   }
   /**
   * Create from an ASCII string.
@@ -66286,7 +67625,6 @@ var PdfRaw = class PdfRaw2 {
 };
 var DEFAULT_PLACEHOLDER_SIZE = 12288;
 var BYTE_RANGE_VALUE_PLACEHOLDER = "[0 ********** ********** **********]";
-`${BYTE_RANGE_VALUE_PLACEHOLDER}`;
 function createByteRangePlaceholderObject() {
   return PdfRaw.fromString(BYTE_RANGE_VALUE_PLACEHOLDER);
 }
@@ -66400,7 +67738,7 @@ var PDFSignature = class {
     const mdpWarning = this.checkMdpViolation();
     if (mdpWarning) warnings.push(mdpWarning);
     const firstPageRef = this.pdf.context.pages.getPage(0);
-    if (!firstPageRef) throw new Error("Document has no pages - cannot create signature field");
+    if (!firstPageRef) throw new SignatureError("NO_PAGES", "Document has no pages - cannot create signature field");
     const signatureDict = PdfDict.of({
       Type: PdfName.of("Sig"),
       Filter: PdfName.of("Adobe.PPKLite"),
@@ -66413,10 +67751,12 @@ var PDFSignature = class {
     if (resolved.location) signatureDict.set("Location", PdfString.fromString(escapePdfString(resolved.location)));
     if (resolved.contactInfo) signatureDict.set("ContactInfo", PdfString.fromString(escapePdfString(resolved.contactInfo)));
     const signatureRef = this.pdf.context.registry.register(signatureDict);
-    this.findOrCreateSignatureField({
+    this.prepareSignatureField({
       fieldName: resolved.fieldName,
       pageRef: firstPageRef,
-      signatureRef
+      valueRef: signatureRef,
+      namePrefix: "Signature_",
+      reuseFirstEmpty: true
     });
     const pdfBytes = await this.pdf.save({ incremental: true });
     const placeholders = findPlaceholders(pdfBytes);
@@ -66447,11 +67787,13 @@ var PDFSignature = class {
     if (ltvData) {
       await this.addDss(ltvData);
       if (resolved.archivalTimestamp && resolved.timestampAuthority) {
-        const docTsToken = await this.addDocumentTimestamp(resolved.timestampAuthority, resolved.digestAlgorithm);
-        if (docTsToken) {
-          const docTsLtvData = await this.gatherTimestampLtvData(docTsToken, resolved.revocationProvider, warnings);
-          if (docTsLtvData) await this.addDss(docTsLtvData);
-        }
+        const paddedTimestampBytes = await this.placeDocumentTimestamp({
+          timestampAuthority: resolved.timestampAuthority,
+          digestAlgorithm: resolved.digestAlgorithm,
+          estimatedSize: DEFAULT_PLACEHOLDER_SIZE
+        });
+        const docTsLtvData = await this.gatherTimestampLtvData(paddedTimestampBytes, resolved.revocationProvider, warnings);
+        if (docTsLtvData) await this.addDss(docTsLtvData);
       }
     }
     return {
@@ -66460,31 +67802,41 @@ var PDFSignature = class {
     };
   }
   /**
-  * Find or create a signature field.
+  * Find or create the /FT /Sig field that will hold a signature or document
+  * timestamp value, then convert it to the merged field+widget model
+  * (the invisible widget pattern used for all signatures in this library).
+  *
+  * Lookup behavior:
+  * - `fieldName` provided + matches an unsigned signature field -> reuse
+  * - `fieldName` provided + matches a signed signature field    -> throw
+  * - `fieldName` provided + matches a non-signature field       -> throw
+  * - `fieldName` provided + no match                            -> create
+  * - `fieldName` omitted + `reuseFirstEmpty`                    -> reuse first
+  *   empty signature field, or create with `<namePrefix>N`
+  * - `fieldName` omitted otherwise                              -> create with
+  *   `<namePrefix>N`
   */
-  findOrCreateSignatureField(options) {
-    const { fieldName, pageRef, signatureRef } = options;
+  prepareSignatureField(options) {
+    const { fieldName, pageRef, valueRef, namePrefix, reuseFirstEmpty } = options;
     const form = this.pdf.getOrCreateForm();
     const existingNames = /* @__PURE__ */ new Set();
     let fieldDict;
-    const fields = form.getFields();
-    for (const field of fields) {
+    for (const field of form.getFields()) {
       existingNames.add(field.name);
       if (fieldName && field.name === fieldName) {
-        if (field instanceof SignatureField) {
-          if (field.isSigned()) throw new Error(`Signature field "${fieldName}" is already signed`);
-          fieldDict = field.getDict();
-          break;
-        }
-        throw new Error(`Field "${fieldName}" exists but is not a signature field`);
+        if (!(field instanceof SignatureField)) throw new SignatureError("FIELD_NOT_SIGNATURE", `Field "${fieldName}" exists but is not a signature field`);
+        if (field.isSigned()) throw new SignatureError("FIELD_ALREADY_SIGNED", `Signature field "${fieldName}" is already signed`);
+        fieldDict = field.getDict();
+        break;
       }
-      if (!fieldName && field instanceof SignatureField && !field.isSigned()) {
+      if (!fieldName && reuseFirstEmpty && field instanceof SignatureField && !field.isSigned()) {
         fieldDict = field.getDict();
         break;
       }
     }
-    if (!fieldDict) fieldDict = form.createSignatureField(fieldName ?? generateUniqueName(existingNames, "Signature_")).getDict();
-    fieldDict.set("V", signatureRef);
+    if (!fieldDict) fieldDict = form.createSignatureField(fieldName ?? generateUniqueName(existingNames, namePrefix)).getDict();
+    fieldDict.set("V", valueRef);
+    this.removeWidgetKidsFromPages(fieldDict);
     fieldDict.delete("Kids");
     fieldDict.set("Type", PdfName.of("Annot"));
     fieldDict.set("Subtype", PdfName.of("Widget"));
@@ -66496,6 +67848,31 @@ var PDFSignature = class {
       PdfNumber.of(0),
       PdfNumber.of(0)
     ]));
+  }
+  /**
+  * Remove a field's widget kids from every page's /Annots array.
+  *
+  * Merging a field with widget kids into a single field+widget object would
+  * otherwise leave those widgets referenced from page /Annots while no
+  * longer being listed in the field's /Kids - an inconsistent structure
+  * that confuses viewers.
+  */
+  removeWidgetKidsFromPages(fieldDict) {
+    const registry = this.pdf.context.registry;
+    const resolve = registry.resolve.bind(registry);
+    const kids = fieldDict.getArray("Kids", resolve);
+    if (!kids || kids.length === 0) return;
+    const kidKeys = /* @__PURE__ */ new Set();
+    for (const kid of kids) if (kid instanceof PdfRef) kidKeys.add(`${kid.objectNumber} ${kid.generation}`);
+    if (kidKeys.size === 0) return;
+    for (const page of this.pdf.getPages()) {
+      const annots = page.dict.getArray("Annots", resolve);
+      if (!annots) continue;
+      for (let i = annots.length - 1; i >= 0; i--) {
+        const item = annots.at(i);
+        if (item instanceof PdfRef && kidKeys.has(`${item.objectNumber} ${item.generation}`)) annots.remove(i);
+      }
+    }
   }
   /**
   * Check for MDP (certification signature) violations.
@@ -66528,31 +67905,258 @@ var PDFSignature = class {
   async addDss(ltvData) {
     const registry = this.pdf.context.registry;
     const catalogDict = this.pdf.getCatalog();
-    if (!catalogDict) throw new Error("Document has no catalog");
     const dssBuilder = await DSSBuilder.fromCatalog(catalogDict, registry);
     await dssBuilder.addLtvData(ltvData);
     const dssRef = dssBuilder.build();
     catalogDict.set("DSS", dssRef);
-    const savedBytes = await this.pdf.save({ incremental: true });
-    await this.pdf.reload(savedBytes);
+    await this.saveAndReload();
   }
   /**
-  * Add a document timestamp for archival (B-LTA).
-  *
-  * Creates a document timestamp signature that covers the entire document
-  * including previous signatures and DSS data.
-  *
-  * After adding the timestamp, the PDF is reloaded with the updated bytes.
-  *
-  * @param timestampAuthority The timestamp authority to use
-  * @param digestAlgorithm Digest algorithm (defaults to SHA-256)
-  * @returns The timestamp token bytes (for gathering LTV data)
+  * Save incrementally and reload the PDF instance so it reflects the saved
+  * bytes. Skips the reload (a full re-parse) when nothing was written -
+  * `save()` short-circuits and returns the current bytes in that case.
   */
-  async addDocumentTimestamp(timestampAuthority, digestAlgorithm = "SHA-256") {
-    const estimatedSize = DEFAULT_PLACEHOLDER_SIZE;
-    const registry = this.pdf.context.registry;
+  async saveAndReload() {
+    const hadChanges = this.pdf.hasChanges();
+    const bytes = await this.pdf.save({ incremental: true });
+    if (hadChanges) await this.pdf.reload(bytes);
+    return bytes;
+  }
+  /**
+  * Throw when the document cannot be saved incrementally.
+  *
+  * Timestamping and validation-data updates exist to extend documents that
+  * already carry signatures. A silent fall back to a full rewrite would
+  * change every byte offset and invalidate all existing signatures, so we
+  * refuse up front instead.
+  */
+  ensureIncrementalSave(operation) {
+    const blocker = this.pdf.canSaveIncrementally();
+    if (blocker) throw new SignatureError("INCREMENTAL_SAVE_BLOCKED", `${operation} requires an incremental save to preserve existing signatures, but incremental save is not possible (${blocker}). Save the document with a full rewrite first, reload it, and retry.`);
+  }
+  /**
+  * Add an archival document timestamp to the PDF.
+  *
+  * Creates a `/Type /DocTimeStamp` signature whose ByteRange covers the
+  * entire current document, extending the validity of any prior signatures.
+  * This is the timestamping step used at the end of a PAdES B-LTA flow
+  * when signatures have been appended.
+  *
+  * Does **not** gather validation data for pre-existing signatures - use
+  * `addValidationData()` for that, or `addArchivalData()` to do both in
+  * one call.
+  *
+  * The PDF instance is reloaded with the updated bytes, so subsequent
+  * calls (e.g. another `addTimestamp()`) operate on the timestamped state.
+  *
+  * If this method throws after partial progress (e.g. the TSA request
+  * fails), the in-memory PDF instance may be out of sync with its bytes.
+  * Discard the instance and reload from the last known-good bytes.
+  *
+  * @param options Timestamping options including the TSA
+  * @returns The PDF bytes with the timestamp embedded, plus any warnings
+  *
+  * @example
+  * ```typescript
+  * // Append an archival timestamp to an already-signed PDF.
+  * const tsa = new HttpTimestampAuthority("https://freetsa.org/tsr");
+  * const { bytes } = await pdf.addTimestamp({
+  *   timestampAuthority: tsa,
+  *   longTermValidation: true,
+  * });
+  * ```
+  */
+  async addTimestamp(options) {
+    if (!options.timestampAuthority) throw new SignatureError("INVALID_OPTIONS", "addTimestamp() requires a timestampAuthority");
+    this.ensureIncrementalSave("addTimestamp()");
+    return this.addTimestampInternal(options);
+  }
+  /**
+  * Implementation of `addTimestamp()`, with an optional shared gatherer so
+  * `addArchivalData()` can reuse OCSP/CRL/AIA results fetched while
+  * gathering validation data for existing signatures.
+  */
+  async addTimestampInternal(options, gatherer) {
+    const warnings = [];
+    const digestAlgorithm = options.digestAlgorithm ?? "SHA-256";
+    const estimatedSize = options.estimatedSize ?? 12288;
+    const longTermValidation = options.longTermValidation ?? false;
+    const paddedTimestampBytes = await this.placeDocumentTimestamp({
+      timestampAuthority: options.timestampAuthority,
+      digestAlgorithm,
+      estimatedSize,
+      fieldName: options.fieldName
+    });
+    if (longTermValidation) {
+      const ltvData = await this.gatherTimestampLtvData(paddedTimestampBytes, options.revocationProvider, warnings, gatherer);
+      if (ltvData) await this.addDss(ltvData);
+    }
+    return {
+      bytes: await this.saveAndReload(),
+      warnings
+    };
+  }
+  /**
+  * Gather LTV (Long-Term Validation) data for every signed signature
+  * field currently in the document and write it as a single DSS
+  * incremental update.
+  *
+  * This upgrades the validation grade of every existing signature in the
+  * document — turning B-T signatures into B-LT and ensuring document
+  * timestamps have their TSA chain embedded for offline validation.
+  * Validation data is fetched once per issuer (shared OCSP/CRL cache)
+  * and merged with any existing DSS, deduplicating certs/OCSP/CRL.
+  *
+  * Does **not** add a timestamp - use `addTimestamp()` for that, or
+  * `addArchivalData()` to do both in one call.
+  *
+  * Safe to call on a document with no signatures (returns
+  * `signatureCount: 0`, no DSS update written).
+  *
+  * If this method throws after partial progress, the in-memory PDF
+  * instance may be out of sync with its bytes. Discard the instance and
+  * reload from the last known-good bytes.
+  *
+  * @example
+  * ```typescript
+  * // After every recipient has signed (B-T), upgrade all sigs to B-LT.
+  * await pdf.addValidationData();
+  * ```
+  */
+  async addValidationData(options = {}) {
+    this.ensureIncrementalSave("addValidationData()");
+    const gatherer = new LtvDataGatherer({ revocationProvider: options.revocationProvider ?? new DefaultRevocationProvider() });
+    return this.addValidationDataInternal(gatherer);
+  }
+  /**
+  * Implementation of `addValidationData()`, with the gatherer injected so
+  * `addArchivalData()` can share one OCSP/CRL cache across both its
+  * validation-data and timestamp steps.
+  */
+  async addValidationDataInternal(gatherer) {
+    const warnings = [];
+    const signedFields = this.pdf.getForm()?.getSignatureFields().filter((field) => field.isSigned()) ?? [];
+    if (signedFields.length === 0) return {
+      bytes: await this.saveAndReload(),
+      warnings,
+      signatureCount: 0
+    };
+    const catalogDict = this.pdf.getCatalog();
+    const builder = await DSSBuilder.fromCatalog(catalogDict, this.pdf.context.registry);
+    let processed = 0;
+    for (const field of signedFields) {
+      const sigDict = field.getSignatureDict();
+      if (!sigDict) {
+        warnings.push({
+          code: "LTV_GATHER_FAILED",
+          message: `Signature field "${field.name}" has no /V dictionary`
+        });
+        continue;
+      }
+      const contents = sigDict.get("Contents");
+      if (!(contents instanceof PdfString)) {
+        warnings.push({
+          code: "LTV_GATHER_FAILED",
+          message: `Signature field "${field.name}" has no /Contents string`
+        });
+        continue;
+      }
+      try {
+        const ltvData = await gatherer.gather(contents.bytes);
+        for (const w of ltvData.warnings) warnings.push({
+          code: w.code,
+          message: `${field.name}: ${w.message}`
+        });
+        await builder.addLtvData(ltvData);
+        processed += 1;
+      } catch (error) {
+        warnings.push({
+          code: "LTV_GATHER_FAILED",
+          message: `Could not gather LTV for "${field.name}": ${error instanceof Error ? error.message : String(error)}`
+        });
+      }
+    }
+    if (processed === 0) return {
+      bytes: await this.saveAndReload(),
+      warnings,
+      signatureCount: 0
+    };
+    const dssRef = builder.build();
+    catalogDict.set("DSS", dssRef);
+    return {
+      bytes: await this.saveAndReload(),
+      warnings,
+      signatureCount: processed
+    };
+  }
+  /**
+  * Finalize the document with full PAdES B-LTA semantics in a single
+  * call: gather LTV for every existing signature, write a DSS update,
+  * add an archival `/DocTimeStamp`, then add a second DSS update for
+  * the timestamp's own certificate chain.
+  *
+  * Equivalent to:
+  *
+  * ```typescript
+  * await pdf.addValidationData({ revocationProvider });
+  * await pdf.addTimestamp({
+  *   timestampAuthority,
+  *   longTermValidation: true,
+  *   revocationProvider,
+  *   ...
+  * });
+  * ```
+  *
+  * Use this as the last step of a multi-signer flow once every signer
+  * has appended their signature and you want to seal the document.
+  *
+  * If this method throws after partial progress (e.g. the TSA request
+  * fails after the DSS update was written), the in-memory PDF instance
+  * may be out of sync with its bytes. Discard the instance and reload
+  * from the last known-good bytes.
+  *
+  * @example
+  * ```typescript
+  * const tsa = new HttpTimestampAuthority("https://freetsa.org/tsr");
+  * const { bytes, warnings } = await pdf.addArchivalData({
+  *   timestampAuthority: tsa,
+  * });
+  * ```
+  */
+  async addArchivalData(options) {
+    if (!options.timestampAuthority) throw new SignatureError("INVALID_OPTIONS", "addArchivalData() requires a timestampAuthority");
+    this.ensureIncrementalSave("addArchivalData()");
+    const warnings = [];
+    const gatherer = new LtvDataGatherer({ revocationProvider: options.revocationProvider ?? new DefaultRevocationProvider() });
+    const validation = await this.addValidationDataInternal(gatherer);
+    warnings.push(...validation.warnings);
+    const timestamp = await this.addTimestampInternal({
+      timestampAuthority: options.timestampAuthority,
+      digestAlgorithm: options.digestAlgorithm,
+      estimatedSize: options.estimatedSize,
+      fieldName: options.fieldName,
+      longTermValidation: true,
+      revocationProvider: options.revocationProvider
+    }, gatherer);
+    warnings.push(...timestamp.warnings);
+    return {
+      bytes: timestamp.bytes,
+      warnings,
+      signatureCount: validation.signatureCount
+    };
+  }
+  /**
+  * Place a document timestamp in the PDF (shared by `addTimestamp()` and the
+  * B-LTA path of `sign()`).
+  *
+  * Returns the padded timestamp bytes (raw token + zero padding to fill the
+  * placeholder) so callers can compute the SHA-1 VRI key per ETSI EN 319
+  * 142-2 / PDF 2.0 § 12.8.4.3.
+  */
+  async placeDocumentTimestamp(options) {
+    const { timestampAuthority, digestAlgorithm, estimatedSize, fieldName } = options;
     const firstPageRef = this.pdf.context.pages.getPage(0);
-    if (!firstPageRef) throw new Error("Document has no pages");
+    if (!firstPageRef) throw new SignatureError("NO_PAGES", "Document has no pages - cannot create timestamp field");
     const timestampDict = PdfDict.of({
       Type: PdfName.of("DocTimeStamp"),
       Filter: PdfName.of("Adobe.PPKLite"),
@@ -66560,32 +68164,22 @@ var PDFSignature = class {
       ByteRange: createByteRangePlaceholderObject(),
       Contents: createContentsPlaceholderObject(estimatedSize)
     });
-    const timestampRef = registry.register(timestampDict);
-    const fieldName = `DocTimeStamp_${Date.now()}`;
-    const fieldDict = PdfDict.of({
-      Type: PdfName.of("Annot"),
-      Subtype: PdfName.of("Widget"),
-      FT: PdfName.of("Sig"),
-      T: PdfString.fromString(fieldName),
-      V: timestampRef,
-      F: PdfNumber.of(132),
-      P: firstPageRef,
-      Rect: new PdfArray([
-        PdfNumber.of(0),
-        PdfNumber.of(0),
-        PdfNumber.of(0),
-        PdfNumber.of(0)
-      ])
+    const timestampRef = this.pdf.context.registry.register(timestampDict);
+    this.prepareSignatureField({
+      fieldName,
+      pageRef: firstPageRef,
+      valueRef: timestampRef,
+      namePrefix: "Timestamp_",
+      reuseFirstEmpty: false
     });
-    registry.register(fieldDict);
-    const savedBytes = await this.pdf.save({ incremental: true });
-    const placeholders = findPlaceholders(savedBytes);
-    const byteRange = calculateByteRange(savedBytes, placeholders);
-    patchByteRange(savedBytes, placeholders, byteRange);
-    const documentHash = await hashData(extractSignedBytes(savedBytes, byteRange), digestAlgorithm);
+    const pdfBytes = await this.pdf.save({ incremental: true });
+    const placeholders = findPlaceholders(pdfBytes);
+    const byteRange = calculateByteRange(pdfBytes, placeholders);
+    patchByteRange(pdfBytes, placeholders, byteRange);
+    const documentHash = await hashData(extractSignedBytes(pdfBytes, byteRange), digestAlgorithm);
     const timestampToken = await timestampAuthority.timestamp(documentHash, digestAlgorithm);
-    patchContents(savedBytes, placeholders, timestampToken);
-    await this.pdf.reload(savedBytes);
+    patchContents(pdfBytes, placeholders, timestampToken);
+    await this.pdf.reload(pdfBytes);
     const contentsSize = placeholders.contentsLength / 2;
     const paddedTimestampBytes = new Uint8Array(contentsSize);
     paddedTimestampBytes.set(timestampToken);
@@ -66595,9 +68189,14 @@ var PDFSignature = class {
   * Gather LTV data for a timestamp token.
   *
   * Used for B-LTA to add validation data for the document timestamp.
+  *
+  * When a shared gatherer is provided (by `addArchivalData()`), it is
+  * reused so cached OCSP/CRL responses carry over. Timestamp tokens carry
+  * no embedded signature timestamps, so the shared gatherer's
+  * `gatherTimestampLtv: true` default has no effect here.
   */
-  async gatherTimestampLtvData(timestampToken, revocationProvider, warnings) {
-    const gatherer = new LtvDataGatherer({
+  async gatherTimestampLtvData(timestampToken, revocationProvider, warnings, sharedGatherer) {
+    const gatherer = sharedGatherer ?? new LtvDataGatherer({
       revocationProvider: revocationProvider ?? new DefaultRevocationProvider(),
       gatherTimestampLtv: false
     });
@@ -66752,8 +68351,8 @@ var PDF = class PDF2 {
   * @throws {Error} If the document has no catalog (missing /Root in trailer)
   * @throws {Error} If parsing fails and lenient mode is disabled
   */
-  static async load(bytes2, options) {
-    const scanner = new Scanner(bytes2);
+  static async load(bytes, options) {
+    const scanner = new Scanner(bytes);
     const parsed = new DocumentParser(scanner, options).parse();
     const registry = new ObjectRegistry(parsed.xref);
     let isLinearized = false;
@@ -66790,7 +68389,7 @@ var PDF = class PDF2 {
       isEncrypted: parsed.isEncrypted,
       isAuthenticated: parsed.isAuthenticated,
       trailer: parsed.trailer
-    }), bytes2, originalXRefOffset, {
+    }), bytes, originalXRefOffset, {
       isNewlyCreated: false,
       recoveredViaBruteForce: parsed.recoveredViaBruteForce,
       isLinearized,
@@ -66806,8 +68405,8 @@ var PDF = class PDF2 {
   * @param bytes - The new PDF bytes to reload from
   * @throws {Error} If the document has no catalog
   */
-  async reload(bytes2) {
-    const scanner = new Scanner(bytes2);
+  async reload(bytes) {
+    const scanner = new Scanner(bytes);
     const parsed = new DocumentParser(scanner).parse();
     const registry = new ObjectRegistry(parsed.xref);
     registry.setResolver((ref) => parsed.getObject(ref));
@@ -66846,7 +68445,7 @@ var PDF = class PDF2 {
       trailer: parsed.trailer
     };
     this.ctx = new PDFContext(registry, pdfCatalog, pages, info);
-    this.originalBytes = bytes2;
+    this.originalBytes = bytes;
     this.originalXRefOffset = xrefOffset;
     this._isNewlyCreated = false;
     this._recoveredViaBruteForce = parsed.recoveredViaBruteForce;
@@ -67100,9 +68699,12 @@ var PDF = class PDF2 {
   * Remove all encryption from the document.
   *
   * After calling this, the document will be saved without encryption.
-  * Requires owner access, or user access with modify permission.
+  * Requires owner access, or user access with modify permission, unless
+  * `ignorePermissions` is set.
   *
+  * @param options - Removal options
   * @throws {PermissionDeniedError} If insufficient permissions to remove protection
+  *   and `ignorePermissions` is not set
   *
   * @example
   * ```typescript
@@ -67110,13 +68712,17 @@ var PDF = class PDF2 {
   * const pdf = await PDF.load(bytes, { credentials: "ownerPassword" });
   * pdf.removeProtection();
   * const unprotectedBytes = await pdf.save();
+  *
+  * // Remove encryption with only the user password
+  * const restricted = await PDF.load(bytes, { credentials: "userPassword" });
+  * restricted.removeProtection({ ignorePermissions: true });
   * ```
   */
-  removeProtection() {
+  removeProtection(options = {}) {
     if (!this.isEncrypted) return;
     const handler = this.ctx.info.securityHandler;
     if (!handler) return;
-    if (!handler.hasOwnerAccess && !handler.permissions.modify) throw new PermissionDeniedError("Cannot remove protection: requires owner access or modify permission", "modify");
+    if (!options.ignorePermissions && !handler.hasOwnerAccess && !handler.permissions.modify) throw new PermissionDeniedError("Cannot remove protection: requires owner access or modify permission", "modify");
     this._pendingSecurity = { action: "remove" };
   }
   /**
@@ -67898,9 +69504,9 @@ var PDF = class PDF2 {
   * page.drawImage(image, { x: 50, y: 500 });
   * ```
   */
-  embedImage(bytes2) {
-    if (isJpeg(bytes2)) return this.embedJpeg(bytes2);
-    if (isPng(bytes2)) return this.embedPng(bytes2);
+  embedImage(bytes) {
+    if (isJpeg(bytes)) return this.embedJpeg(bytes);
+    if (isPng(bytes)) return this.embedPng(bytes);
     throw new Error("Unsupported image format. Only JPEG and PNG are supported.");
   }
   /**
@@ -67923,8 +69529,8 @@ var PDF = class PDF2 {
   * });
   * ```
   */
-  embedJpeg(bytes2) {
-    const info = parseJpegHeader(bytes2);
+  embedJpeg(bytes) {
+    const info = parseJpegHeader(bytes);
     const stream = PdfStream.fromDict({
       Type: PdfName.of("XObject"),
       Subtype: PdfName.of("Image"),
@@ -67933,7 +69539,7 @@ var PDF = class PDF2 {
       ColorSpace: PdfName.of(info.colorSpace),
       BitsPerComponent: PdfNumber.of(8),
       Filter: PdfName.of("DCTDecode")
-    }, bytes2);
+    }, bytes);
     return new PDFImage(this.register(stream), info.width, info.height);
   }
   /**
@@ -67954,8 +69560,8 @@ var PDF = class PDF2 {
   * page.drawImage(logo, { x: 100, y: 700, width: 150 });
   * ```
   */
-  embedPng(bytes2) {
-    const { info, pixels, alpha } = parsePng(bytes2);
+  embedPng(bytes) {
+    const { info, pixels, alpha } = parsePng(bytes);
     const compressedPixels = deflate_1(pixels);
     const dictEntries = {
       Type: PdfName.of("XObject"),
@@ -68442,6 +70048,124 @@ var PDF = class PDF2 {
   */
   async sign(options) {
     return new PDFSignature(this).sign(options);
+  }
+  /**
+  * Add an archival document timestamp to the PDF.
+  *
+  * Creates a `/Type /DocTimeStamp` signature whose ByteRange covers the
+  * entire current document, sealing it with a trusted RFC 3161 timestamp.
+  *
+  * This is the timestamping step in a PAdES B-LTA flow: after one or more
+  * signatures have been appended (each as an incremental update), call
+  * `addTimestamp()` to lock the document state with a TSA-attested time.
+  * The timestamp extends the validity of all prior signatures because its
+  * ByteRange covers them.
+  *
+  * Does **not** gather validation data for pre-existing signatures - use
+  * {@link addValidationData} for that, or {@link addArchivalData} to do
+  * both in one call.
+  *
+  * After timestamping, the PDF instance is automatically reloaded with the
+  * updated bytes, so you can call `addTimestamp()` again or `save()` to get
+  * the final bytes. If this method throws after partial progress (e.g. the
+  * TSA request fails), the in-memory instance may be out of sync with its
+  * bytes - discard it and reload from the last known-good bytes.
+  *
+  * @param options Timestamping options including the TSA
+  * @returns The PDF bytes with the timestamp embedded, plus any warnings
+  *
+  * @throws {SignatureError} If `timestampAuthority` is missing, if the
+  *         document cannot be saved incrementally (which would invalidate
+  *         existing signatures), or if the document has no pages
+  * @throws {PlaceholderError} If the reserved size is too small for the token
+  *
+  * @example
+  * ```typescript
+  * import { HttpTimestampAuthority } from "@libpdf/core";
+  *
+  * // Sign first (B-T or B-LT), then seal with an archival timestamp.
+  * const tsa = new HttpTimestampAuthority("https://freetsa.org/tsr");
+  * await pdf.sign({ signer, level: "B-LT", timestampAuthority: tsa });
+  * const { bytes } = await pdf.addTimestamp({
+  *   timestampAuthority: tsa,
+  *   longTermValidation: true,
+  * });
+  * ```
+  */
+  async addTimestamp(options) {
+    return new PDFSignature(this).addTimestamp(options);
+  }
+  /**
+  * Gather LTV (Long-Term Validation) data for every signed signature
+  * field in the document and write it as a single DSS incremental
+  * update.
+  *
+  * Upgrades B-T signatures to B-LT in one shot. Use this after a
+  * multi-signer flow where each recipient signed at B-T level and you
+  * now want full long-term validation data embedded for all of them.
+  *
+  * Reuses one OCSP/CRL cache across signatures so issuers shared
+  * between signers don't get re-fetched. Existing DSS contents are
+  * merged with the new data (certs / OCSP / CRL are deduplicated by
+  * SHA-1).
+  *
+  * Does **not** add a timestamp - use {@link addTimestamp} for that, or
+  * {@link addArchivalData} to do both in one call.
+  *
+  * After this call the PDF instance is reloaded with the updated bytes,
+  * so subsequent operations (e.g. `addTimestamp()`) see the new DSS.
+  *
+  * @param options Optional revocation provider override
+  * @returns Bytes, warnings, and the number of signatures processed
+  *
+  * @throws {SignatureError} If the document cannot be saved incrementally
+  *         (which would invalidate existing signatures)
+  *
+  * @example
+  * ```typescript
+  * const { signatureCount, warnings } = await pdf.addValidationData();
+  * console.log(`Embedded LTV for ${signatureCount} signatures`);
+  * ```
+  */
+  async addValidationData(options = {}) {
+    return new PDFSignature(this).addValidationData(options);
+  }
+  /**
+  * Finalize the document with full PAdES B-LTA: gather LTV for every
+  * existing signature, embed a DSS, add an archival document timestamp,
+  * and embed a second DSS for the timestamp's own certificate chain.
+  *
+  * This is the convenience wrapper for the typical end-of-flow operation
+  * in a multi-signer advanced electronic signature (AdES) workflow.
+  * Equivalent to calling {@link addValidationData} followed by
+  * {@link addTimestamp} with `longTermValidation: true`. Note that unlike
+  * {@link addValidationData}, this adds a new signature object (the
+  * document timestamp field) to the PDF.
+  *
+  * If this method throws after partial progress (e.g. the TSA request
+  * fails after the DSS update was written), the in-memory instance may be
+  * out of sync with its bytes - discard it and reload from the last
+  * known-good bytes.
+  *
+  * @param options Archival options including the TSA
+  * @returns Bytes, warnings, and the number of pre-existing signatures
+  *          for which LTV data was gathered
+  *
+  * @throws {SignatureError} If `timestampAuthority` is missing or the
+  *         document cannot be saved incrementally (which would invalidate
+  *         existing signatures)
+  *
+  * @example
+  * ```typescript
+  * import { HttpTimestampAuthority } from "@libpdf/core";
+  *
+  * // After every recipient has signed (B-T), seal the document.
+  * const tsa = new HttpTimestampAuthority("https://freetsa.org/tsr");
+  * const { bytes } = await pdf.addArchivalData({ timestampAuthority: tsa });
+  * ```
+  */
+  async addArchivalData(options) {
+    return new PDFSignature(this).addArchivalData(options);
   }
   /**
   * Check if the document contains Optional Content Groups (layers).
@@ -69702,118 +71426,3 @@ export {
   version,
   white
 };
-/*! Bundled license information:
-
-pvtsutils/build/index.js:
-  (*!
-   * MIT License
-   * 
-   * Copyright (c) 2017-2024 Peculiar Ventures, LLC
-   * 
-   * Permission is hereby granted, free of charge, to any person obtaining a copy
-   * of this software and associated documentation files (the "Software"), to deal
-   * in the Software without restriction, including without limitation the rights
-   * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   * copies of the Software, and to permit persons to whom the Software is
-   * furnished to do so, subject to the following conditions:
-   * 
-   * The above copyright notice and this permission notice shall be included in all
-   * copies or substantial portions of the Software.
-   * 
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   * SOFTWARE.
-   * 
-   *)
-
-pako/dist/pako.esm.mjs:
-  (*! pako 2.1.0 https://github.com/nodeca/pako @license (MIT AND Zlib) *)
-
-@noble/ciphers/utils.js:
-  (*! noble-ciphers - MIT License (c) 2023 Paul Miller (paulmillr.com) *)
-
-pvutils/build/utils.es.js:
-  (*!
-   Copyright (c) Peculiar Ventures, LLC
-  *)
-
-asn1js/build/index.es.js:
-  (*!
-   * Copyright (c) 2014, GMO GlobalSign
-   * Copyright (c) 2015-2022, Peculiar Ventures
-   * All rights reserved.
-   * 
-   * Author 2014-2019, Yury Strozhevsky
-   * 
-   * Redistribution and use in source and binary forms, with or without modification,
-   * are permitted provided that the following conditions are met:
-   * 
-   * * Redistributions of source code must retain the above copyright notice, this
-   *   list of conditions and the following disclaimer.
-   * 
-   * * Redistributions in binary form must reproduce the above copyright notice, this
-   *   list of conditions and the following disclaimer in the documentation and/or
-   *   other materials provided with the distribution.
-   * 
-   * * Neither the name of the copyright holder nor the names of its
-   *   contributors may be used to endorse or promote products derived from
-   *   this software without specific prior written permission.
-   * 
-   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-   * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-   * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-   * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-   * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-   * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-   * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-   * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-   * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-   * 
-   *)
-
-@noble/hashes/esm/utils.js:
-  (*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
-
-pkijs/build/index.es.js:
-  (*!
-   * Copyright (c) 2014, GlobalSign
-   * Copyright (c) 2015-2019, Peculiar Ventures
-   * All rights reserved.
-   * 
-   * Author 2014-2019, Yury Strozhevsky
-   * 
-   * Redistribution and use in source and binary forms, with or without modification,
-   * are permitted provided that the following conditions are met:
-   * 
-   * * Redistributions of source code must retain the above copyright notice, this
-   *   list of conditions and the following disclaimer.
-   * 
-   * * Redistributions in binary form must reproduce the above copyright notice, this
-   *   list of conditions and the following disclaimer in the documentation and/or
-   *   other materials provided with the distribution.
-   * 
-   * * Neither the name of the {organization} nor the names of its
-   *   contributors may be used to endorse or promote products derived from
-   *   this software without specific prior written permission.
-   * 
-   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-   * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-   * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-   * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-   * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-   * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-   * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-   * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-   * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-   * 
-   *)
-
-@scure/base/index.js:
-  (*! scure-base - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
-*/
