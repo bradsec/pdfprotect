@@ -324,6 +324,7 @@ function render() {
 
   if (state.current === 'locked') {
     lockedFilename.textContent = state.fileName
+    lockedFilename.title = state.fileName
     unlockError.hidden = true
     unlockPassword.value = ''
     if (state.securityInfo?.algorithm) {
@@ -336,6 +337,7 @@ function render() {
 
   if (state.current === 'owner-locked') {
     ownerLockedFilename.textContent = state.fileName
+    ownerLockedFilename.title = state.fileName
     ownerUnlockError.hidden = true
     ownerUnlockPassword.value = ''
     if (state.securityInfo?.algorithm) {
@@ -355,6 +357,7 @@ function render() {
 
   if (state.current === 'ready') {
     readyFilename.textContent = state.fileName
+    readyFilename.title = state.fileName
     renderEncryptionBadge()
     removeBtn.hidden = !state.wasEncrypted
     ownerPwRow.hidden = true

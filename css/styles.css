@@ -701,6 +701,8 @@ main {
 .protection-pill {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
@@ -1237,7 +1239,29 @@ main {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex: 1 1 auto;
   min-width: 0;
+}
+
+#encryption-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+#encryption-badge .badge-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  white-space: nowrap;
+}
+
+#encryption-badge .protection-pills {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  margin-top: 0;
 }
 
 .file-icon {
@@ -1376,6 +1400,14 @@ footer a:focus-visible {
   .file-header,
   .header-top {
     gap: 0.75rem;
+  }
+
+  .file-header {
+    flex-wrap: wrap;
+  }
+
+  .file-info {
+    flex-basis: 100%;
   }
 
 }
