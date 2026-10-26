@@ -27,7 +27,7 @@ Live at [pdfprotect.me](https://pdfprotect.me)
 - **Permissions-Only Protection**: Leave the user password blank and use only an owner password to apply viewer-managed restrictions without an open-password prompt
 - **Shared-Password Fallback**: If the owner password is left blank, PDF Protect reuses the user password so the file does not end up with an undisclosed random owner password
 - **Permission Toggles**: Control printing, copying, modification, annotation, form filling, and document assembly
-- **Password Strength Feedback**: Entropy-based password strength indicator plus confirmation checks for user and owner passwords. Passwords on the common-password list always rate Weak
+- **Password Strength Feedback**: Pattern-aware strength indicator plus confirmation checks for user and owner passwords. Common words with predictable additions, sequences, repeats, and dates lower the rating
 - **Common Password Warning**: When setting a new password, the app checks it against a bundled list of 10,000 commonly-known passwords and shows an inline advisory if a match is found - no data leaves the browser
 - **Owner-Password Removal Safeguard**: Prevents user-level sessions from removing protection when owner credentials are required
 
@@ -90,7 +90,7 @@ If pdfprotect is useful to you, please consider starring the repository to help 
 ## Credits and Third-Party Licensing
 
 - **[libpdf-core](https://github.com/libpdf-js/core)** powers PDF encryption, authentication, and protection changes; bundled third-party licence notices are included directly in `js/vendor/libpdf-core.js`
-- **[SecLists](https://github.com/danielmiessler/SecLists)** by Daniel Miessler: the `passwords/10k-most-common.txt` and `passwords/100k-most-used.txt` word lists are sourced from this project | [MIT License](https://github.com/danielmiessler/SecLists/blob/master/LICENSE)
+- **[SecLists](https://github.com/danielmiessler/SecLists)** by Daniel Miessler: the `passwords/10k-most-common.txt` and `passwords/100k-most-used.txt` word lists are sourced from `Passwords/Common-Credentials/10k-most-common.txt` and `100k-most-used-passwords-NCSC.txt` | [MIT License](passwords/SecLists-LICENSE)
 - **Roboto Font** by Christian Robertson | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - **JetBrains Mono** by JetBrains | [SIL Open Font License 1.1](https://openfontlicense.org/)
 - **[Lucide](https://lucide.dev)** 1.61.0 icons, self-hosted SVGs | [ISC licence](js/vendor/lucide-LICENSE)

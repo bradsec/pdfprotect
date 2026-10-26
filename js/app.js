@@ -811,7 +811,7 @@ function applyStrength(password, bar, segments, hint) {
     return
   }
   const { score, label, hint: hintText } =
-    passwordStrength(password, { isCommon: isCommonPassword(password) })
+    passwordStrength(password, { isCommonPassword })
   bar.hidden = false
   hint.textContent = `${label}${hintText ? ' — ' + hintText : ''}`
   segments.forEach((seg, i) => {
