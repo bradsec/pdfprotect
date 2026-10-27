@@ -81,34 +81,6 @@ footer a:focus-visible {
   color: var(--link-hover-color);
 }
 
-@media (max-width: 640px) {
-  .state-locked,
-  .state-owner-locked,
-  .state-ready {
-    padding: 1rem;
-  }
-
-  .input-row {
-    flex-direction: column;
-  }
-
-  .file-header {
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .file-info {
-    flex-basis: 100%;
-  }
-
-}
-
-@media (max-width: 380px) {
-  .toggle-group.permissions-toggles {
-    grid-template-columns: 1fr;
-  }
-}
-
 ::selection {
   background: var(--accent-dim);
   color: var(--font-color);
@@ -142,13 +114,6 @@ button:focus-visible {
 .actions button {
   white-space: normal;
   overflow-wrap: anywhere;
-}
-
-@media (max-width: 640px) {
-  .btn-primary,
-  .btn-danger {
-    padding: 0.875rem 1rem;
-  }
 }
 
 /* Shared responsive shell: keep identical in both apps. */
@@ -225,6 +190,12 @@ a.branding:hover {
     padding: 0.5rem max(1rem, env(safe-area-inset-right)) 0 max(1rem, env(safe-area-inset-left));
   }
 
+  .state-locked,
+  .state-owner-locked,
+  .state-ready {
+    padding: 1rem;
+  }
+
   .hero {
     margin: 1.25rem auto 1rem;
   }
@@ -249,7 +220,84 @@ a.branding:hover {
     padding: 0.35rem 0.55rem;
   }
 
+  .input {
+    min-height: 44px;
+    padding: 0.6rem;
+    font-size: 16px;
+  }
+
+  .field-label,
+  .permissions-toggles .toggle-item label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--font-color-2);
+  }
+
+  .permissions-toggles .toggle-item label {
+    min-height: 44px;
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-danger {
+    min-height: 44px;
+    padding: 0.875rem 1rem;
+  }
+
+  .file-header {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .file-info {
+    flex-basis: 100%;
+  }
+
+  #encryption-badge,
+  #encryption-badge .protection-pills {
+    flex-wrap: wrap;
+  }
+
+  #encryption-badge {
+    overflow-x: visible;
+  }
+
+  #encryption-badge .protection-pills {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .scan-label,
+  .scan-found-pw {
+    min-width: 0;
+  }
+
+  .scan-found-pw,
+  #success-filename {
+    overflow-wrap: anywhere;
+  }
+
+  .success-banner {
+    flex-wrap: wrap;
+  }
+
+  #success-filename {
+    min-width: 0;
+  }
+
+  .success-redownload {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
   footer {
     margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .toggle-group.permissions-toggles {
+    grid-template-columns: 1fr;
   }
 }
