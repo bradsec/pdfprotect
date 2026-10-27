@@ -1,8 +1,8 @@
-import { PDFSession } from './pdf-session.js?v=1.3.11'
-import { PasswordScanner } from './password-scanner.js?v=1.3.11'
-import { loadCommonPasswords, isCommonPassword } from './common-password-checker.js?v=1.3.11'
-import { passwordStrength } from './password-strength.js?v=1.3.11'
-import { showToast } from './toast.js?v=1.3.11'
+import { PDFSession } from './pdf-session.js?v=1.3.12'
+import { PasswordScanner } from './password-scanner.js?v=1.3.12'
+import { loadCommonPasswords, isCommonPassword } from './common-password-checker.js?v=1.3.12'
+import { passwordStrength } from './password-strength.js?v=1.3.12'
+import { showToast } from './toast.js?v=1.3.12'
 
 const MAX_FILE_BYTES = 50 * 1024 * 1024  // 50 MB
 

@@ -1,4 +1,4 @@
-import { PDF } from './vendor/libpdf-core.js?v=1.3.11'
+import { PDF } from './vendor/libpdf-core.js?v=1.3.12'
 
 const textEncoder = new TextEncoder()
 
