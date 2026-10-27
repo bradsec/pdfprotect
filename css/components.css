@@ -241,8 +241,9 @@ main {
   background-color: var(--form-input-bg-color);
   border: var(--form-input-border);
   border-radius: var(--radius-control);
-  padding: 0.9375rem 1rem;
-  font-size: 1rem;
+  min-height: 40px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.95rem;
   font-family: var(--font-family);
   transition: 0.2s ease;
 }
