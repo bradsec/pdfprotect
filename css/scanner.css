@@ -1,0 +1,256 @@
+/* Scanner styles */
+/* ── Password scanner ─────────────────────────────────────────── */
+
+.scan-panel {
+  margin-top: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--surface2-color);
+}
+
+.scan-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.scan-list-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.scan-list-btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: transparent;
+  border: none;
+  color: var(--font-color-2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.6;
+}
+
+.scan-list-btn:hover {
+  background: var(--accent-dim);
+  color: var(--color-blue-text);
+}
+
+.scan-list-btn.active {
+  background: var(--accent);
+  color: var(--color-white);
+}
+
+.scan-label {
+  flex: 1;
+  font-size: 0.78rem;
+  color: var(--font-color-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scan-cancel-btn {
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--font-color-2);
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  border-radius: var(--radius-control);
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+
+.scan-cancel-btn:hover { color: var(--danger); }
+
+.scan-track {
+  height: 5px;
+  border-radius: var(--radius-round);
+  background: var(--surface2-color);
+  outline: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.scan-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-round);
+  background: linear-gradient(90deg, var(--color-blue-1), var(--color-scan-blue));
+  transition: width 0.12s ease;
+}
+
+[data-theme="dark"] .scan-fill {
+  background: var(--focus-color);
+}
+
+.scan-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.3rem;
+}
+
+.scan-counter {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--font-color-2);
+}
+
+/* Scanning animation on the label */
+@keyframes scan-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.scan-label.scanning {
+  animation: scan-pulse 1.4s ease-in-out infinite;
+}
+
+/* Found banner */
+.scan-found-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+  border: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  color: var(--success);
+  font-weight: 500;
+}
+
+.scan-found-pw {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+  padding: 0.05rem 0.35rem;
+  border-radius: var(--radius-control);
+}
+
+/* Not-found note */
+.scan-not-found {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--font-color-2);
+}
+
+/* ── Forgot password section ─────────────────────────────── */
+.forgot-password-section {
+  margin-top: 0.9rem;
+  text-align: center;
+}
+
+.scan-choices {
+  margin-top: 0.6rem;
+}
+
+.scan-choices-hint {
+  font-size: 0.8rem;
+  color: var(--font-color-2);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.scan-choices-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.success-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.95rem 1rem;
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-panel);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--success);
+  margin-top: 1rem;
+}
+
+.success-redownload {
+  margin-left: auto;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+.file-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#encryption-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+#encryption-badge .badge-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  white-space: nowrap;
+}
+
+#encryption-badge .protection-pills {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.file-icon {
+  font-size: 1.3rem;
+  color: var(--color-blue-text);
+  flex-shrink: 0;
+}
+
+.filename {
+  font-family: var(--font-mono);
+  color: var(--font-color-2);
+  font-size: 0.78rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+

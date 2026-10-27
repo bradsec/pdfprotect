@@ -1,0 +1,65 @@
+/* Feedback styles */
+/* Toasts */
+.toasts {
+  position: fixed;
+  z-index: 10000;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  gap: 8px;
+  width: min(380px, calc(100vw - 32px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+  pointer-events: none;
+}
+
+.toast {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  padding: 14px 10px 14px 16px;
+  color: var(--font-color);
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--color-blue-1);
+  border-radius: var(--radius-panel);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-black) 20%, transparent);
+  pointer-events: auto;
+  animation: toast-in 180ms ease-out;
+}
+
+.toast-success { border-left-color: var(--color-green-text); }
+.toast-error { border-left-color: var(--color-red-text); }
+.toast-warning { border-left-color: var(--color-amber-text); }
+.toast > .icon { font-size: 20px; color: var(--color-blue-text); }
+.toast-success > .icon { color: var(--color-green-text); }
+.toast-error > .icon { color: var(--color-red-text); }
+.toast-warning > .icon { color: var(--color-amber-text); }
+.toast p { margin: 0; padding-top: 1px; font-size: 0.9rem; line-height: 1.4; overflow-wrap: anywhere; }
+.toast-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -12px 0;
+  padding: 0;
+  color: var(--font-color-2);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+}
+.toast-close .icon { font-size: 18px; }
+.toast-close:hover { color: var(--font-color); }
+.toast-close:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 2px; }
+.toast-exiting { opacity: 0; transition: opacity 180ms ease; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) {
+  /* Override component motion for the operating system setting. */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
