@@ -110,6 +110,12 @@
   margin-top: -0.1rem;
 }
 
+/* Sits under a toggle, aligned with its label text (48px switch + label gap). */
+.toggle-note {
+  margin-top: 0.35rem;
+  padding-left: calc(48px + 0.75rem);
+}
+
 .algo-note {
   margin: 0.25rem 0 0;
   font-size: 0.85rem;
