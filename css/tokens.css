@@ -129,7 +129,16 @@
   --success: var(--color-green-text);
   --locked: var(--color-red-text);
   --owner-locked: var(--color-amber-text);
+  --protect-desk-bg: #e4e9ef;
+  --protect-inset-bg: #edf0f4;
+  --protect-card-shadow: 0 2px 8px rgb(17 24 39 / 12%), 0 10px 24px rgb(17 24 39 / 6%);
   --color-strength-orange: #d97706;
   --color-scan-blue: #3366cc;
+}
+
+[data-theme="dark"] {
+  --protect-desk-bg: #171a1f;
+  --protect-inset-bg: #191d23;
+  --protect-card-shadow: 0 2px 10px rgb(0 0 0 / 35%);
 }
 

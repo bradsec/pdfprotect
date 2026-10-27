@@ -62,11 +62,7 @@ main {
   border: 1px solid var(--card-shell-border);
   border-radius: var(--radius-surface);
   overflow: hidden;
-  box-shadow: 0 12px 36px color-mix(in srgb, var(--color-ink) 6%, transparent);
-}
-
-[data-theme="dark"] .card {
-  box-shadow: 0 12px 36px color-mix(in srgb, var(--color-black) 20%, transparent);
+  box-shadow: var(--protect-card-shadow);
 }
 
 .state-idle,
@@ -99,7 +95,7 @@ main {
   border-radius: var(--radius-panel);
   padding: 2.5rem 1.25rem;
   text-align: center;
-  background: linear-gradient(180deg, var(--drop-tint), transparent 45%), var(--surface2-color);
+  background: var(--protect-desk-bg);
   cursor: pointer;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
@@ -107,7 +103,7 @@ main {
 .drop-zone:hover,
 .drop-zone.drag-over {
   border-color: var(--focus-color);
-  background: linear-gradient(180deg, var(--drop-tint-hover), transparent 45%), var(--surface2-color);
+  background: color-mix(in srgb, var(--color-blue-1) 3%, var(--protect-desk-bg));
   transform: translateY(-1px);
 }
 
@@ -231,6 +227,14 @@ main {
   background: var(--surface2-color);
   border-color: var(--focus-color);
 }
+.btn-secondary:active {
+  background: var(--accent-dim);
+}
+.btn-secondary:disabled {
+  background: var(--button-disabled-bg-color);
+  color: var(--button-disabled-font-color);
+  cursor: not-allowed;
+}
 .btn-secondary .icon {
   font-size: 15px;
 }
@@ -241,7 +245,7 @@ main {
   background-color: var(--form-input-bg-color);
   border: var(--form-input-border);
   border-radius: var(--radius-control);
-  min-height: 40px;
+  min-height: 44px;
   padding: 0.5rem 0.85rem;
   font-size: 0.95rem;
   font-family: var(--font-family);
@@ -266,10 +270,58 @@ main {
 
 .input-row {
   display: flex;
-  gap: 0.75rem;
+  width: 100%;
+  max-width: 32rem;
+  gap: 0;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-control);
+  background: var(--form-input-bg-color);
+}
+
+.input-row:hover {
+  border-color: var(--color-blue-1);
+}
+
+.input-row:has(.input:focus-visible) {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+.input-row:has(.input:disabled) {
+  background: var(--button-disabled-bg-color);
+}
+
+.input-row:has(.input-error) {
+  border-color: var(--danger);
 }
 
 .input-row .input {
   flex: 1;
+  min-width: 0;
+  border: 0;
+  border-radius: var(--radius-control) 0 0 var(--radius-control);
+}
+
+.input-row .input:focus-visible {
+  outline: none;
+}
+
+.input-row .input:disabled {
+  background: var(--button-disabled-bg-color);
+  color: var(--button-disabled-font-color);
+}
+
+.input-row .btn-primary,
+.input-row .btn-danger {
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+  box-shadow: none;
+}
+
+.input-row .btn-primary:hover,
+.input-row .btn-danger:hover {
+  transform: none;
+  box-shadow: none;
 }
 

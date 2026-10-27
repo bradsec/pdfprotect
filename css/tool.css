@@ -3,34 +3,17 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 1.125rem;
+  padding: 0.75rem;
   border-radius: var(--radius-panel);
   margin-bottom: 1.25rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--protect-card-shadow);
 }
 
 .status-badge .badge-icon {
-  font-size: 1.45rem;
+  font-size: 1.25rem;
   flex-shrink: 0;
-}
-
-.status-badge.locked {
-  background: color-mix(in srgb, var(--color-red-1) 9%, transparent);
-  border: 1px solid var(--border-color);
-}
-
-.status-badge.unlocked {
-  background: color-mix(in srgb, var(--color-green-1) 9%, transparent);
-  border: 1px solid var(--border-color);
-}
-
-.status-badge.unprotected {
-  background: var(--surface2-color);
-  border: 1px solid var(--border-color);
-}
-
-.status-badge.owner-locked {
-  background: color-mix(in srgb, var(--color-amber-1) 9%, transparent);
-  border: 1px solid var(--border-color);
 }
 
 .status-badge > div {
@@ -39,15 +22,11 @@
 
 .encryption-algo {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--locked);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--font-color-2);
   margin-top: 0.2rem;
-  letter-spacing: 0.04em;
-}
-
-.status-badge.owner-locked .encryption-algo {
-  color: var(--owner-locked);
+  font-variant-numeric: tabular-nums;
 }
 
 .badge-label {
@@ -100,14 +79,14 @@
 }
 
 .protection-pill.user {
-  background: color-mix(in srgb, var(--color-blue-1) 12%, transparent);
-  color: var(--color-blue-text);
+  background: var(--surface2-color);
+  color: var(--font-color);
   border: 1px solid var(--border-color);
 }
 
 .protection-pill.owner {
-  background: color-mix(in srgb, var(--color-amber-1) 12%, transparent);
-  color: var(--owner-locked);
+  background: var(--surface2-color);
+  color: var(--font-color);
   border: 1px solid var(--border-color);
 }
 
@@ -146,6 +125,7 @@
 
 .field {
   margin-bottom: 1rem;
+  max-width: 32rem;
 }
 
 .field-label {
@@ -159,7 +139,6 @@
 
 .optional {
   font-weight: 400;
-  opacity: 0.75;
   font-size: 0.74rem;
 }
 
@@ -307,14 +286,64 @@
   align-items: center;
 }
 
+#protection-form > .actions {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--card-shell-border);
+}
+
+#protection-form > .actions .btn-block {
+  align-self: auto;
+  width: auto;
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+}
+
+#protect-btn {
+  margin-left: auto;
+}
+
+#remove-btn {
+  color: var(--danger);
+  background: transparent;
+  border: 1px solid var(--danger);
+  box-shadow: none;
+}
+
+#remove-btn:hover {
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 8%, var(--surface-color));
+  box-shadow: none;
+  transform: none;
+}
+
+#remove-btn:active {
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 14%, var(--surface-color));
+  box-shadow: none;
+  transform: none;
+}
+
+#remove-btn:disabled {
+  color: var(--button-disabled-font-color);
+  background: var(--button-disabled-bg-color);
+  border-color: var(--border-color);
+}
+
 .actions .btn-block {
   align-self: stretch;
 }
 
 .owner-pw-row {
   width: 100%;
+  max-width: 32rem;
   padding: 1rem;
-  background: var(--surface2-color);
+  background: var(--protect-inset-bg);
+  border: 1px solid var(--card-shell-border);
+  border-radius: var(--radius-panel);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;

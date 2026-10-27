@@ -196,6 +196,14 @@ a.branding:hover {
     padding: 1rem;
   }
 
+  #protection-form > .actions .btn-block {
+    width: 100%;
+  }
+
+  #protect-btn {
+    margin-left: 0;
+  }
+
   .hero {
     margin: 1.25rem auto 1rem;
   }

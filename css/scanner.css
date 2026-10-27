@@ -4,7 +4,9 @@
 .scan-panel {
   margin-top: 0.85rem;
   padding: 0.75rem 0.9rem;
-  background: var(--surface2-color);
+  background: var(--protect-inset-bg);
+  border: 1px solid var(--card-shell-border);
+  border-radius: var(--radius-panel);
 }
 
 .scan-header {
@@ -109,16 +111,6 @@
   color: var(--font-color-2);
 }
 
-/* Scanning animation on the label */
-@keyframes scan-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.5; }
-}
-
-.scan-label.scanning {
-  animation: scan-pulse 1.4s ease-in-out infinite;
-}
-
 /* Found banner */
 .scan-found-banner {
   display: flex;
@@ -150,6 +142,12 @@
   margin-top: 0.6rem;
   font-size: 0.78rem;
   color: var(--font-color-2);
+}
+
+.scan-found-banner .icon,
+.scan-not-found .icon {
+  font-size: 15px;
+  flex: none;
 }
 
 /* ── Forgot password section ─────────────────────────────── */
@@ -204,8 +202,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.35rem;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-panel);
+  background: var(--surface-color);
+  box-shadow: var(--protect-card-shadow);
 }
 
 .file-info {
@@ -244,9 +247,9 @@
 }
 
 .filename {
-  font-family: var(--font-mono);
-  color: var(--font-color-2);
-  font-size: 0.78rem;
+  color: var(--font-color);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
