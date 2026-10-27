@@ -9,6 +9,11 @@ function restoreMetadata(pdf, meta) {
   if (Object.keys(clean).length > 0) pdf.setMetadata(clean)
 }
 
+function stripMetadata(pdf) {
+  pdf.ctx.info.trailer.delete('Info')
+  pdf.getCatalog().delete('Metadata')
+}
+
 async function loadWithOwnerCredentials(bytes, password) {
   const pdf = await PDF.load(bytes)
   const handler = pdf?.ctx?.info?.securityHandler
@@ -87,17 +92,19 @@ export class PDFSession {
       userPassword: userPassword || undefined,
       ownerPassword: effectiveOwnerPassword || undefined,
     })
+    if (options.removeMetadata) stripMetadata(pdf)
     return pdf.save()
   }
 
-  async removeProtection(ownerPassword = null) {
+  async removeProtection(ownerPassword = null, removeMetadata = false) {
     if (!this.isEncrypted) throw new Error('Document is not protected')
     if (ownerPassword) {
       const trimmed = ownerPassword.trim()
       const pdf = await loadWithOwnerCredentials(this.#bytes, trimmed)
       const meta = pdf.getMetadata()
       pdf.removeProtection()
-      restoreMetadata(pdf, meta)
+      if (removeMetadata) stripMetadata(pdf)
+      else restoreMetadata(pdf, meta)
       return pdf.save()
     }
 
@@ -114,7 +121,8 @@ export class PDFSession {
       : await PDF.load(this.#bytes)
     const meta = pdf.getMetadata()
     pdf.removeProtection()
-    restoreMetadata(pdf, meta)
+    if (removeMetadata) stripMetadata(pdf)
+    else restoreMetadata(pdf, meta)
     return pdf.save()
   }
 }

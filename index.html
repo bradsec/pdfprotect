@@ -118,6 +118,7 @@
     <main aria-label="PDF protection tool">
       <p id="operation-status" class="sr-only" role="status"></p>
       <div class="card" id="card" data-state="idle">
+      <input type="file" id="custom-list-input" accept=".txt,.csv,.md" hidden>
 
       <!-- ── State: IDLE ───────────────────────────────── -->
       <div class="state-idle">
@@ -169,7 +170,7 @@
             Forgot password?
           </button>
           <div class="scan-choices" id="scan-choices" hidden>
-            <p class="scan-choices-hint">Try matching against a list of common passwords:</p>
+            <p class="scan-choices-hint">Try common passwords. A loaded custom list runs first.</p>
             <div class="scan-choices-row">
               <button class="btn-secondary scan-choice-btn" id="scan-trigger-10k" type="button">
                 <svg class="icon" aria-hidden="true"><use href="images/icons.svg?v=1.3.12#search"></use></svg>
@@ -179,7 +180,9 @@
                 <svg class="icon" aria-hidden="true"><use href="images/icons.svg?v=1.3.12#scan-search"></use></svg>
                 Try 100,000 passwords
               </button>
+              <button class="btn-secondary scan-choice-btn" id="custom-list-locked-btn" type="button">Load custom list</button>
             </div>
+            <p class="scan-choices-hint" id="custom-list-locked-status" role="status" hidden></p>
           </div>
         </div>
 
@@ -208,7 +211,7 @@
         </div>
         <div class="scan-not-found" id="scan-not-found" hidden>
           <svg class="icon" aria-hidden="true"><use href="images/icons.svg?v=1.3.12#search-x"></use></svg>
-          Not found in common list — enter password manually
+          Not found in selected lists — enter password manually
         </div>
 
         <div style="text-align:center;margin-top:18px">
@@ -256,7 +259,7 @@
             Forgot owner password?
           </button>
           <div class="scan-choices" id="owner-scan-choices" hidden>
-            <p class="scan-choices-hint">Try matching against a list of common passwords:</p>
+            <p class="scan-choices-hint">Try common passwords. A loaded custom list runs first.</p>
             <div class="scan-choices-row">
               <button class="btn-secondary scan-choice-btn" id="owner-scan-trigger-10k" type="button">
                 <svg class="icon" aria-hidden="true"><use href="images/icons.svg?v=1.3.12#search"></use></svg>
@@ -266,7 +269,9 @@
                 <svg class="icon" aria-hidden="true"><use href="images/icons.svg?v=1.3.12#scan-search"></use></svg>
                 Try 100,000 passwords
               </button>
+              <button class="btn-secondary scan-choice-btn" id="custom-list-owner-btn" type="button">Load custom list</button>
             </div>
+            <p class="scan-choices-hint" id="custom-list-owner-status" role="status" hidden></p>
           </div>
         </div>
 
@@ -295,7 +300,7 @@
         </div>
         <div class="scan-not-found" id="owner-scan-not-found" hidden>
           <svg class="icon" aria-hidden="true"><use href="images/icons.svg?v=1.3.12#search-x"></use></svg>
-          Not found in common list — enter password manually
+          Not found in selected lists — enter password manually
         </div>
 
         <div style="text-align:center;margin-top:18px">
@@ -441,6 +446,20 @@
                 </label>
               </div>
             </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">Privacy</h2>
+            <div class="toggle-item">
+              <label for="remove-metadata">
+                <span class="switch">
+                  <input type="checkbox" id="remove-metadata" checked aria-describedby="remove-metadata-desc">
+                  <span class="slider round"></span>
+                </span>
+                Remove metadata from saved PDF
+              </label>
+            </div>
+            <p class="section-note" id="remove-metadata-desc">Clears document information and XMP metadata when applying or removing protection.</p>
           </section>
 
           <div class="actions">

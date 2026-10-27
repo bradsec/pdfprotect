@@ -18,6 +18,7 @@ Live at [pdfprotect.me](https://pdfprotect.me)
 - **PDF Protection**: Apply password-based protection to unprotected or already-opened PDF documents
 - **PDF Unlocking**: Open password-protected PDFs in the browser when the correct password is provided
 - **Protection Removal**: Remove password protection and download an unencrypted copy when owner-level access is available
+- **Metadata Removal**: The enabled-by-default privacy switch clears the PDF Info dictionary and catalog XMP metadata when saving protected or unlocked copies
 - **Privacy-First**: No server uploads, no accounts, and no background processing outside the browser
 
 ### Security and Permission Controls
@@ -35,7 +36,8 @@ Live at [pdfprotect.me](https://pdfprotect.me)
 
 - **Dictionary Scan**: When a password-protected PDF is loaded, click "Forgot password?" and choose a word list to run a common-password scan in the browser; no data is sent anywhere
 - **Bundled Word Lists**: Two locally-stored password lists from the [SecLists](https://github.com/danielmiessler/SecLists) project are included: a 10,000-entry quick scan (default) and a 100,000-entry thorough scan
-- **List Toggle**: Switch between the 10k and 100k lists with a single click; the scan restarts immediately with the new list
+- **Custom Word List**: Load a local `.txt` (one candidate per line), `.csv` (each cell), or `.md` (one entry per line, excluding headings and fenced code). The scanner tries its unique candidates first, then the selected bundled list, skipping duplicates. Files stay in browser memory and are discarded when loading another PDF. The limit is 5 MB and 100,000 unique candidates
+- **List Toggle**: Switch between the 10k and 100k bundled lists with a single click; the scan restarts immediately, with custom candidates first when loaded
 - **Auto-Fill**: If the password is found it is automatically filled into the unlock field; just click Unlock to continue
 - **Cancellable**: A cancel button stops the scan at any time, and manual entry is always available regardless of scan state
 - **Non-Blocking**: Scans yield to the browser every 150 passwords so the UI stays fully responsive during long scans

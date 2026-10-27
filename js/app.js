@@ -63,6 +63,8 @@ const card              = document.getElementById('card')
 const dropZone          = document.getElementById('drop-zone')
 const browseBtn         = document.getElementById('browse-btn')
 const fileInput         = document.getElementById('file-input')
+const customListInput   = document.getElementById('custom-list-input')
+const customListStatus  = [document.getElementById('custom-list-locked-status'), document.getElementById('custom-list-owner-status')]
 const lockedFilename    = document.getElementById('locked-filename')
 const lockedAlgo        = document.getElementById('locked-algo')
 const unlockForm        = document.getElementById('unlock-form')
@@ -104,6 +106,7 @@ const permModify        = document.getElementById('perm-modify')
 const permAnnotate      = document.getElementById('perm-annotate')
 const permFill          = document.getElementById('perm-fill')
 const permAssemble      = document.getElementById('perm-assemble')
+const removeMetadata    = document.getElementById('remove-metadata')
 const protectionForm    = document.getElementById('protection-form')
 const protectBtn        = document.getElementById('protect-btn')
 const protectButtonHTML = protectBtn.innerHTML
@@ -214,7 +217,7 @@ async function startScan(mode) {
   // list's length changes. Falls back gracefully if the list fails to load.
   const serial = fileLoadSerial
   let total = 0
-  try { total = (await scanner.loadList(listKey)).length } catch { /* scan() surfaces the error */ }
+  try { total = (await scanner.loadScanList(listKey)).length } catch { /* scan() surfaces the error */ }
   // The await above can outlive the state it was started for: a reset or new
   // file swaps the handler, a rapid 10k/100k toggle supersedes this list
   // choice, and a successful unlock leaves the locked state entirely.
@@ -405,6 +408,7 @@ function resetActionControls() {
 
 function resetToIdle() {
   scanner.cancel()
+  scanner.clearCustomList()
   fileLoadSerial++
   resetActionControls()
   state.session = null
@@ -418,6 +422,9 @@ function resetToIdle() {
   // Reset scan list selections back to default
   scanListKey['locked'] = '10k'
   scanListKey['owner-locked'] = '10k'
+  customListStatus.forEach(status => { status.hidden = true; status.textContent = '' })
+  customListInput.value = ''
+  removeMetadata.checked = true
   updateScanListButtons('locked', '10k')
   updateScanListButtons('owner-locked', '10k')
   if (state.blobUrl) { URL.revokeObjectURL(state.blobUrl); state.blobUrl = null }
@@ -534,6 +541,10 @@ function handleFileSelected(file) {
   const error = validateFile(file?.type ?? '', file?.size ?? 0, file?.name ?? '')
   if (error) { fileInput.value = ''; showToast(error, { type: 'warning' }); return }
 
+  scanner.cancel()
+  scanner.clearCustomList()
+  customListStatus.forEach(status => { status.hidden = true; status.textContent = '' })
+  removeMetadata.checked = true
   const serial = ++fileLoadSerial
   resetActionControls()
 
@@ -772,6 +783,33 @@ ownerForgotPasswordBtn.addEventListener('click', () => {
 ownerScanTrigger10k.addEventListener('click',  () => triggerForgotPasswordScan('owner-locked', '10k'))
 ownerScanTrigger100k.addEventListener('click', () => triggerForgotPasswordScan('owner-locked', '100k'))
 
+let customListMode = 'locked'
+for (const [id, mode] of [['custom-list-locked-btn', 'locked'], ['custom-list-owner-btn', 'owner-locked']]) {
+  document.getElementById(id).addEventListener('click', () => {
+    customListMode = mode
+    customListInput.click()
+  })
+}
+
+customListInput.addEventListener('change', async () => {
+  const file = customListInput.files?.[0]
+  customListInput.value = ''
+  if (!file) return
+  const mode = customListMode
+  const serial = fileLoadSerial
+  try {
+    const count = await scanner.setCustomList(file)
+    if (serial !== fileLoadSerial || state.current !== mode || !count) return
+    customListStatus.forEach(status => {
+      status.textContent = `${count.toLocaleString()} custom candidates loaded. Tried before the selected common list.`
+      status.hidden = false
+    })
+    triggerForgotPasswordScan(mode, scanListKey[mode])
+  } catch (err) {
+    if (serial === fileLoadSerial) showToast(err.message, { type: 'error' })
+  }
+})
+
 // ── Common password warning ───────────────────────────────────
 let _commonPwLoading = false
 
@@ -957,6 +995,7 @@ async function applyProtection() {
       ownerPassword: hasOwnerPw ? ownerPw : undefined,
       algorithm: algo,
       permissions: getPermissions(),
+      removeMetadata: removeMetadata.checked,
     })
     if (serial !== fileLoadSerial || state.session !== session) return
     const filename = outputFilename(fileName, 'protected')
@@ -1013,7 +1052,7 @@ async function doRemoveProtection(ownerPw) {
   operationStatus.textContent = 'Removing protection…'
 
   try {
-    const bytes = await session.removeProtection(ownerPw || null)
+    const bytes = await session.removeProtection(ownerPw || null, removeMetadata.checked)
     if (serial !== fileLoadSerial || state.session !== session) return
     const filename = outputFilename(fileName, 'unlocked')
     const result = await saveBytes(bytes, filename)

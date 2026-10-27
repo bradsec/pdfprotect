@@ -12,10 +12,55 @@
  */
 
 const CHUNK = 150  // passwords per event-loop tick
+const MAX_CUSTOM_BYTES = 5 * 1024 * 1024
+const MAX_CUSTOM_CANDIDATES = 100000
 
 const LISTS = {
   '10k':  './passwords/10k-most-common.txt',
   '100k': './passwords/100k-most-used.txt',
+}
+
+export function parseCustomWordList(text, extension) {
+  const candidates = new Set()
+  const add = value => {
+    const candidate = value.trim()
+    if (!candidate) return
+    candidates.add(candidate)
+    if (candidates.size > MAX_CUSTOM_CANDIDATES) {
+      throw new Error('Custom list exceeds 100,000 candidates.')
+    }
+  }
+
+  if (extension === 'csv') {
+    let cell = ''
+    let quoted = false
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i]
+      if (char === '"') {
+        if (quoted && text[i + 1] === '"') { cell += '"'; i++ }
+        else quoted = !quoted
+      } else if ((char === ',' || char === '\n' || char === '\r') && !quoted) {
+        add(cell)
+        cell = ''
+        if (char === '\r' && text[i + 1] === '\n') i++
+      } else {
+        cell += char
+      }
+    }
+    add(cell)
+  } else {
+    let inCode = false
+    for (const line of text.split(/\r?\n/)) {
+      if (extension === 'md') {
+        if (/^\s*(```|~~~)/.test(line)) { inCode = !inCode; continue }
+        if (inCode || /^\s*#{1,6}\s/.test(line)) continue
+        add(line.replace(/^\s*(?:[-*+]\s+|\d+\.\s+)/, ''))
+      } else {
+        add(line)
+      }
+    }
+  }
+  return [...candidates]
 }
 
 export class PasswordScanner {
@@ -23,6 +68,31 @@ export class PasswordScanner {
   #cache = {}
   #gen = 0     // incremented on every new scan; old scans bail when they see a mismatch
   #running = false
+  #customList = []
+  #customLoadGen = 0
+
+  async setCustomList(file) {
+    const gen = ++this.#customLoadGen
+    const extension = file?.name?.toLowerCase().match(/\.([^.]+)$/)?.[1]
+    if (!['txt', 'csv', 'md'].includes(extension)) {
+      throw new Error('Choose a .txt, .csv, or .md word list.')
+    }
+    if (file.size > MAX_CUSTOM_BYTES) throw new Error('Custom list exceeds the 5 MB limit.')
+    const candidates = parseCustomWordList(await file.text(), extension)
+    if (!candidates.length) throw new Error('Custom list has no candidates.')
+    if (gen !== this.#customLoadGen) return 0
+    this.#customList = candidates
+    return candidates.length
+  }
+
+  clearCustomList() { this.#customLoadGen++; this.#customList = [] }
+
+  async loadScanList(listKey) {
+    const bundled = await this.loadList(listKey)
+    return this.#customList.length
+      ? [...new Set([...this.#customList, ...bundled])]
+      : bundled
+  }
 
   /**
    * Pre-fetch and cache a word list. Concurrent callers share one download;
@@ -73,7 +143,7 @@ export class PasswordScanner {
 
     this.#running = true
     try {
-      const passwords = await this.loadList(listKey)
+      const passwords = await this.loadScanList(listKey)
       if (gen !== this.#gen) { this.#running = false; return }  // cancelled while fetching list
 
       const total = passwords.length
