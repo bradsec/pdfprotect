@@ -330,7 +330,7 @@
             <div class="field">
               <label class="field-label" for="user-password">User password <span class="optional">(optional)</span></label>
               <input type="password" id="user-password" name="user-password" class="input"
-                     placeholder="Leave blank for permissions-only protection" autocomplete="new-password">
+                     placeholder="Leave blank to skip" autocomplete="new-password">
               <div class="strength-bar" id="strength-bar" hidden>
                 <div class="strength-segments" id="strength-segments">
                   <div class="segment" data-idx="0"></div>
@@ -355,7 +355,7 @@
                 Owner password <span class="optional">(optional — leave blank to reuse the user password)</span>
               </label>
               <input type="password" id="owner-password" name="owner-password" class="input"
-                     placeholder="Leave blank to reuse the user password" autocomplete="new-password">
+                     placeholder="Blank to reuse user password" autocomplete="new-password">
               <div class="strength-bar" id="owner-strength-bar" hidden>
                 <div class="strength-segments" id="owner-strength-segments">
                   <div class="segment" data-idx="0"></div>
@@ -463,7 +463,7 @@
               <label class="field-label" for="remove-owner-password">Owner password required to remove protection</label>
               <div class="input-row">
                 <input type="password" id="remove-owner-password" name="owner-password" class="input"
-                       placeholder="Owner password" autocomplete="current-password">
+                       placeholder="Password" autocomplete="current-password">
                 <button class="btn-danger button-like-danger" id="confirm-remove-btn" type="submit">Remove</button>
               </div>
               <div class="error-msg" id="remove-error" hidden>
