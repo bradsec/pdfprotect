@@ -15,7 +15,7 @@ function stripMetadata(pdf) {
 }
 
 async function loadWithOwnerCredentials(bytes, password) {
-  const pdf = await PDF.load(bytes)
+  const pdf = await PDF.load(bytes, { credentials: password })
   const handler = pdf?.ctx?.info?.securityHandler
 
   // libpdf authenticates as user before owner when both passwords are the
@@ -31,7 +31,7 @@ async function loadWithOwnerCredentials(bytes, password) {
 }
 
 async function loadPreferringOwnerCredentials(bytes, password) {
-  const pdf = await PDF.load(bytes)
+  const pdf = await PDF.load(bytes, { credentials: password })
   const handler = pdf?.ctx?.info?.securityHandler
 
   // Prefer owner auth when the same string is valid for both roles so users
@@ -41,9 +41,8 @@ async function loadPreferringOwnerCredentials(bytes, password) {
     if (result?.authenticated && result?.isOwner) return pdf
   }
 
-  const authenticatedPdf = await PDF.load(bytes, { credentials: password })
-  if (!authenticatedPdf.isAuthenticated) throw new Error('Incorrect password')
-  return authenticatedPdf
+  if (!pdf.isAuthenticated) throw new Error('Incorrect password')
+  return pdf
 }
 
 export class PDFSession {
@@ -98,8 +97,8 @@ export class PDFSession {
 
   async removeProtection(ownerPassword = null, removeMetadata = false) {
     if (!this.isEncrypted) throw new Error('Document is not protected')
-    if (ownerPassword) {
-      const trimmed = ownerPassword.trim()
+    const trimmed = ownerPassword?.trim() ?? ''
+    if (trimmed) {
       const pdf = await loadWithOwnerCredentials(this.#bytes, trimmed)
       const meta = pdf.getMetadata()
       pdf.removeProtection()

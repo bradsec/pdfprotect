@@ -27,9 +27,23 @@ test('stale unlock results and errors cannot change a reset panel', async () => 
   const original = PDFSession.loadWithCredentials
   const originalLoad = PDFSession.load
   try {
+    globalThis.FileReader = class {
+      readAsArrayBuffer() { this.result = Uint8Array.of(37, 80, 68, 70).buffer; this.onload() }
+    }
     for (const [form, input] of [['unlock-form', 'unlock-password'], ['owner-unlock-form', 'owner-unlock-password']]) {
+      const selectLockedFile = async () => {
+        PDFSession.load = async () => ({
+          isEncrypted: true, isAuthenticated: form === 'owner-unlock-form',
+          hasOwnerAccess: () => false,
+          getSecurity: () => ({}), getSecurityHandler: () => ({}),
+        })
+        element('file-input').files = [{ type: 'application/pdf', size: 4, name: 'locked.pdf' }]
+        element('file-input').listeners.change()
+        await new Promise(setImmediate)
+      }
       let resolve, reject
       PDFSession.loadWithCredentials = () => new Promise((yes, no) => { resolve = yes; reject = no })
+      await selectLockedFile()
       element(input).value = 'secret'
       element(form).listeners.submit({ preventDefault() {} })
       element('reset-btn').listeners.click()
@@ -37,6 +51,7 @@ test('stale unlock results and errors cannot change a reset panel', async () => 
       await new Promise(setImmediate)
       assert.equal(element('card').dataset.state, 'idle', `${form} resolved after reset`)
 
+      await selectLockedFile()
       element(input).value = 'secret'
       element(form).listeners.submit({ preventDefault() {} })
       element('reset-btn').listeners.click()
@@ -46,9 +61,6 @@ test('stale unlock results and errors cannot change a reset panel', async () => 
       assert.equal(element(form === 'unlock-form' ? 'unlock-error' : 'owner-unlock-error').hidden, true)
     }
 
-    globalThis.FileReader = class {
-      readAsArrayBuffer() { this.result = Uint8Array.of(37, 80, 68, 70).buffer; this.onload() }
-    }
     PDFSession.load = async () => ({ isEncrypted: true, isAuthenticated: false,
       getSecurity: () => ({}), getSecurityHandler: () => ({}) })
     element('file-input').files = [{ type: 'application/pdf', size: 4, name: 'locked.pdf' }]

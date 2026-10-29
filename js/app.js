@@ -433,7 +433,9 @@ function resetToIdle() {
   resetScanUI('owner-locked')
   fileInput.value = ''
   unlockPassword.value = ''
+  unlockError.hidden = true
   ownerUnlockPassword.value = ''
+  ownerUnlockError.hidden = true
   removeOwnerPw.value = ''
   userPassword.value = ''
   userPasswordConfirm.value = ''
@@ -541,12 +543,8 @@ function handleFileSelected(file) {
   const error = validateFile(file?.type ?? '', file?.size ?? 0, file?.name ?? '')
   if (error) { fileInput.value = ''; showToast(error, { type: 'warning' }); return }
 
-  scanner.cancel()
-  scanner.clearCustomList()
-  customListStatus.forEach(status => { status.hidden = true; status.textContent = '' })
-  removeMetadata.checked = true
-  const serial = ++fileLoadSerial
-  resetActionControls()
+  resetToIdle()
+  const serial = fileLoadSerial
 
   readFileAsArrayBuffer(file).then(buffer => {
     if (serial !== fileLoadSerial) return
@@ -627,6 +625,9 @@ async function loadPDF(bytes) {
   try {
     const session = await PDFSession.load(bytes)
     if (serial !== fileLoadSerial) return
+    if (session.isEncrypted && !session.getSecurityHandler()) {
+      throw new Error('This PDF uses an encryption method PDFProtect does not support.')
+    }
 
     if (session.isEncrypted && !session.isAuthenticated) {
       prepareLockedState(bytes, session, PROT.USER, false)
@@ -699,6 +700,7 @@ async function attemptUnlock(password) {
 
 unlockForm.addEventListener('submit', e => {
   e.preventDefault()
+  if (state.current !== 'locked' || !state.pdfBytes) return
   if (unlockBtn.disabled) return  // guard against double-submit while a prior unlock is in flight
   const pw = unlockPassword.value.trim()
   if (!pw) { unlockPassword.focus(); return }
@@ -748,6 +750,7 @@ async function attemptOwnerUnlock(password) {
 
 ownerUnlockForm.addEventListener('submit', e => {
   e.preventDefault()
+  if (state.current !== 'owner-locked' || !state.pdfBytes) return
   const pw = ownerUnlockPassword.value.trim()
   if (!pw) { ownerUnlockPassword.focus(); return }
   attemptOwnerUnlock(pw)
@@ -757,6 +760,7 @@ changeFileOwnerLocked.addEventListener('click', resetToIdle)
 
 // ── Forgot password wiring ────────────────────────────────────
 function triggerForgotPasswordScan(mode, listKey) {
+  if (state.current !== mode) return
   const isOwner   = mode === 'owner-locked'
   const choices   = isOwner ? ownerScanChoices           : scanChoices
   // Hide only the choices: the "Forgot password?" button was hidden on click,
@@ -768,6 +772,7 @@ function triggerForgotPasswordScan(mode, listKey) {
 }
 
 forgotPasswordBtn.addEventListener('click', () => {
+  if (state.current !== 'locked') return
   forgotPasswordBtn.hidden = true
   scanChoices.hidden = false
 })
@@ -776,6 +781,7 @@ scanTrigger10k.addEventListener('click',  () => triggerForgotPasswordScan('locke
 scanTrigger100k.addEventListener('click', () => triggerForgotPasswordScan('locked', '100k'))
 
 ownerForgotPasswordBtn.addEventListener('click', () => {
+  if (state.current !== 'owner-locked') return
   ownerForgotPasswordBtn.hidden = true
   ownerScanChoices.hidden = false
 })
@@ -1087,7 +1093,7 @@ async function doRemoveProtection(ownerPw) {
 removeForm.addEventListener('submit', e => {
   e.preventDefault()
   if (confirmRemoveBtn.disabled) return
-  doRemoveProtection(removeOwnerPw.value)
+  doRemoveProtection(removeOwnerPw.value.trim() || null)
 })
 
 // ── Theme ─────────────────────────────────────────────────────
